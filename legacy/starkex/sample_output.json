@@ -1,0 +1,3218 @@
+{
+    "L2": {
+        "vaults": {
+            "0": {
+                "stark_key": "0x6b56aeb3ee3df0002dfa4e2c65e335fbacf0f7a8f399a9beffe7b04534f7cd",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 29234.661877,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "1": {
+                "stark_key": "0x27cda895fbaa174bf10c8e0f57561fa9aa6a93cfec32b87f1bdfe55a161e358",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 408907.817269,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "2": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "16": {
+                "stark_key": "0x15e8410e93e5c90b1bf7a393874f68f4cc7f477c5d742daac5c5a112e672d61",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 12280156.418787,
+                        "additional_attributes": {}
+                    },
+                    "1INCH": {
+                        "asset type": "SYNTH",
+                        "amount": 6303.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "AAVE": {
+                        "asset type": "SYNTH",
+                        "amount": -341.97,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "AVAX": {
+                        "asset type": "SYNTH",
+                        "amount": 4515.3,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 3.4355,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "CRV": {
+                        "asset type": "SYNTH",
+                        "amount": -200.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "DOGE": {
+                        "asset type": "SYNTH",
+                        "amount": -18140.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -248.406,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": 10908.1,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": -10549.4,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "SOL": {
+                        "asset type": "SYNTH",
+                        "amount": -10566.2,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "SUSHI": {
+                        "asset type": "SYNTH",
+                        "amount": -7779.8,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": -2325.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "YFI": {
+                        "asset type": "SYNTH",
+                        "amount": -0.1579,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "18": {
+                "stark_key": "0x1b9832d21b9497a35d7ab8921ac25e91aadb50351e3b114739453d7e9d63071",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1788751.099036,
+                        "additional_attributes": {}
+                    },
+                    "AAVE": {
+                        "asset type": "SYNTH",
+                        "amount": -285.17,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "AVAX": {
+                        "asset type": "SYNTH",
+                        "amount": -4084.1,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 11.2706,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "CRV": {
+                        "asset type": "SYNTH",
+                        "amount": -50.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "DOGE": {
+                        "asset type": "SYNTH",
+                        "amount": 31860.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 67.758,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": -6962.9,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": -5110.8,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "SOL": {
+                        "asset type": "SYNTH",
+                        "amount": -2832.9,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "SUSHI": {
+                        "asset type": "SYNTH",
+                        "amount": -7200.7,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": -3677.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "21": {
+                "stark_key": "0xf3345d5667e97b443a221ab0e065e7849dc70822ba5ed1de1b8e88de63eedc",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 964329.85567,
+                        "additional_attributes": {}
+                    },
+                    "AVAX": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.2908,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -51.296,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "22": {
+                "stark_key": "0x50e0343dc2c0c00aa13f584a31db64524e98b7ff11cd2e07c2f074440821f99",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 371014.398124,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -0.0755,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.882,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "23": {
+                "stark_key": "0x3f68abc7e2fae7eee20bacceafc216f88d2c4fea68c501f2151e220c6481b9b",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 5391321.49577,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -12.0851,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -247.078,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": -6519.5,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "SUSHI": {
+                        "asset type": "SYNTH",
+                        "amount": -8320.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "24": {
+                "stark_key": "0x2e53252057b5beebebb821e4e22e01a3bed65c1a7ab4c38b2796526202be461",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 151515.789423,
+                        "additional_attributes": {}
+                    },
+                    "AAVE": {
+                        "asset type": "SYNTH",
+                        "amount": -94.46,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -0.05,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": -455.8,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": -491.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "29": {
+                "stark_key": "0x75abeccba7008be890d26ec82ea2cc66e39161db368350bc597af1c49b1ac1a",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2949766.771691,
+                        "additional_attributes": {}
+                    },
+                    "AVAX": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -30.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "533": {
+                "stark_key": "0x49ff4709778112e3504976f137a64af6577fc1498ad190917c5499689189d58",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -3749.20986,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 2.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "633": {
+                "stark_key": "0x165d3476c8c01fa2b00a14654b81bc5e11337d721f954bdc5911285d9db0b86",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -133110.340576,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 5.25,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "846": {
+                "stark_key": "0x31d4362985f55465fc7c3bf3f142cd4610434b7c1dd71b7a6fbcc0751e0ce5",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -2531.839665,
+                        "additional_attributes": {}
+                    },
+                    "AAVE": {
+                        "asset type": "SYNTH",
+                        "amount": 1.82,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.368,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": 30.6,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "1348": {
+                "stark_key": "0x34b85d5d9df2e0be929c741658682b8b8c1239a5bd159e6c8af28acb6115e40",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -6647.82849,
+                        "additional_attributes": {}
+                    },
+                    "AAVE": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": 200.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    },
+                    "SOL": {
+                        "asset type": "SYNTH",
+                        "amount": 200.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "1583": {
+                "stark_key": "0x54331e76a8011134cac59e478978a5deefecf666e1072c97b620b3ad1e5977a",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 39775.546764,
+                        "additional_attributes": {}
+                    },
+                    "YFI": {
+                        "asset type": "SYNTH",
+                        "amount": -0.01,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "1884": {
+                "stark_key": "0x380447a3d98530e20656cfda5d9b467e902cafb727be4ef7e392243bee9a751",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 183.343881,
+                        "additional_attributes": {}
+                    },
+                    "DOGE": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "1908": {
+                "stark_key": "0x65097c4060f8f7f076df9c70138554b2e005762488d0127425ce6701be6b23e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 91.93,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "1931": {
+                "stark_key": "0xaa6a457ebf1d741b7f07e5b3e2cf0e8c1930b90ccd2ae47f0742fa8c1c2b46",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -382.736209,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.2,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "2473": {
+                "stark_key": "0x66c3302cd653f404267ca4a3d746ab52fc926b156d7351bda242b3e84e52013",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 223.067859,
+                        "additional_attributes": {}
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": -9.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "2481": {
+                "stark_key": "0x4ff49ea3a9462fa3dc1915b838442b740a696e1a5f29fe84570cc692d8771e9",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 708.892397,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.002,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "2717": {
+                "stark_key": "0x7b16387bc9f0895159b76db525eb0ee976979dedadcfe64036174cabe57fa4f",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -1034.045315,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.03,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "3071": {
+                "stark_key": "0x2c2f34e7f5770bcac71df73db5f51dcf8d9d4fa15253fdb409a8b0d5c35f0f5",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 895.959798,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -0.02,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "3499": {
+                "stark_key": "0x3ad35af5e588bf7478615d32eccca8a77bc78760739843e7002635ed209442d",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 3.212495,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621933200
+                        }
+                    }
+                }
+            },
+            "3807": {
+                "stark_key": "0x542f8aa6a8b3c8fca5557ddd7b3e0f0e7685cb341cb73dd881341207311fd98",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 501.233555,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "3876": {
+                "stark_key": "0x5e2e43e6ccc74564bf48d52ff444943fc70ee129a5b810b85864f9a813d0178",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -1933.738409,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.08,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621944000
+                        }
+                    }
+                }
+            },
+            "4304": {
+                "stark_key": "0x10c2cd3b64f9a4815222c98e37ab594ec8acce9b9d07decb3ed5b9998f94b37",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -2707.312176,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.2,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 9.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "4405": {
+                "stark_key": "0x50c9141a7ac65344f7e83ab177b2913a4ca34ff80f904cdc0d4a969c6b94719",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1.982389,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621929600
+                        }
+                    }
+                }
+            },
+            "4435": {
+                "stark_key": "0x3f174b019aded946c91ef6497fe2fcab9251ca387e98e98330663aba6f47f1b",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 12.127066,
+                        "additional_attributes": {}
+                    },
+                    "DOGE": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "4618": {
+                "stark_key": "0x4c3d9275fca784c14096c34b407b4054d3f7bfa2a31d4a2d2b1c256e8537cf7",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 641.314687,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -0.01,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621933200
+                        }
+                    }
+                }
+            },
+            "4674": {
+                "stark_key": "0x134cf27990e5e44e10fd4edbd023bc98388ebac83998734cd259c49fa12d112",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 20534.249971,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "4688": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "4718": {
+                "stark_key": "0x767d6db26e6fd7e641181c3d7d07e7d46515f076ef244aa3607843672da2ec6",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -2373.124192,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 1.026,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "5164": {
+                "stark_key": "0x58b5753127b899e4c99808cc950403855d40e761721a507bd8edb08be74f077",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 13.335007,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "5289": {
+                "stark_key": "0x6388f62453cd671a20b19db10b98cbe90a77d4abe45ffca07da48861850131e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 19200.309043,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -0.3,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "5356": {
+                "stark_key": "0x7c83ebfaf94f6771364223f69e40d8ee11cdc469b35195f2e34868ba54b4ee4",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -586.678805,
+                        "additional_attributes": {}
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": 26.1,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "5404": {
+                "stark_key": "0x3581090362183ee4f4a18f03feb8111df996a560addf0bd8ef3df12979625",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1398.845363,
+                        "additional_attributes": {}
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "5640": {
+                "stark_key": "0xf220d87d71ec973c5cebd947cc489945f08cde9394106665939d2fc6e7f86a",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 35426.944943,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -7.407,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "5715": {
+                "stark_key": "0x6d7f8c958d9a4392f7dc9d42f59b1a752641409c20ba2bc9165bc3f68c76d7e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 5542.660519,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -2.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "5742": {
+                "stark_key": "0x4a1e296d63b097af6dd08be241b388a7c75b555242269465f926bfbd0fa3f91",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -268.814751,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.15,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "6029": {
+                "stark_key": "0x294b77a86e89ca7e2e67538444af580f5012fc60622d26c629bc8ae77682f78",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -3868.327841,
+                        "additional_attributes": {}
+                    },
+                    "AAVE": {
+                        "asset type": "SYNTH",
+                        "amount": 180.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": 9000.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": 1500.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "6224": {
+                "stark_key": "0x233b017f5bedcc36650b7751bcca7537b872c2268f83e29417faaa8eb74cfce",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 4258.05149,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "6265": {
+                "stark_key": "0x5cbc4a4abb5fcb0750ff143b389c54f2aff3a5987831a53a730141f200731fb",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.310048,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "6509": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    },
+                    "1INCH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 0
+                        }
+                    },
+                    "AVAX": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 0
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 0
+                        }
+                    },
+                    "SOL": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 0
+                        }
+                    }
+                }
+            },
+            "6792": {
+                "stark_key": "0x7d86019a277a6cbd987947d51d24057cf21f038b05f32905ee5ba1ba5b9fcab",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -79243.760495,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 34.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "6941": {
+                "stark_key": "0x334489b7a5980c7ee53fbc10299b3d7c4624b3b7ab1a7973d16a5cffdb3a212",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2795.855923,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "7416": {
+                "stark_key": "0x685e8e6dc4e3ef0caf4e7648ea7ac53fd6483e51bbb98207724ee6fce26d6c7",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 10018.655631,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621933200
+                        }
+                    }
+                }
+            },
+            "7437": {
+                "stark_key": "0x25405e327f491af15b96ea5131bc5fae1006a6ce4dc3dcc300c86fef580388e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 118.694046,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "7495": {
+                "stark_key": "0x8a7f86b51a532fb36ee85b5928277c12ad5d526c6f10397fb98dc5f1f309e7",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2169.174933,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "7522": {
+                "stark_key": "0x2aa75d5feb091180f1f6e7f44ff3c9d7f1be53654767f5385fe9c1b30092b3d",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 19235.994358,
+                        "additional_attributes": {}
+                    },
+                    "SOL": {
+                        "asset type": "SYNTH",
+                        "amount": -324.9,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "8130": {
+                "stark_key": "0x2a7940c6d9f394659cdced986007729f5f4fbcafffb73c6e6d7e30eac17acf1",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1278.630661,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "8225": {
+                "stark_key": "0x1d3608004c8172130d61dece804c3194f77c13b3e168ea11eac4e89fabfab41",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -5271.480043,
+                        "additional_attributes": {}
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": 100.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621944000
+                        }
+                    }
+                }
+            },
+            "8340": {
+                "stark_key": "0x747731b9abe310b5652d59f3b5cbdfe2b227c45cf27101ffd8657f7816b6b63",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -15262.671997,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 14.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "8413": {
+                "stark_key": "0x21f64e7c73153d082001a5b166667f186b20c673db33c614725864db40e7c94",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 234.368352,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "8929": {
+                "stark_key": "0x58a7b493a1061f6c706f5a8574ba6f6e662733e2605b25680a14c5c18eb7913",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -890.792497,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 1.5,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621929600
+                        }
+                    }
+                }
+            },
+            "9024": {
+                "stark_key": "0x5387699f4eae30f9d3634b3c6da5eaa8eb8e8643ed2c81976bc74c5c283ddc7",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2166.344767,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.5,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "9235": {
+                "stark_key": "0xcc72d44175cfeb4cefcaaf91dd9bdd767e297c7b6ff6951b5f0a0b0d504738",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2735.841289,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "9411": {
+                "stark_key": "0x163b743f992ce93ebf3a9e134531f4607e3b5218161752ce457d68211f7a347",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1004.153376,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "9479": {
+                "stark_key": "0xa27ac8eed34108552d51a2065d58c4f27982e37b64cb004073847deb6d84bd",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 721.299689,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "9515": {
+                "stark_key": "0x5442efe2f12136092b94736615c07c27c1f30e16426ece8f3dfaace3841fdf",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 577.929538,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.15,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "10101": {
+                "stark_key": "0x41da9e488eaf9f329ae7fe6b1268c4339e4043417bfde16a4d3fa17a830c759",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 286.84016,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "10165": {
+                "stark_key": "0x5a2388304a933186890e7fde3cb751bbdd17412352487e8385de85bdc6b1a31",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 3065.237209,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -1.104,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621929600
+                        }
+                    }
+                }
+            },
+            "10193": {
+                "stark_key": "0x18ec3ccbb3ab671b3260343f7c10f86d8dab638740695f0d4417af948594944",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -2256.407298,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 1.25,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "10274": {
+                "stark_key": "0xbab631faeb4dd1cada26d4ceb0210763ac2009b7d6f2d9338fa05c2efcc988",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1303.345422,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "10419": {
+                "stark_key": "0x177bdde5362101f9522257f16a14d0aadca92b8365e74d9e8e4696a8ac52755",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1198.709324,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.26,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "10493": {
+                "stark_key": "0x5a7722a7fd072369706934512e6b596d68b9d1c64eef573960d113a50ba0d56",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -12373.881353,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 5.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "10659": {
+                "stark_key": "0x4d0c2957679e7fcbe7b53a2bb83638ff29b8db5cac6763c22812ce0b2192711",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 100.202912,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "10973": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "11157": {
+                "stark_key": "0x2ac24bea9f5edad7ff499ff6fdf29767fa1485f0f7b23b5aac621cd252dffd9",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -270.836337,
+                        "additional_attributes": {}
+                    },
+                    "CRV": {
+                        "asset type": "SYNTH",
+                        "amount": 200.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    },
+                    "YFI": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "11574": {
+                "stark_key": "0x7f5fdfde81606df4fd71cd4ab958cfbedcdd02f30ad5fa0ae2194d98bfe9622",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 4532.533705,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "11822": {
+                "stark_key": "0x27a59fae35998c2ade77f1a4ae3be385e7e059f78c49c1ad29372cb8e9be4ca",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -6290.704056,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 4.53,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "SOL": {
+                        "asset type": "SYNTH",
+                        "amount": 4.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "12100": {
+                "stark_key": "0x73f76f08d4ad8f83f52f8c0071ccf766b84291641f0d114d478425121488877",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 3191.887904,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "12113": {
+                "stark_key": "0x6566e02daaf334040d3ac51e927361010d348cad73de8244f5a76db19b9a88b",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 3435.158245,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "12597": {
+                "stark_key": "0x2a1e698e1a71b0b212acca9bff7fc2dec5234f45933e5b1d41210d7e56c51a8",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -2747.454595,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 1.787,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "12616": {
+                "stark_key": "0x18e04abab3e3d7518504acba6ec4ddf6394529574fbf2f272d949e02d6c8303",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -162756.134548,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 80.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "12644": {
+                "stark_key": "0x28565a645821419e2f94a89675922424abb09cc19ba3e606e2379430fa6bea2",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -71842.55016,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 2.4457,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "12847": {
+                "stark_key": "0x495850911d12f340fbd5d308664bfea95e57bce8ced804aa43dc47ba7561526",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -56026.759414,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 1.3012,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "12929": {
+                "stark_key": "0x318dc4f7c0dc575089112b23b1a03e3ff62c5d967144c50803793abc9c70d48",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 3767.211617,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "13257": {
+                "stark_key": "0x1eeb29a0922fe2dea3e7cc078f111d3f57801ad370300cea96d224d0c209a5c",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -1892.551189,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "13544": {
+                "stark_key": "0x1bc56f6746a1734ddac3d63b0dd4704fc02068c5da621554ad673d7608694f4",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 6931.900318,
+                        "additional_attributes": {}
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": -209.8,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "13645": {
+                "stark_key": "0x6f527ef0cd3a0ee33dad6d78d89f4471c0dc8dce31d51c0e991333ad1b75bf7",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 63.048919,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "13721": {
+                "stark_key": "0x774c6b4c85770b0d9a5d03b16df840fd17bfce7639cb9e3cc424d85df6fe3df",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 40995.478816,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -15.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "13815": {
+                "stark_key": "0x6f67e660ff6d0034762fc97fe25f99f2946c4bd51b2551a957736c3972fa61a",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 109.609097,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "13952": {
+                "stark_key": "0x23b481a839e6cdbba3b3c41645741507c73a779c72b221f1c62184231418ca0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -58.85394,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.2,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "14189": {
+                "stark_key": "0x557517cb834a05ddeb7f373544d25b6f778849559bdf3075656df865f60f04e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 83956.450891,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "14414": {
+                "stark_key": "0x4113eecc2cfd9420ad8ad4c4a592dfc6f72847642efd0a7cd5ce14bd6551129",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1015.99858,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "14533": {
+                "stark_key": "0x1f1fd9ac1f10e18858a20fbcb88bd4b8d238a6a08e49b62e0f92cfa869195bc",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2766.339051,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621933200
+                        }
+                    }
+                }
+            },
+            "14651": {
+                "stark_key": "0x41513ddb0a7cfb3f5dc68f83dc14413ddd34859b83ed28ee9178d0acc95a8a9",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -4341.447203,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.068,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 1.009,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "15110": {
+                "stark_key": "0x320634bcaf3d21f4974ab7b9c70a4ad53eba27f18e233a36c6375028e41f4c2",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -16517.117211,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.5,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "15201": {
+                "stark_key": "0x7b7e3ba4d966466c0d2cd95d91ac0903729bea69fdd62e6d5151aa5ed996fbe",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2323.513017,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.5,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "15372": {
+                "stark_key": "0x452dbd40cdd68c07bd4a52648a17c2ccd4136c6dc0bb6d23614e076978494bd",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -31908.29354,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 14.078,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "15375": {
+                "stark_key": "0x1a3604d3bd1f75a61501c15315f625bf13077c83bada04536cf8012175fbb5c",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -588.296739,
+                        "additional_attributes": {}
+                    },
+                    "SUSHI": {
+                        "asset type": "SYNTH",
+                        "amount": 104.1,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "15376": {
+                "stark_key": "0xe44c13c6cd589c5014ee89f36e812dc5cd32ae30b080a7550e0530ec8c80a5",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1588.3302,
+                        "additional_attributes": {}
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "15678": {
+                "stark_key": "0x6d529e94619062c46591364294ac3f8c6b774b80ace48677ea83defe4aa2dd0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 238.829743,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "15759": {
+                "stark_key": "0x7860c98a7c4bcb06b4b53d1daadc30c415907304f791d4d1d3428f865e2de31",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 87900.697924,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "15770": {
+                "stark_key": "0x473593b2c3f57e60db6709421686761d4fe1d06d3508fb4c64f24ad47d3d9c2",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 17013.799263,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "16052": {
+                "stark_key": "0x6171d598310c8539f9210df6ea34d7d4aac2fc6fd30c1a6dc793b6fbf257aa8",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 143.293928,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "16292": {
+                "stark_key": "0x2bc91bb979f975ac8214a8efd668bb36e767a49748d65ef753325bc3b631ffe",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -4435.555566,
+                        "additional_attributes": {}
+                    },
+                    "1INCH": {
+                        "asset type": "SYNTH",
+                        "amount": 9000.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    },
+                    "YFI": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "16393": {
+                "stark_key": "0x2817db9abe88707fc8f2dfa5e349049554123bd1192cce17cbb3cd5773c2189",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 302.058745,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -0.004,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621933200
+                        }
+                    }
+                }
+            },
+            "16447": {
+                "stark_key": "0x4100932e4338cea1e58cf96378c7a0763ab7e8fcb4e1a0420104dc96ae842fa",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -263.982468,
+                        "additional_attributes": {}
+                    },
+                    "1INCH": {
+                        "asset type": "SYNTH",
+                        "amount": 100.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0045,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "17263": {
+                "stark_key": "0x6e320d3ae79921d2ceec1fed6dcfeb0722609efa6553c04671a765a9ee194b5",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -398.17436,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.2,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "17608": {
+                "stark_key": "0x565791fef196a4944c987e5016eba77edf83f6aa9d00b6a39224940f9b7f6b",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 179.223623,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "17626": {
+                "stark_key": "0x3b1d83eb001df6362fbe89ea1450cd0df9334861e3b4ac8b8885cb38395c82c",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 58.485802,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "17634": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "17644": {
+                "stark_key": "0x4fbc43c8d595588d18ec42517b57080d3010862e6473126bcb28fbee2e6a2fc",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 179.052738,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "17726": {
+                "stark_key": "0x15a265faf1ebc4de002f883b748354af3765d913f47a84ab8c4c93382ad48c3",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 57.744233,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "17748": {
+                "stark_key": "0x752c77ef7b07f042997a5484bae8feac861b76b34277f5e1af7f4c8b323a6b0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 180.002255,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "18295": {
+                "stark_key": "0x5e288787e104695bdc7f7f2e70e7cd6b52138957760c0e31bb59c7e2fe69414",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 169.17478,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "18774": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "18782": {
+                "stark_key": "0x1a57613a2002a0114cfcc8230ca7a435ba40267290041db80e4f8a0596146c",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 260.159036,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "18858": {
+                "stark_key": "0x6237b4328b737f954d9b18ef9df8260fdd101c24288a7923d79d2c0c762217e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 81.252833,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "19313": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "19581": {
+                "stark_key": "0x11420cb23f08090ce9fff9f0e4f2efe2fdd119919b41816674211434a3fc31e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 759.928633,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.2,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "19721": {
+                "stark_key": "0x34c6bbeba3a21c5a41c845d3b35f3049069d8dc01b188b3236b05e2b72b8283",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -80.990319,
+                        "additional_attributes": {}
+                    },
+                    "SUSHI": {
+                        "asset type": "SYNTH",
+                        "amount": 6.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "19749": {
+                "stark_key": "0x5b0f7be5b554b252b7cdc7c93fa39e60f614c9d19b107440a9fa801f8b2d548",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -108.428809,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.03,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": 3.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": 3.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "19818": {
+                "stark_key": "0x4b408ea7d5736a6c2f1bee884ecedd9426ad9449468192684ce06193edceb40",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 800289.053009,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -10.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621944000
+                        }
+                    }
+                }
+            },
+            "19902": {
+                "stark_key": "0x3150e237715bb72af9d8ddf8cd69b56f7cf00b0a73e6310570fecf3f53aa01a",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 21.184305,
+                        "additional_attributes": {}
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "19920": {
+                "stark_key": "0x5c436e0e6c584a9ab43754a8f217df6920ad2521e8f852053f8f4965e268b2",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -16.063836,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.01,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621933200
+                        }
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": 2.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621933200
+                        }
+                    }
+                }
+            },
+            "20363": {
+                "stark_key": "0x786a53fac138ee08be091ade50015ea870edbcba6e1de506e431c6b16c36469",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 377.948617,
+                        "additional_attributes": {}
+                    },
+                    "SUSHI": {
+                        "asset type": "SYNTH",
+                        "amount": -20.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "20568": {
+                "stark_key": "0x7b3f6cd092c8ffd462e4232ce78ab9e5bdf75d701d827ffa71865b37d8c581",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 4882.820591,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "20658": {
+                "stark_key": "0x7c823648db7ea6558802504529abffd2d8845595e42d06ef41a71b188a5ddd0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -18324.990826,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -2.5,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": 650.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": 1000.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "20782": {
+                "stark_key": "0x215c894e723e24ac37d7e212b4b8d602780b207bfe91597c6adac42c04dc7b4",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 6.421509,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "21604": {
+                "stark_key": "0x65f507024df936b5dfe36e6c16c717fc5a2b19fb7cda4fb6c0b9417b64182f4",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 47701.601693,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "21653": {
+                "stark_key": "0x4a4465d04e2a1853654fcd74c96331cf4ec87654bc511a4e5bf1cfdbd091c0c",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 132.9343,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "21798": {
+                "stark_key": "0x3ea709a063a8867da1c12220c0064a30f21634147cecc8ffd5c30fbbce0c2e9",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 29.505999,
+                        "additional_attributes": {}
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621944000
+                        }
+                    }
+                }
+            },
+            "21940": {
+                "stark_key": "0x369a79c10fef847bb8d11f0b6b57f8df7e019d2d35c09273c806ca7305e4e64",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1670.415375,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "22093": {
+                "stark_key": "0x5ab51ea9fe72712729cf9b1b452c3f09fcd443c45f0202a5bf17a6c8dc4b3b3",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 26.004227,
+                        "additional_attributes": {}
+                    },
+                    "UNI": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621944000
+                        }
+                    }
+                }
+            },
+            "22787": {
+                "stark_key": "0x3803dc788fb675445493c5eb1cbca7f2f050363714c65ad565b6ea5dcf36142",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 257.63624,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.1,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621944000
+                        }
+                    }
+                }
+            },
+            "22930": {
+                "stark_key": "0x527dea11afff4a9176a671ce2a381bab25e96932854693e6a136c6b4fb0e7f1",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 412.617475,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.153,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "23222": {
+                "stark_key": "0x10b44e83cbc286242f39a5cd06cd5b9b0db10c82c5311e1b03415932cdafafd",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2071.783461,
+                        "additional_attributes": {}
+                    },
+                    "YFI": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "23390": {
+                "stark_key": "0x661de2de923ace53399959f700569f2662f8e5eac8ca49d5a8bc287e68935b4",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1105467.844537,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -8.0464,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -179.416,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "23450": {
+                "stark_key": "0x636255090b8ea647eb155b6411069eff7d8ab249556c7a8e0b597b5fcef095e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1459.825875,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "23463": {
+                "stark_key": "0x3d2b67621b800197672cad7ba3fe0599423505f1c1da7a014f276ef8ca77943",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 153.505456,
+                        "additional_attributes": {}
+                    },
+                    "SUSHI": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "23466": {
+                "stark_key": "0xe2894f4d1e984e08d09170808325082e3dcdf72ac11e6d03a13c4ff48b3696",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 111.086367,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.03,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "23539": {
+                "stark_key": "0x4579751d8537b3ceafd7800b01703e8c1ae5c1dc742e968fa2b9e70494ca608",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -29651.548419,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 140.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "23586": {
+                "stark_key": "0x729e4edbb4d0e783f206d0f25fca440fb5ee62a04e113ad5b53a0b0cce6d9ed",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -29.911544,
+                        "additional_attributes": {}
+                    },
+                    "SNX": {
+                        "asset type": "SYNTH",
+                        "amount": 1.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621933200
+                        }
+                    }
+                }
+            },
+            "23731": {
+                "stark_key": "0x5dd792e2bbf368cc5720e97931ceff93c235b9ef8ec6135a40096f5b246de77",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 385.205,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 19.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "24012": {
+                "stark_key": "0x892e8e25a81010de8af915cb5600cc34641fc397c7dc828363ce0217f29339",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2431.240606,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "24044": {
+                "stark_key": "0x668c7076100535e81d660a4b6fc0e6a7c5470df78a52189c7a45307ff149abe",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 7532.029413,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -1.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "24073": {
+                "stark_key": "0x486342b2bd77f578ad252da9f70b9e1a46dc408be4746683ace8eb63b0ef4d4",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 6778.634474,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": -0.15,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "24113": {
+                "stark_key": "0x71fabc41ba244cf6c0b15faed72239486641d317d29c3a871591e65a5a94aa1",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 7772.805202,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -2.5,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621944000
+                        }
+                    }
+                }
+            },
+            "24233": {
+                "stark_key": "0x42afc7114700067aa18e3eed7dfd7cb7a289913e0244abcc7e3b566249c6069",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 107.014912,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.037,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "24257": {
+                "stark_key": "0x4d1723d053f316f4225ab4833ac756950a4b817f354d900904fedaca85a7b0f",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -50195.219324,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 25.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "24306": {
+                "stark_key": "0x479698dd34ff7922426c527e0d6dfb0c5c02b5c5681da3e35a6ae5e0e0ae4a6",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -24299.245843,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 22.5,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "24308": {
+                "stark_key": "0x501a31a174ef79c559e81f850daf42195a9c571fe493199e918d707f824d866",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -847.334784,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.355,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "24344": {
+                "stark_key": "0x3301cea947e5ad8dec6f20233e6311ff336492b12860fe23e28d78858adff48",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1.821897,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "24353": {
+                "stark_key": "0x6cf848b132064cbed17573fb8ddac00ec3c0642b2e1233378366be9876a1a89",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -40.096822,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.003,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.01,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "24380": {
+                "stark_key": "0x729c5ab4660be99c1cd33c61f633251e58a630b3d34065847068eb276f425ae",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -294127.795044,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 200.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "24456": {
+                "stark_key": "0x7779398bcb1b4cb7f1c2a05d83d47f416bf2dae2b3a55ac2fa25e180f06534d",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -186786.904363,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    },
+                    "SOL": {
+                        "asset type": "SYNTH",
+                        "amount": 13549.1,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "24462": {
+                "stark_key": "0x1a7188ad287c95654cd00e72e266135bc764e5bb3c5fa57a1bb1f4577c2e82d",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 600.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "24465": {
+                "stark_key": "0x3699563a5f01b10f78f69e8bb29e45b14a60da66c2302c651a5898e99e1cdc8",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -13458.485736,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 5.492,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "24508": {
+                "stark_key": "0x408900d5f64028c87d052c60094bd2d9a22719e6ead497e226293b275c63d41",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -168015.436285,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "24521": {
+                "stark_key": "0x57aaaf947b4fa9acc68c724e1228a3ccf39cb59c28b28e251030cb71ac0d35e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -39174.956669,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 19.703,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "24527": {
+                "stark_key": "0x780239c666d05359d9facf999353f1c76a084b20d05a07971762f71dbf97306",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -20140.163447,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 10.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "24640": {
+                "stark_key": "0x62d822b4f4632ec40f5d1890218b5fe6a203033c62fa2c42b5226fb211e99a6",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 55.261977,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "24703": {
+                "stark_key": "0x58098684324f0d2ffd91a87c9458c78fd152a5d9d29a34fb5a301f98460bf9a",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 5.359039,
+                        "additional_attributes": {}
+                    },
+                    "1INCH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621936800
+                        }
+                    }
+                }
+            },
+            "24742": {
+                "stark_key": "0x32d2f9d7b57213a1768798f196497f5eff7ddffcf685c41e2d0b96b8419dfe1",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 4108.766378,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -1.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "24782": {
+                "stark_key": "0x700c67c877d2c6fc8105480d4ad84838cb5c611727e1497fa92b64aa8df1c6d",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 228.925731,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "24792": {
+                "stark_key": "0x1be7cdb251c55057eddc2b649df85213c2ffd2f7e43c8b69e79b3bf32b3411",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 965877.626561,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -300.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621940400
+                        }
+                    }
+                }
+            },
+            "24823": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "24867": {
+                "stark_key": "0x52a2c4d95330e177d3a155d61a5419c3fcd889a02396f607270a4ea6e4a3397",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 4.4e-05,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "24872": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "24873": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "24919": {
+                "stark_key": "0x364eceaf2a5ded7b78d5e1ee9747a0cf98e630466d7faaa7dd991a64edf24ab",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -44484.15198,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 34.291,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621954800
+                        }
+                    }
+                }
+            },
+            "24932": {
+                "stark_key": "0x474b834470f2daed5633d9b254f0dfbf3ccc14e046823acdbacafc1c87448a9",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -20893.802307,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 8.757,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "24981": {
+                "stark_key": "0x1b45935b652f8048156a0dcb090d24f19a0d8e0cedb42bbcc7281825e1b39c8",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -3127.38084,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "25013": {
+                "stark_key": "0x313f8860f3fd4eaceb211b4e5e4d06bd9c9c5d15e1c71aae7d44910b35b026a",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -8179.799295,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.3,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "25038": {
+                "stark_key": "0x2385ada67132f2fa0776e84b87dac6a1af0426d295760a0c22dba3e7b481d7f",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -28.551068,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.022,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621929600
+                        }
+                    }
+                }
+            },
+            "25053": {
+                "stark_key": "0x326893b4e5b3c085afaa8875cc4d336d47f3a7c470adf0c011c85a33fbdd33e",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -627.464208,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.464,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "25058": {
+                "stark_key": "0x5af54fedebd2fd11d7f7cfd543925a02ad11f9c9b5bc45ac08e467e6a36c45f",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 2.688216,
+                        "additional_attributes": {}
+                    },
+                    "CRV": {
+                        "asset type": "SYNTH",
+                        "amount": 50.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            },
+            "25071": {
+                "stark_key": "0x5c72c283ffa2e2f37fda9751cafe8d65ddce375b03816ed66ed4a533a589419",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 15054.223238,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621933200
+                        }
+                    }
+                }
+            },
+            "25127": {
+                "stark_key": "0x7d23fc8b99ad9f91cf4d7e94063d218f39429425a294fa10795941926a8423b",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 809.141386,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "25139": {
+                "stark_key": "0x2b46502fb224491c5f45015f1d9b9e4a1e347c5dec746028c72285623cb5ead",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -1.244746,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.001,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.01,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "25140": {
+                "stark_key": "0xc7b6c6b61f08468dcfe44f52d77c67b598334daa69887262d5eab4ad96f103",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 1000.70489,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "25142": {
+                "stark_key": "0x140fff4c4e6686b6fb45038317dc3c418a5c42aa0473b1fdc30ac56a25eb845",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -769.886796,
+                        "additional_attributes": {}
+                    },
+                    "LINK": {
+                        "asset type": "SYNTH",
+                        "amount": 52.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "25145": {
+                "stark_key": "0x3c74fb0ea4023e90deabb25306cc15800abfd9be1d320c3171b76d73a4ccc6f",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -693.135732,
+                        "additional_attributes": {}
+                    },
+                    "SUSHI": {
+                        "asset type": "SYNTH",
+                        "amount": 117.8,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "25147": {
+                "stark_key": "0x0",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 0.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "25148": {
+                "stark_key": "0x65ee8d72fec609b3d6e8e06b42e84d556b8b8838d739d58d43297335a88c12a",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": 11.0,
+                        "additional_attributes": {}
+                    }
+                }
+            },
+            "25149": {
+                "stark_key": "0x5fd3e5d0c6e04f2d04c002e8cca0266e8d4bc6c04ec8b40663c3cf81dee44fa",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -252.80648,
+                        "additional_attributes": {}
+                    },
+                    "SOL": {
+                        "asset type": "SYNTH",
+                        "amount": 10.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "25150": {
+                "stark_key": "0x1f787cbd19add025f408f296a238b078daadd88e2c7fa893fe913c1eb381c44",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -463.11128,
+                        "additional_attributes": {}
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": 0.409,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621947600
+                        }
+                    }
+                }
+            },
+            "25152": {
+                "stark_key": "0x7ab6ab2f57ff0ec7075c22edbf9372e34ecf0631b26d20592e4a255a7cda4cb",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -2.26984,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.001,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.01,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "25153": {
+                "stark_key": "0x2f10df65c7a60ed7bf42a9cd3e752253467a0c53f65fab3f18c5f9798c3c1d4",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -1.314124,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.001,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.01,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "25154": {
+                "stark_key": "0x34e16b7d7648aedee19c92c10986a66909076d288f25a69cb073c50ca0ad7a2",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -1.316216,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.001,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.01,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "25155": {
+                "stark_key": "0x70c4c948f0503e10f9fda408205d559750900b9e3bde503db7936723d8f5b2a",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -1.35846,
+                        "additional_attributes": {}
+                    },
+                    "BTC": {
+                        "asset type": "SYNTH",
+                        "amount": 0.001,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    },
+                    "ETH": {
+                        "asset type": "SYNTH",
+                        "amount": -0.01,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621951200
+                        }
+                    }
+                }
+            },
+            "25181": {
+                "stark_key": "0x2d328df9493287ba678ba9a798725cbcff719a0f36ae45072180f0545ebe670",
+                "assets": {
+                    "USDC": {
+                        "asset_type": "ERC20",
+                        "amount": -190.212952,
+                        "additional_attributes": {}
+                    },
+                    "1INCH": {
+                        "asset type": "SYNTH",
+                        "amount": 112.0,
+                        "additional_attributes": {
+                            "cached_funding_index": 1621958400
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

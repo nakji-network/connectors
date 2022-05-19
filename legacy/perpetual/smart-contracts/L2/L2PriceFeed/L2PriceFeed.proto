@@ -1,0 +1,22 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package L2PriceFeed;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/perpetual/smart-contracts/L2/L2PriceFeed";
+
+message PriceFeedDataSet {
+	google.protobuf.Timestamp ts = 1;
+	bytes Key = 2;		//	bytes32
+	bytes Price = 3;		//	uint256
+	bytes Timestamp = 4;		//	uint256
+	bytes RoundId = 5;		//	uint256
+}
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	bytes PreviousOwner = 2;		//	address
+	bytes NewOwner = 3;		//	address
+}

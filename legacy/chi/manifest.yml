@@ -1,0 +1,11 @@
+outputPath: "."
+package: "chi"
+owner: nakji
+version: "0_0_0"
+topicVersion: "0_0_0"
+contracts:
+- name: chi
+  source: smart-contracts/chi-abi.json
+  address: '0x0000000000004946c0e9F43F4Dee607b0eF1fA1c'
+rpcConfig: ethereum.rpc
+sqlgen: true

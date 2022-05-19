@@ -1,0 +1,29 @@
+outputPath: "."
+package: "axieronin"
+owner: nakji
+version: "0_0_0"
+topicVersion: "0_0_0"
+contracts:
+- name: axienft
+  source: smart-contracts/axienft-abi.json
+  address: '0x32950db2a7164ae833121501c797d79e7b79d74c'
+- name: axs
+  source: smart-contracts/axs-abi.json
+  address: '0x97a9107c1793bc407d6f527b77e7fff4d812bece'
+- name: slp
+  source: smart-contracts/smooth-love-potion-abi.json
+  address: '0xa8754b9fa15fc18bb59458815510e40a12cd2014'
+- name: roninweth
+  source: smart-contracts/RoninWeth.sol
+  address: '0xc99a6a985ed2cac1ef41640596c5a5f9f4e19ef5'
+- name: clockauction
+  source: smart-contracts/clock-auction-abi.json
+  address: '0x213073989821f738a7ba3520c3d31a1f9ad31bbd'
+- name: land
+  source: smart-contracts/land-abi.json
+  address: '0x8c811e3c958e190f5ec15fb376533a3398620500'
+- name: landitem
+  source: smart-contracts/land-item-abi.json
+  address: '0xa96660f0e4a3e9bc7388925d245a6d4d79e21259'
+rpcConfig: ronin.rpc
+sqlgen: true

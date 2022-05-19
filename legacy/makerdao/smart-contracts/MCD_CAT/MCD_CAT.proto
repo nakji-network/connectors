@@ -1,0 +1,28 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package MCD_CAT;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/MCD_CAT";
+
+message Bite {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Urn = 3;		//	address
+	bytes Ink = 4;		//	uint256
+	bytes Art = 5;		//	uint256
+	bytes Tab = 6;		//	uint256
+	bytes Flip = 7;		//	address
+	bytes Id = 8;		//	uint256
+}
+
+message LogNote {
+	google.protobuf.Timestamp ts = 1;
+	bytes Sig = 2;		//	bytes4
+	bytes Usr = 3;		//	address
+	bytes Arg1 = 4;		//	bytes32
+	bytes Arg2 = 5;		//	bytes32
+	bytes Data = 6;		//	bytes
+}

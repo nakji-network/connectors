@@ -1,0 +1,16 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package PROXY_FACTORY;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/PROXY_FACTORY";
+
+message Created {
+	google.protobuf.Timestamp ts = 1;
+	bytes Sender = 2;		//	address
+	bytes Owner = 3;		//	address
+	bytes Proxy = 4;		//	address
+	bytes Cache = 5;		//	address
+}

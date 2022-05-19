@@ -1,0 +1,97 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package ClearingHouse;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/perpetual/smart-contracts/L2/ClearingHouse";
+
+message PositionAdjusted {
+	google.protobuf.Timestamp ts = 1;
+	bytes Amm = 2;		//	address
+	bytes Trader = 3;		//	address
+	bytes NewPositionSize = 4;		//	int256
+	bytes OldLiquidityIndex = 5;		//	uint256
+	bytes NewLiquidityIndex = 6;		//	uint256
+}
+
+message PositionChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes Trader = 2;		//	address
+	bytes Amm = 3;		//	address
+	bytes Margin = 4;		//	uint256
+	bytes PositionNotional = 5;		//	uint256
+	bytes ExchangedPositionSize = 6;		//	int256
+	bytes Fee = 7;		//	uint256
+	bytes PositionSizeAfter = 8;		//	int256
+	bytes RealizedPnl = 9;		//	int256
+	bytes UnrealizedPnlAfter = 10;		//	int256
+	bytes BadDebt = 11;		//	uint256
+	bytes LiquidationPenalty = 12;		//	uint256
+	bytes SpotPrice = 13;		//	uint256
+	bytes FundingPayment = 14;		//	int256
+}
+
+message PositionSettled {
+	google.protobuf.Timestamp ts = 1;
+	bytes Amm = 2;		//	address
+	bytes Trader = 3;		//	address
+	bytes ValueTransferred = 4;		//	uint256
+}
+
+message Unpaused {
+	google.protobuf.Timestamp ts = 1;
+	bytes Account = 2;		//	address
+}
+
+message MarginRatioChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes MarginRatio = 2;		//	uint256
+}
+
+message Paused {
+	google.protobuf.Timestamp ts = 1;
+	bytes Account = 2;		//	address
+}
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	bytes PreviousOwner = 2;		//	address
+	bytes NewOwner = 3;		//	address
+}
+
+message PositionLiquidated {
+	google.protobuf.Timestamp ts = 1;
+	bytes Trader = 2;		//	address
+	bytes Amm = 3;		//	address
+	bytes PositionNotional = 4;		//	uint256
+	bytes PositionSize = 5;		//	uint256
+	bytes LiquidationFee = 6;		//	uint256
+	bytes Liquidator = 7;		//	address
+	bytes BadDebt = 8;		//	uint256
+}
+
+message ReferredPositionChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes ReferralCode = 2;		//	bytes32
+}
+
+message RestrictionModeEntered {
+	google.protobuf.Timestamp ts = 1;
+	bytes Amm = 2;		//	address
+	bytes BlockNumber = 3;		//	uint256
+}
+
+message LiquidationFeeRatioChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes LiquidationFeeRatio = 2;		//	uint256
+}
+
+message MarginChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes Sender = 2;		//	address
+	bytes Amm = 3;		//	address
+	bytes Amount = 4;		//	int256
+	bytes FundingPayment = 5;		//	int256
+}

@@ -1,0 +1,14 @@
+outputPath: "."
+package: opensea
+owner: nakji
+version: "0_0_0"
+topicVersion: "0_0_0"
+contracts:
+- name: wyvernexchangev1
+  source: smart-contracts/wyvernexchangev1-abi.json
+  address: '0x7Be8076f4EA4A4AD08075C2508e481d6C946D12b'
+- name: wyvernexchangev2
+  source: smart-contracts/wyvernexchangev2-abi.json
+  address: '0x7f268357A8c2552623316e2562D90e642bB538E5'
+rpcConfig: ethereum.rpc
+sqlgen: true

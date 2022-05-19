@@ -1,0 +1,52 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package bridge;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/bridge";
+
+
+message TokenDeposited {
+	google.protobuf.Timestamp ts = 1;
+	bytes depositId = 2; // uint256
+	bytes owner = 3; 
+	bytes tokenAddress = 4; 
+	bytes sidechainAddress = 5; 
+	uint32 standard = 6; 
+	bytes tokenNumber = 7; // uint256
+}
+
+message TokenWithdrew {
+	google.protobuf.Timestamp ts = 1;
+	bytes withdrawId = 2; // uint256
+	bytes owner = 3; 
+	bytes tokenAddress = 4; 
+	bytes tokenNumber = 5; // uint256
+}
+
+message Unpaused {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message AdminChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldAdmin = 2; 
+	bytes newAdmin = 3; 
+}
+
+message AdminRemoved {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldAdmin = 2; 
+}
+
+message Paused {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message ProxyUpdated {
+	google.protobuf.Timestamp ts = 1;
+	bytes new = 2; 
+	bytes old = 3; 
+}

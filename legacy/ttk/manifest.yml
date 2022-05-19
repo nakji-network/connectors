@@ -1,0 +1,11 @@
+outputPath: "."
+package: "ttk"
+owner: nakji
+version: "0_0_0"
+topicVersion: "0_0_0"
+contracts:
+- name: ttk
+  source: smart-contracts/ttk-abi.json
+  address: '0x39703A67bAC0E39f9244d97f4c842D15Fbad9C1f'
+rpcConfig: bsc.rpc
+sqlgen: true

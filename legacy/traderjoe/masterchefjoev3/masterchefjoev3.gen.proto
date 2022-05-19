@@ -1,0 +1,71 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package masterchefjoev3;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/masterchefjoev3";
+
+
+message Harvest {
+	google.protobuf.Timestamp ts = 1;
+	bytes user = 2; 
+	bytes pid = 3; // uint256
+	bytes amount = 4; // uint256
+}
+
+message Withdraw {
+	google.protobuf.Timestamp ts = 1;
+	bytes user = 2; 
+	bytes pid = 3; // uint256
+	bytes amount = 4; // uint256
+}
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	bytes previousOwner = 2; 
+	bytes newOwner = 3; 
+}
+
+message Set {
+	google.protobuf.Timestamp ts = 1;
+	bytes pid = 2; // uint256
+	bytes allocPoint = 3; // uint256
+	bytes rewarder = 4; 
+	bool overwrite = 5; 
+}
+
+message Deposit {
+	google.protobuf.Timestamp ts = 1;
+	bytes user = 2; 
+	bytes pid = 3; // uint256
+	bytes amount = 4; // uint256
+}
+
+message EmergencyWithdraw {
+	google.protobuf.Timestamp ts = 1;
+	bytes user = 2; 
+	bytes pid = 3; // uint256
+	bytes amount = 4; // uint256
+}
+
+message Init {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message UpdatePool {
+	google.protobuf.Timestamp ts = 1;
+	bytes pid = 2; // uint256
+	bytes lastRewardTimestamp = 3; // uint256
+	bytes lpSupply = 4; // uint256
+	bytes accJoePerShare = 5; // uint256
+}
+
+message Add {
+	google.protobuf.Timestamp ts = 1;
+	bytes pid = 2; // uint256
+	bytes allocPoint = 3; // uint256
+	bytes lpToken = 4; 
+	bytes rewarder = 5; 
+}

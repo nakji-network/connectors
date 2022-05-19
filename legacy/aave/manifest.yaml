@@ -1,0 +1,9 @@
+outputPath: "."
+package: aave
+owner: nakji
+version: "0_0_0"
+topicVersion: "0_0_0"
+contracts:
+  - name: factory
+    source: smart-contracts/lending-pool-abi.json
+    address: '0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9'

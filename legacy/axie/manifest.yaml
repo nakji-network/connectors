@@ -1,0 +1,19 @@
+outputPath: "."
+package: axie
+owner: nakji
+version: "0_0_0"
+topicVersion: "0_0_0"
+contracts:
+- name: axienft
+  source: smart-contracts/axienft-abi.json
+  address: '0xF5b0A3eFB8e8E4c201e2A935F110eAaF3FFEcb8d'
+- name: axs
+  source: smart-contracts/axs-abi.json
+  address: '0xbb0e17ef65f82ab018d8edd776e8dd940327b28b'
+- name: slp
+  source: smart-contracts/smooth-love-potion-abi.json
+  address: '0xCC8Fa225D80b9c7D42F96e9570156c65D6cAAa25'
+- name: bridge
+  source: smart-contracts/ronin-bridge-abi.json
+  address: '0x1A2a1c938CE3eC39b6D47113c7955bAa9DD454F2'
+sqlgen: true

@@ -1,0 +1,35 @@
+# Python virtual environment
+venv/
+
+# VScode
+.vscode/
+
+# Goland
+.idea/
+
+# Configuration
+config.yaml
+config.yml
+
+tags
+.DS_Store
+
+# compiled protobuf go
+*.pb.go
+
+# compiled ethereum abi go
+# Update: removed this so we don't have to compile to abi.go on github action build
+#*.abi.go
+
+bin
+
+# Helm Chart dependencies
+**/charts/*.tgz
+
+# local data config
+local.yaml
+
+starkex/output.json
+
+# Ignore generated credentials from google-github-actions/auth
+gha-creds-*.json

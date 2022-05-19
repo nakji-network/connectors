@@ -1,0 +1,112 @@
+syntax = "proto3";
+package candymachine;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/source/candymachine";
+
+
+message MintNFT {
+  google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+  bytes id = 2;  // hash of the event
+  string txSignature = 3;
+  uint32 creatorBump = 4;
+  string candyMachine = 5;
+  string candyMachineCreator = 6;
+  string payer = 7;
+  string wallet = 8;
+  string metadata = 9;
+  string mint = 10;
+  string mintAuthority = 11;
+  string updateAuthority = 12;
+  string masterEdition = 13;
+  string tokenMetadataProgram = 14;
+  string tokenProgram = 15;
+  string systemProgram = 16;
+  string rent = 17;
+  string clock = 18;
+  string recentBlockhashes = 19;
+  string instructionSysvarAccount = 20;
+}
+
+message UpdateCandyMachine {
+  google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+  bytes id = 2;  // hash of the event
+  string txSignature = 3;
+  string candyMachine = 4;
+  string authority = 5;
+  string wallet = 6;
+}
+
+message ConfigLine {
+  string name = 1;
+  string uri = 2;
+}
+
+message AddConfigLines {
+  google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+  bytes id = 2;  // hash of the event
+  string txSignature = 3;
+  uint32 index = 4;
+  repeated ConfigLine configLines = 5;
+  string candyMachine = 6;
+  string authority = 7;
+}
+
+message EndSettings {
+  uint32 endSettingType = 1;
+  uint64 number = 2;
+}
+
+message HiddenSettings {
+  string name = 1;
+  string uri = 2;
+  repeated uint32 hash = 3;
+}
+
+message CandyMachineData {
+  string uuid = 1;
+  uint64 price = 2;
+  string symbol = 3;
+  uint32 sellerFeeBasisPoints = 4;
+  uint64 maxSupply = 5;
+  bool isMutable = 6;
+  bool retainAuthority = 7;
+  uint64 goLiveDate = 8;
+  EndSettings endSettings = 9;
+  repeated string creators = 10;
+  HiddenSettings hiddenSettings = 11;
+  string whitelistMintSettings = 12;
+  uint64 ItemsAvailable = 13;
+  string gatekeeperConfig = 14;
+}
+
+message InitializeCandyMachine {
+  google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+  bytes id = 2;  // hash of the event
+  string txSignature = 3;
+  CandyMachineData data = 4;
+  string candyMachine = 5;
+  string wallet = 6;
+  string authority = 7;
+  string payer = 8;
+  string systemProgram = 9;
+  string rent = 10;
+}
+
+message UpdateAuthority {
+  google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+  bytes id = 2;  // hash of the event
+  string txSignature = 3;
+  string newAuthority = 4;
+  string candyMachine = 5;
+  string authority = 6;
+  string wallet = 7;
+}
+
+message WithdrawFunds {
+  google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+  bytes id = 2;  // hash of the event
+  string txSignature = 3;
+  string candyMachine = 4;
+  string authority = 5;
+}

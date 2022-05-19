@@ -1,0 +1,33 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package roninweth;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/roninweth";
+
+
+message MinterRemoved {
+	google.protobuf.Timestamp ts = 1;
+	bytes account = 2; 
+}
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes owner = 2; 
+	bytes spender = 3; 
+	bytes value = 4; // uint256
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes from = 2; 
+	bytes to = 3; 
+	bytes value = 4; // uint256
+}
+
+message MinterAdded {
+	google.protobuf.Timestamp ts = 1;
+	bytes account = 2; 
+}

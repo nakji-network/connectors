@@ -1,0 +1,55 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package axienft;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/axienft";
+
+
+message AxieRetired {
+	google.protobuf.Timestamp ts = 1;
+	bytes axieId = 2; // uint256
+}
+
+message AxieEvolved {
+	google.protobuf.Timestamp ts = 1;
+	bytes axieId = 2; // uint256
+	bytes oldGenes = 3; // uint256
+	bytes newGenes = 4; // uint256
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes from = 2; 
+	bytes to = 3; 
+	bytes tokenId = 4; // uint256
+}
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes owner = 2; 
+	bytes approved = 3; 
+	bytes tokenId = 4; // uint256
+}
+
+message ApprovalForAll {
+	google.protobuf.Timestamp ts = 1;
+	bytes owner = 2; 
+	bytes operator = 3; 
+	bool approved = 4; 
+}
+
+message AxieSpawned {
+	google.protobuf.Timestamp ts = 1;
+	bytes axieId = 2; // uint256
+	bytes owner = 3; 
+	bytes genes = 4; // uint256
+}
+
+message AxieRebirthed {
+	google.protobuf.Timestamp ts = 1;
+	bytes axieId = 2; // uint256
+	bytes genes = 3; // uint256
+}

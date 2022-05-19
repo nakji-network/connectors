@@ -1,0 +1,80 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package Starknet;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/starknet/smart-contracts/Starknet";
+
+message LogStateTransitionFact {
+	google.protobuf.Timestamp ts = 1;
+	bytes StateTransitionFact = 2;		//	bytes32
+}
+
+message LogStateUpdate {
+	google.protobuf.Timestamp ts = 1;
+	bytes GlobalRoot = 2;		//	uint256
+	bytes BlockNumber = 3;		//	int256
+}
+
+message ConsumedMessageToL1 {
+	google.protobuf.Timestamp ts = 1;
+	bytes Fromaddress = 2;		//	uint256
+	bytes Toaddress = 3;		//	address
+	bytes Payload = 4;		//	uint256[]
+}
+
+message LogNominationCancelled {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message LogRemovedGovernor {
+	google.protobuf.Timestamp ts = 1;
+	bytes RemovedGovernor = 2;		//	address
+}
+
+message LogNewGovernorAccepted {
+	google.protobuf.Timestamp ts = 1;
+	bytes AcceptedGovernor = 2;		//	address
+}
+
+message LogNominatedGovernor {
+	google.protobuf.Timestamp ts = 1;
+	bytes NominatedGovernor = 2;		//	address
+}
+
+message LogOperatorAdded {
+	google.protobuf.Timestamp ts = 1;
+	bytes Operator = 2;		//	address
+}
+
+message LogOperatorRemoved {
+	google.protobuf.Timestamp ts = 1;
+	bytes Operator = 2;		//	address
+}
+
+message ConsumedMessageToL2 {
+	google.protobuf.Timestamp ts = 1;
+	bytes Fromaddress = 2;		//	address
+	bytes Toaddress = 3;		//	uint256
+	bytes Selector = 4;		//	uint256
+	bytes Payload = 5;		//	uint256[]
+	bytes Nonce = 6;		//	uint256
+}
+
+message LogMessageToL1 {
+	google.protobuf.Timestamp ts = 1;
+	bytes Fromaddress = 2;		//	uint256
+	bytes Toaddress = 3;		//	address
+	bytes Payload = 4;		//	uint256[]
+}
+
+message LogMessageToL2 {
+	google.protobuf.Timestamp ts = 1;
+	bytes Fromaddress = 2;		//	address
+	bytes Toaddress = 3;		//	uint256
+	bytes Selector = 4;		//	uint256
+	bytes Payload = 5;		//	uint256[]
+	bytes Nonce = 6;		//	uint256
+}

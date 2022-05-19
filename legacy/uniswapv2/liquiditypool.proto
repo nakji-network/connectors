@@ -1,0 +1,28 @@
+syntax = "proto3";
+package uniswapv2;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "blep.ai/data/connectors/uniswapv2";
+
+message LiquidityPoolReserve {
+  google.protobuf.Timestamp ts = 1;
+  double                    Reserve0 = 2;
+  double                    Reserve1 = 3;
+}
+
+message LiquidityPoolChange {
+  //	ns  - dApp name
+  //  s   - pair hex address
+  google.protobuf.Timestamp ts         = 1;
+  uint64                    block      = 2; //	block number
+  uint64                    idx        = 3; //	transaction index within block
+  bytes                     tx         = 4; // tx hash
+  //bytes                     eventsig   = 5; // event sig
+  bytes                     sender     = 5; // address
+  bytes                     amount0in  = 6; // uint256
+  bytes                     amount0out = 7; // uint256
+  bytes                     amount1in  = 8; // uint256
+  bytes                     amount1out = 9; // uint256
+  bytes                     to         = 10; // address
+}

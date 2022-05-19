@@ -1,0 +1,75 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package wyvernexchangev2;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/wyvernexchangev2";
+
+
+message OrderApprovedPartOne {
+	google.protobuf.Timestamp ts = 1;
+	bytes hash = 2; 
+	bytes exchange = 3; 
+	bytes maker = 4; 
+	bytes taker = 5; 
+	bytes makerRelayerFee = 6; // uint256
+	bytes takerRelayerFee = 7; // uint256
+	bytes makerProtocolFee = 8; // uint256
+	bytes takerProtocolFee = 9; // uint256
+	bytes feeRecipient = 10; 
+	uint32 feeMethod = 11; 
+	uint32 side = 12; 
+	uint32 saleKind = 13; 
+	bytes target = 14; 
+}
+
+message OrderApprovedPartTwo {
+	google.protobuf.Timestamp ts = 1;
+	bytes hash = 2; 
+	uint32 howToCall = 3; 
+	bytes calldata = 4; 
+	bytes replacementPattern = 5; 
+	bytes staticTarget = 6; 
+	bytes staticExtradata = 7; 
+	bytes paymentToken = 8; 
+	bytes basePrice = 9; // uint256
+	bytes extra = 10; // uint256
+	bytes listingTime = 11; // uint256
+	bytes expirationTime = 12; // uint256
+	bytes salt = 13; // uint256
+	bool orderbookInclusionDesired = 14; 
+}
+
+message OrderCancelled {
+	google.protobuf.Timestamp ts = 1;
+	bytes hash = 2; 
+}
+
+message OrdersMatched {
+	google.protobuf.Timestamp ts = 1;
+	bytes buyHash = 2; 
+	bytes sellHash = 3; 
+	bytes maker = 4; 
+	bytes taker = 5; 
+	bytes price = 6; // uint256
+	bytes metadata = 7; 
+}
+
+message NonceIncremented {
+	google.protobuf.Timestamp ts = 1;
+	bytes maker = 2; 
+	bytes newNonce = 3; // uint256
+}
+
+message OwnershipRenounced {
+	google.protobuf.Timestamp ts = 1;
+	bytes previousOwner = 2; 
+}
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	bytes previousOwner = 2; 
+	bytes newOwner = 3; 
+}

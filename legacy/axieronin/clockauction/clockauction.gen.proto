@@ -1,0 +1,61 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package clockauction;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/clockauction";
+
+
+message AuctionCreated {
+	google.protobuf.Timestamp ts = 1;
+	bytes seller = 2; 
+	bytes listingIndex = 3; // uint256
+	repeated bytes startingPrices = 4; // uint256
+	repeated bytes endingPrices = 5; // uint256
+	repeated bytes exchangeTokens = 6; 
+	repeated bytes durations = 7; // uint256
+	bytes startingTimestamps = 8; // uint256
+}
+
+message AuctionSuccessful {
+	google.protobuf.Timestamp ts = 1;
+	bytes seller = 2; 
+	bytes buyer = 3; 
+	bytes listingIndex = 4; // uint256
+	bytes token = 5; 
+	bytes totalPrice = 6; // uint256
+}
+
+message Paused {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message TokenAuctionCancelled {
+	google.protobuf.Timestamp ts = 1;
+	bytes seller = 2; 
+	bytes listingIndex = 3; // uint256
+	bytes exchangeTokens = 4; 
+}
+
+message Unpaused {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message AdminChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldAdmin = 2; 
+	bytes newAdmin = 3; 
+}
+
+message AdminRemoved {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldAdmin = 2; 
+}
+
+message AuctionCancelled {
+	google.protobuf.Timestamp ts = 1;
+	bytes seller = 2; 
+	bytes listingIndex = 3; // uint256
+}

@@ -1,0 +1,64 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package Amm;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/perpetual/smart-contracts/L2/Amm";
+
+message CapChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes MaxHoldingBaseAsset = 2;		//	uint256
+	bytes OpenInterestNotionalCap = 3;		//	uint256
+}
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	bytes PreviousOwner = 2;		//	address
+	bytes NewOwner = 3;		//	address
+}
+
+message SwapOutput {
+	google.protobuf.Timestamp ts = 1;
+	uint32 Dir = 2;		//	uint8
+	bytes QuoteAssetAmount = 3;		//	uint256
+	bytes BaseAssetAmount = 4;		//	uint256
+}
+
+message FundingRateUpdated {
+	google.protobuf.Timestamp ts = 1;
+	bytes Rate = 2;		//	int256
+	bytes UnderlyingPrice = 3;		//	uint256
+}
+
+message LiquidityChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes QuoteReserve = 2;		//	uint256
+	bytes BaseReserve = 3;		//	uint256
+	bytes CumulativeNotional = 4;		//	int256
+}
+
+message PriceFeedUpdated {
+	google.protobuf.Timestamp ts = 1;
+	bytes PriceFeed = 2;		//	address
+}
+
+message ReserveSnapshotted {
+	google.protobuf.Timestamp ts = 1;
+	bytes QuoteAssetReserve = 2;		//	uint256
+	bytes BaseAssetReserve = 3;		//	uint256
+	bytes Timestamp = 4;		//	uint256
+}
+
+message Shutdown {
+	google.protobuf.Timestamp ts = 1;
+	bytes SettlementPrice = 2;		//	uint256
+}
+
+message SwapInput {
+	google.protobuf.Timestamp ts = 1;
+	uint32 Dir = 2;		//	uint8
+	bytes QuoteAssetAmount = 3;		//	uint256
+	bytes BaseAssetAmount = 4;		//	uint256
+}

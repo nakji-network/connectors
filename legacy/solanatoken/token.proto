@@ -1,0 +1,258 @@
+syntax = "proto3";
+package solanatoken;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/source/solanatoken";
+
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+	bytes id = 2;  // hash of the event
+    string txSignature = 3;
+    uint64 amount = 4;
+    string mint = 5;
+    string destination = 6;
+    string source = 7;
+    string owner = 8;
+    repeated string signers = 9;
+}
+
+message InitializeMint {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint32 decimals = 4;
+    string mintAuthority = 5;
+    string freezeAuthority = 6;
+    string mint = 7;
+    string rentSysVar = 8;
+}
+
+message InitializeAccount {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    string account = 4;
+    string mint = 5;
+    string owner = 6;
+    string rentsysVar = 7;
+}
+
+message MintTo {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint64 amount = 4;
+    string destination = 5;
+    string mint = 6;
+    string mintAuthority = 7;
+    repeated string signers = 8;
+}
+
+message SetAuthority {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    string authorityType = 4; // TODO: Replace with Enum?
+    string account = 5;  // mint or token account to change the authority of
+    string newAuthority = 6;
+    string authority = 7; // the current authority to be replaced
+    repeated string signers = 8; 
+}
+
+message CloseAccount {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    string account = 4; // The account to close
+    string destination = 5; // The account the Sol of the closed account will be transferred to
+    string owner = 6; // Account's owner
+    repeated string signers = 8;
+}
+
+message Burn {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint64 amount = 4;
+    string source = 5;
+    string mint = 6;
+    string owner = 7;
+    repeated string signers = 8;
+}
+
+message Approve {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint64 amount = 4;
+    string source = 5;
+    string delegate = 6; // A delegate is given the authority over tokens on behalf of the source account's owner.
+    string owner = 7; // The source account owner
+    repeated string signers = 8;
+}
+
+message Revoke {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    string source = 4;
+    string owner = 5;
+    repeated string signers = 6;
+}
+
+message FreezeAccount {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    string account = 4; // the account to freeze
+    string mint = 5;
+    string authority = 6; // the mint freeze authority
+    repeated string signers = 7;
+}
+
+message InitializeMultisig {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint32 m = 4; // no of signers required to validate this multisig account
+    string account = 5; // multisignature account to initialize
+    string rentSysVar = 6;
+    repeated string signers = 7;    
+}
+
+message SyncNative {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    string tokenAccount = 4; // the native token account to sync with its underlying lamports
+}
+
+message ThawAccount {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    string account = 4; // the account to thaw
+    string mint = 5;
+    string authority = 6;
+    repeated string signers = 7;
+}
+
+message TransferChecked {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint64 amount = 4;
+    uint32 decimals = 5;
+    string source = 6;
+    string mint = 7;
+    string destination = 8;
+    string owner = 9;
+    repeated string signers = 10;
+}
+
+message ApproveChecked {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint64 amount = 4;
+    uint32 decimals = 5;
+    string source = 6;
+    string mint = 7;
+    string delegate = 8;
+    string owner = 9;
+    repeated string signers = 10;
+}
+
+message MintToChecked {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint64 amount = 4;
+    uint32 decimals = 5;
+    string mint = 6;
+    string destination = 7;
+    string authority = 8;
+    repeated string signers = 9;
+}
+
+message BurnChecked {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint64 amount = 4;
+    uint32 decimals = 5;
+    string source = 6;
+    string mint = 7;
+    string owner = 8;
+    repeated string signers = 9;   
+}
+
+message InitializeAccount2 {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    string owner = 4;
+    string account = 5;
+    string mint = 6;
+    string rentSysVar = 7;
+}
+
+message InitializeAccount3 {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    string owner = 4;
+    string account = 5;
+    string mint = 6;
+}
+
+message InitializeMint2 {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint32 decimals = 4;
+    string mintAuthority = 5;
+    string freezeAuthority = 6;
+    string mint = 7;
+}
+
+message InitializeMultisig2 {
+    google.protobuf.Timestamp ts = 1; // we use the transaction's BlockTime here `GetTransactionResult.BlockTime`
+    bytes id = 2;
+    string txSignature = 3;
+    uint32 m = 4;
+    string account = 5;
+    repeated string signers = 6;
+}
+
+message NFT {
+    string address = 1;
+    google.protobuf.Timestamp ts = 2;
+    string mintAuthority = 3;
+    string freezeAuthority = 4;
+    string updateAuthority = 5; // the update authority for the Token Metadata
+    bool primarySaleHappened = 6;
+    uint32 royalty = 7;
+    repeated Creator creators = 8;
+    string name = 9;
+    string symbol = 10;
+    string uri = 11;
+    string collection = 12;  // address of collection. many do not have this data
+}
+
+message Creator {
+    string address = 1;
+    uint32 share = 2;  // share of the royalties
+    bool verified = 3;
+}
+
+message Trade {
+    string nftAddress = 1;
+    google.protobuf.Timestamp ts = 2;
+    string transaction = 3;
+    string buyer = 4;
+    string seller = 5;
+    uint64 price = 6;
+    string soldOn = 7;
+}

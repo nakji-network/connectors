@@ -1,0 +1,16 @@
+syntax = "proto3";
+package briq;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/source/briq";
+
+
+message BriqEvent {
+  google.protobuf.Timestamp ts = 1;
+  string blockHash = 2;
+  string txHash = 3;
+  string fromAddress = 4; // smart contract address that emits the event
+  string name = 5;
+  string type = 6;
+  repeated string args = 7;
+}
