@@ -1,0 +1,42 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package ARBITRUM_L2_GOV_RELAY;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/ARBITRUM_L2_GOV_RELAY";
+
+message ERC20DepositInitiated {
+	google.protobuf.Timestamp ts = 1;
+	bytes L1Token = 2;		//	address
+	bytes L2Token = 3;		//	address
+	bytes From = 4;		//	address
+	bytes To = 5;		//	address
+	bytes Amount = 6;		//	uint256
+	bytes Data = 7;		//	bytes
+}
+
+message ERC20WithdrawalFinalized {
+	google.protobuf.Timestamp ts = 1;
+	bytes L1Token = 2;		//	address
+	bytes L2Token = 3;		//	address
+	bytes From = 4;		//	address
+	bytes To = 5;		//	address
+	bytes Amount = 6;		//	uint256
+	bytes Data = 7;		//	bytes
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Closed {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}

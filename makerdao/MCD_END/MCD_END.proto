@@ -1,0 +1,96 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package MCD_END;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/MCD_END";
+
+message Flow {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+}
+
+message Free {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Usr = 3;		//	address
+	bytes Ink = 4;		//	uint256
+}
+
+message Skim {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Urn = 3;		//	address
+	bytes Wad = 4;		//	uint256
+	bytes Art = 5;		//	uint256
+}
+
+message Thaw {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Cash {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Usr = 3;		//	address
+	bytes Wad = 4;		//	uint256
+}
+
+message File {
+	google.protobuf.Timestamp ts = 1;
+	bytes What = 2;		//	bytes32
+	bytes Data = 3;		//	uint256
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Snip {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Id = 3;		//	uint256
+	bytes Usr = 4;		//	address
+	bytes Tab = 5;		//	uint256
+	bytes Lot = 6;		//	uint256
+	bytes Art = 7;		//	uint256
+}
+
+message Cage0 {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+}
+
+message Cage {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Pack {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+	bytes Wad = 3;		//	uint256
+}
+
+message Skip {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Id = 3;		//	uint256
+	bytes Usr = 4;		//	address
+	bytes Tab = 5;		//	uint256
+	bytes Lot = 6;		//	uint256
+	bytes Art = 7;		//	uint256
+}
+
+message File0 {
+	google.protobuf.Timestamp ts = 1;
+	bytes What = 2;		//	bytes32
+	bytes Data = 3;		//	address
+}

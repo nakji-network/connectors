@@ -1,0 +1,74 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package RWA_CONDUIT;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/RWA_CONDUIT";
+
+message Recover {
+	google.protobuf.Timestamp ts = 1;
+	bytes Recovered = 2;		//	uint256
+	bytes PayBack = 3;		//	uint256
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Cage {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Cull {
+	google.protobuf.Timestamp ts = 1;
+	bytes Tab = 2;		//	uint256
+}
+
+message Draw {
+	google.protobuf.Timestamp ts = 1;
+	bytes Wad = 2;		//	uint256
+}
+
+message Exit {
+	google.protobuf.Timestamp ts = 1;
+	bytes Wad = 2;		//	uint256
+}
+
+message File {
+	google.protobuf.Timestamp ts = 1;
+	bytes What = 2;		//	bytes32
+	bytes Data = 3;		//	address
+}
+
+message Migrate {
+	google.protobuf.Timestamp ts = 1;
+	bytes Dst = 2;		//	address
+}
+
+message Unwind {
+	google.protobuf.Timestamp ts = 1;
+	bytes PayBack = 2;		//	uint256
+}
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Join {
+	google.protobuf.Timestamp ts = 1;
+	bytes Wad = 2;		//	uint256
+}
+
+message Tell {
+	google.protobuf.Timestamp ts = 1;
+	bytes Wad = 2;		//	uint256
+}
+
+message Wipe {
+	google.protobuf.Timestamp ts = 1;
+	bytes Wad = 2;		//	uint256
+}

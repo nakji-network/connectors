@@ -1,0 +1,67 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package USDT;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/USDT";
+
+message RemovedBlackList {
+	google.protobuf.Timestamp ts = 1;
+	bytes User = 2;		//	address
+}
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes Owner = 2;		//	address
+	bytes Spender = 3;		//	address
+	bytes Value = 4;		//	uint256
+}
+
+message Pause {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Unpause {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Issue {
+	google.protobuf.Timestamp ts = 1;
+	bytes Amount = 2;		//	uint256
+}
+
+message Deprecate {
+	google.protobuf.Timestamp ts = 1;
+	bytes NewAddress = 2;		//	address
+}
+
+message Params {
+	google.protobuf.Timestamp ts = 1;
+	bytes FeeBasisPoints = 2;		//	uint256
+	bytes MaxFee = 3;		//	uint256
+}
+
+message DestroyedBlackFunds {
+	google.protobuf.Timestamp ts = 1;
+	bytes BlackListedUser = 2;		//	address
+	bytes Balance = 3;		//	uint256
+}
+
+message AddedBlackList {
+	google.protobuf.Timestamp ts = 1;
+	bytes User = 2;		//	address
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes From = 2;		//	address
+	bytes To = 3;		//	address
+	bytes Value = 4;		//	uint256
+}
+
+message Redeem {
+	google.protobuf.Timestamp ts = 1;
+	bytes Amount = 2;		//	uint256
+}

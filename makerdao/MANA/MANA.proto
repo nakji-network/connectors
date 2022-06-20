@@ -1,0 +1,46 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package MANA;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/MANA";
+
+message MintFinished {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Pause {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Unpause {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Burn {
+	google.protobuf.Timestamp ts = 1;
+	bytes Burner = 2;		//	address
+	bytes Value = 3;		//	uint256
+}
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes Owner = 2;		//	address
+	bytes Spender = 3;		//	address
+	bytes Value = 4;		//	uint256
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes From = 2;		//	address
+	bytes To = 3;		//	address
+	bytes Value = 4;		//	uint256
+}
+
+message Mint {
+	google.protobuf.Timestamp ts = 1;
+	bytes To = 2;		//	address
+	bytes Amount = 3;		//	uint256
+}

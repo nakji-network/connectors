@@ -1,0 +1,58 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package MCD_VEST_MKR_TREASURY;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/MCD_VEST_MKR_TREASURY";
+
+message File {
+	google.protobuf.Timestamp ts = 1;
+	bytes What = 2;		//	bytes32
+	bytes Data = 3;		//	uint256
+}
+
+message Move {
+	google.protobuf.Timestamp ts = 1;
+	bytes Id = 2;		//	uint256
+	bytes Dst = 3;		//	address
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Vest {
+	google.protobuf.Timestamp ts = 1;
+	bytes Id = 2;		//	uint256
+	bytes Amt = 3;		//	uint256
+}
+
+message Yank {
+	google.protobuf.Timestamp ts = 1;
+	bytes Id = 2;		//	uint256
+	bytes End = 3;		//	uint256
+}
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Init {
+	google.protobuf.Timestamp ts = 1;
+	bytes Id = 2;		//	uint256
+	bytes Usr = 3;		//	address
+}
+
+message Restrict {
+	google.protobuf.Timestamp ts = 1;
+	bytes Id = 2;		//	uint256
+}
+
+message Unrestrict {
+	google.protobuf.Timestamp ts = 1;
+	bytes Id = 2;		//	uint256
+}

@@ -1,0 +1,54 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package MIP21_LIQUIDATION_ORACLE;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/MIP21_LIQUIDATION_ORACLE";
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message File {
+	google.protobuf.Timestamp ts = 1;
+	bytes What = 2;		//	bytes32
+	bytes Data = 3;		//	address
+}
+
+message Init {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Val = 3;		//	uint256
+	string Doc = 4;		//	string
+	bytes Tau = 5;		//	uint48
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Tell {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+}
+
+message Bump {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Val = 3;		//	uint256
+}
+
+message Cull {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Urn = 3;		//	address
+}
+
+message Cure {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+}

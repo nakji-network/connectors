@@ -1,0 +1,32 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package FLIPPER_MOM;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/FLIPPER_MOM";
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Flip = 2;		//	address
+	bytes Cat = 3;		//	address
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Flip = 2;		//	address
+	bytes Usr = 3;		//	address
+}
+
+message SetAuthority {
+	google.protobuf.Timestamp ts = 1;
+	bytes OldAuthority = 2;		//	address
+	bytes NewAuthority = 3;		//	address
+}
+
+message SetOwner {
+	google.protobuf.Timestamp ts = 1;
+	bytes OldOwner = 2;		//	address
+	bytes NewOwner = 3;		//	address
+}

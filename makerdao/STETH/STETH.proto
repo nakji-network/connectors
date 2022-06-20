@@ -1,0 +1,14 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package STETH;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/STETH";
+
+message ProxyDeposit {
+	google.protobuf.Timestamp ts = 1;
+	bytes Sender = 2;		//	address
+	bytes Value = 3;		//	uint256
+}

@@ -1,0 +1,25 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package TUSD;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/TUSD";
+
+message Upgraded {
+	google.protobuf.Timestamp ts = 1;
+	bytes Implementation = 2;		//	address
+}
+
+message ProxyOwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	bytes PreviousOwner = 2;		//	address
+	bytes NewOwner = 3;		//	address
+}
+
+message NewPendingOwner {
+	google.protobuf.Timestamp ts = 1;
+	bytes CurrentOwner = 2;		//	address
+	bytes PendingOwner = 3;		//	address
+}

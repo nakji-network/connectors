@@ -1,0 +1,46 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package LERP_FAB;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/LERP_FAB";
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message LerpFinished {
+	google.protobuf.Timestamp ts = 1;
+	bytes Lerp = 2;		//	address
+}
+
+message NewIlkLerp {
+	google.protobuf.Timestamp ts = 1;
+	bytes Name = 2;		//	bytes32
+	bytes Target = 3;		//	address
+	bytes Ilk = 4;		//	bytes32
+	bytes What = 5;		//	bytes32
+	bytes StartTime = 6;		//	uint256
+	bytes Start = 7;		//	uint256
+	bytes End = 8;		//	uint256
+	bytes Duration = 9;		//	uint256
+}
+
+message NewLerp {
+	google.protobuf.Timestamp ts = 1;
+	bytes Name = 2;		//	bytes32
+	bytes Target = 3;		//	address
+	bytes What = 4;		//	bytes32
+	bytes StartTime = 5;		//	uint256
+	bytes Start = 6;		//	uint256
+	bytes End = 7;		//	uint256
+	bytes Duration = 8;		//	uint256
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}

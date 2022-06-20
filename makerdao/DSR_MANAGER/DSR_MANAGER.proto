@@ -1,0 +1,20 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package DSR_MANAGER;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/DSR_MANAGER";
+
+message Exit {
+	google.protobuf.Timestamp ts = 1;
+	bytes Dst = 2;		//	address
+	bytes Wad = 3;		//	uint256
+}
+
+message Join {
+	google.protobuf.Timestamp ts = 1;
+	bytes Dst = 2;		//	address
+	bytes Wad = 3;		//	uint256
+}
