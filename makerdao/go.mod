@@ -4,8 +4,6 @@ go 1.18
 
 replace github.com/nakji-network/connectors => ../
 
-replace github.com/nakji-network/connector => ../../connector
-
 require (
 	github.com/ethereum/go-ethereum v1.10.19
 	github.com/nakji-network/connector v0.0.1-beta.1.0.20220701083029-14dd81203854
