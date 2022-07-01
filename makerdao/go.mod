@@ -4,9 +4,11 @@ go 1.18
 
 replace github.com/nakji-network/connectors => ../
 
+replace github.com/nakji-network/connector => ../../connector
+
 require (
 	github.com/ethereum/go-ethereum v1.10.19
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220624162352-5e9f35e2e4c4
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20220701083029-14dd81203854
 	github.com/rs/zerolog v1.27.0
 	github.com/spf13/pflag v1.0.5
 	go.uber.org/automaxprocs v1.5.1

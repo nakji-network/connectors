@@ -75,17 +75,20 @@ type Connector struct {
 	*Config
 	sub       connector.ISubscription
 	contracts map[string]*Contract
+	sink      chan protoreflect.ProtoMessage
 }
 
 func New(c *connector.Connector, config *Config) *Connector {
 	return &Connector{
 		Connector: c,
 		Config:    config,
+		sink:      make(chan protoreflect.ProtoMessage),
 	}
 }
 
 func (c *Connector) Start() {
 	c.setup()
+	go c.InitProduceChannel(c.sink)
 	c.listen()
 }
 
@@ -124,13 +127,7 @@ func (c *Connector) listen() {
 		//	Listen to event logs
 		case vLog := <-c.sub.Logs():
 			if msg := c.parse(vLog); msg != nil {
-				err := c.Connector.ProduceAndCommitMessage(c.ConnectorName, vLog.Address.String(), msg)
-				if err != nil {
-					log.Error().
-						Str("namespace", c.ConnectorName).
-						Str("subject", vLog.Address.String()).
-						Err(err).Msg("failed to commit message")
-				}
+				c.sink <- msg
 			}
 		}
 	}
