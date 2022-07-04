@@ -36,7 +36,7 @@ const Namespace = "bitcoin"
 
 // NewConnector creates new BitcoinConnector and connects to the bitcoin RPC
 func NewConnector(callback func()) *BitcoinConnector {
-	c, err := connector.NewProducerConnector()
+	c, err := connector.NewConnector()
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to instantiate connector")
 	}

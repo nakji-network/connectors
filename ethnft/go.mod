@@ -5,9 +5,10 @@ go 1.18
 require (
 	github.com/alitto/pond v1.8.0
 	github.com/ethereum/go-ethereum v1.10.17
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220624162352-5e9f35e2e4c4
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20220704095109-1552a7624eb2
 	github.com/rs/zerolog v1.26.1
 	go.uber.org/automaxprocs v1.5.1
+	google.golang.org/protobuf v1.28.0
 )
 
 require (
@@ -93,7 +94,6 @@ require (
 	golang.org/x/term v0.0.0-20210927222741-03fcf44c2211 // indirect
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20220505152158-f39f71e6c8f3 // indirect
-	google.golang.org/protobuf v1.28.0 // indirect
 	gopkg.in/ini.v1 v1.66.4 // indirect
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

@@ -8,7 +8,7 @@ require (
 	github.com/btcsuite/btcutil v1.0.3-0.20201208143702-a53e38424cce
 	github.com/golang/mock v1.6.0
 	github.com/golang/protobuf v1.5.2
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220624162352-5e9f35e2e4c4
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20220704095109-1552a7624eb2
 	github.com/rs/zerolog v1.26.1
 	go.uber.org/automaxprocs v1.5.1
 	google.golang.org/protobuf v1.28.0

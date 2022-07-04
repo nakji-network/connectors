@@ -10,7 +10,7 @@ import (
 
 func main() {
 
-	conn, err := connector.NewProducerConnector()
+	conn, err := connector.NewConnector()
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to instantiate connector")
 	}
