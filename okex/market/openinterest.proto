@@ -1,0 +1,16 @@
+syntax = "proto3";
+package market;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/okex/market";
+
+message OpenInterest {
+    google.protobuf.Timestamp ts        = 1;
+    double openInterest                 = 2;
+    double openInterestValue            = 3;
+    string asset = 4;
+    string ns = 5;  //  namespace
+    string s = 6;   //  subject
+}
+
