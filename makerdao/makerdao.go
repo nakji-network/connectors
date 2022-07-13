@@ -111,7 +111,7 @@ func (c *Connector) setup() {
 }
 
 func (c *Connector) listen() {
-	c.sub.Resubscribe()
+	c.sub.Subscribe()
 
 	for {
 		select {

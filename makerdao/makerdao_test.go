@@ -27,7 +27,7 @@ func (MockSubscription) Done() <-chan bool           { return nil }
 func (MockSubscription) Err() <-chan error           { return nil }
 func (MockSubscription) Headers() chan *types.Header { return nil }
 func (MockSubscription) Logs() chan types.Log        { return nil }
-func (MockSubscription) Resubscribe()                {}
+func (MockSubscription) Subscribe()                  {}
 func (MockSubscription) Unsubscribe()                {}
 func (MockSubscription) GetBlockTime(vLog types.Log) (uint64, error) {
 	cache := map[uint64]uint64{
