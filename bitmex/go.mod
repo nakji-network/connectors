@@ -7,7 +7,7 @@ replace github.com/nakji-network/connectors/bitmex/market => ./market
 replace github.com/thrasher-corp/gocryptotrader => github.com/blep-ai/gocryptotrader v0.0.0-20210824033446-5f39de372417
 
 require (
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220708025556-2f9c05e247f7
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20220719185314-c4b94f33286d
 	github.com/rs/zerolog v1.26.1
 	github.com/thrasher-corp/gocryptotrader v0.0.0-00010101000000-000000000000
 	go.uber.org/automaxprocs v1.5.1

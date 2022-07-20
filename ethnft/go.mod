@@ -5,7 +5,7 @@ go 1.18
 require (
 	github.com/alitto/pond v1.8.0
 	github.com/ethereum/go-ethereum v1.10.17
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220713154427-46c8a1785d36
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20220719185314-c4b94f33286d
 	github.com/rs/zerolog v1.26.1
 	go.uber.org/automaxprocs v1.5.1
 	google.golang.org/protobuf v1.28.0
