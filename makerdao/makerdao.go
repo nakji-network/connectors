@@ -10,7 +10,6 @@ import (
 	"github.com/nakji-network/connectors/makerdao/ARBITRUM_GOV_RELAY"
 	"github.com/nakji-network/connectors/makerdao/ARBITRUM_L2_DAI"
 	"github.com/nakji-network/connectors/makerdao/ARBITRUM_L2_DAI_GATEWAY"
-	"github.com/nakji-network/connectors/makerdao/ARBITRUM_L2_GOV_RELAY"
 	"github.com/nakji-network/connectors/makerdao/BAL"
 	"github.com/nakji-network/connectors/makerdao/BAT"
 	"github.com/nakji-network/connectors/makerdao/COMP"
@@ -41,10 +40,8 @@ import (
 	"github.com/nakji-network/connectors/makerdao/MCD_VEST_MKR"
 	"github.com/nakji-network/connectors/makerdao/MCD_VEST_MKR_TREASURY"
 	"github.com/nakji-network/connectors/makerdao/MIP21_LIQUIDATION_ORACLE"
-	"github.com/nakji-network/connectors/makerdao/OPTIMISM_DAI_BRIDGE"
 	"github.com/nakji-network/connectors/makerdao/OPTIMISM_L2_DAI"
 	"github.com/nakji-network/connectors/makerdao/OPTIMISM_L2_DAI_TOKEN_BRIDGE"
-	"github.com/nakji-network/connectors/makerdao/OPTIMISM_L2_GOVERNANCE_RELAY"
 	"github.com/nakji-network/connectors/makerdao/RWA"
 	"github.com/nakji-network/connectors/makerdao/RWA_CONDUIT"
 	"github.com/nakji-network/connectors/makerdao/RWA_URN"
@@ -177,8 +174,8 @@ func getContract(contractType string) ISmartContract {
 		return &ARBITRUM_L2_DAI.SmartContract{}
 	case "ARBITRUM_L2_DAI_GATEWAY":
 		return &ARBITRUM_L2_DAI_GATEWAY.SmartContract{}
-	case "ARBITRUM_L2_GOV_RELAY":
-		return &ARBITRUM_L2_GOV_RELAY.SmartContract{}
+	// case "ARBITRUM_L2_GOV_RELAY":
+	// 	return &ARBITRUM_L2_GOV_RELAY.SmartContract{}
 	case "BAL":
 		return &BAL.SmartContract{}
 	case "BAT":
@@ -283,18 +280,18 @@ func getContract(contractType string) ISmartContract {
 	// 	return &MCD_VOW.SmartContract{}
 	case "MIP21_LIQUIDATION_ORACLE":
 		return &MIP21_LIQUIDATION_ORACLE.SmartContract{}
-	case "OPTIMISM_DAI_BRIDGE":
-		return &OPTIMISM_DAI_BRIDGE.SmartContract{}
-		// case "OPTIMISM_ESCROW":
-		// 	return &OPTIMISM_ESCROW.SmartContract{}
-		// case "OPTIMISM_GOV_RELAY":
-		// 	return &OPTIMISM_GOV_RELAY.SmartContract{}
+	// case "OPTIMISM_DAI_BRIDGE":
+	// 	return &OPTIMISM_DAI_BRIDGE.SmartContract{}
+	// case "OPTIMISM_ESCROW":
+	// 	return &OPTIMISM_ESCROW.SmartContract{}
+	// case "OPTIMISM_GOV_RELAY":
+	// 	return &OPTIMISM_GOV_RELAY.SmartContract{}
 	case "OPTIMISM_L2_DAI":
 		return &OPTIMISM_L2_DAI.SmartContract{}
 	case "OPTIMISM_L2_DAI_TOKEN_BRIDGE":
 		return &OPTIMISM_L2_DAI_TOKEN_BRIDGE.SmartContract{}
-	case "OPTIMISM_L2_GOVERNANCE_RELAY":
-		return &OPTIMISM_L2_GOVERNANCE_RELAY.SmartContract{}
+	// case "OPTIMISM_L2_GOVERNANCE_RELAY":
+	// 	return &OPTIMISM_L2_GOVERNANCE_RELAY.SmartContract{}
 	// case "OSM_MOM":
 	// 	return &OSM_MOM.SmartContract{}
 	// case "PAX":
