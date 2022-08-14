@@ -14,19 +14,14 @@ import (
 	"github.com/thrasher-corp/gocryptotrader/exchanges/okex"
 	"github.com/thrasher-corp/gocryptotrader/exchanges/ticker"
 	_ "go.uber.org/automaxprocs"
-	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type OkexConnector struct {
 	*connector.Connector
-	sink chan protoreflect.ProtoMessage
 }
 
 func (c *OkexConnector) Start() {
-	c.sink = make(chan protoreflect.ProtoMessage)
-	go c.InitProduceChannel(c.sink)
-
 	// gocryptotrader setup
 	exch := new(okex.OKEX)
 	exch.SetDefaults()
@@ -72,7 +67,7 @@ func (c *OkexConnector) Start() {
 				// write to Kafka
 				log.Info().Str("exch.Name", exch.Name).Str("pair", inst.Pair.String())
 
-				c.sink <- &market.OpenInterest{
+				c.EventSink <- &market.OpenInterest{
 					Ts:           timestamppb.New(inst.LastUpdated),
 					OpenInterest: inst.OpenInterest,
 					Asset:        inst.Pair.String(),

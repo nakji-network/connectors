@@ -12,12 +12,10 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/tidwall/gjson"
 	_ "go.uber.org/automaxprocs"
-	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 type BinanceConnector struct {
 	*connector.Connector
-	sink chan protoreflect.ProtoMessage
 }
 
 var (
@@ -28,9 +26,6 @@ var (
 )
 
 func (c *BinanceConnector) Start() {
-	c.sink = make(chan protoreflect.ProtoMessage)
-	go c.InitProduceChannel(c.sink)
-
 	// Timed fetch
 	for _, symbol := range symbols {
 		params := url.Values{}
@@ -54,7 +49,7 @@ func (c *BinanceConnector) Start() {
 			ts := common.UnixToTimestampPb(msInt)
 
 			// write to Kafka
-			c.sink <- &market.OpenInterest{
+			c.EventSink <- &market.OpenInterest{
 				Ts:                ts,
 				OpenInterest:      val.Get("sumOpenInterest").Float(),
 				OpenInterestValue: val.Get("sumOpenInterestValue").Float(),

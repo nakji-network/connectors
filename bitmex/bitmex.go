@@ -10,19 +10,14 @@ import (
 	"github.com/thrasher-corp/gocryptotrader/exchanges/bitmex"
 	"github.com/thrasher-corp/gocryptotrader/exchanges/ticker"
 	_ "go.uber.org/automaxprocs"
-	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type BitmexConnector struct {
 	*connector.Connector
-	sink chan protoreflect.ProtoMessage
 }
 
 func (c *BitmexConnector) Start() {
-	c.sink = make(chan protoreflect.ProtoMessage)
-	go c.InitProduceChannel(c.sink)
-
 	// Init exchange
 	exch := new(bitmex.Bitmex)
 	exch.SetDefaults()
@@ -66,7 +61,7 @@ func (c *BitmexConnector) Start() {
 					Str("sym", inst.Pair.String()).
 					Msg("Update")
 
-				c.sink <- &market.OpenInterest{
+				c.EventSink <- &market.OpenInterest{
 					Ts:           timestamppb.New(inst.LastUpdated),
 					OpenInterest: inst.OpenInterest,
 					Asset:        inst.Pair.String(),

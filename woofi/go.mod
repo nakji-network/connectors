@@ -4,7 +4,7 @@ go 1.18
 
 require (
 	github.com/ethereum/go-ethereum v1.10.21
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220810085928-300a385756dc
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20220813080417-2c1b0c94df04
 	github.com/rs/zerolog v1.27.0
 	github.com/spf13/pflag v1.0.5
 	go.uber.org/automaxprocs v1.5.1

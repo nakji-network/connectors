@@ -7,7 +7,7 @@ replace github.com/thrasher-corp/gocryptotrader => ../gocryptotrader
 replace github.com/nakji-network/connectors/binance/market => ./market
 
 require (
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220810085928-300a385756dc
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20220813080417-2c1b0c94df04
 	github.com/rs/zerolog v1.27.0
 	github.com/tidwall/gjson v1.14.1
 	go.uber.org/automaxprocs v1.5.1

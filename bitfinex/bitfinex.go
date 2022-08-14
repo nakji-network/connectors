@@ -15,19 +15,14 @@ import (
 	"github.com/thrasher-corp/gocryptotrader/exchanges/bitfinex"
 	"github.com/thrasher-corp/gocryptotrader/exchanges/ticker"
 	_ "go.uber.org/automaxprocs"
-	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type BitfinexConnector struct {
 	*connector.Connector
-	sink chan protoreflect.ProtoMessage
 }
 
 func (c *BitfinexConnector) Start() {
-	c.sink = make(chan protoreflect.ProtoMessage)
-	go c.InitProduceChannel(c.sink)
-
 	// gocryptotrader setup
 	exch := new(bitfinex.Bitfinex)
 	exch.SetDefaults()
@@ -69,7 +64,7 @@ func (c *BitfinexConnector) Start() {
 				cache[inst.Pair] = UpdateData{inst.LastUpdated, inst.DerivStatus.OpenInterest}
 
 				// write to Kafka
-				c.sink <- &market.OpenInterest{
+				c.EventSink <- &market.OpenInterest{
 					Ts:           timestamppb.New(inst.LastUpdated),
 					OpenInterest: inst.DerivStatus.OpenInterest,
 					Asset:        inst.Pair.String(),

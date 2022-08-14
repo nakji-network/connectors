@@ -21,7 +21,6 @@ import (
 	"github.com/thrasher-corp/gocryptotrader/exchanges/protocol"
 	"github.com/thrasher-corp/gocryptotrader/exchanges/request"
 	"github.com/thrasher-corp/gocryptotrader/exchanges/stream"
-	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -29,7 +28,6 @@ type BybitConnector struct {
 	*connector.Connector
 	exchange.Base
 	endpoints *exchange.Endpoints
-	sink      chan protoreflect.ProtoMessage
 }
 
 const (
@@ -40,9 +38,6 @@ const (
 )
 
 func (c *BybitConnector) Start() {
-	c.sink = make(chan protoreflect.ProtoMessage)
-	go c.InitProduceChannel(c.sink)
-
 	// gocryptotrader setup
 	exch := new(BybitConnector)
 	err := exch.SetDefaults()
@@ -72,7 +67,7 @@ func (c *BybitConnector) Start() {
 				}
 
 				// write to Kafka
-				c.sink <- &market.OpenInterest{
+				c.EventSink <- &market.OpenInterest{
 					Ts:                timestamppb.New(ts),
 					OpenInterest:      d.OpenInterest,
 					OpenInterestValue: ov,

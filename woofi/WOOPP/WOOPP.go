@@ -22,8 +22,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Paused{
-				Ts:   timestamp,
-				Account:  e.Account.Bytes(),
+			Ts:      timestamp,
+			Account: e.Account.Bytes(),
 		}
 	case "OwnershipTransferred":
 		e := new(WOOPPOwnershipTransferred)
@@ -33,9 +33,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &OwnershipTransferred{
-				Ts:   timestamp,
-				PreviousOwner:  e.PreviousOwner.Bytes(),
-				NewOwner:  e.NewOwner.Bytes(),
+			Ts:            timestamp,
+			PreviousOwner: e.PreviousOwner.Bytes(),
+			NewOwner:      e.NewOwner.Bytes(),
 		}
 	case "ParametersUpdated":
 		e := new(WOOPPParametersUpdated)
@@ -45,10 +45,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &ParametersUpdated{
-				Ts:   timestamp,
-				BaseToken:  e.BaseToken.Bytes(),
-				NewThreshold:  e.NewThreshold.Bytes(),
-				NewR: e.NewR.Bytes(),
+			Ts:           timestamp,
+			BaseToken:    e.BaseToken.Bytes(),
+			NewThreshold: e.NewThreshold.Bytes(),
+			NewR:         e.NewR.Bytes(),
 		}
 	case "FeeManagerUpdated":
 		e := new(WOOPPFeeManagerUpdated)
@@ -58,8 +58,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &FeeManagerUpdated{
-				Ts:   timestamp,
-				NewFeeManager:  e.NewFeeManager.Bytes(),
+			Ts:            timestamp,
+			NewFeeManager: e.NewFeeManager.Bytes(),
 		}
 	case "RewardManagerUpdated":
 		e := new(WOOPPRewardManagerUpdated)
@@ -69,8 +69,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &RewardManagerUpdated{
-				Ts:   timestamp,
-				NewRewardManager:  e.NewRewardManager.Bytes(),
+			Ts:               timestamp,
+			NewRewardManager: e.NewRewardManager.Bytes(),
 		}
 	case "Unpaused":
 		e := new(WOOPPUnpaused)
@@ -80,8 +80,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Unpaused{
-				Ts:   timestamp,
-				Account:  e.Account.Bytes(),
+			Ts:      timestamp,
+			Account: e.Account.Bytes(),
 		}
 	case "WooGuardianUpdated":
 		e := new(WOOPPWooGuardianUpdated)
@@ -91,8 +91,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &WooGuardianUpdated{
-				Ts:   timestamp,
-				NewWooGuardian:  e.NewWooGuardian.Bytes(),
+			Ts:             timestamp,
+			NewWooGuardian: e.NewWooGuardian.Bytes(),
 		}
 	case "WooSwap":
 		e := new(WOOPPWooSwap)
@@ -102,14 +102,15 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &WooSwap{
-				Ts:   timestamp,
-				FromToken:  e.FromToken.Bytes(),
-				ToToken:  e.ToToken.Bytes(),
-				FromAmount:  e.FromAmount.Bytes(),
-				ToAmount:  e.ToAmount.Bytes(),
-				From: e.From.Bytes(),
-				To: e.To.Bytes(),
-				RebateTo: e.RebateTo.Bytes(),
+			Ts: timestamp,
+
+			FromToken:  e.FromToken.Bytes(),
+			ToToken:    e.ToToken.Bytes(),
+			FromAmount: e.FromAmount.Bytes(),
+			ToAmount:   e.ToAmount.Bytes(),
+			From:       e.From.Bytes(),
+			To:         e.To.Bytes(),
+			RebateTo:   e.RebateTo.Bytes(),
 		}
 	case "OwnershipTransferPrepared":
 		e := new(WOOPPOwnershipTransferPrepared)
@@ -119,9 +120,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &OwnershipTransferPrepared{
-				Ts:   timestamp,
-				PreviousOwner: e.PreviousOwner.Bytes(),
-				NewOwner: e.NewOwner.Bytes(),
+			Ts:            timestamp,
+			PreviousOwner: e.PreviousOwner.Bytes(),
+			NewOwner:      e.NewOwner.Bytes(),
 		}
 	case "WooracleUpdated":
 		e := new(WOOPPWooracleUpdated)
@@ -131,8 +132,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &WooracleUpdated{
-				Ts:   timestamp,
-				NewWooracle: e.NewWooracle.Bytes(),
+			Ts:          timestamp,
+			NewWooracle: e.NewWooracle.Bytes(),
 		}
 	case "StrategistUpdated":
 		e := new(WOOPPStrategistUpdated)
@@ -142,9 +143,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &StrategistUpdated{
-				Ts:   timestamp,
-				Strategist: e.Strategist.Bytes(),
-				Flag: e.Flag,
+			Ts:         timestamp,
+			Strategist: e.Strategist.Bytes(),
+			Flag:       e.Flag,
 		}
 	case "Withdraw":
 		e := new(WOOPPWithdraw)
@@ -154,10 +155,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Withdraw{
-				Ts:   timestamp,
-				Token: e.Token.Bytes(),
-				To: e.To.Bytes(),
-				Amount: e.Amount.Bytes(),
+			Ts:     timestamp,
+			Token:  e.Token.Bytes(),
+			To:     e.To.Bytes(),
+			Amount: e.Amount.Bytes(),
 		}
 	}
 	return nil

@@ -13,21 +13,16 @@ import (
 	gctconfig "github.com/thrasher-corp/gocryptotrader/config"
 	"github.com/thrasher-corp/gocryptotrader/exchanges/ftx"
 	_ "go.uber.org/automaxprocs"
-	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type FTXConnector struct {
 	*connector.Connector
-	sink chan protoreflect.ProtoMessage
 }
 
 var subscribedFutures = []string{"ADA", "ALGO", "ALT", "ATOM", "BAL", "BCH", "BTC", "BNB", "BRZ", "BSV"}
 
 func (c *FTXConnector) Start() {
-	c.sink = make(chan protoreflect.ProtoMessage)
-	go c.InitProduceChannel(c.sink)
-
 	// gocryptotrader setup
 	exch := new(ftx.FTX)
 	exch.SetDefaults()
@@ -88,7 +83,7 @@ func (c *FTXConnector) Start() {
 				cache[f] = UpdateData{LastUpdated: ts, OpenInterest: futureStatsData.OpenInterest}
 
 				// write to Kafka
-				c.sink <- &market.OpenInterest{
+				c.EventSink <- &market.OpenInterest{
 					Ts:           timestamppb.New(ts),
 					OpenInterest: futureStatsData.OpenInterest,
 					Asset:        f,

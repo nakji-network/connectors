@@ -47,10 +47,10 @@ func main() {
 	c.RegisterProtos(protos...)
 
 	conf := &woofi.Config{
-		ConnectorName:  "woofi",
-		NetworkName: "bsc",
-		FromBlock:      c.Config.GetUint64("from-block"),
-		NumBlocks:      c.Config.GetUint64("num-blocks"),
+		ConnectorName: "woofi",
+		NetworkName:   "bsc",
+		FromBlock:     c.Config.GetUint64("from-block"),
+		NumBlocks:     c.Config.GetUint64("num-blocks"),
 	}
 
 	m := woofi.New(c, conf)

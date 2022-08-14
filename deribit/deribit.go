@@ -19,18 +19,13 @@ import (
 	"github.com/thrasher-corp/gocryptotrader/exchanges/deribit"
 	"github.com/thrasher-corp/gocryptotrader/exchanges/ticker"
 	_ "go.uber.org/automaxprocs"
-	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 type DeribitConnector struct {
 	*connector.Connector
-	sink chan protoreflect.ProtoMessage
 }
 
 func (c *DeribitConnector) Start() {
-	c.sink = make(chan protoreflect.ProtoMessage)
-	go c.InitProduceChannel(c.sink)
-
 	// gocryptotrader setup
 	exch := new(deribit.Deribit)
 	exch.SetDefaults()
@@ -76,7 +71,7 @@ func (c *DeribitConnector) Start() {
 				}
 
 				// write to Kafka
-				c.sink <- &market.OpenInterest{
+				c.EventSink <- &market.OpenInterest{
 					Ts:           ts,
 					OpenInterest: inst.DerivStatus.OpenInterest,
 					Asset:        inst.Pair.String(),

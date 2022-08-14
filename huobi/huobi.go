@@ -14,19 +14,14 @@ import (
 	"github.com/thrasher-corp/gocryptotrader/currency"
 	"github.com/thrasher-corp/gocryptotrader/exchanges/huobi"
 	_ "go.uber.org/automaxprocs"
-	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type HuobiConnector struct {
 	*connector.Connector
-	sink chan protoreflect.ProtoMessage
 }
 
 func (c *HuobiConnector) Start() {
-	c.sink = make(chan protoreflect.ProtoMessage)
-	go c.InitProduceChannel(c.sink)
-
 	// gocryptotrader setup
 	exch := new(huobi.HUOBI)
 	exch.SetDefaults()
@@ -64,7 +59,7 @@ func (c *HuobiConnector) Start() {
 			if d.Amount != cache[p].OpenInterest && d.Amount != 0 {
 				cache[p] = UpdateData{LastUpdated: ts, OpenInterest: d.Amount}
 
-				c.sink <- &market.OpenInterest{
+				c.EventSink <- &market.OpenInterest{
 					Ts:                timestamppb.New(ts),
 					OpenInterest:      d.Volume,
 					OpenInterestValue: d.Amount,
