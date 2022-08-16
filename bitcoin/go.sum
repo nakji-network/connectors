@@ -507,8 +507,8 @@ github.com/mr-tron/base58 v1.2.0/go.mod h1:BinMc/sQntlIE1frQmRFPUoPA1Zkr8VRgBdjW
 github.com/mschoch/smat v0.0.0-20160514031455-90eadee771ae/go.mod h1:qAyveg+e4CE+eKJXWVjKXM4ck2QobLqTDytGJbLLhJg=
 github.com/mwitkow/go-conntrack v0.0.0-20161129095857-cc309e4a2223/go.mod h1:qRWi+5nqEBWmkhHvq77mSJWrCKwh8bxhgT7d/eI7P4U=
 github.com/mwitkow/go-conntrack v0.0.0-20190716064945-2f068394615f/go.mod h1:qRWi+5nqEBWmkhHvq77mSJWrCKwh8bxhgT7d/eI7P4U=
-github.com/nakji-network/connector v0.0.1-beta.1.0.20220813080417-2c1b0c94df04 h1:/1G434dERpNm4QEBAfHcqdmPlHsDK3DWXMdaaK+6UoQ=
-github.com/nakji-network/connector v0.0.1-beta.1.0.20220813080417-2c1b0c94df04/go.mod h1:UXvVIkdmXsdZssn+q2CqXFkE5YSeM45bR7K88Fvkczs=
+github.com/nakji-network/connector v0.0.1-beta.1.0.20220816132333-efe3541158d1 h1:zay+swfrh9ajr4fmd3EX4wu/zHa8tswyMDiNglBbaac=
+github.com/nakji-network/connector v0.0.1-beta.1.0.20220816132333-efe3541158d1/go.mod h1:UXvVIkdmXsdZssn+q2CqXFkE5YSeM45bR7K88Fvkczs=
 github.com/naoina/go-stringutil v0.1.0/go.mod h1:XJ2SJL9jCtBh+P9q5btrd/Ylo8XwT/h1USek5+NqSA0=
 github.com/naoina/toml v0.1.2-0.20170918210437-9fafd6967416/go.mod h1:NBIhNtsFMo3G2szEBne+bO4gS192HuIYRqfvOWb4i1E=
 github.com/nkovacs/streamquote v0.0.0-20170412213628-49af9bddb229/go.mod h1:0aYXnNPJ8l7uZxf45rWW1a/uME32OF0rhiYGNQ2oF2E=

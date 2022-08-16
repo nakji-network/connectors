@@ -35,11 +35,6 @@ func New(c *connector.Connector, config *Config) *Connector {
 }
 
 func (c *Connector) Start() {
-	c.setup()
-	c.listen()
-}
-
-func (c *Connector) setup() {
 	addresses := GetAddresses(ContractAddresses)
 	c.contracts = GetContracts(ContractAddresses)
 
@@ -50,10 +45,6 @@ func (c *Connector) setup() {
 	} else {
 		log.Fatal().Err(err).Msg(fmt.Sprintf("%s connection error", c.NetworkName))
 	}
-}
-
-func (c *Connector) listen() {
-	c.sub.Subscribe()
 
 	for {
 		select {

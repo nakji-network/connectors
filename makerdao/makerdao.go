@@ -82,11 +82,6 @@ func New(c *connector.Connector, config *Config) *Connector {
 }
 
 func (c *Connector) Start() {
-	c.setup()
-	c.listen()
-}
-
-func (c *Connector) setup() {
 	addresses := GetAddresses(ContractAddresses[c.NetworkName])
 	c.contracts = GetContracts(ContractAddresses[c.NetworkName])
 
@@ -99,13 +94,9 @@ func (c *Connector) setup() {
 	}
 
 	//	Check whether local file is up-to-date
-	if c.NetworkName == "ethereum" {
-		go CheckLatestAddresses(c.ChainClients.Ethereum(ctx), c.ContractsUrl, c.FactoryAddress, ContractAddresses["ethereum"])
-	}
-}
-
-func (c *Connector) listen() {
-	c.sub.Subscribe()
+	// if c.NetworkName == "ethereum" {
+	// 	go CheckLatestAddresses(c.ChainClients.Ethereum(ctx), c.ContractsUrl, c.FactoryAddress, ContractAddresses["ethereum"])
+	// }
 
 	for {
 		select {
