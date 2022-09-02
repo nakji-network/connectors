@@ -82,7 +82,7 @@ func (c *Connector) parse(vLog types.Log) protoreflect.ProtoMessage {
 		return nil
 	}
 
-	time, err := c.sub.GetBlockTime(vLog)
+	time, err := c.sub.GetBlockTime(context.Background(), vLog)
 	if err != nil {
 		log.Error().Str("contract name", contractName).Err(err).Msg("Failed to retrieve timestamp")
 	}
