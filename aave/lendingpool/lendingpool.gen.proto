@@ -1,0 +1,147 @@
+syntax = "proto3";
+package lendingpool;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "blep.ai/data/connectors/aave/lendingpool";
+
+message LendingPoolBorrow {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     reserve              = 5; // address
+  bytes                     user                 = 6; // address
+  bytes                     behalfOf             = 7; // address
+  bytes                     amount               = 8; // uint256
+  bytes                     borrowRate           = 9; // uint256
+  bytes                     rateMode             = 10; // uint256
+  uint64                    referral             = 11; // uint16
+  string ns = 12;
+  string s = 13;
+}
+
+message LendingPoolDeposit {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     reserve              = 5; // address
+  bytes                     user                 = 6; // address
+  bytes                     behalfOf             = 7; // address
+  bytes                     amount               = 8; // uint256
+  uint64                    referral             = 9; // uint16
+  string ns = 10;
+  string s = 11;
+}
+
+message LendingPoolFlashLoan {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     target               = 5; // address
+  bytes                     initiator            = 6; // address
+  bytes                     asset                = 7; // address
+  bytes                     amount               = 8; // uint256
+  bytes                     premium              = 9; // uint256
+  uint64                    referral             = 10; // uint16
+  string ns = 11;
+  string s = 12;
+}
+
+message LendingPoolLiquidationCall {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     collateralAsset      = 5; // address
+  bytes                     debtAsset            = 6; // address
+  bytes                     user                 = 7; // address
+  bytes                     debtToCover          = 8; // uint256
+  bytes                     collateralAmount     = 9; // uint256
+  bytes                     liquidator           = 10; // address
+  bool                      receiveAToken        = 11;
+  string ns = 12;
+  string s = 13;
+}
+
+
+message LendingPoolRebalance {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     reserve              = 5; // address
+  bytes                     user                 = 6; // address
+  string ns = 7;
+  string s = 8;
+}
+
+message LendingPoolRepay {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     reserve              = 5; // address
+  bytes                     user                 = 6; // address
+  bytes                     amount               = 7; // uint256
+  bytes                     repayer              = 8; //address
+  string ns = 9;
+  string s = 10;
+}
+
+message LendingPoolReserveAsCollateral {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     reserve              = 5; // address
+  bytes                     user                 = 6; // address
+  bool                      collateral           = 7;
+  string ns = 8;
+  string s = 9;
+}
+
+message LendingPoolReserveUpdated {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     reserve              = 5; // address
+  bytes                     liquidityRate        = 6; // uint256
+  bytes                     stableBorrowRate     = 7; // uint256
+  bytes                     varBorrowRate        = 8; // uint256
+  bytes                     liquidityIndex       = 9; // uint256
+  bytes                     varBorrowIndex       = 10; // uint256
+  string ns = 11;
+  string s = 12;
+}
+
+message LendingPoolSwap {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     reserve              = 5; // address
+  bytes                     user                 = 6; // address
+  bytes                     rateMode             = 7; // uint256
+  string ns = 8;
+  string s = 9;
+}
+
+message LendingPoolWithdraw {
+  google.protobuf.Timestamp ts                   = 1;
+  uint64                    block                = 2;
+  uint64                    idx                  = 3;
+  bytes                     tx                   = 4; // tx hash
+  bytes                     reserve              = 5; // address
+  bytes                     user                 = 6; // address
+  bytes                     amount               = 7; // uint256
+  bytes                     to                   = 8; // address
+  string ns = 9;
+  string s = 10;
+}
+
+
+
