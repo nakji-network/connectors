@@ -7,6 +7,7 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/aave"
+	"github.com/nakji-network/connectors/aave/lendingpool"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -51,7 +52,13 @@ func main() {
 		Namespace:     "aave",
 	}
 
+	lendingPoolContract, err := lendingpool.NewContract(aave.LendingPoolContractAddr, "aave")
+	if err != nil {
+		log.Err(err).Msg("Cannot create lending pool contract")
+	}
+
 	m := aave.New(c, conf)
+	m.AddContract(lendingPoolContract)
 	m.Start()
 }
 

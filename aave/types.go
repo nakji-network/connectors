@@ -5,6 +5,10 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
+const (
+	LendingPoolContractAddr = "0x7d2768dE32b0b80b7a3454c06BdAc94A69DDc7A9"
+)
+
 var TopicTypes = map[string]proto.Message{
 	"nakji.aave.0_0_0.aave_lpborrow":              &lendingpool.LendingPoolBorrow{},
 	"nakji.aave.0_0_0.aave_lpdeposit":             &lendingpool.LendingPoolDeposit{},
