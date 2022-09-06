@@ -1,6 +1,7 @@
 package makerdao
 
 import (
+	"context"
 	"strings"
 	"testing"
 
@@ -29,7 +30,7 @@ func (MockSubscription) Headers() chan *types.Header { return nil }
 func (MockSubscription) Logs() chan types.Log        { return nil }
 func (MockSubscription) Subscribe()                  {}
 func (MockSubscription) Unsubscribe()                {}
-func (MockSubscription) GetBlockTime(vLog types.Log) (uint64, error) {
+func (MockSubscription) GetBlockTime(ctx context.Context, vLog types.Log) (uint64, error) {
 	cache := map[uint64]uint64{
 		uint64(13145410): uint64(1629274175),
 		uint64(13145411): uint64(1629274180),
