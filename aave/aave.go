@@ -46,19 +46,15 @@ func (c *Connector) GetContract(addr string) ISmartContract {
 	return c.contracts[addr]
 }
 
-func (c *Connector) AllContracts() []ethcommon.Address {
+func (c *Connector) Start() {
 	addresses := make([]ethcommon.Address, 0, len(c.contracts))
 	for _, v := range c.contracts {
 		addresses = append(addresses, ethcommon.HexToAddress(v.Address()))
 	}
-	return addresses
-}
-
-func (c *Connector) Start() {
 
 	ctx := context.Background()
 
-	if sub, err := connector.NewSubscription(ctx, c.Connector, c.NetworkName, c.AllContracts(), c.FromBlock, c.NumBlocks); err == nil {
+	if sub, err := connector.NewSubscription(ctx, c.Connector, c.NetworkName, addresses, c.FromBlock, c.NumBlocks); err == nil {
 		c.sub = sub
 	} else {
 		log.Fatal().Err(err).Msg(fmt.Sprintf("%s connection error", c.NetworkName))
