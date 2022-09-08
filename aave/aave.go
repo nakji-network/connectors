@@ -73,7 +73,6 @@ func (c *Connector) Start() {
 		//	Listen to event logs
 		case vLog := <-c.sub.Logs():
 			if msg := c.parse(vLog); msg != nil {
-				// log.Debug().Msg(protojson.Format(msg))
 				c.EventSink <- msg
 			}
 		}
