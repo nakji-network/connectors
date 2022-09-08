@@ -177,12 +177,12 @@ func (c *Connector) getTimestamp(vLog types.Log) uint64 {
 	tMin := time.Second
 	tMax := time.Second * 16
 
-	ts, err := c.sub.GetBlockTime(vLog)
+	ts, err := c.sub.GetBlockTime(context.Background(), vLog)
 	for err != nil {
 		log.Debug().Uint64("block", vLog.BlockNumber).Str("network", network).Msg("waiting for block timestamp")
 		time.Sleep(tWait)
 		tWait *= 2
-		ts, err = c.sub.GetBlockTime(vLog)
+		ts, err = c.sub.GetBlockTime(context.Background(), vLog)
 		if err == nil {
 			break
 		}

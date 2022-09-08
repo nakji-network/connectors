@@ -32,8 +32,6 @@ type BTCClient interface {
 	GetBlockCount() (int64, error)
 }
 
-const Namespace = "bitcoin"
-
 // NewConnector creates new BitcoinConnector and connects to the bitcoin RPC
 func NewConnector(callback func()) *BitcoinConnector {
 	c, err := connector.NewConnector()
@@ -46,6 +44,10 @@ func NewConnector(callback func()) *BitcoinConnector {
 	ntfnHandlers := rpcclient.NotificationHandlers{
 		OnFilteredBlockConnected: func(height int32, header *wire.BlockHeader, txns []*btcutil.Tx) {
 			hashChan <- header.BlockHash()
+		},
+		OnFilteredBlockDisconnected: func(height int32, header *wire.BlockHeader) {
+			log.Info().Interface("block hash", header.BlockHash()).Int32("height", height).
+				Time("timestamp", header.Timestamp).Msg("block disconnected")
 		},
 	}
 
@@ -93,12 +95,7 @@ func (c *BitcoinConnector) Start(ctx context.Context) {
 
 			var blockData Block
 			blockData.UnmarshalBTCBlock(verboseBlock)
-			if err := c.ProduceAndCommitMessage(Namespace, verboseBlock.Hash, &blockData); err != nil {
-				log.Error().
-					Err(err).
-					Str("block hash", verboseBlock.Hash).
-					Msg("failed to produce and commit message")
-			}
+			c.EventSink <- &blockData
 
 			block := btcutil.NewBlock(wireBlock)
 			for _, tx := range block.Transactions() {
@@ -109,7 +106,7 @@ func (c *BitcoinConnector) Start(ctx context.Context) {
 
 				var txData Transaction
 				txData.UnmarshalBTCTransaction(rawTx)
-				c.ProduceAndCommitMessage(Namespace, txData.Txid, &txData)
+				c.EventSink <- &txData
 			}
 			c.callback()
 		}
