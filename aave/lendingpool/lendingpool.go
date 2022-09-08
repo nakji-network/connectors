@@ -45,7 +45,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &Borrow{
 			Ts:             ts,
 			BlockNumber:    vLog.BlockNumber,
-			Index:          uint64(vLog.Index),
+			LogIndex:       uint64(vLog.Index),
 			TxHash:         vLog.TxHash.Bytes(),
 			Reserve:        event.Reserve.Bytes(),
 			User:           event.User.Bytes(),
@@ -64,7 +64,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &Deposit{
 			Ts:          ts,
 			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
+			LogIndex:    uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			Reserve:     event.Reserve.Bytes(),
 			User:        event.User.Bytes(),
@@ -81,7 +81,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &FlashLoan{
 			Ts:           ts,
 			BlockNumber:  vLog.BlockNumber,
-			Index:        uint64(vLog.Index),
+			LogIndex:     uint64(vLog.Index),
 			TxHash:       vLog.TxHash.Bytes(),
 			Target:       event.Target.Bytes(),
 			Initiator:    event.Initiator.Bytes(),
@@ -99,7 +99,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &LiquidationCall{
 			Ts:                         ts,
 			BlockNumber:                vLog.BlockNumber,
-			Index:                      uint64(vLog.Index),
+			LogIndex:                   uint64(vLog.Index),
 			TxHash:                     vLog.TxHash.Bytes(),
 			CollateralAsset:            event.CollateralAsset.Bytes(),
 			DebtAsset:                  event.DebtAsset.Bytes(),
@@ -118,7 +118,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &RebalanceStableBorrowRate{
 			Ts:          ts,
 			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
+			LogIndex:    uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			Reserve:     event.Reserve.Bytes(),
 			User:        event.User.Bytes(),
@@ -132,7 +132,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &Repay{
 			Ts:          ts,
 			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
+			LogIndex:    uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			Reserve:     event.Reserve.Bytes(),
 			User:        event.User.Bytes(),
@@ -148,7 +148,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &ReserveDataUpdated{
 			Ts:                  ts,
 			BlockNumber:         vLog.BlockNumber,
-			Index:               uint64(vLog.Index),
+			LogIndex:            uint64(vLog.Index),
 			TxHash:              vLog.TxHash.Bytes(),
 			LiquidityRate:       event.LiquidityRate.Bytes(),
 			LiquidityIndex:      event.LiquidityIndex.Bytes(),
@@ -165,7 +165,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &ReserveUsedAsCollateralDisabled{
 			Ts:          ts,
 			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
+			LogIndex:    uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			Reserve:     event.Reserve.Bytes(),
 			User:        event.User.Bytes(),
@@ -179,7 +179,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &ReserveUsedAsCollateralEnabled{
 			Ts:          ts,
 			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
+			LogIndex:    uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			Reserve:     event.Reserve.Bytes(),
 			User:        event.User.Bytes(),
@@ -193,7 +193,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &Swap{
 			Ts:          ts,
 			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
+			LogIndex:    uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			Reserve:     event.Reserve.Bytes(),
 			User:        event.User.Bytes(),
@@ -208,7 +208,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &Withdraw{
 			Ts:          ts,
 			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
+			LogIndex:    uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			Reserve:     event.Reserve.Bytes(),
 			User:        event.User.Bytes(),
@@ -224,7 +224,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &Paused{
 			Ts:          ts,
 			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
+			LogIndex:    uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 		}
 	case "Unpaused":
@@ -236,7 +236,7 @@ func (c *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto
 		return &Unpaused{
 			Ts:          ts,
 			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
+			LogIndex:    uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 		}
 	default:

@@ -18,7 +18,7 @@ message Borrow {
 	bytes borrowRate = 7; // uint256
 	uint32 referral = 8; 
 	uint64 blockNumber = 9;
-	uint64 index = 10;
+	uint64 logIndex = 10;
 	bytes txHash = 11;
 
 }
@@ -31,7 +31,7 @@ message Deposit {
 	bytes amount = 5; // uint256
 	uint32 referral = 6; 
 	uint64 blockNumber = 7;
-	uint64 index = 8;
+	uint64 logIndex = 8;
 	bytes txHash = 9;
 }
 
@@ -40,7 +40,7 @@ message RebalanceStableBorrowRate {
 	bytes reserve = 2; 
 	bytes user = 3; 
 	uint64 blockNumber = 4;
-	uint64 index = 5;
+	uint64 logIndex = 5;
 	bytes txHash = 6;
 }
 
@@ -49,7 +49,7 @@ message ReserveUsedAsCollateralDisabled {
 	bytes reserve = 2; 
 	bytes user = 3; 
 	uint64 blockNumber = 4;
-	uint64 index = 5;
+	uint64 logIndex = 5;
 	bytes txHash = 6;
 }
 
@@ -58,7 +58,7 @@ message ReserveUsedAsCollateralEnabled {
 	bytes reserve = 2; 
 	bytes user = 3; 
 	uint64 blockNumber = 4;
-	uint64 index = 5;
+	uint64 logIndex = 5;
 	bytes txHash = 6;
 }
 
@@ -69,7 +69,7 @@ message Withdraw {
 	bytes to = 4; 
 	bytes amount = 5; // uint256
 	uint64 blockNumber = 6;
-	uint64 index = 7;
+	uint64 logIndex = 7;
 	bytes txHash = 8;
 }
 
@@ -82,7 +82,7 @@ message ReserveDataUpdated {
 	bytes liquidityIndex = 6; // uint256
 	bytes variableBorrowIndex = 7; // uint256
 	uint64 blockNumber = 8;
-	uint64 index = 9;
+	uint64 logIndex = 9;
 	bytes txHash = 10;
 }
 
@@ -92,14 +92,14 @@ message Swap {
 	bytes user = 3; 
 	bytes rateMode = 4; // uint256
 	uint64 blockNumber = 5;
-	uint64 index = 6;
+	uint64 logIndex = 6;
 	bytes txHash = 7;
 }
 
 message Unpaused {
 	google.protobuf.Timestamp ts = 1;
 	uint64 blockNumber = 2;
-	uint64 index = 3;
+	uint64 logIndex = 3;
 	bytes txHash = 4;
 }
 
@@ -113,7 +113,7 @@ message LiquidationCall {
 	bytes liquidator = 7; 
 	bool receiveAToken = 8; 
 	uint64 blockNumber = 9;
-	uint64 index = 10;
+	uint64 logIndex = 10;
 	bytes txHash = 11;
 }
 
@@ -124,7 +124,7 @@ message Repay {
 	bytes repayer = 4; 
 	bytes amount = 5; // uint256
 	uint64 blockNumber = 6;
-	uint64 index = 7;
+	uint64 logIndex = 7;
 	bytes txHash = 8;
 }
 
@@ -137,13 +137,13 @@ message FlashLoan {
 	bytes premium = 6; // uint256
 	uint32 referralCode = 7; 
 	uint64 blockNumber = 8;
-	uint64 index = 9;
+	uint64 logIndex = 9;
 	bytes txHash = 10;
 }
 
 message Paused {
 	google.protobuf.Timestamp ts = 1;
 	uint64 blockNumber = 2;
-	uint64 index = 3;
+	uint64 logIndex = 3;
 	bytes txHash = 4;
 }
