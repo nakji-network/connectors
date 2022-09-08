@@ -4,6 +4,7 @@
 package lendingpool
 
 import (
+	"errors"
 	"math/big"
 	"strings"
 
@@ -17,6 +18,7 @@ import (
 
 // Reference imports to suppress errors if they are not otherwise used.
 var (
+	_ = errors.New
 	_ = big.NewInt
 	_ = strings.NewReader
 	_ = ethereum.NotFound
@@ -26,14 +28,9 @@ var (
 	_ = event.NewSubscription
 )
 
-// DataTypesReserveConfigurationMap is an auto generated low-level Go binding around an user-defined struct.
-type DataTypesReserveConfigurationMap struct {
-	Data *big.Int
-}
-
-// DataTypesReserveData is an auto generated low-level Go binding around an user-defined struct.
-type DataTypesReserveData struct {
-	Configuration               DataTypesReserveConfigurationMap
+// Struct1 is an auto generated low-level Go binding around an user-defined struct.
+type Struct1 struct {
+	Configuration               Struct0
 	LiquidityIndex              *big.Int
 	VariableBorrowIndex         *big.Int
 	CurrentLiquidityRate        *big.Int
@@ -47,112 +44,118 @@ type DataTypesReserveData struct {
 	Id                          uint8
 }
 
-// DataTypesUserConfigurationMap is an auto generated low-level Go binding around an user-defined struct.
-type DataTypesUserConfigurationMap struct {
+// Struct0 is an auto generated low-level Go binding around an user-defined struct.
+type Struct0 struct {
 	Data *big.Int
 }
 
-// AaveLendingPoolABI is the input ABI used to generate the binding from.
-const AaveLendingPoolABI = "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"borrowRateMode\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"borrowRate\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint16\",\"name\":\"referral\",\"type\":\"uint16\"}],\"name\":\"Borrow\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint16\",\"name\":\"referral\",\"type\":\"uint16\"}],\"name\":\"Deposit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"initiator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"premium\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint16\",\"name\":\"referralCode\",\"type\":\"uint16\"}],\"name\":\"FlashLoan\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"debtAsset\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"debtToCover\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"liquidatedCollateralAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"liquidator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"receiveAToken\",\"type\":\"bool\"}],\"name\":\"LiquidationCall\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"RebalanceStableBorrowRate\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"repayer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Repay\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"liquidityRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"stableBorrowRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"variableBorrowRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"liquidityIndex\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"variableBorrowIndex\",\"type\":\"uint256\"}],\"name\":\"ReserveDataUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"ReserveUsedAsCollateralDisabled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"ReserveUsedAsCollateralEnabled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"rateMode\",\"type\":\"uint256\"}],\"name\":\"Swap\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"Unpaused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Withdraw\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"FLASHLOAN_PREMIUM_TOTAL\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"LENDINGPOOL_REVISION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_NUMBER_RESERVES\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_STABLE_RATE_BORROW_SIZE_PERCENT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"interestRateMode\",\"type\":\"uint256\"},{\"internalType\":\"uint16\",\"name\":\"referralCode\",\"type\":\"uint16\"},{\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"}],\"name\":\"borrow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"},{\"internalType\":\"uint16\",\"name\":\"referralCode\",\"type\":\"uint16\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balanceFromBefore\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balanceToBefore\",\"type\":\"uint256\"}],\"name\":\"finalizeTransfer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"receiverAddress\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"assets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"modes\",\"type\":\"uint256[]\"},{\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"params\",\"type\":\"bytes\"},{\"internalType\":\"uint16\",\"name\":\"referralCode\",\"type\":\"uint16\"}],\"name\":\"flashLoan\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAddressesProvider\",\"outputs\":[{\"internalType\":\"contractILendingPoolAddressesProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"getConfiguration\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"data\",\"type\":\"uint256\"}],\"internalType\":\"structDataTypes.ReserveConfigurationMap\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"getReserveData\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"data\",\"type\":\"uint256\"}],\"internalType\":\"structDataTypes.ReserveConfigurationMap\",\"name\":\"configuration\",\"type\":\"tuple\"},{\"internalType\":\"uint128\",\"name\":\"liquidityIndex\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"variableBorrowIndex\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"currentLiquidityRate\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"currentVariableBorrowRate\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"currentStableBorrowRate\",\"type\":\"uint128\"},{\"internalType\":\"uint40\",\"name\":\"lastUpdateTimestamp\",\"type\":\"uint40\"},{\"internalType\":\"address\",\"name\":\"aTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"stableDebtTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"variableDebtTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"interestRateStrategyAddress\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"id\",\"type\":\"uint8\"}],\"internalType\":\"structDataTypes.ReserveData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"getReserveNormalizedIncome\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"getReserveNormalizedVariableDebt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getReservesList\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getUserAccountData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"totalCollateralETH\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalDebtETH\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"availableBorrowsETH\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currentLiquidationThreshold\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ltv\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"healthFactor\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getUserConfiguration\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"data\",\"type\":\"uint256\"}],\"internalType\":\"structDataTypes.UserConfigurationMap\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"aTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"stableDebtAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"variableDebtAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"interestRateStrategyAddress\",\"type\":\"address\"}],\"name\":\"initReserve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractILendingPoolAddressesProvider\",\"name\":\"provider\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"debtAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"debtToCover\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"receiveAToken\",\"type\":\"bool\"}],\"name\":\"liquidationCall\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"rebalanceStableBorrowRate\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"rateMode\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"}],\"name\":\"repay\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"configuration\",\"type\":\"uint256\"}],\"name\":\"setConfiguration\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bool\",\"name\":\"val\",\"type\":\"bool\"}],\"name\":\"setPause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rateStrategyAddress\",\"type\":\"address\"}],\"name\":\"setReserveInterestRateStrategyAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"useAsCollateral\",\"type\":\"bool\"}],\"name\":\"setUserUseReserveAsCollateral\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"rateMode\",\"type\":\"uint256\"}],\"name\":\"swapBorrowRateMode\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"withdraw\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]"
-
-// AaveLendingPool is an auto generated Go binding around an Ethereum contract.
-type AaveLendingPool struct {
-	AaveLendingPoolCaller     // Read-only binding to the contract
-	AaveLendingPoolTransactor // Write-only binding to the contract
-	AaveLendingPoolFilterer   // Log filterer for contract events
+// LendingpoolMetaData contains all meta data concerning the Lendingpool contract.
+var LendingpoolMetaData = &bind.MetaData{
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"borrowRateMode\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"borrowRate\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint16\",\"name\":\"referral\",\"type\":\"uint16\"}],\"name\":\"Borrow\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"uint16\",\"name\":\"referral\",\"type\":\"uint16\"}],\"name\":\"Deposit\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"target\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"initiator\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"premium\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint16\",\"name\":\"referralCode\",\"type\":\"uint16\"}],\"name\":\"FlashLoan\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"debtAsset\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"debtToCover\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"liquidatedCollateralAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"liquidator\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"receiveAToken\",\"type\":\"bool\"}],\"name\":\"LiquidationCall\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"RebalanceStableBorrowRate\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"repayer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Repay\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"liquidityRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"stableBorrowRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"variableBorrowRate\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"liquidityIndex\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"variableBorrowIndex\",\"type\":\"uint256\"}],\"name\":\"ReserveDataUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"ReserveUsedAsCollateralDisabled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"ReserveUsedAsCollateralEnabled\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"rateMode\",\"type\":\"uint256\"}],\"name\":\"Swap\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[],\"name\":\"Unpaused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"reserve\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Withdraw\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"FLASHLOAN_PREMIUM_TOTAL\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"LENDINGPOOL_REVISION\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_NUMBER_RESERVES\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"MAX_STABLE_RATE_BORROW_SIZE_PERCENT\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"interestRateMode\",\"type\":\"uint256\"},{\"internalType\":\"uint16\",\"name\":\"referralCode\",\"type\":\"uint16\"},{\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"}],\"name\":\"borrow\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"},{\"internalType\":\"uint16\",\"name\":\"referralCode\",\"type\":\"uint16\"}],\"name\":\"deposit\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balanceFromBefore\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"balanceToBefore\",\"type\":\"uint256\"}],\"name\":\"finalizeTransfer\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"receiverAddress\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"assets\",\"type\":\"address[]\"},{\"internalType\":\"uint256[]\",\"name\":\"amounts\",\"type\":\"uint256[]\"},{\"internalType\":\"uint256[]\",\"name\":\"modes\",\"type\":\"uint256[]\"},{\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"params\",\"type\":\"bytes\"},{\"internalType\":\"uint16\",\"name\":\"referralCode\",\"type\":\"uint16\"}],\"name\":\"flashLoan\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getAddressesProvider\",\"outputs\":[{\"internalType\":\"contractILendingPoolAddressesProvider\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"getConfiguration\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"data\",\"type\":\"uint256\"}],\"internalType\":\"structDataTypes.ReserveConfigurationMap\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"getReserveData\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"data\",\"type\":\"uint256\"}],\"internalType\":\"structDataTypes.ReserveConfigurationMap\",\"name\":\"configuration\",\"type\":\"tuple\"},{\"internalType\":\"uint128\",\"name\":\"liquidityIndex\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"variableBorrowIndex\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"currentLiquidityRate\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"currentVariableBorrowRate\",\"type\":\"uint128\"},{\"internalType\":\"uint128\",\"name\":\"currentStableBorrowRate\",\"type\":\"uint128\"},{\"internalType\":\"uint40\",\"name\":\"lastUpdateTimestamp\",\"type\":\"uint40\"},{\"internalType\":\"address\",\"name\":\"aTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"stableDebtTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"variableDebtTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"interestRateStrategyAddress\",\"type\":\"address\"},{\"internalType\":\"uint8\",\"name\":\"id\",\"type\":\"uint8\"}],\"internalType\":\"structDataTypes.ReserveData\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"getReserveNormalizedIncome\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"}],\"name\":\"getReserveNormalizedVariableDebt\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getReservesList\",\"outputs\":[{\"internalType\":\"address[]\",\"name\":\"\",\"type\":\"address[]\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getUserAccountData\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"totalCollateralETH\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"totalDebtETH\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"availableBorrowsETH\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"currentLiquidationThreshold\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"ltv\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"healthFactor\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"getUserConfiguration\",\"outputs\":[{\"components\":[{\"internalType\":\"uint256\",\"name\":\"data\",\"type\":\"uint256\"}],\"internalType\":\"structDataTypes.UserConfigurationMap\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"aTokenAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"stableDebtAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"variableDebtAddress\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"interestRateStrategyAddress\",\"type\":\"address\"}],\"name\":\"initReserve\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"contractILendingPoolAddressesProvider\",\"name\":\"provider\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"collateralAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"debtAsset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"debtToCover\",\"type\":\"uint256\"},{\"internalType\":\"bool\",\"name\":\"receiveAToken\",\"type\":\"bool\"}],\"name\":\"liquidationCall\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"}],\"name\":\"rebalanceStableBorrowRate\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"rateMode\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"onBehalfOf\",\"type\":\"address\"}],\"name\":\"repay\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"configuration\",\"type\":\"uint256\"}],\"name\":\"setConfiguration\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"bool\",\"name\":\"val\",\"type\":\"bool\"}],\"name\":\"setPause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rateStrategyAddress\",\"type\":\"address\"}],\"name\":\"setReserveInterestRateStrategyAddress\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"useAsCollateral\",\"type\":\"bool\"}],\"name\":\"setUserUseReserveAsCollateral\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"rateMode\",\"type\":\"uint256\"}],\"name\":\"swapBorrowRateMode\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"asset\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"withdraw\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}]",
 }
 
-// AaveLendingPoolCaller is an auto generated read-only Go binding around an Ethereum contract.
-type AaveLendingPoolCaller struct {
+// LendingpoolABI is the input ABI used to generate the binding from.
+// Deprecated: Use LendingpoolMetaData.ABI instead.
+var LendingpoolABI = LendingpoolMetaData.ABI
+
+// Lendingpool is an auto generated Go binding around an Ethereum contract.
+type Lendingpool struct {
+	LendingpoolCaller     // Read-only binding to the contract
+	LendingpoolTransactor // Write-only binding to the contract
+	LendingpoolFilterer   // Log filterer for contract events
+}
+
+// LendingpoolCaller is an auto generated read-only Go binding around an Ethereum contract.
+type LendingpoolCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// AaveLendingPoolTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type AaveLendingPoolTransactor struct {
+// LendingpoolTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type LendingpoolTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// AaveLendingPoolFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type AaveLendingPoolFilterer struct {
+// LendingpoolFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type LendingpoolFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// AaveLendingPoolSession is an auto generated Go binding around an Ethereum contract,
+// LendingpoolSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type AaveLendingPoolSession struct {
-	Contract     *AaveLendingPool  // Generic contract binding to set the session for
+type LendingpoolSession struct {
+	Contract     *Lendingpool      // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// AaveLendingPoolCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// LendingpoolCallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type AaveLendingPoolCallerSession struct {
-	Contract *AaveLendingPoolCaller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts          // Call options to use throughout this session
+type LendingpoolCallerSession struct {
+	Contract *LendingpoolCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts      // Call options to use throughout this session
 }
 
-// AaveLendingPoolTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// LendingpoolTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type AaveLendingPoolTransactorSession struct {
-	Contract     *AaveLendingPoolTransactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts          // Transaction auth options to use throughout this session
+type LendingpoolTransactorSession struct {
+	Contract     *LendingpoolTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts      // Transaction auth options to use throughout this session
 }
 
-// AaveLendingPoolRaw is an auto generated low-level Go binding around an Ethereum contract.
-type AaveLendingPoolRaw struct {
-	Contract *AaveLendingPool // Generic contract binding to access the raw methods on
+// LendingpoolRaw is an auto generated low-level Go binding around an Ethereum contract.
+type LendingpoolRaw struct {
+	Contract *Lendingpool // Generic contract binding to access the raw methods on
 }
 
-// AaveLendingPoolCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type AaveLendingPoolCallerRaw struct {
-	Contract *AaveLendingPoolCaller // Generic read-only contract binding to access the raw methods on
+// LendingpoolCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type LendingpoolCallerRaw struct {
+	Contract *LendingpoolCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// AaveLendingPoolTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type AaveLendingPoolTransactorRaw struct {
-	Contract *AaveLendingPoolTransactor // Generic write-only contract binding to access the raw methods on
+// LendingpoolTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type LendingpoolTransactorRaw struct {
+	Contract *LendingpoolTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewAaveLendingPool creates a new instance of AaveLendingPool, bound to a specific deployed contract.
-func NewAaveLendingPool(address common.Address, backend bind.ContractBackend) (*AaveLendingPool, error) {
-	contract, err := bindAaveLendingPool(address, backend, backend, backend)
+// NewLendingpool creates a new instance of Lendingpool, bound to a specific deployed contract.
+func NewLendingpool(address common.Address, backend bind.ContractBackend) (*Lendingpool, error) {
+	contract, err := bindLendingpool(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPool{AaveLendingPoolCaller: AaveLendingPoolCaller{contract: contract}, AaveLendingPoolTransactor: AaveLendingPoolTransactor{contract: contract}, AaveLendingPoolFilterer: AaveLendingPoolFilterer{contract: contract}}, nil
+	return &Lendingpool{LendingpoolCaller: LendingpoolCaller{contract: contract}, LendingpoolTransactor: LendingpoolTransactor{contract: contract}, LendingpoolFilterer: LendingpoolFilterer{contract: contract}}, nil
 }
 
-// NewAaveLendingPoolCaller creates a new read-only instance of AaveLendingPool, bound to a specific deployed contract.
-func NewAaveLendingPoolCaller(address common.Address, caller bind.ContractCaller) (*AaveLendingPoolCaller, error) {
-	contract, err := bindAaveLendingPool(address, caller, nil, nil)
+// NewLendingpoolCaller creates a new read-only instance of Lendingpool, bound to a specific deployed contract.
+func NewLendingpoolCaller(address common.Address, caller bind.ContractCaller) (*LendingpoolCaller, error) {
+	contract, err := bindLendingpool(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolCaller{contract: contract}, nil
+	return &LendingpoolCaller{contract: contract}, nil
 }
 
-// NewAaveLendingPoolTransactor creates a new write-only instance of AaveLendingPool, bound to a specific deployed contract.
-func NewAaveLendingPoolTransactor(address common.Address, transactor bind.ContractTransactor) (*AaveLendingPoolTransactor, error) {
-	contract, err := bindAaveLendingPool(address, nil, transactor, nil)
+// NewLendingpoolTransactor creates a new write-only instance of Lendingpool, bound to a specific deployed contract.
+func NewLendingpoolTransactor(address common.Address, transactor bind.ContractTransactor) (*LendingpoolTransactor, error) {
+	contract, err := bindLendingpool(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolTransactor{contract: contract}, nil
+	return &LendingpoolTransactor{contract: contract}, nil
 }
 
-// NewAaveLendingPoolFilterer creates a new log filterer instance of AaveLendingPool, bound to a specific deployed contract.
-func NewAaveLendingPoolFilterer(address common.Address, filterer bind.ContractFilterer) (*AaveLendingPoolFilterer, error) {
-	contract, err := bindAaveLendingPool(address, nil, nil, filterer)
+// NewLendingpoolFilterer creates a new log filterer instance of Lendingpool, bound to a specific deployed contract.
+func NewLendingpoolFilterer(address common.Address, filterer bind.ContractFilterer) (*LendingpoolFilterer, error) {
+	contract, err := bindLendingpool(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolFilterer{contract: contract}, nil
+	return &LendingpoolFilterer{contract: contract}, nil
 }
 
-// bindAaveLendingPool binds a generic wrapper to an already deployed contract.
-func bindAaveLendingPool(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := abi.JSON(strings.NewReader(AaveLendingPoolABI))
+// bindLendingpool binds a generic wrapper to an already deployed contract.
+func bindLendingpool(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(LendingpoolABI))
 	if err != nil {
 		return nil, err
 	}
@@ -163,46 +166,46 @@ func bindAaveLendingPool(address common.Address, caller bind.ContractCaller, tra
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_AaveLendingPool *AaveLendingPoolRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _AaveLendingPool.Contract.AaveLendingPoolCaller.contract.Call(opts, result, method, params...)
+func (_Lendingpool *LendingpoolRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _Lendingpool.Contract.LendingpoolCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_AaveLendingPool *AaveLendingPoolRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.AaveLendingPoolTransactor.contract.Transfer(opts)
+func (_Lendingpool *LendingpoolRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Lendingpool.Contract.LendingpoolTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_AaveLendingPool *AaveLendingPoolRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.AaveLendingPoolTransactor.contract.Transact(opts, method, params...)
+func (_Lendingpool *LendingpoolRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Lendingpool.Contract.LendingpoolTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_AaveLendingPool *AaveLendingPoolCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _AaveLendingPool.Contract.contract.Call(opts, result, method, params...)
+func (_Lendingpool *LendingpoolCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _Lendingpool.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_AaveLendingPool *AaveLendingPoolTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.contract.Transfer(opts)
+func (_Lendingpool *LendingpoolTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _Lendingpool.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_AaveLendingPool *AaveLendingPoolTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.contract.Transact(opts, method, params...)
+func (_Lendingpool *LendingpoolTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _Lendingpool.Contract.contract.Transact(opts, method, params...)
 }
 
 // FLASHLOANPREMIUMTOTAL is a free data retrieval call binding the contract method 0x074b2e43.
 //
 // Solidity: function FLASHLOAN_PREMIUM_TOTAL() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCaller) FLASHLOANPREMIUMTOTAL(opts *bind.CallOpts) (*big.Int, error) {
+func (_Lendingpool *LendingpoolCaller) FLASHLOANPREMIUMTOTAL(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "FLASHLOAN_PREMIUM_TOTAL")
+	err := _Lendingpool.contract.Call(opts, &out, "FLASHLOAN_PREMIUM_TOTAL")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -217,23 +220,23 @@ func (_AaveLendingPool *AaveLendingPoolCaller) FLASHLOANPREMIUMTOTAL(opts *bind.
 // FLASHLOANPREMIUMTOTAL is a free data retrieval call binding the contract method 0x074b2e43.
 //
 // Solidity: function FLASHLOAN_PREMIUM_TOTAL() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolSession) FLASHLOANPREMIUMTOTAL() (*big.Int, error) {
-	return _AaveLendingPool.Contract.FLASHLOANPREMIUMTOTAL(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolSession) FLASHLOANPREMIUMTOTAL() (*big.Int, error) {
+	return _Lendingpool.Contract.FLASHLOANPREMIUMTOTAL(&_Lendingpool.CallOpts)
 }
 
 // FLASHLOANPREMIUMTOTAL is a free data retrieval call binding the contract method 0x074b2e43.
 //
 // Solidity: function FLASHLOAN_PREMIUM_TOTAL() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCallerSession) FLASHLOANPREMIUMTOTAL() (*big.Int, error) {
-	return _AaveLendingPool.Contract.FLASHLOANPREMIUMTOTAL(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolCallerSession) FLASHLOANPREMIUMTOTAL() (*big.Int, error) {
+	return _Lendingpool.Contract.FLASHLOANPREMIUMTOTAL(&_Lendingpool.CallOpts)
 }
 
 // LENDINGPOOLREVISION is a free data retrieval call binding the contract method 0x8afaff02.
 //
 // Solidity: function LENDINGPOOL_REVISION() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCaller) LENDINGPOOLREVISION(opts *bind.CallOpts) (*big.Int, error) {
+func (_Lendingpool *LendingpoolCaller) LENDINGPOOLREVISION(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "LENDINGPOOL_REVISION")
+	err := _Lendingpool.contract.Call(opts, &out, "LENDINGPOOL_REVISION")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -248,23 +251,23 @@ func (_AaveLendingPool *AaveLendingPoolCaller) LENDINGPOOLREVISION(opts *bind.Ca
 // LENDINGPOOLREVISION is a free data retrieval call binding the contract method 0x8afaff02.
 //
 // Solidity: function LENDINGPOOL_REVISION() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolSession) LENDINGPOOLREVISION() (*big.Int, error) {
-	return _AaveLendingPool.Contract.LENDINGPOOLREVISION(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolSession) LENDINGPOOLREVISION() (*big.Int, error) {
+	return _Lendingpool.Contract.LENDINGPOOLREVISION(&_Lendingpool.CallOpts)
 }
 
 // LENDINGPOOLREVISION is a free data retrieval call binding the contract method 0x8afaff02.
 //
 // Solidity: function LENDINGPOOL_REVISION() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCallerSession) LENDINGPOOLREVISION() (*big.Int, error) {
-	return _AaveLendingPool.Contract.LENDINGPOOLREVISION(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolCallerSession) LENDINGPOOLREVISION() (*big.Int, error) {
+	return _Lendingpool.Contract.LENDINGPOOLREVISION(&_Lendingpool.CallOpts)
 }
 
 // MAXNUMBERRESERVES is a free data retrieval call binding the contract method 0xf8119d51.
 //
 // Solidity: function MAX_NUMBER_RESERVES() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCaller) MAXNUMBERRESERVES(opts *bind.CallOpts) (*big.Int, error) {
+func (_Lendingpool *LendingpoolCaller) MAXNUMBERRESERVES(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "MAX_NUMBER_RESERVES")
+	err := _Lendingpool.contract.Call(opts, &out, "MAX_NUMBER_RESERVES")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -279,23 +282,23 @@ func (_AaveLendingPool *AaveLendingPoolCaller) MAXNUMBERRESERVES(opts *bind.Call
 // MAXNUMBERRESERVES is a free data retrieval call binding the contract method 0xf8119d51.
 //
 // Solidity: function MAX_NUMBER_RESERVES() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolSession) MAXNUMBERRESERVES() (*big.Int, error) {
-	return _AaveLendingPool.Contract.MAXNUMBERRESERVES(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolSession) MAXNUMBERRESERVES() (*big.Int, error) {
+	return _Lendingpool.Contract.MAXNUMBERRESERVES(&_Lendingpool.CallOpts)
 }
 
 // MAXNUMBERRESERVES is a free data retrieval call binding the contract method 0xf8119d51.
 //
 // Solidity: function MAX_NUMBER_RESERVES() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCallerSession) MAXNUMBERRESERVES() (*big.Int, error) {
-	return _AaveLendingPool.Contract.MAXNUMBERRESERVES(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolCallerSession) MAXNUMBERRESERVES() (*big.Int, error) {
+	return _Lendingpool.Contract.MAXNUMBERRESERVES(&_Lendingpool.CallOpts)
 }
 
 // MAXSTABLERATEBORROWSIZEPERCENT is a free data retrieval call binding the contract method 0xe82fec2f.
 //
 // Solidity: function MAX_STABLE_RATE_BORROW_SIZE_PERCENT() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCaller) MAXSTABLERATEBORROWSIZEPERCENT(opts *bind.CallOpts) (*big.Int, error) {
+func (_Lendingpool *LendingpoolCaller) MAXSTABLERATEBORROWSIZEPERCENT(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "MAX_STABLE_RATE_BORROW_SIZE_PERCENT")
+	err := _Lendingpool.contract.Call(opts, &out, "MAX_STABLE_RATE_BORROW_SIZE_PERCENT")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -310,23 +313,23 @@ func (_AaveLendingPool *AaveLendingPoolCaller) MAXSTABLERATEBORROWSIZEPERCENT(op
 // MAXSTABLERATEBORROWSIZEPERCENT is a free data retrieval call binding the contract method 0xe82fec2f.
 //
 // Solidity: function MAX_STABLE_RATE_BORROW_SIZE_PERCENT() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolSession) MAXSTABLERATEBORROWSIZEPERCENT() (*big.Int, error) {
-	return _AaveLendingPool.Contract.MAXSTABLERATEBORROWSIZEPERCENT(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolSession) MAXSTABLERATEBORROWSIZEPERCENT() (*big.Int, error) {
+	return _Lendingpool.Contract.MAXSTABLERATEBORROWSIZEPERCENT(&_Lendingpool.CallOpts)
 }
 
 // MAXSTABLERATEBORROWSIZEPERCENT is a free data retrieval call binding the contract method 0xe82fec2f.
 //
 // Solidity: function MAX_STABLE_RATE_BORROW_SIZE_PERCENT() view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCallerSession) MAXSTABLERATEBORROWSIZEPERCENT() (*big.Int, error) {
-	return _AaveLendingPool.Contract.MAXSTABLERATEBORROWSIZEPERCENT(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolCallerSession) MAXSTABLERATEBORROWSIZEPERCENT() (*big.Int, error) {
+	return _Lendingpool.Contract.MAXSTABLERATEBORROWSIZEPERCENT(&_Lendingpool.CallOpts)
 }
 
 // GetAddressesProvider is a free data retrieval call binding the contract method 0xfe65acfe.
 //
 // Solidity: function getAddressesProvider() view returns(address)
-func (_AaveLendingPool *AaveLendingPoolCaller) GetAddressesProvider(opts *bind.CallOpts) (common.Address, error) {
+func (_Lendingpool *LendingpoolCaller) GetAddressesProvider(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "getAddressesProvider")
+	err := _Lendingpool.contract.Call(opts, &out, "getAddressesProvider")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -341,29 +344,29 @@ func (_AaveLendingPool *AaveLendingPoolCaller) GetAddressesProvider(opts *bind.C
 // GetAddressesProvider is a free data retrieval call binding the contract method 0xfe65acfe.
 //
 // Solidity: function getAddressesProvider() view returns(address)
-func (_AaveLendingPool *AaveLendingPoolSession) GetAddressesProvider() (common.Address, error) {
-	return _AaveLendingPool.Contract.GetAddressesProvider(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolSession) GetAddressesProvider() (common.Address, error) {
+	return _Lendingpool.Contract.GetAddressesProvider(&_Lendingpool.CallOpts)
 }
 
 // GetAddressesProvider is a free data retrieval call binding the contract method 0xfe65acfe.
 //
 // Solidity: function getAddressesProvider() view returns(address)
-func (_AaveLendingPool *AaveLendingPoolCallerSession) GetAddressesProvider() (common.Address, error) {
-	return _AaveLendingPool.Contract.GetAddressesProvider(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolCallerSession) GetAddressesProvider() (common.Address, error) {
+	return _Lendingpool.Contract.GetAddressesProvider(&_Lendingpool.CallOpts)
 }
 
 // GetConfiguration is a free data retrieval call binding the contract method 0xc44b11f7.
 //
 // Solidity: function getConfiguration(address asset) view returns((uint256))
-func (_AaveLendingPool *AaveLendingPoolCaller) GetConfiguration(opts *bind.CallOpts, asset common.Address) (DataTypesReserveConfigurationMap, error) {
+func (_Lendingpool *LendingpoolCaller) GetConfiguration(opts *bind.CallOpts, asset common.Address) (Struct0, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "getConfiguration", asset)
+	err := _Lendingpool.contract.Call(opts, &out, "getConfiguration", asset)
 
 	if err != nil {
-		return *new(DataTypesReserveConfigurationMap), err
+		return *new(Struct0), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(DataTypesReserveConfigurationMap)).(*DataTypesReserveConfigurationMap)
+	out0 := *abi.ConvertType(out[0], new(Struct0)).(*Struct0)
 
 	return out0, err
 
@@ -372,29 +375,29 @@ func (_AaveLendingPool *AaveLendingPoolCaller) GetConfiguration(opts *bind.CallO
 // GetConfiguration is a free data retrieval call binding the contract method 0xc44b11f7.
 //
 // Solidity: function getConfiguration(address asset) view returns((uint256))
-func (_AaveLendingPool *AaveLendingPoolSession) GetConfiguration(asset common.Address) (DataTypesReserveConfigurationMap, error) {
-	return _AaveLendingPool.Contract.GetConfiguration(&_AaveLendingPool.CallOpts, asset)
+func (_Lendingpool *LendingpoolSession) GetConfiguration(asset common.Address) (Struct0, error) {
+	return _Lendingpool.Contract.GetConfiguration(&_Lendingpool.CallOpts, asset)
 }
 
 // GetConfiguration is a free data retrieval call binding the contract method 0xc44b11f7.
 //
 // Solidity: function getConfiguration(address asset) view returns((uint256))
-func (_AaveLendingPool *AaveLendingPoolCallerSession) GetConfiguration(asset common.Address) (DataTypesReserveConfigurationMap, error) {
-	return _AaveLendingPool.Contract.GetConfiguration(&_AaveLendingPool.CallOpts, asset)
+func (_Lendingpool *LendingpoolCallerSession) GetConfiguration(asset common.Address) (Struct0, error) {
+	return _Lendingpool.Contract.GetConfiguration(&_Lendingpool.CallOpts, asset)
 }
 
 // GetReserveData is a free data retrieval call binding the contract method 0x35ea6a75.
 //
 // Solidity: function getReserveData(address asset) view returns(((uint256),uint128,uint128,uint128,uint128,uint128,uint40,address,address,address,address,uint8))
-func (_AaveLendingPool *AaveLendingPoolCaller) GetReserveData(opts *bind.CallOpts, asset common.Address) (DataTypesReserveData, error) {
+func (_Lendingpool *LendingpoolCaller) GetReserveData(opts *bind.CallOpts, asset common.Address) (Struct1, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "getReserveData", asset)
+	err := _Lendingpool.contract.Call(opts, &out, "getReserveData", asset)
 
 	if err != nil {
-		return *new(DataTypesReserveData), err
+		return *new(Struct1), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(DataTypesReserveData)).(*DataTypesReserveData)
+	out0 := *abi.ConvertType(out[0], new(Struct1)).(*Struct1)
 
 	return out0, err
 
@@ -403,23 +406,23 @@ func (_AaveLendingPool *AaveLendingPoolCaller) GetReserveData(opts *bind.CallOpt
 // GetReserveData is a free data retrieval call binding the contract method 0x35ea6a75.
 //
 // Solidity: function getReserveData(address asset) view returns(((uint256),uint128,uint128,uint128,uint128,uint128,uint40,address,address,address,address,uint8))
-func (_AaveLendingPool *AaveLendingPoolSession) GetReserveData(asset common.Address) (DataTypesReserveData, error) {
-	return _AaveLendingPool.Contract.GetReserveData(&_AaveLendingPool.CallOpts, asset)
+func (_Lendingpool *LendingpoolSession) GetReserveData(asset common.Address) (Struct1, error) {
+	return _Lendingpool.Contract.GetReserveData(&_Lendingpool.CallOpts, asset)
 }
 
 // GetReserveData is a free data retrieval call binding the contract method 0x35ea6a75.
 //
 // Solidity: function getReserveData(address asset) view returns(((uint256),uint128,uint128,uint128,uint128,uint128,uint40,address,address,address,address,uint8))
-func (_AaveLendingPool *AaveLendingPoolCallerSession) GetReserveData(asset common.Address) (DataTypesReserveData, error) {
-	return _AaveLendingPool.Contract.GetReserveData(&_AaveLendingPool.CallOpts, asset)
+func (_Lendingpool *LendingpoolCallerSession) GetReserveData(asset common.Address) (Struct1, error) {
+	return _Lendingpool.Contract.GetReserveData(&_Lendingpool.CallOpts, asset)
 }
 
 // GetReserveNormalizedIncome is a free data retrieval call binding the contract method 0xd15e0053.
 //
 // Solidity: function getReserveNormalizedIncome(address asset) view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCaller) GetReserveNormalizedIncome(opts *bind.CallOpts, asset common.Address) (*big.Int, error) {
+func (_Lendingpool *LendingpoolCaller) GetReserveNormalizedIncome(opts *bind.CallOpts, asset common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "getReserveNormalizedIncome", asset)
+	err := _Lendingpool.contract.Call(opts, &out, "getReserveNormalizedIncome", asset)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -434,23 +437,23 @@ func (_AaveLendingPool *AaveLendingPoolCaller) GetReserveNormalizedIncome(opts *
 // GetReserveNormalizedIncome is a free data retrieval call binding the contract method 0xd15e0053.
 //
 // Solidity: function getReserveNormalizedIncome(address asset) view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolSession) GetReserveNormalizedIncome(asset common.Address) (*big.Int, error) {
-	return _AaveLendingPool.Contract.GetReserveNormalizedIncome(&_AaveLendingPool.CallOpts, asset)
+func (_Lendingpool *LendingpoolSession) GetReserveNormalizedIncome(asset common.Address) (*big.Int, error) {
+	return _Lendingpool.Contract.GetReserveNormalizedIncome(&_Lendingpool.CallOpts, asset)
 }
 
 // GetReserveNormalizedIncome is a free data retrieval call binding the contract method 0xd15e0053.
 //
 // Solidity: function getReserveNormalizedIncome(address asset) view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCallerSession) GetReserveNormalizedIncome(asset common.Address) (*big.Int, error) {
-	return _AaveLendingPool.Contract.GetReserveNormalizedIncome(&_AaveLendingPool.CallOpts, asset)
+func (_Lendingpool *LendingpoolCallerSession) GetReserveNormalizedIncome(asset common.Address) (*big.Int, error) {
+	return _Lendingpool.Contract.GetReserveNormalizedIncome(&_Lendingpool.CallOpts, asset)
 }
 
 // GetReserveNormalizedVariableDebt is a free data retrieval call binding the contract method 0x386497fd.
 //
 // Solidity: function getReserveNormalizedVariableDebt(address asset) view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCaller) GetReserveNormalizedVariableDebt(opts *bind.CallOpts, asset common.Address) (*big.Int, error) {
+func (_Lendingpool *LendingpoolCaller) GetReserveNormalizedVariableDebt(opts *bind.CallOpts, asset common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "getReserveNormalizedVariableDebt", asset)
+	err := _Lendingpool.contract.Call(opts, &out, "getReserveNormalizedVariableDebt", asset)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -465,23 +468,23 @@ func (_AaveLendingPool *AaveLendingPoolCaller) GetReserveNormalizedVariableDebt(
 // GetReserveNormalizedVariableDebt is a free data retrieval call binding the contract method 0x386497fd.
 //
 // Solidity: function getReserveNormalizedVariableDebt(address asset) view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolSession) GetReserveNormalizedVariableDebt(asset common.Address) (*big.Int, error) {
-	return _AaveLendingPool.Contract.GetReserveNormalizedVariableDebt(&_AaveLendingPool.CallOpts, asset)
+func (_Lendingpool *LendingpoolSession) GetReserveNormalizedVariableDebt(asset common.Address) (*big.Int, error) {
+	return _Lendingpool.Contract.GetReserveNormalizedVariableDebt(&_Lendingpool.CallOpts, asset)
 }
 
 // GetReserveNormalizedVariableDebt is a free data retrieval call binding the contract method 0x386497fd.
 //
 // Solidity: function getReserveNormalizedVariableDebt(address asset) view returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolCallerSession) GetReserveNormalizedVariableDebt(asset common.Address) (*big.Int, error) {
-	return _AaveLendingPool.Contract.GetReserveNormalizedVariableDebt(&_AaveLendingPool.CallOpts, asset)
+func (_Lendingpool *LendingpoolCallerSession) GetReserveNormalizedVariableDebt(asset common.Address) (*big.Int, error) {
+	return _Lendingpool.Contract.GetReserveNormalizedVariableDebt(&_Lendingpool.CallOpts, asset)
 }
 
 // GetReservesList is a free data retrieval call binding the contract method 0xd1946dbc.
 //
 // Solidity: function getReservesList() view returns(address[])
-func (_AaveLendingPool *AaveLendingPoolCaller) GetReservesList(opts *bind.CallOpts) ([]common.Address, error) {
+func (_Lendingpool *LendingpoolCaller) GetReservesList(opts *bind.CallOpts) ([]common.Address, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "getReservesList")
+	err := _Lendingpool.contract.Call(opts, &out, "getReservesList")
 
 	if err != nil {
 		return *new([]common.Address), err
@@ -496,21 +499,21 @@ func (_AaveLendingPool *AaveLendingPoolCaller) GetReservesList(opts *bind.CallOp
 // GetReservesList is a free data retrieval call binding the contract method 0xd1946dbc.
 //
 // Solidity: function getReservesList() view returns(address[])
-func (_AaveLendingPool *AaveLendingPoolSession) GetReservesList() ([]common.Address, error) {
-	return _AaveLendingPool.Contract.GetReservesList(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolSession) GetReservesList() ([]common.Address, error) {
+	return _Lendingpool.Contract.GetReservesList(&_Lendingpool.CallOpts)
 }
 
 // GetReservesList is a free data retrieval call binding the contract method 0xd1946dbc.
 //
 // Solidity: function getReservesList() view returns(address[])
-func (_AaveLendingPool *AaveLendingPoolCallerSession) GetReservesList() ([]common.Address, error) {
-	return _AaveLendingPool.Contract.GetReservesList(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolCallerSession) GetReservesList() ([]common.Address, error) {
+	return _Lendingpool.Contract.GetReservesList(&_Lendingpool.CallOpts)
 }
 
 // GetUserAccountData is a free data retrieval call binding the contract method 0xbf92857c.
 //
 // Solidity: function getUserAccountData(address user) view returns(uint256 totalCollateralETH, uint256 totalDebtETH, uint256 availableBorrowsETH, uint256 currentLiquidationThreshold, uint256 ltv, uint256 healthFactor)
-func (_AaveLendingPool *AaveLendingPoolCaller) GetUserAccountData(opts *bind.CallOpts, user common.Address) (struct {
+func (_Lendingpool *LendingpoolCaller) GetUserAccountData(opts *bind.CallOpts, user common.Address) (struct {
 	TotalCollateralETH          *big.Int
 	TotalDebtETH                *big.Int
 	AvailableBorrowsETH         *big.Int
@@ -519,7 +522,7 @@ func (_AaveLendingPool *AaveLendingPoolCaller) GetUserAccountData(opts *bind.Cal
 	HealthFactor                *big.Int
 }, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "getUserAccountData", user)
+	err := _Lendingpool.contract.Call(opts, &out, "getUserAccountData", user)
 
 	outstruct := new(struct {
 		TotalCollateralETH          *big.Int
@@ -547,7 +550,7 @@ func (_AaveLendingPool *AaveLendingPoolCaller) GetUserAccountData(opts *bind.Cal
 // GetUserAccountData is a free data retrieval call binding the contract method 0xbf92857c.
 //
 // Solidity: function getUserAccountData(address user) view returns(uint256 totalCollateralETH, uint256 totalDebtETH, uint256 availableBorrowsETH, uint256 currentLiquidationThreshold, uint256 ltv, uint256 healthFactor)
-func (_AaveLendingPool *AaveLendingPoolSession) GetUserAccountData(user common.Address) (struct {
+func (_Lendingpool *LendingpoolSession) GetUserAccountData(user common.Address) (struct {
 	TotalCollateralETH          *big.Int
 	TotalDebtETH                *big.Int
 	AvailableBorrowsETH         *big.Int
@@ -555,13 +558,13 @@ func (_AaveLendingPool *AaveLendingPoolSession) GetUserAccountData(user common.A
 	Ltv                         *big.Int
 	HealthFactor                *big.Int
 }, error) {
-	return _AaveLendingPool.Contract.GetUserAccountData(&_AaveLendingPool.CallOpts, user)
+	return _Lendingpool.Contract.GetUserAccountData(&_Lendingpool.CallOpts, user)
 }
 
 // GetUserAccountData is a free data retrieval call binding the contract method 0xbf92857c.
 //
 // Solidity: function getUserAccountData(address user) view returns(uint256 totalCollateralETH, uint256 totalDebtETH, uint256 availableBorrowsETH, uint256 currentLiquidationThreshold, uint256 ltv, uint256 healthFactor)
-func (_AaveLendingPool *AaveLendingPoolCallerSession) GetUserAccountData(user common.Address) (struct {
+func (_Lendingpool *LendingpoolCallerSession) GetUserAccountData(user common.Address) (struct {
 	TotalCollateralETH          *big.Int
 	TotalDebtETH                *big.Int
 	AvailableBorrowsETH         *big.Int
@@ -569,21 +572,21 @@ func (_AaveLendingPool *AaveLendingPoolCallerSession) GetUserAccountData(user co
 	Ltv                         *big.Int
 	HealthFactor                *big.Int
 }, error) {
-	return _AaveLendingPool.Contract.GetUserAccountData(&_AaveLendingPool.CallOpts, user)
+	return _Lendingpool.Contract.GetUserAccountData(&_Lendingpool.CallOpts, user)
 }
 
 // GetUserConfiguration is a free data retrieval call binding the contract method 0x4417a583.
 //
 // Solidity: function getUserConfiguration(address user) view returns((uint256))
-func (_AaveLendingPool *AaveLendingPoolCaller) GetUserConfiguration(opts *bind.CallOpts, user common.Address) (DataTypesUserConfigurationMap, error) {
+func (_Lendingpool *LendingpoolCaller) GetUserConfiguration(opts *bind.CallOpts, user common.Address) (Struct0, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "getUserConfiguration", user)
+	err := _Lendingpool.contract.Call(opts, &out, "getUserConfiguration", user)
 
 	if err != nil {
-		return *new(DataTypesUserConfigurationMap), err
+		return *new(Struct0), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(DataTypesUserConfigurationMap)).(*DataTypesUserConfigurationMap)
+	out0 := *abi.ConvertType(out[0], new(Struct0)).(*Struct0)
 
 	return out0, err
 
@@ -592,23 +595,23 @@ func (_AaveLendingPool *AaveLendingPoolCaller) GetUserConfiguration(opts *bind.C
 // GetUserConfiguration is a free data retrieval call binding the contract method 0x4417a583.
 //
 // Solidity: function getUserConfiguration(address user) view returns((uint256))
-func (_AaveLendingPool *AaveLendingPoolSession) GetUserConfiguration(user common.Address) (DataTypesUserConfigurationMap, error) {
-	return _AaveLendingPool.Contract.GetUserConfiguration(&_AaveLendingPool.CallOpts, user)
+func (_Lendingpool *LendingpoolSession) GetUserConfiguration(user common.Address) (Struct0, error) {
+	return _Lendingpool.Contract.GetUserConfiguration(&_Lendingpool.CallOpts, user)
 }
 
 // GetUserConfiguration is a free data retrieval call binding the contract method 0x4417a583.
 //
 // Solidity: function getUserConfiguration(address user) view returns((uint256))
-func (_AaveLendingPool *AaveLendingPoolCallerSession) GetUserConfiguration(user common.Address) (DataTypesUserConfigurationMap, error) {
-	return _AaveLendingPool.Contract.GetUserConfiguration(&_AaveLendingPool.CallOpts, user)
+func (_Lendingpool *LendingpoolCallerSession) GetUserConfiguration(user common.Address) (Struct0, error) {
+	return _Lendingpool.Contract.GetUserConfiguration(&_Lendingpool.CallOpts, user)
 }
 
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
 //
 // Solidity: function paused() view returns(bool)
-func (_AaveLendingPool *AaveLendingPoolCaller) Paused(opts *bind.CallOpts) (bool, error) {
+func (_Lendingpool *LendingpoolCaller) Paused(opts *bind.CallOpts) (bool, error) {
 	var out []interface{}
-	err := _AaveLendingPool.contract.Call(opts, &out, "paused")
+	err := _Lendingpool.contract.Call(opts, &out, "paused")
 
 	if err != nil {
 		return *new(bool), err
@@ -623,335 +626,335 @@ func (_AaveLendingPool *AaveLendingPoolCaller) Paused(opts *bind.CallOpts) (bool
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
 //
 // Solidity: function paused() view returns(bool)
-func (_AaveLendingPool *AaveLendingPoolSession) Paused() (bool, error) {
-	return _AaveLendingPool.Contract.Paused(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolSession) Paused() (bool, error) {
+	return _Lendingpool.Contract.Paused(&_Lendingpool.CallOpts)
 }
 
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
 //
 // Solidity: function paused() view returns(bool)
-func (_AaveLendingPool *AaveLendingPoolCallerSession) Paused() (bool, error) {
-	return _AaveLendingPool.Contract.Paused(&_AaveLendingPool.CallOpts)
+func (_Lendingpool *LendingpoolCallerSession) Paused() (bool, error) {
+	return _Lendingpool.Contract.Paused(&_Lendingpool.CallOpts)
 }
 
 // Borrow is a paid mutator transaction binding the contract method 0xa415bcad.
 //
 // Solidity: function borrow(address asset, uint256 amount, uint256 interestRateMode, uint16 referralCode, address onBehalfOf) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) Borrow(opts *bind.TransactOpts, asset common.Address, amount *big.Int, interestRateMode *big.Int, referralCode uint16, onBehalfOf common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "borrow", asset, amount, interestRateMode, referralCode, onBehalfOf)
+func (_Lendingpool *LendingpoolTransactor) Borrow(opts *bind.TransactOpts, asset common.Address, amount *big.Int, interestRateMode *big.Int, referralCode uint16, onBehalfOf common.Address) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "borrow", asset, amount, interestRateMode, referralCode, onBehalfOf)
 }
 
 // Borrow is a paid mutator transaction binding the contract method 0xa415bcad.
 //
 // Solidity: function borrow(address asset, uint256 amount, uint256 interestRateMode, uint16 referralCode, address onBehalfOf) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) Borrow(asset common.Address, amount *big.Int, interestRateMode *big.Int, referralCode uint16, onBehalfOf common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Borrow(&_AaveLendingPool.TransactOpts, asset, amount, interestRateMode, referralCode, onBehalfOf)
+func (_Lendingpool *LendingpoolSession) Borrow(asset common.Address, amount *big.Int, interestRateMode *big.Int, referralCode uint16, onBehalfOf common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Borrow(&_Lendingpool.TransactOpts, asset, amount, interestRateMode, referralCode, onBehalfOf)
 }
 
 // Borrow is a paid mutator transaction binding the contract method 0xa415bcad.
 //
 // Solidity: function borrow(address asset, uint256 amount, uint256 interestRateMode, uint16 referralCode, address onBehalfOf) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) Borrow(asset common.Address, amount *big.Int, interestRateMode *big.Int, referralCode uint16, onBehalfOf common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Borrow(&_AaveLendingPool.TransactOpts, asset, amount, interestRateMode, referralCode, onBehalfOf)
+func (_Lendingpool *LendingpoolTransactorSession) Borrow(asset common.Address, amount *big.Int, interestRateMode *big.Int, referralCode uint16, onBehalfOf common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Borrow(&_Lendingpool.TransactOpts, asset, amount, interestRateMode, referralCode, onBehalfOf)
 }
 
 // Deposit is a paid mutator transaction binding the contract method 0xe8eda9df.
 //
 // Solidity: function deposit(address asset, uint256 amount, address onBehalfOf, uint16 referralCode) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) Deposit(opts *bind.TransactOpts, asset common.Address, amount *big.Int, onBehalfOf common.Address, referralCode uint16) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "deposit", asset, amount, onBehalfOf, referralCode)
+func (_Lendingpool *LendingpoolTransactor) Deposit(opts *bind.TransactOpts, asset common.Address, amount *big.Int, onBehalfOf common.Address, referralCode uint16) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "deposit", asset, amount, onBehalfOf, referralCode)
 }
 
 // Deposit is a paid mutator transaction binding the contract method 0xe8eda9df.
 //
 // Solidity: function deposit(address asset, uint256 amount, address onBehalfOf, uint16 referralCode) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) Deposit(asset common.Address, amount *big.Int, onBehalfOf common.Address, referralCode uint16) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Deposit(&_AaveLendingPool.TransactOpts, asset, amount, onBehalfOf, referralCode)
+func (_Lendingpool *LendingpoolSession) Deposit(asset common.Address, amount *big.Int, onBehalfOf common.Address, referralCode uint16) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Deposit(&_Lendingpool.TransactOpts, asset, amount, onBehalfOf, referralCode)
 }
 
 // Deposit is a paid mutator transaction binding the contract method 0xe8eda9df.
 //
 // Solidity: function deposit(address asset, uint256 amount, address onBehalfOf, uint16 referralCode) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) Deposit(asset common.Address, amount *big.Int, onBehalfOf common.Address, referralCode uint16) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Deposit(&_AaveLendingPool.TransactOpts, asset, amount, onBehalfOf, referralCode)
+func (_Lendingpool *LendingpoolTransactorSession) Deposit(asset common.Address, amount *big.Int, onBehalfOf common.Address, referralCode uint16) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Deposit(&_Lendingpool.TransactOpts, asset, amount, onBehalfOf, referralCode)
 }
 
 // FinalizeTransfer is a paid mutator transaction binding the contract method 0xd5ed3933.
 //
 // Solidity: function finalizeTransfer(address asset, address from, address to, uint256 amount, uint256 balanceFromBefore, uint256 balanceToBefore) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) FinalizeTransfer(opts *bind.TransactOpts, asset common.Address, from common.Address, to common.Address, amount *big.Int, balanceFromBefore *big.Int, balanceToBefore *big.Int) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "finalizeTransfer", asset, from, to, amount, balanceFromBefore, balanceToBefore)
+func (_Lendingpool *LendingpoolTransactor) FinalizeTransfer(opts *bind.TransactOpts, asset common.Address, from common.Address, to common.Address, amount *big.Int, balanceFromBefore *big.Int, balanceToBefore *big.Int) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "finalizeTransfer", asset, from, to, amount, balanceFromBefore, balanceToBefore)
 }
 
 // FinalizeTransfer is a paid mutator transaction binding the contract method 0xd5ed3933.
 //
 // Solidity: function finalizeTransfer(address asset, address from, address to, uint256 amount, uint256 balanceFromBefore, uint256 balanceToBefore) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) FinalizeTransfer(asset common.Address, from common.Address, to common.Address, amount *big.Int, balanceFromBefore *big.Int, balanceToBefore *big.Int) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.FinalizeTransfer(&_AaveLendingPool.TransactOpts, asset, from, to, amount, balanceFromBefore, balanceToBefore)
+func (_Lendingpool *LendingpoolSession) FinalizeTransfer(asset common.Address, from common.Address, to common.Address, amount *big.Int, balanceFromBefore *big.Int, balanceToBefore *big.Int) (*types.Transaction, error) {
+	return _Lendingpool.Contract.FinalizeTransfer(&_Lendingpool.TransactOpts, asset, from, to, amount, balanceFromBefore, balanceToBefore)
 }
 
 // FinalizeTransfer is a paid mutator transaction binding the contract method 0xd5ed3933.
 //
 // Solidity: function finalizeTransfer(address asset, address from, address to, uint256 amount, uint256 balanceFromBefore, uint256 balanceToBefore) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) FinalizeTransfer(asset common.Address, from common.Address, to common.Address, amount *big.Int, balanceFromBefore *big.Int, balanceToBefore *big.Int) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.FinalizeTransfer(&_AaveLendingPool.TransactOpts, asset, from, to, amount, balanceFromBefore, balanceToBefore)
+func (_Lendingpool *LendingpoolTransactorSession) FinalizeTransfer(asset common.Address, from common.Address, to common.Address, amount *big.Int, balanceFromBefore *big.Int, balanceToBefore *big.Int) (*types.Transaction, error) {
+	return _Lendingpool.Contract.FinalizeTransfer(&_Lendingpool.TransactOpts, asset, from, to, amount, balanceFromBefore, balanceToBefore)
 }
 
 // FlashLoan is a paid mutator transaction binding the contract method 0xab9c4b5d.
 //
 // Solidity: function flashLoan(address receiverAddress, address[] assets, uint256[] amounts, uint256[] modes, address onBehalfOf, bytes params, uint16 referralCode) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) FlashLoan(opts *bind.TransactOpts, receiverAddress common.Address, assets []common.Address, amounts []*big.Int, modes []*big.Int, onBehalfOf common.Address, params []byte, referralCode uint16) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "flashLoan", receiverAddress, assets, amounts, modes, onBehalfOf, params, referralCode)
+func (_Lendingpool *LendingpoolTransactor) FlashLoan(opts *bind.TransactOpts, receiverAddress common.Address, assets []common.Address, amounts []*big.Int, modes []*big.Int, onBehalfOf common.Address, params []byte, referralCode uint16) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "flashLoan", receiverAddress, assets, amounts, modes, onBehalfOf, params, referralCode)
 }
 
 // FlashLoan is a paid mutator transaction binding the contract method 0xab9c4b5d.
 //
 // Solidity: function flashLoan(address receiverAddress, address[] assets, uint256[] amounts, uint256[] modes, address onBehalfOf, bytes params, uint16 referralCode) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) FlashLoan(receiverAddress common.Address, assets []common.Address, amounts []*big.Int, modes []*big.Int, onBehalfOf common.Address, params []byte, referralCode uint16) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.FlashLoan(&_AaveLendingPool.TransactOpts, receiverAddress, assets, amounts, modes, onBehalfOf, params, referralCode)
+func (_Lendingpool *LendingpoolSession) FlashLoan(receiverAddress common.Address, assets []common.Address, amounts []*big.Int, modes []*big.Int, onBehalfOf common.Address, params []byte, referralCode uint16) (*types.Transaction, error) {
+	return _Lendingpool.Contract.FlashLoan(&_Lendingpool.TransactOpts, receiverAddress, assets, amounts, modes, onBehalfOf, params, referralCode)
 }
 
 // FlashLoan is a paid mutator transaction binding the contract method 0xab9c4b5d.
 //
 // Solidity: function flashLoan(address receiverAddress, address[] assets, uint256[] amounts, uint256[] modes, address onBehalfOf, bytes params, uint16 referralCode) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) FlashLoan(receiverAddress common.Address, assets []common.Address, amounts []*big.Int, modes []*big.Int, onBehalfOf common.Address, params []byte, referralCode uint16) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.FlashLoan(&_AaveLendingPool.TransactOpts, receiverAddress, assets, amounts, modes, onBehalfOf, params, referralCode)
+func (_Lendingpool *LendingpoolTransactorSession) FlashLoan(receiverAddress common.Address, assets []common.Address, amounts []*big.Int, modes []*big.Int, onBehalfOf common.Address, params []byte, referralCode uint16) (*types.Transaction, error) {
+	return _Lendingpool.Contract.FlashLoan(&_Lendingpool.TransactOpts, receiverAddress, assets, amounts, modes, onBehalfOf, params, referralCode)
 }
 
 // InitReserve is a paid mutator transaction binding the contract method 0x7a708e92.
 //
 // Solidity: function initReserve(address asset, address aTokenAddress, address stableDebtAddress, address variableDebtAddress, address interestRateStrategyAddress) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) InitReserve(opts *bind.TransactOpts, asset common.Address, aTokenAddress common.Address, stableDebtAddress common.Address, variableDebtAddress common.Address, interestRateStrategyAddress common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "initReserve", asset, aTokenAddress, stableDebtAddress, variableDebtAddress, interestRateStrategyAddress)
+func (_Lendingpool *LendingpoolTransactor) InitReserve(opts *bind.TransactOpts, asset common.Address, aTokenAddress common.Address, stableDebtAddress common.Address, variableDebtAddress common.Address, interestRateStrategyAddress common.Address) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "initReserve", asset, aTokenAddress, stableDebtAddress, variableDebtAddress, interestRateStrategyAddress)
 }
 
 // InitReserve is a paid mutator transaction binding the contract method 0x7a708e92.
 //
 // Solidity: function initReserve(address asset, address aTokenAddress, address stableDebtAddress, address variableDebtAddress, address interestRateStrategyAddress) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) InitReserve(asset common.Address, aTokenAddress common.Address, stableDebtAddress common.Address, variableDebtAddress common.Address, interestRateStrategyAddress common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.InitReserve(&_AaveLendingPool.TransactOpts, asset, aTokenAddress, stableDebtAddress, variableDebtAddress, interestRateStrategyAddress)
+func (_Lendingpool *LendingpoolSession) InitReserve(asset common.Address, aTokenAddress common.Address, stableDebtAddress common.Address, variableDebtAddress common.Address, interestRateStrategyAddress common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.InitReserve(&_Lendingpool.TransactOpts, asset, aTokenAddress, stableDebtAddress, variableDebtAddress, interestRateStrategyAddress)
 }
 
 // InitReserve is a paid mutator transaction binding the contract method 0x7a708e92.
 //
 // Solidity: function initReserve(address asset, address aTokenAddress, address stableDebtAddress, address variableDebtAddress, address interestRateStrategyAddress) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) InitReserve(asset common.Address, aTokenAddress common.Address, stableDebtAddress common.Address, variableDebtAddress common.Address, interestRateStrategyAddress common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.InitReserve(&_AaveLendingPool.TransactOpts, asset, aTokenAddress, stableDebtAddress, variableDebtAddress, interestRateStrategyAddress)
+func (_Lendingpool *LendingpoolTransactorSession) InitReserve(asset common.Address, aTokenAddress common.Address, stableDebtAddress common.Address, variableDebtAddress common.Address, interestRateStrategyAddress common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.InitReserve(&_Lendingpool.TransactOpts, asset, aTokenAddress, stableDebtAddress, variableDebtAddress, interestRateStrategyAddress)
 }
 
 // Initialize is a paid mutator transaction binding the contract method 0xc4d66de8.
 //
 // Solidity: function initialize(address provider) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) Initialize(opts *bind.TransactOpts, provider common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "initialize", provider)
+func (_Lendingpool *LendingpoolTransactor) Initialize(opts *bind.TransactOpts, provider common.Address) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "initialize", provider)
 }
 
 // Initialize is a paid mutator transaction binding the contract method 0xc4d66de8.
 //
 // Solidity: function initialize(address provider) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) Initialize(provider common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Initialize(&_AaveLendingPool.TransactOpts, provider)
+func (_Lendingpool *LendingpoolSession) Initialize(provider common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Initialize(&_Lendingpool.TransactOpts, provider)
 }
 
 // Initialize is a paid mutator transaction binding the contract method 0xc4d66de8.
 //
 // Solidity: function initialize(address provider) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) Initialize(provider common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Initialize(&_AaveLendingPool.TransactOpts, provider)
+func (_Lendingpool *LendingpoolTransactorSession) Initialize(provider common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Initialize(&_Lendingpool.TransactOpts, provider)
 }
 
 // LiquidationCall is a paid mutator transaction binding the contract method 0x00a718a9.
 //
 // Solidity: function liquidationCall(address collateralAsset, address debtAsset, address user, uint256 debtToCover, bool receiveAToken) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) LiquidationCall(opts *bind.TransactOpts, collateralAsset common.Address, debtAsset common.Address, user common.Address, debtToCover *big.Int, receiveAToken bool) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "liquidationCall", collateralAsset, debtAsset, user, debtToCover, receiveAToken)
+func (_Lendingpool *LendingpoolTransactor) LiquidationCall(opts *bind.TransactOpts, collateralAsset common.Address, debtAsset common.Address, user common.Address, debtToCover *big.Int, receiveAToken bool) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "liquidationCall", collateralAsset, debtAsset, user, debtToCover, receiveAToken)
 }
 
 // LiquidationCall is a paid mutator transaction binding the contract method 0x00a718a9.
 //
 // Solidity: function liquidationCall(address collateralAsset, address debtAsset, address user, uint256 debtToCover, bool receiveAToken) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) LiquidationCall(collateralAsset common.Address, debtAsset common.Address, user common.Address, debtToCover *big.Int, receiveAToken bool) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.LiquidationCall(&_AaveLendingPool.TransactOpts, collateralAsset, debtAsset, user, debtToCover, receiveAToken)
+func (_Lendingpool *LendingpoolSession) LiquidationCall(collateralAsset common.Address, debtAsset common.Address, user common.Address, debtToCover *big.Int, receiveAToken bool) (*types.Transaction, error) {
+	return _Lendingpool.Contract.LiquidationCall(&_Lendingpool.TransactOpts, collateralAsset, debtAsset, user, debtToCover, receiveAToken)
 }
 
 // LiquidationCall is a paid mutator transaction binding the contract method 0x00a718a9.
 //
 // Solidity: function liquidationCall(address collateralAsset, address debtAsset, address user, uint256 debtToCover, bool receiveAToken) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) LiquidationCall(collateralAsset common.Address, debtAsset common.Address, user common.Address, debtToCover *big.Int, receiveAToken bool) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.LiquidationCall(&_AaveLendingPool.TransactOpts, collateralAsset, debtAsset, user, debtToCover, receiveAToken)
+func (_Lendingpool *LendingpoolTransactorSession) LiquidationCall(collateralAsset common.Address, debtAsset common.Address, user common.Address, debtToCover *big.Int, receiveAToken bool) (*types.Transaction, error) {
+	return _Lendingpool.Contract.LiquidationCall(&_Lendingpool.TransactOpts, collateralAsset, debtAsset, user, debtToCover, receiveAToken)
 }
 
 // RebalanceStableBorrowRate is a paid mutator transaction binding the contract method 0xcd112382.
 //
 // Solidity: function rebalanceStableBorrowRate(address asset, address user) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) RebalanceStableBorrowRate(opts *bind.TransactOpts, asset common.Address, user common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "rebalanceStableBorrowRate", asset, user)
+func (_Lendingpool *LendingpoolTransactor) RebalanceStableBorrowRate(opts *bind.TransactOpts, asset common.Address, user common.Address) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "rebalanceStableBorrowRate", asset, user)
 }
 
 // RebalanceStableBorrowRate is a paid mutator transaction binding the contract method 0xcd112382.
 //
 // Solidity: function rebalanceStableBorrowRate(address asset, address user) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) RebalanceStableBorrowRate(asset common.Address, user common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.RebalanceStableBorrowRate(&_AaveLendingPool.TransactOpts, asset, user)
+func (_Lendingpool *LendingpoolSession) RebalanceStableBorrowRate(asset common.Address, user common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.RebalanceStableBorrowRate(&_Lendingpool.TransactOpts, asset, user)
 }
 
 // RebalanceStableBorrowRate is a paid mutator transaction binding the contract method 0xcd112382.
 //
 // Solidity: function rebalanceStableBorrowRate(address asset, address user) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) RebalanceStableBorrowRate(asset common.Address, user common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.RebalanceStableBorrowRate(&_AaveLendingPool.TransactOpts, asset, user)
+func (_Lendingpool *LendingpoolTransactorSession) RebalanceStableBorrowRate(asset common.Address, user common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.RebalanceStableBorrowRate(&_Lendingpool.TransactOpts, asset, user)
 }
 
 // Repay is a paid mutator transaction binding the contract method 0x573ade81.
 //
 // Solidity: function repay(address asset, uint256 amount, uint256 rateMode, address onBehalfOf) returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolTransactor) Repay(opts *bind.TransactOpts, asset common.Address, amount *big.Int, rateMode *big.Int, onBehalfOf common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "repay", asset, amount, rateMode, onBehalfOf)
+func (_Lendingpool *LendingpoolTransactor) Repay(opts *bind.TransactOpts, asset common.Address, amount *big.Int, rateMode *big.Int, onBehalfOf common.Address) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "repay", asset, amount, rateMode, onBehalfOf)
 }
 
 // Repay is a paid mutator transaction binding the contract method 0x573ade81.
 //
 // Solidity: function repay(address asset, uint256 amount, uint256 rateMode, address onBehalfOf) returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolSession) Repay(asset common.Address, amount *big.Int, rateMode *big.Int, onBehalfOf common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Repay(&_AaveLendingPool.TransactOpts, asset, amount, rateMode, onBehalfOf)
+func (_Lendingpool *LendingpoolSession) Repay(asset common.Address, amount *big.Int, rateMode *big.Int, onBehalfOf common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Repay(&_Lendingpool.TransactOpts, asset, amount, rateMode, onBehalfOf)
 }
 
 // Repay is a paid mutator transaction binding the contract method 0x573ade81.
 //
 // Solidity: function repay(address asset, uint256 amount, uint256 rateMode, address onBehalfOf) returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) Repay(asset common.Address, amount *big.Int, rateMode *big.Int, onBehalfOf common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Repay(&_AaveLendingPool.TransactOpts, asset, amount, rateMode, onBehalfOf)
+func (_Lendingpool *LendingpoolTransactorSession) Repay(asset common.Address, amount *big.Int, rateMode *big.Int, onBehalfOf common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Repay(&_Lendingpool.TransactOpts, asset, amount, rateMode, onBehalfOf)
 }
 
 // SetConfiguration is a paid mutator transaction binding the contract method 0xb8d29276.
 //
 // Solidity: function setConfiguration(address asset, uint256 configuration) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) SetConfiguration(opts *bind.TransactOpts, asset common.Address, configuration *big.Int) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "setConfiguration", asset, configuration)
+func (_Lendingpool *LendingpoolTransactor) SetConfiguration(opts *bind.TransactOpts, asset common.Address, configuration *big.Int) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "setConfiguration", asset, configuration)
 }
 
 // SetConfiguration is a paid mutator transaction binding the contract method 0xb8d29276.
 //
 // Solidity: function setConfiguration(address asset, uint256 configuration) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) SetConfiguration(asset common.Address, configuration *big.Int) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SetConfiguration(&_AaveLendingPool.TransactOpts, asset, configuration)
+func (_Lendingpool *LendingpoolSession) SetConfiguration(asset common.Address, configuration *big.Int) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SetConfiguration(&_Lendingpool.TransactOpts, asset, configuration)
 }
 
 // SetConfiguration is a paid mutator transaction binding the contract method 0xb8d29276.
 //
 // Solidity: function setConfiguration(address asset, uint256 configuration) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) SetConfiguration(asset common.Address, configuration *big.Int) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SetConfiguration(&_AaveLendingPool.TransactOpts, asset, configuration)
+func (_Lendingpool *LendingpoolTransactorSession) SetConfiguration(asset common.Address, configuration *big.Int) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SetConfiguration(&_Lendingpool.TransactOpts, asset, configuration)
 }
 
 // SetPause is a paid mutator transaction binding the contract method 0xbedb86fb.
 //
 // Solidity: function setPause(bool val) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) SetPause(opts *bind.TransactOpts, val bool) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "setPause", val)
+func (_Lendingpool *LendingpoolTransactor) SetPause(opts *bind.TransactOpts, val bool) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "setPause", val)
 }
 
 // SetPause is a paid mutator transaction binding the contract method 0xbedb86fb.
 //
 // Solidity: function setPause(bool val) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) SetPause(val bool) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SetPause(&_AaveLendingPool.TransactOpts, val)
+func (_Lendingpool *LendingpoolSession) SetPause(val bool) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SetPause(&_Lendingpool.TransactOpts, val)
 }
 
 // SetPause is a paid mutator transaction binding the contract method 0xbedb86fb.
 //
 // Solidity: function setPause(bool val) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) SetPause(val bool) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SetPause(&_AaveLendingPool.TransactOpts, val)
+func (_Lendingpool *LendingpoolTransactorSession) SetPause(val bool) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SetPause(&_Lendingpool.TransactOpts, val)
 }
 
 // SetReserveInterestRateStrategyAddress is a paid mutator transaction binding the contract method 0x1d2118f9.
 //
 // Solidity: function setReserveInterestRateStrategyAddress(address asset, address rateStrategyAddress) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) SetReserveInterestRateStrategyAddress(opts *bind.TransactOpts, asset common.Address, rateStrategyAddress common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "setReserveInterestRateStrategyAddress", asset, rateStrategyAddress)
+func (_Lendingpool *LendingpoolTransactor) SetReserveInterestRateStrategyAddress(opts *bind.TransactOpts, asset common.Address, rateStrategyAddress common.Address) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "setReserveInterestRateStrategyAddress", asset, rateStrategyAddress)
 }
 
 // SetReserveInterestRateStrategyAddress is a paid mutator transaction binding the contract method 0x1d2118f9.
 //
 // Solidity: function setReserveInterestRateStrategyAddress(address asset, address rateStrategyAddress) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) SetReserveInterestRateStrategyAddress(asset common.Address, rateStrategyAddress common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SetReserveInterestRateStrategyAddress(&_AaveLendingPool.TransactOpts, asset, rateStrategyAddress)
+func (_Lendingpool *LendingpoolSession) SetReserveInterestRateStrategyAddress(asset common.Address, rateStrategyAddress common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SetReserveInterestRateStrategyAddress(&_Lendingpool.TransactOpts, asset, rateStrategyAddress)
 }
 
 // SetReserveInterestRateStrategyAddress is a paid mutator transaction binding the contract method 0x1d2118f9.
 //
 // Solidity: function setReserveInterestRateStrategyAddress(address asset, address rateStrategyAddress) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) SetReserveInterestRateStrategyAddress(asset common.Address, rateStrategyAddress common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SetReserveInterestRateStrategyAddress(&_AaveLendingPool.TransactOpts, asset, rateStrategyAddress)
+func (_Lendingpool *LendingpoolTransactorSession) SetReserveInterestRateStrategyAddress(asset common.Address, rateStrategyAddress common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SetReserveInterestRateStrategyAddress(&_Lendingpool.TransactOpts, asset, rateStrategyAddress)
 }
 
 // SetUserUseReserveAsCollateral is a paid mutator transaction binding the contract method 0x5a3b74b9.
 //
 // Solidity: function setUserUseReserveAsCollateral(address asset, bool useAsCollateral) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) SetUserUseReserveAsCollateral(opts *bind.TransactOpts, asset common.Address, useAsCollateral bool) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "setUserUseReserveAsCollateral", asset, useAsCollateral)
+func (_Lendingpool *LendingpoolTransactor) SetUserUseReserveAsCollateral(opts *bind.TransactOpts, asset common.Address, useAsCollateral bool) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "setUserUseReserveAsCollateral", asset, useAsCollateral)
 }
 
 // SetUserUseReserveAsCollateral is a paid mutator transaction binding the contract method 0x5a3b74b9.
 //
 // Solidity: function setUserUseReserveAsCollateral(address asset, bool useAsCollateral) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) SetUserUseReserveAsCollateral(asset common.Address, useAsCollateral bool) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SetUserUseReserveAsCollateral(&_AaveLendingPool.TransactOpts, asset, useAsCollateral)
+func (_Lendingpool *LendingpoolSession) SetUserUseReserveAsCollateral(asset common.Address, useAsCollateral bool) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SetUserUseReserveAsCollateral(&_Lendingpool.TransactOpts, asset, useAsCollateral)
 }
 
 // SetUserUseReserveAsCollateral is a paid mutator transaction binding the contract method 0x5a3b74b9.
 //
 // Solidity: function setUserUseReserveAsCollateral(address asset, bool useAsCollateral) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) SetUserUseReserveAsCollateral(asset common.Address, useAsCollateral bool) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SetUserUseReserveAsCollateral(&_AaveLendingPool.TransactOpts, asset, useAsCollateral)
+func (_Lendingpool *LendingpoolTransactorSession) SetUserUseReserveAsCollateral(asset common.Address, useAsCollateral bool) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SetUserUseReserveAsCollateral(&_Lendingpool.TransactOpts, asset, useAsCollateral)
 }
 
 // SwapBorrowRateMode is a paid mutator transaction binding the contract method 0x94ba89a2.
 //
 // Solidity: function swapBorrowRateMode(address asset, uint256 rateMode) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactor) SwapBorrowRateMode(opts *bind.TransactOpts, asset common.Address, rateMode *big.Int) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "swapBorrowRateMode", asset, rateMode)
+func (_Lendingpool *LendingpoolTransactor) SwapBorrowRateMode(opts *bind.TransactOpts, asset common.Address, rateMode *big.Int) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "swapBorrowRateMode", asset, rateMode)
 }
 
 // SwapBorrowRateMode is a paid mutator transaction binding the contract method 0x94ba89a2.
 //
 // Solidity: function swapBorrowRateMode(address asset, uint256 rateMode) returns()
-func (_AaveLendingPool *AaveLendingPoolSession) SwapBorrowRateMode(asset common.Address, rateMode *big.Int) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SwapBorrowRateMode(&_AaveLendingPool.TransactOpts, asset, rateMode)
+func (_Lendingpool *LendingpoolSession) SwapBorrowRateMode(asset common.Address, rateMode *big.Int) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SwapBorrowRateMode(&_Lendingpool.TransactOpts, asset, rateMode)
 }
 
 // SwapBorrowRateMode is a paid mutator transaction binding the contract method 0x94ba89a2.
 //
 // Solidity: function swapBorrowRateMode(address asset, uint256 rateMode) returns()
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) SwapBorrowRateMode(asset common.Address, rateMode *big.Int) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.SwapBorrowRateMode(&_AaveLendingPool.TransactOpts, asset, rateMode)
+func (_Lendingpool *LendingpoolTransactorSession) SwapBorrowRateMode(asset common.Address, rateMode *big.Int) (*types.Transaction, error) {
+	return _Lendingpool.Contract.SwapBorrowRateMode(&_Lendingpool.TransactOpts, asset, rateMode)
 }
 
 // Withdraw is a paid mutator transaction binding the contract method 0x69328dec.
 //
 // Solidity: function withdraw(address asset, uint256 amount, address to) returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolTransactor) Withdraw(opts *bind.TransactOpts, asset common.Address, amount *big.Int, to common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.contract.Transact(opts, "withdraw", asset, amount, to)
+func (_Lendingpool *LendingpoolTransactor) Withdraw(opts *bind.TransactOpts, asset common.Address, amount *big.Int, to common.Address) (*types.Transaction, error) {
+	return _Lendingpool.contract.Transact(opts, "withdraw", asset, amount, to)
 }
 
 // Withdraw is a paid mutator transaction binding the contract method 0x69328dec.
 //
 // Solidity: function withdraw(address asset, uint256 amount, address to) returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolSession) Withdraw(asset common.Address, amount *big.Int, to common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Withdraw(&_AaveLendingPool.TransactOpts, asset, amount, to)
+func (_Lendingpool *LendingpoolSession) Withdraw(asset common.Address, amount *big.Int, to common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Withdraw(&_Lendingpool.TransactOpts, asset, amount, to)
 }
 
 // Withdraw is a paid mutator transaction binding the contract method 0x69328dec.
 //
 // Solidity: function withdraw(address asset, uint256 amount, address to) returns(uint256)
-func (_AaveLendingPool *AaveLendingPoolTransactorSession) Withdraw(asset common.Address, amount *big.Int, to common.Address) (*types.Transaction, error) {
-	return _AaveLendingPool.Contract.Withdraw(&_AaveLendingPool.TransactOpts, asset, amount, to)
+func (_Lendingpool *LendingpoolTransactorSession) Withdraw(asset common.Address, amount *big.Int, to common.Address) (*types.Transaction, error) {
+	return _Lendingpool.Contract.Withdraw(&_Lendingpool.TransactOpts, asset, amount, to)
 }
 
-// AaveLendingPoolBorrowIterator is returned from FilterBorrow and is used to iterate over the raw logs and unpacked data for Borrow events raised by the AaveLendingPool contract.
-type AaveLendingPoolBorrowIterator struct {
-	Event *AaveLendingPoolBorrow // Event containing the contract specifics and raw log
+// LendingpoolBorrowIterator is returned from FilterBorrow and is used to iterate over the raw logs and unpacked data for Borrow events raised by the Lendingpool contract.
+type LendingpoolBorrowIterator struct {
+	Event *LendingpoolBorrow // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -965,7 +968,7 @@ type AaveLendingPoolBorrowIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolBorrowIterator) Next() bool {
+func (it *LendingpoolBorrowIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -974,7 +977,7 @@ func (it *AaveLendingPoolBorrowIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolBorrow)
+			it.Event = new(LendingpoolBorrow)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -989,7 +992,7 @@ func (it *AaveLendingPoolBorrowIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolBorrow)
+		it.Event = new(LendingpoolBorrow)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1005,19 +1008,19 @@ func (it *AaveLendingPoolBorrowIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolBorrowIterator) Error() error {
+func (it *LendingpoolBorrowIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolBorrowIterator) Close() error {
+func (it *LendingpoolBorrowIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolBorrow represents a Borrow event raised by the AaveLendingPool contract.
-type AaveLendingPoolBorrow struct {
+// LendingpoolBorrow represents a Borrow event raised by the Lendingpool contract.
+type LendingpoolBorrow struct {
 	Reserve        common.Address
 	User           common.Address
 	OnBehalfOf     common.Address
@@ -1031,7 +1034,7 @@ type AaveLendingPoolBorrow struct {
 // FilterBorrow is a free log retrieval operation binding the contract event 0xc6a898309e823ee50bac64e45ca8adba6690e99e7841c45d754e2a38e9019d9b.
 //
 // Solidity: event Borrow(address indexed reserve, address user, address indexed onBehalfOf, uint256 amount, uint256 borrowRateMode, uint256 borrowRate, uint16 indexed referral)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterBorrow(opts *bind.FilterOpts, reserve []common.Address, onBehalfOf []common.Address, referral []uint16) (*AaveLendingPoolBorrowIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterBorrow(opts *bind.FilterOpts, reserve []common.Address, onBehalfOf []common.Address, referral []uint16) (*LendingpoolBorrowIterator, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -1048,17 +1051,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterBorrow(opts *bind.FilterO
 		referralRule = append(referralRule, referralItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "Borrow", reserveRule, onBehalfOfRule, referralRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "Borrow", reserveRule, onBehalfOfRule, referralRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolBorrowIterator{contract: _AaveLendingPool.contract, event: "Borrow", logs: logs, sub: sub}, nil
+	return &LendingpoolBorrowIterator{contract: _Lendingpool.contract, event: "Borrow", logs: logs, sub: sub}, nil
 }
 
 // WatchBorrow is a free log subscription operation binding the contract event 0xc6a898309e823ee50bac64e45ca8adba6690e99e7841c45d754e2a38e9019d9b.
 //
 // Solidity: event Borrow(address indexed reserve, address user, address indexed onBehalfOf, uint256 amount, uint256 borrowRateMode, uint256 borrowRate, uint16 indexed referral)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchBorrow(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolBorrow, reserve []common.Address, onBehalfOf []common.Address, referral []uint16) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchBorrow(opts *bind.WatchOpts, sink chan<- *LendingpoolBorrow, reserve []common.Address, onBehalfOf []common.Address, referral []uint16) (event.Subscription, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -1075,7 +1078,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchBorrow(opts *bind.WatchOpt
 		referralRule = append(referralRule, referralItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "Borrow", reserveRule, onBehalfOfRule, referralRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "Borrow", reserveRule, onBehalfOfRule, referralRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1085,8 +1088,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchBorrow(opts *bind.WatchOpt
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolBorrow)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "Borrow", log); err != nil {
+				event := new(LendingpoolBorrow)
+				if err := _Lendingpool.contract.UnpackLog(event, "Borrow", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1110,18 +1113,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchBorrow(opts *bind.WatchOpt
 // ParseBorrow is a log parse operation binding the contract event 0xc6a898309e823ee50bac64e45ca8adba6690e99e7841c45d754e2a38e9019d9b.
 //
 // Solidity: event Borrow(address indexed reserve, address user, address indexed onBehalfOf, uint256 amount, uint256 borrowRateMode, uint256 borrowRate, uint16 indexed referral)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseBorrow(log types.Log) (*AaveLendingPoolBorrow, error) {
-	event := new(AaveLendingPoolBorrow)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "Borrow", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseBorrow(log types.Log) (*LendingpoolBorrow, error) {
+	event := new(LendingpoolBorrow)
+	if err := _Lendingpool.contract.UnpackLog(event, "Borrow", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolDepositIterator is returned from FilterDeposit and is used to iterate over the raw logs and unpacked data for Deposit events raised by the AaveLendingPool contract.
-type AaveLendingPoolDepositIterator struct {
-	Event *AaveLendingPoolDeposit // Event containing the contract specifics and raw log
+// LendingpoolDepositIterator is returned from FilterDeposit and is used to iterate over the raw logs and unpacked data for Deposit events raised by the Lendingpool contract.
+type LendingpoolDepositIterator struct {
+	Event *LendingpoolDeposit // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1135,7 +1138,7 @@ type AaveLendingPoolDepositIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolDepositIterator) Next() bool {
+func (it *LendingpoolDepositIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1144,7 +1147,7 @@ func (it *AaveLendingPoolDepositIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolDeposit)
+			it.Event = new(LendingpoolDeposit)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1159,7 +1162,7 @@ func (it *AaveLendingPoolDepositIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolDeposit)
+		it.Event = new(LendingpoolDeposit)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1175,19 +1178,19 @@ func (it *AaveLendingPoolDepositIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolDepositIterator) Error() error {
+func (it *LendingpoolDepositIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolDepositIterator) Close() error {
+func (it *LendingpoolDepositIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolDeposit represents a Deposit event raised by the AaveLendingPool contract.
-type AaveLendingPoolDeposit struct {
+// LendingpoolDeposit represents a Deposit event raised by the Lendingpool contract.
+type LendingpoolDeposit struct {
 	Reserve    common.Address
 	User       common.Address
 	OnBehalfOf common.Address
@@ -1199,7 +1202,7 @@ type AaveLendingPoolDeposit struct {
 // FilterDeposit is a free log retrieval operation binding the contract event 0xde6857219544bb5b7746f48ed30be6386fefc61b2f864cacf559893bf50fd951.
 //
 // Solidity: event Deposit(address indexed reserve, address user, address indexed onBehalfOf, uint256 amount, uint16 indexed referral)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterDeposit(opts *bind.FilterOpts, reserve []common.Address, onBehalfOf []common.Address, referral []uint16) (*AaveLendingPoolDepositIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterDeposit(opts *bind.FilterOpts, reserve []common.Address, onBehalfOf []common.Address, referral []uint16) (*LendingpoolDepositIterator, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -1216,17 +1219,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterDeposit(opts *bind.Filter
 		referralRule = append(referralRule, referralItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "Deposit", reserveRule, onBehalfOfRule, referralRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "Deposit", reserveRule, onBehalfOfRule, referralRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolDepositIterator{contract: _AaveLendingPool.contract, event: "Deposit", logs: logs, sub: sub}, nil
+	return &LendingpoolDepositIterator{contract: _Lendingpool.contract, event: "Deposit", logs: logs, sub: sub}, nil
 }
 
 // WatchDeposit is a free log subscription operation binding the contract event 0xde6857219544bb5b7746f48ed30be6386fefc61b2f864cacf559893bf50fd951.
 //
 // Solidity: event Deposit(address indexed reserve, address user, address indexed onBehalfOf, uint256 amount, uint16 indexed referral)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchDeposit(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolDeposit, reserve []common.Address, onBehalfOf []common.Address, referral []uint16) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchDeposit(opts *bind.WatchOpts, sink chan<- *LendingpoolDeposit, reserve []common.Address, onBehalfOf []common.Address, referral []uint16) (event.Subscription, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -1243,7 +1246,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchDeposit(opts *bind.WatchOp
 		referralRule = append(referralRule, referralItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "Deposit", reserveRule, onBehalfOfRule, referralRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "Deposit", reserveRule, onBehalfOfRule, referralRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1253,8 +1256,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchDeposit(opts *bind.WatchOp
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolDeposit)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "Deposit", log); err != nil {
+				event := new(LendingpoolDeposit)
+				if err := _Lendingpool.contract.UnpackLog(event, "Deposit", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1278,18 +1281,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchDeposit(opts *bind.WatchOp
 // ParseDeposit is a log parse operation binding the contract event 0xde6857219544bb5b7746f48ed30be6386fefc61b2f864cacf559893bf50fd951.
 //
 // Solidity: event Deposit(address indexed reserve, address user, address indexed onBehalfOf, uint256 amount, uint16 indexed referral)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseDeposit(log types.Log) (*AaveLendingPoolDeposit, error) {
-	event := new(AaveLendingPoolDeposit)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "Deposit", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseDeposit(log types.Log) (*LendingpoolDeposit, error) {
+	event := new(LendingpoolDeposit)
+	if err := _Lendingpool.contract.UnpackLog(event, "Deposit", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolFlashLoanIterator is returned from FilterFlashLoan and is used to iterate over the raw logs and unpacked data for FlashLoan events raised by the AaveLendingPool contract.
-type AaveLendingPoolFlashLoanIterator struct {
-	Event *AaveLendingPoolFlashLoan // Event containing the contract specifics and raw log
+// LendingpoolFlashLoanIterator is returned from FilterFlashLoan and is used to iterate over the raw logs and unpacked data for FlashLoan events raised by the Lendingpool contract.
+type LendingpoolFlashLoanIterator struct {
+	Event *LendingpoolFlashLoan // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1303,7 +1306,7 @@ type AaveLendingPoolFlashLoanIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolFlashLoanIterator) Next() bool {
+func (it *LendingpoolFlashLoanIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1312,7 +1315,7 @@ func (it *AaveLendingPoolFlashLoanIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolFlashLoan)
+			it.Event = new(LendingpoolFlashLoan)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1327,7 +1330,7 @@ func (it *AaveLendingPoolFlashLoanIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolFlashLoan)
+		it.Event = new(LendingpoolFlashLoan)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1343,19 +1346,19 @@ func (it *AaveLendingPoolFlashLoanIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolFlashLoanIterator) Error() error {
+func (it *LendingpoolFlashLoanIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolFlashLoanIterator) Close() error {
+func (it *LendingpoolFlashLoanIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolFlashLoan represents a FlashLoan event raised by the AaveLendingPool contract.
-type AaveLendingPoolFlashLoan struct {
+// LendingpoolFlashLoan represents a FlashLoan event raised by the Lendingpool contract.
+type LendingpoolFlashLoan struct {
 	Target       common.Address
 	Initiator    common.Address
 	Asset        common.Address
@@ -1368,7 +1371,7 @@ type AaveLendingPoolFlashLoan struct {
 // FilterFlashLoan is a free log retrieval operation binding the contract event 0x631042c832b07452973831137f2d73e395028b44b250dedc5abb0ee766e168ac.
 //
 // Solidity: event FlashLoan(address indexed target, address indexed initiator, address indexed asset, uint256 amount, uint256 premium, uint16 referralCode)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterFlashLoan(opts *bind.FilterOpts, target []common.Address, initiator []common.Address, asset []common.Address) (*AaveLendingPoolFlashLoanIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterFlashLoan(opts *bind.FilterOpts, target []common.Address, initiator []common.Address, asset []common.Address) (*LendingpoolFlashLoanIterator, error) {
 
 	var targetRule []interface{}
 	for _, targetItem := range target {
@@ -1383,17 +1386,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterFlashLoan(opts *bind.Filt
 		assetRule = append(assetRule, assetItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "FlashLoan", targetRule, initiatorRule, assetRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "FlashLoan", targetRule, initiatorRule, assetRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolFlashLoanIterator{contract: _AaveLendingPool.contract, event: "FlashLoan", logs: logs, sub: sub}, nil
+	return &LendingpoolFlashLoanIterator{contract: _Lendingpool.contract, event: "FlashLoan", logs: logs, sub: sub}, nil
 }
 
 // WatchFlashLoan is a free log subscription operation binding the contract event 0x631042c832b07452973831137f2d73e395028b44b250dedc5abb0ee766e168ac.
 //
 // Solidity: event FlashLoan(address indexed target, address indexed initiator, address indexed asset, uint256 amount, uint256 premium, uint16 referralCode)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchFlashLoan(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolFlashLoan, target []common.Address, initiator []common.Address, asset []common.Address) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchFlashLoan(opts *bind.WatchOpts, sink chan<- *LendingpoolFlashLoan, target []common.Address, initiator []common.Address, asset []common.Address) (event.Subscription, error) {
 
 	var targetRule []interface{}
 	for _, targetItem := range target {
@@ -1408,7 +1411,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchFlashLoan(opts *bind.Watch
 		assetRule = append(assetRule, assetItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "FlashLoan", targetRule, initiatorRule, assetRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "FlashLoan", targetRule, initiatorRule, assetRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1418,8 +1421,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchFlashLoan(opts *bind.Watch
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolFlashLoan)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "FlashLoan", log); err != nil {
+				event := new(LendingpoolFlashLoan)
+				if err := _Lendingpool.contract.UnpackLog(event, "FlashLoan", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1443,18 +1446,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchFlashLoan(opts *bind.Watch
 // ParseFlashLoan is a log parse operation binding the contract event 0x631042c832b07452973831137f2d73e395028b44b250dedc5abb0ee766e168ac.
 //
 // Solidity: event FlashLoan(address indexed target, address indexed initiator, address indexed asset, uint256 amount, uint256 premium, uint16 referralCode)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseFlashLoan(log types.Log) (*AaveLendingPoolFlashLoan, error) {
-	event := new(AaveLendingPoolFlashLoan)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "FlashLoan", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseFlashLoan(log types.Log) (*LendingpoolFlashLoan, error) {
+	event := new(LendingpoolFlashLoan)
+	if err := _Lendingpool.contract.UnpackLog(event, "FlashLoan", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolLiquidationCallIterator is returned from FilterLiquidationCall and is used to iterate over the raw logs and unpacked data for LiquidationCall events raised by the AaveLendingPool contract.
-type AaveLendingPoolLiquidationCallIterator struct {
-	Event *AaveLendingPoolLiquidationCall // Event containing the contract specifics and raw log
+// LendingpoolLiquidationCallIterator is returned from FilterLiquidationCall and is used to iterate over the raw logs and unpacked data for LiquidationCall events raised by the Lendingpool contract.
+type LendingpoolLiquidationCallIterator struct {
+	Event *LendingpoolLiquidationCall // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1468,7 +1471,7 @@ type AaveLendingPoolLiquidationCallIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolLiquidationCallIterator) Next() bool {
+func (it *LendingpoolLiquidationCallIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1477,7 +1480,7 @@ func (it *AaveLendingPoolLiquidationCallIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolLiquidationCall)
+			it.Event = new(LendingpoolLiquidationCall)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1492,7 +1495,7 @@ func (it *AaveLendingPoolLiquidationCallIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolLiquidationCall)
+		it.Event = new(LendingpoolLiquidationCall)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1508,19 +1511,19 @@ func (it *AaveLendingPoolLiquidationCallIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolLiquidationCallIterator) Error() error {
+func (it *LendingpoolLiquidationCallIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolLiquidationCallIterator) Close() error {
+func (it *LendingpoolLiquidationCallIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolLiquidationCall represents a LiquidationCall event raised by the AaveLendingPool contract.
-type AaveLendingPoolLiquidationCall struct {
+// LendingpoolLiquidationCall represents a LiquidationCall event raised by the Lendingpool contract.
+type LendingpoolLiquidationCall struct {
 	CollateralAsset            common.Address
 	DebtAsset                  common.Address
 	User                       common.Address
@@ -1534,7 +1537,7 @@ type AaveLendingPoolLiquidationCall struct {
 // FilterLiquidationCall is a free log retrieval operation binding the contract event 0xe413a321e8681d831f4dbccbca790d2952b56f977908e45be37335533e005286.
 //
 // Solidity: event LiquidationCall(address indexed collateralAsset, address indexed debtAsset, address indexed user, uint256 debtToCover, uint256 liquidatedCollateralAmount, address liquidator, bool receiveAToken)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterLiquidationCall(opts *bind.FilterOpts, collateralAsset []common.Address, debtAsset []common.Address, user []common.Address) (*AaveLendingPoolLiquidationCallIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterLiquidationCall(opts *bind.FilterOpts, collateralAsset []common.Address, debtAsset []common.Address, user []common.Address) (*LendingpoolLiquidationCallIterator, error) {
 
 	var collateralAssetRule []interface{}
 	for _, collateralAssetItem := range collateralAsset {
@@ -1549,17 +1552,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterLiquidationCall(opts *bin
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "LiquidationCall", collateralAssetRule, debtAssetRule, userRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "LiquidationCall", collateralAssetRule, debtAssetRule, userRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolLiquidationCallIterator{contract: _AaveLendingPool.contract, event: "LiquidationCall", logs: logs, sub: sub}, nil
+	return &LendingpoolLiquidationCallIterator{contract: _Lendingpool.contract, event: "LiquidationCall", logs: logs, sub: sub}, nil
 }
 
 // WatchLiquidationCall is a free log subscription operation binding the contract event 0xe413a321e8681d831f4dbccbca790d2952b56f977908e45be37335533e005286.
 //
 // Solidity: event LiquidationCall(address indexed collateralAsset, address indexed debtAsset, address indexed user, uint256 debtToCover, uint256 liquidatedCollateralAmount, address liquidator, bool receiveAToken)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchLiquidationCall(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolLiquidationCall, collateralAsset []common.Address, debtAsset []common.Address, user []common.Address) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchLiquidationCall(opts *bind.WatchOpts, sink chan<- *LendingpoolLiquidationCall, collateralAsset []common.Address, debtAsset []common.Address, user []common.Address) (event.Subscription, error) {
 
 	var collateralAssetRule []interface{}
 	for _, collateralAssetItem := range collateralAsset {
@@ -1574,7 +1577,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchLiquidationCall(opts *bind
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "LiquidationCall", collateralAssetRule, debtAssetRule, userRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "LiquidationCall", collateralAssetRule, debtAssetRule, userRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1584,8 +1587,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchLiquidationCall(opts *bind
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolLiquidationCall)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "LiquidationCall", log); err != nil {
+				event := new(LendingpoolLiquidationCall)
+				if err := _Lendingpool.contract.UnpackLog(event, "LiquidationCall", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1609,18 +1612,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchLiquidationCall(opts *bind
 // ParseLiquidationCall is a log parse operation binding the contract event 0xe413a321e8681d831f4dbccbca790d2952b56f977908e45be37335533e005286.
 //
 // Solidity: event LiquidationCall(address indexed collateralAsset, address indexed debtAsset, address indexed user, uint256 debtToCover, uint256 liquidatedCollateralAmount, address liquidator, bool receiveAToken)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseLiquidationCall(log types.Log) (*AaveLendingPoolLiquidationCall, error) {
-	event := new(AaveLendingPoolLiquidationCall)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "LiquidationCall", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseLiquidationCall(log types.Log) (*LendingpoolLiquidationCall, error) {
+	event := new(LendingpoolLiquidationCall)
+	if err := _Lendingpool.contract.UnpackLog(event, "LiquidationCall", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolPausedIterator is returned from FilterPaused and is used to iterate over the raw logs and unpacked data for Paused events raised by the AaveLendingPool contract.
-type AaveLendingPoolPausedIterator struct {
-	Event *AaveLendingPoolPaused // Event containing the contract specifics and raw log
+// LendingpoolPausedIterator is returned from FilterPaused and is used to iterate over the raw logs and unpacked data for Paused events raised by the Lendingpool contract.
+type LendingpoolPausedIterator struct {
+	Event *LendingpoolPaused // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1634,7 +1637,7 @@ type AaveLendingPoolPausedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolPausedIterator) Next() bool {
+func (it *LendingpoolPausedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1643,7 +1646,7 @@ func (it *AaveLendingPoolPausedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolPaused)
+			it.Event = new(LendingpoolPaused)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1658,7 +1661,7 @@ func (it *AaveLendingPoolPausedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolPaused)
+		it.Event = new(LendingpoolPaused)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1674,40 +1677,40 @@ func (it *AaveLendingPoolPausedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolPausedIterator) Error() error {
+func (it *LendingpoolPausedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolPausedIterator) Close() error {
+func (it *LendingpoolPausedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolPaused represents a Paused event raised by the AaveLendingPool contract.
-type AaveLendingPoolPaused struct {
+// LendingpoolPaused represents a Paused event raised by the Lendingpool contract.
+type LendingpoolPaused struct {
 	Raw types.Log // Blockchain specific contextual infos
 }
 
 // FilterPaused is a free log retrieval operation binding the contract event 0x9e87fac88ff661f02d44f95383c817fece4bce600a3dab7a54406878b965e752.
 //
 // Solidity: event Paused()
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterPaused(opts *bind.FilterOpts) (*AaveLendingPoolPausedIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterPaused(opts *bind.FilterOpts) (*LendingpoolPausedIterator, error) {
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "Paused")
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "Paused")
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolPausedIterator{contract: _AaveLendingPool.contract, event: "Paused", logs: logs, sub: sub}, nil
+	return &LendingpoolPausedIterator{contract: _Lendingpool.contract, event: "Paused", logs: logs, sub: sub}, nil
 }
 
 // WatchPaused is a free log subscription operation binding the contract event 0x9e87fac88ff661f02d44f95383c817fece4bce600a3dab7a54406878b965e752.
 //
 // Solidity: event Paused()
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchPaused(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolPaused) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchPaused(opts *bind.WatchOpts, sink chan<- *LendingpoolPaused) (event.Subscription, error) {
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "Paused")
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "Paused")
 	if err != nil {
 		return nil, err
 	}
@@ -1717,8 +1720,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchPaused(opts *bind.WatchOpt
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolPaused)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "Paused", log); err != nil {
+				event := new(LendingpoolPaused)
+				if err := _Lendingpool.contract.UnpackLog(event, "Paused", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1742,18 +1745,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchPaused(opts *bind.WatchOpt
 // ParsePaused is a log parse operation binding the contract event 0x9e87fac88ff661f02d44f95383c817fece4bce600a3dab7a54406878b965e752.
 //
 // Solidity: event Paused()
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParsePaused(log types.Log) (*AaveLendingPoolPaused, error) {
-	event := new(AaveLendingPoolPaused)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "Paused", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParsePaused(log types.Log) (*LendingpoolPaused, error) {
+	event := new(LendingpoolPaused)
+	if err := _Lendingpool.contract.UnpackLog(event, "Paused", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolRebalanceStableBorrowRateIterator is returned from FilterRebalanceStableBorrowRate and is used to iterate over the raw logs and unpacked data for RebalanceStableBorrowRate events raised by the AaveLendingPool contract.
-type AaveLendingPoolRebalanceStableBorrowRateIterator struct {
-	Event *AaveLendingPoolRebalanceStableBorrowRate // Event containing the contract specifics and raw log
+// LendingpoolRebalanceStableBorrowRateIterator is returned from FilterRebalanceStableBorrowRate and is used to iterate over the raw logs and unpacked data for RebalanceStableBorrowRate events raised by the Lendingpool contract.
+type LendingpoolRebalanceStableBorrowRateIterator struct {
+	Event *LendingpoolRebalanceStableBorrowRate // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1767,7 +1770,7 @@ type AaveLendingPoolRebalanceStableBorrowRateIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolRebalanceStableBorrowRateIterator) Next() bool {
+func (it *LendingpoolRebalanceStableBorrowRateIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1776,7 +1779,7 @@ func (it *AaveLendingPoolRebalanceStableBorrowRateIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolRebalanceStableBorrowRate)
+			it.Event = new(LendingpoolRebalanceStableBorrowRate)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1791,7 +1794,7 @@ func (it *AaveLendingPoolRebalanceStableBorrowRateIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolRebalanceStableBorrowRate)
+		it.Event = new(LendingpoolRebalanceStableBorrowRate)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1807,19 +1810,19 @@ func (it *AaveLendingPoolRebalanceStableBorrowRateIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolRebalanceStableBorrowRateIterator) Error() error {
+func (it *LendingpoolRebalanceStableBorrowRateIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolRebalanceStableBorrowRateIterator) Close() error {
+func (it *LendingpoolRebalanceStableBorrowRateIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolRebalanceStableBorrowRate represents a RebalanceStableBorrowRate event raised by the AaveLendingPool contract.
-type AaveLendingPoolRebalanceStableBorrowRate struct {
+// LendingpoolRebalanceStableBorrowRate represents a RebalanceStableBorrowRate event raised by the Lendingpool contract.
+type LendingpoolRebalanceStableBorrowRate struct {
 	Reserve common.Address
 	User    common.Address
 	Raw     types.Log // Blockchain specific contextual infos
@@ -1828,7 +1831,7 @@ type AaveLendingPoolRebalanceStableBorrowRate struct {
 // FilterRebalanceStableBorrowRate is a free log retrieval operation binding the contract event 0x9f439ae0c81e41a04d3fdfe07aed54e6a179fb0db15be7702eb66fa8ef6f5300.
 //
 // Solidity: event RebalanceStableBorrowRate(address indexed reserve, address indexed user)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterRebalanceStableBorrowRate(opts *bind.FilterOpts, reserve []common.Address, user []common.Address) (*AaveLendingPoolRebalanceStableBorrowRateIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterRebalanceStableBorrowRate(opts *bind.FilterOpts, reserve []common.Address, user []common.Address) (*LendingpoolRebalanceStableBorrowRateIterator, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -1839,17 +1842,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterRebalanceStableBorrowRate
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "RebalanceStableBorrowRate", reserveRule, userRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "RebalanceStableBorrowRate", reserveRule, userRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolRebalanceStableBorrowRateIterator{contract: _AaveLendingPool.contract, event: "RebalanceStableBorrowRate", logs: logs, sub: sub}, nil
+	return &LendingpoolRebalanceStableBorrowRateIterator{contract: _Lendingpool.contract, event: "RebalanceStableBorrowRate", logs: logs, sub: sub}, nil
 }
 
 // WatchRebalanceStableBorrowRate is a free log subscription operation binding the contract event 0x9f439ae0c81e41a04d3fdfe07aed54e6a179fb0db15be7702eb66fa8ef6f5300.
 //
 // Solidity: event RebalanceStableBorrowRate(address indexed reserve, address indexed user)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchRebalanceStableBorrowRate(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolRebalanceStableBorrowRate, reserve []common.Address, user []common.Address) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchRebalanceStableBorrowRate(opts *bind.WatchOpts, sink chan<- *LendingpoolRebalanceStableBorrowRate, reserve []common.Address, user []common.Address) (event.Subscription, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -1860,7 +1863,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchRebalanceStableBorrowRate(
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "RebalanceStableBorrowRate", reserveRule, userRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "RebalanceStableBorrowRate", reserveRule, userRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1870,8 +1873,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchRebalanceStableBorrowRate(
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolRebalanceStableBorrowRate)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "RebalanceStableBorrowRate", log); err != nil {
+				event := new(LendingpoolRebalanceStableBorrowRate)
+				if err := _Lendingpool.contract.UnpackLog(event, "RebalanceStableBorrowRate", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1895,18 +1898,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchRebalanceStableBorrowRate(
 // ParseRebalanceStableBorrowRate is a log parse operation binding the contract event 0x9f439ae0c81e41a04d3fdfe07aed54e6a179fb0db15be7702eb66fa8ef6f5300.
 //
 // Solidity: event RebalanceStableBorrowRate(address indexed reserve, address indexed user)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseRebalanceStableBorrowRate(log types.Log) (*AaveLendingPoolRebalanceStableBorrowRate, error) {
-	event := new(AaveLendingPoolRebalanceStableBorrowRate)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "RebalanceStableBorrowRate", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseRebalanceStableBorrowRate(log types.Log) (*LendingpoolRebalanceStableBorrowRate, error) {
+	event := new(LendingpoolRebalanceStableBorrowRate)
+	if err := _Lendingpool.contract.UnpackLog(event, "RebalanceStableBorrowRate", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolRepayIterator is returned from FilterRepay and is used to iterate over the raw logs and unpacked data for Repay events raised by the AaveLendingPool contract.
-type AaveLendingPoolRepayIterator struct {
-	Event *AaveLendingPoolRepay // Event containing the contract specifics and raw log
+// LendingpoolRepayIterator is returned from FilterRepay and is used to iterate over the raw logs and unpacked data for Repay events raised by the Lendingpool contract.
+type LendingpoolRepayIterator struct {
+	Event *LendingpoolRepay // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1920,7 +1923,7 @@ type AaveLendingPoolRepayIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolRepayIterator) Next() bool {
+func (it *LendingpoolRepayIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1929,7 +1932,7 @@ func (it *AaveLendingPoolRepayIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolRepay)
+			it.Event = new(LendingpoolRepay)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1944,7 +1947,7 @@ func (it *AaveLendingPoolRepayIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolRepay)
+		it.Event = new(LendingpoolRepay)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1960,19 +1963,19 @@ func (it *AaveLendingPoolRepayIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolRepayIterator) Error() error {
+func (it *LendingpoolRepayIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolRepayIterator) Close() error {
+func (it *LendingpoolRepayIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolRepay represents a Repay event raised by the AaveLendingPool contract.
-type AaveLendingPoolRepay struct {
+// LendingpoolRepay represents a Repay event raised by the Lendingpool contract.
+type LendingpoolRepay struct {
 	Reserve common.Address
 	User    common.Address
 	Repayer common.Address
@@ -1983,7 +1986,7 @@ type AaveLendingPoolRepay struct {
 // FilterRepay is a free log retrieval operation binding the contract event 0x4cdde6e09bb755c9a5589ebaec640bbfedff1362d4b255ebf8339782b9942faa.
 //
 // Solidity: event Repay(address indexed reserve, address indexed user, address indexed repayer, uint256 amount)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterRepay(opts *bind.FilterOpts, reserve []common.Address, user []common.Address, repayer []common.Address) (*AaveLendingPoolRepayIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterRepay(opts *bind.FilterOpts, reserve []common.Address, user []common.Address, repayer []common.Address) (*LendingpoolRepayIterator, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -1998,17 +2001,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterRepay(opts *bind.FilterOp
 		repayerRule = append(repayerRule, repayerItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "Repay", reserveRule, userRule, repayerRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "Repay", reserveRule, userRule, repayerRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolRepayIterator{contract: _AaveLendingPool.contract, event: "Repay", logs: logs, sub: sub}, nil
+	return &LendingpoolRepayIterator{contract: _Lendingpool.contract, event: "Repay", logs: logs, sub: sub}, nil
 }
 
 // WatchRepay is a free log subscription operation binding the contract event 0x4cdde6e09bb755c9a5589ebaec640bbfedff1362d4b255ebf8339782b9942faa.
 //
 // Solidity: event Repay(address indexed reserve, address indexed user, address indexed repayer, uint256 amount)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchRepay(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolRepay, reserve []common.Address, user []common.Address, repayer []common.Address) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchRepay(opts *bind.WatchOpts, sink chan<- *LendingpoolRepay, reserve []common.Address, user []common.Address, repayer []common.Address) (event.Subscription, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -2023,7 +2026,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchRepay(opts *bind.WatchOpts
 		repayerRule = append(repayerRule, repayerItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "Repay", reserveRule, userRule, repayerRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "Repay", reserveRule, userRule, repayerRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2033,8 +2036,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchRepay(opts *bind.WatchOpts
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolRepay)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "Repay", log); err != nil {
+				event := new(LendingpoolRepay)
+				if err := _Lendingpool.contract.UnpackLog(event, "Repay", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2058,18 +2061,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchRepay(opts *bind.WatchOpts
 // ParseRepay is a log parse operation binding the contract event 0x4cdde6e09bb755c9a5589ebaec640bbfedff1362d4b255ebf8339782b9942faa.
 //
 // Solidity: event Repay(address indexed reserve, address indexed user, address indexed repayer, uint256 amount)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseRepay(log types.Log) (*AaveLendingPoolRepay, error) {
-	event := new(AaveLendingPoolRepay)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "Repay", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseRepay(log types.Log) (*LendingpoolRepay, error) {
+	event := new(LendingpoolRepay)
+	if err := _Lendingpool.contract.UnpackLog(event, "Repay", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolReserveDataUpdatedIterator is returned from FilterReserveDataUpdated and is used to iterate over the raw logs and unpacked data for ReserveDataUpdated events raised by the AaveLendingPool contract.
-type AaveLendingPoolReserveDataUpdatedIterator struct {
-	Event *AaveLendingPoolReserveDataUpdated // Event containing the contract specifics and raw log
+// LendingpoolReserveDataUpdatedIterator is returned from FilterReserveDataUpdated and is used to iterate over the raw logs and unpacked data for ReserveDataUpdated events raised by the Lendingpool contract.
+type LendingpoolReserveDataUpdatedIterator struct {
+	Event *LendingpoolReserveDataUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2083,7 +2086,7 @@ type AaveLendingPoolReserveDataUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolReserveDataUpdatedIterator) Next() bool {
+func (it *LendingpoolReserveDataUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2092,7 +2095,7 @@ func (it *AaveLendingPoolReserveDataUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolReserveDataUpdated)
+			it.Event = new(LendingpoolReserveDataUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2107,7 +2110,7 @@ func (it *AaveLendingPoolReserveDataUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolReserveDataUpdated)
+		it.Event = new(LendingpoolReserveDataUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2123,19 +2126,19 @@ func (it *AaveLendingPoolReserveDataUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolReserveDataUpdatedIterator) Error() error {
+func (it *LendingpoolReserveDataUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolReserveDataUpdatedIterator) Close() error {
+func (it *LendingpoolReserveDataUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolReserveDataUpdated represents a ReserveDataUpdated event raised by the AaveLendingPool contract.
-type AaveLendingPoolReserveDataUpdated struct {
+// LendingpoolReserveDataUpdated represents a ReserveDataUpdated event raised by the Lendingpool contract.
+type LendingpoolReserveDataUpdated struct {
 	Reserve             common.Address
 	LiquidityRate       *big.Int
 	StableBorrowRate    *big.Int
@@ -2148,31 +2151,31 @@ type AaveLendingPoolReserveDataUpdated struct {
 // FilterReserveDataUpdated is a free log retrieval operation binding the contract event 0x804c9b842b2748a22bb64b345453a3de7ca54a6ca45ce00d415894979e22897a.
 //
 // Solidity: event ReserveDataUpdated(address indexed reserve, uint256 liquidityRate, uint256 stableBorrowRate, uint256 variableBorrowRate, uint256 liquidityIndex, uint256 variableBorrowIndex)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterReserveDataUpdated(opts *bind.FilterOpts, reserve []common.Address) (*AaveLendingPoolReserveDataUpdatedIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterReserveDataUpdated(opts *bind.FilterOpts, reserve []common.Address) (*LendingpoolReserveDataUpdatedIterator, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
 		reserveRule = append(reserveRule, reserveItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "ReserveDataUpdated", reserveRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "ReserveDataUpdated", reserveRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolReserveDataUpdatedIterator{contract: _AaveLendingPool.contract, event: "ReserveDataUpdated", logs: logs, sub: sub}, nil
+	return &LendingpoolReserveDataUpdatedIterator{contract: _Lendingpool.contract, event: "ReserveDataUpdated", logs: logs, sub: sub}, nil
 }
 
 // WatchReserveDataUpdated is a free log subscription operation binding the contract event 0x804c9b842b2748a22bb64b345453a3de7ca54a6ca45ce00d415894979e22897a.
 //
 // Solidity: event ReserveDataUpdated(address indexed reserve, uint256 liquidityRate, uint256 stableBorrowRate, uint256 variableBorrowRate, uint256 liquidityIndex, uint256 variableBorrowIndex)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveDataUpdated(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolReserveDataUpdated, reserve []common.Address) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchReserveDataUpdated(opts *bind.WatchOpts, sink chan<- *LendingpoolReserveDataUpdated, reserve []common.Address) (event.Subscription, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
 		reserveRule = append(reserveRule, reserveItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "ReserveDataUpdated", reserveRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "ReserveDataUpdated", reserveRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2182,8 +2185,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveDataUpdated(opts *b
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolReserveDataUpdated)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "ReserveDataUpdated", log); err != nil {
+				event := new(LendingpoolReserveDataUpdated)
+				if err := _Lendingpool.contract.UnpackLog(event, "ReserveDataUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2207,18 +2210,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveDataUpdated(opts *b
 // ParseReserveDataUpdated is a log parse operation binding the contract event 0x804c9b842b2748a22bb64b345453a3de7ca54a6ca45ce00d415894979e22897a.
 //
 // Solidity: event ReserveDataUpdated(address indexed reserve, uint256 liquidityRate, uint256 stableBorrowRate, uint256 variableBorrowRate, uint256 liquidityIndex, uint256 variableBorrowIndex)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseReserveDataUpdated(log types.Log) (*AaveLendingPoolReserveDataUpdated, error) {
-	event := new(AaveLendingPoolReserveDataUpdated)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "ReserveDataUpdated", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseReserveDataUpdated(log types.Log) (*LendingpoolReserveDataUpdated, error) {
+	event := new(LendingpoolReserveDataUpdated)
+	if err := _Lendingpool.contract.UnpackLog(event, "ReserveDataUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolReserveUsedAsCollateralDisabledIterator is returned from FilterReserveUsedAsCollateralDisabled and is used to iterate over the raw logs and unpacked data for ReserveUsedAsCollateralDisabled events raised by the AaveLendingPool contract.
-type AaveLendingPoolReserveUsedAsCollateralDisabledIterator struct {
-	Event *AaveLendingPoolReserveUsedAsCollateralDisabled // Event containing the contract specifics and raw log
+// LendingpoolReserveUsedAsCollateralDisabledIterator is returned from FilterReserveUsedAsCollateralDisabled and is used to iterate over the raw logs and unpacked data for ReserveUsedAsCollateralDisabled events raised by the Lendingpool contract.
+type LendingpoolReserveUsedAsCollateralDisabledIterator struct {
+	Event *LendingpoolReserveUsedAsCollateralDisabled // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2232,7 +2235,7 @@ type AaveLendingPoolReserveUsedAsCollateralDisabledIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolReserveUsedAsCollateralDisabledIterator) Next() bool {
+func (it *LendingpoolReserveUsedAsCollateralDisabledIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2241,7 +2244,7 @@ func (it *AaveLendingPoolReserveUsedAsCollateralDisabledIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolReserveUsedAsCollateralDisabled)
+			it.Event = new(LendingpoolReserveUsedAsCollateralDisabled)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2256,7 +2259,7 @@ func (it *AaveLendingPoolReserveUsedAsCollateralDisabledIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolReserveUsedAsCollateralDisabled)
+		it.Event = new(LendingpoolReserveUsedAsCollateralDisabled)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2272,19 +2275,19 @@ func (it *AaveLendingPoolReserveUsedAsCollateralDisabledIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolReserveUsedAsCollateralDisabledIterator) Error() error {
+func (it *LendingpoolReserveUsedAsCollateralDisabledIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolReserveUsedAsCollateralDisabledIterator) Close() error {
+func (it *LendingpoolReserveUsedAsCollateralDisabledIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolReserveUsedAsCollateralDisabled represents a ReserveUsedAsCollateralDisabled event raised by the AaveLendingPool contract.
-type AaveLendingPoolReserveUsedAsCollateralDisabled struct {
+// LendingpoolReserveUsedAsCollateralDisabled represents a ReserveUsedAsCollateralDisabled event raised by the Lendingpool contract.
+type LendingpoolReserveUsedAsCollateralDisabled struct {
 	Reserve common.Address
 	User    common.Address
 	Raw     types.Log // Blockchain specific contextual infos
@@ -2293,7 +2296,7 @@ type AaveLendingPoolReserveUsedAsCollateralDisabled struct {
 // FilterReserveUsedAsCollateralDisabled is a free log retrieval operation binding the contract event 0x44c58d81365b66dd4b1a7f36c25aa97b8c71c361ee4937adc1a00000227db5dd.
 //
 // Solidity: event ReserveUsedAsCollateralDisabled(address indexed reserve, address indexed user)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterReserveUsedAsCollateralDisabled(opts *bind.FilterOpts, reserve []common.Address, user []common.Address) (*AaveLendingPoolReserveUsedAsCollateralDisabledIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterReserveUsedAsCollateralDisabled(opts *bind.FilterOpts, reserve []common.Address, user []common.Address) (*LendingpoolReserveUsedAsCollateralDisabledIterator, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -2304,17 +2307,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterReserveUsedAsCollateralDi
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "ReserveUsedAsCollateralDisabled", reserveRule, userRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "ReserveUsedAsCollateralDisabled", reserveRule, userRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolReserveUsedAsCollateralDisabledIterator{contract: _AaveLendingPool.contract, event: "ReserveUsedAsCollateralDisabled", logs: logs, sub: sub}, nil
+	return &LendingpoolReserveUsedAsCollateralDisabledIterator{contract: _Lendingpool.contract, event: "ReserveUsedAsCollateralDisabled", logs: logs, sub: sub}, nil
 }
 
 // WatchReserveUsedAsCollateralDisabled is a free log subscription operation binding the contract event 0x44c58d81365b66dd4b1a7f36c25aa97b8c71c361ee4937adc1a00000227db5dd.
 //
 // Solidity: event ReserveUsedAsCollateralDisabled(address indexed reserve, address indexed user)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveUsedAsCollateralDisabled(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolReserveUsedAsCollateralDisabled, reserve []common.Address, user []common.Address) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchReserveUsedAsCollateralDisabled(opts *bind.WatchOpts, sink chan<- *LendingpoolReserveUsedAsCollateralDisabled, reserve []common.Address, user []common.Address) (event.Subscription, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -2325,7 +2328,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveUsedAsCollateralDis
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "ReserveUsedAsCollateralDisabled", reserveRule, userRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "ReserveUsedAsCollateralDisabled", reserveRule, userRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2335,8 +2338,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveUsedAsCollateralDis
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolReserveUsedAsCollateralDisabled)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "ReserveUsedAsCollateralDisabled", log); err != nil {
+				event := new(LendingpoolReserveUsedAsCollateralDisabled)
+				if err := _Lendingpool.contract.UnpackLog(event, "ReserveUsedAsCollateralDisabled", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2360,18 +2363,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveUsedAsCollateralDis
 // ParseReserveUsedAsCollateralDisabled is a log parse operation binding the contract event 0x44c58d81365b66dd4b1a7f36c25aa97b8c71c361ee4937adc1a00000227db5dd.
 //
 // Solidity: event ReserveUsedAsCollateralDisabled(address indexed reserve, address indexed user)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseReserveUsedAsCollateralDisabled(log types.Log) (*AaveLendingPoolReserveUsedAsCollateralDisabled, error) {
-	event := new(AaveLendingPoolReserveUsedAsCollateralDisabled)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "ReserveUsedAsCollateralDisabled", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseReserveUsedAsCollateralDisabled(log types.Log) (*LendingpoolReserveUsedAsCollateralDisabled, error) {
+	event := new(LendingpoolReserveUsedAsCollateralDisabled)
+	if err := _Lendingpool.contract.UnpackLog(event, "ReserveUsedAsCollateralDisabled", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolReserveUsedAsCollateralEnabledIterator is returned from FilterReserveUsedAsCollateralEnabled and is used to iterate over the raw logs and unpacked data for ReserveUsedAsCollateralEnabled events raised by the AaveLendingPool contract.
-type AaveLendingPoolReserveUsedAsCollateralEnabledIterator struct {
-	Event *AaveLendingPoolReserveUsedAsCollateralEnabled // Event containing the contract specifics and raw log
+// LendingpoolReserveUsedAsCollateralEnabledIterator is returned from FilterReserveUsedAsCollateralEnabled and is used to iterate over the raw logs and unpacked data for ReserveUsedAsCollateralEnabled events raised by the Lendingpool contract.
+type LendingpoolReserveUsedAsCollateralEnabledIterator struct {
+	Event *LendingpoolReserveUsedAsCollateralEnabled // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2385,7 +2388,7 @@ type AaveLendingPoolReserveUsedAsCollateralEnabledIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolReserveUsedAsCollateralEnabledIterator) Next() bool {
+func (it *LendingpoolReserveUsedAsCollateralEnabledIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2394,7 +2397,7 @@ func (it *AaveLendingPoolReserveUsedAsCollateralEnabledIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolReserveUsedAsCollateralEnabled)
+			it.Event = new(LendingpoolReserveUsedAsCollateralEnabled)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2409,7 +2412,7 @@ func (it *AaveLendingPoolReserveUsedAsCollateralEnabledIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolReserveUsedAsCollateralEnabled)
+		it.Event = new(LendingpoolReserveUsedAsCollateralEnabled)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2425,19 +2428,19 @@ func (it *AaveLendingPoolReserveUsedAsCollateralEnabledIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolReserveUsedAsCollateralEnabledIterator) Error() error {
+func (it *LendingpoolReserveUsedAsCollateralEnabledIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolReserveUsedAsCollateralEnabledIterator) Close() error {
+func (it *LendingpoolReserveUsedAsCollateralEnabledIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolReserveUsedAsCollateralEnabled represents a ReserveUsedAsCollateralEnabled event raised by the AaveLendingPool contract.
-type AaveLendingPoolReserveUsedAsCollateralEnabled struct {
+// LendingpoolReserveUsedAsCollateralEnabled represents a ReserveUsedAsCollateralEnabled event raised by the Lendingpool contract.
+type LendingpoolReserveUsedAsCollateralEnabled struct {
 	Reserve common.Address
 	User    common.Address
 	Raw     types.Log // Blockchain specific contextual infos
@@ -2446,7 +2449,7 @@ type AaveLendingPoolReserveUsedAsCollateralEnabled struct {
 // FilterReserveUsedAsCollateralEnabled is a free log retrieval operation binding the contract event 0x00058a56ea94653cdf4f152d227ace22d4c00ad99e2a43f58cb7d9e3feb295f2.
 //
 // Solidity: event ReserveUsedAsCollateralEnabled(address indexed reserve, address indexed user)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterReserveUsedAsCollateralEnabled(opts *bind.FilterOpts, reserve []common.Address, user []common.Address) (*AaveLendingPoolReserveUsedAsCollateralEnabledIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterReserveUsedAsCollateralEnabled(opts *bind.FilterOpts, reserve []common.Address, user []common.Address) (*LendingpoolReserveUsedAsCollateralEnabledIterator, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -2457,17 +2460,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterReserveUsedAsCollateralEn
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "ReserveUsedAsCollateralEnabled", reserveRule, userRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "ReserveUsedAsCollateralEnabled", reserveRule, userRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolReserveUsedAsCollateralEnabledIterator{contract: _AaveLendingPool.contract, event: "ReserveUsedAsCollateralEnabled", logs: logs, sub: sub}, nil
+	return &LendingpoolReserveUsedAsCollateralEnabledIterator{contract: _Lendingpool.contract, event: "ReserveUsedAsCollateralEnabled", logs: logs, sub: sub}, nil
 }
 
 // WatchReserveUsedAsCollateralEnabled is a free log subscription operation binding the contract event 0x00058a56ea94653cdf4f152d227ace22d4c00ad99e2a43f58cb7d9e3feb295f2.
 //
 // Solidity: event ReserveUsedAsCollateralEnabled(address indexed reserve, address indexed user)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveUsedAsCollateralEnabled(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolReserveUsedAsCollateralEnabled, reserve []common.Address, user []common.Address) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchReserveUsedAsCollateralEnabled(opts *bind.WatchOpts, sink chan<- *LendingpoolReserveUsedAsCollateralEnabled, reserve []common.Address, user []common.Address) (event.Subscription, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -2478,7 +2481,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveUsedAsCollateralEna
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "ReserveUsedAsCollateralEnabled", reserveRule, userRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "ReserveUsedAsCollateralEnabled", reserveRule, userRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2488,8 +2491,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveUsedAsCollateralEna
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolReserveUsedAsCollateralEnabled)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "ReserveUsedAsCollateralEnabled", log); err != nil {
+				event := new(LendingpoolReserveUsedAsCollateralEnabled)
+				if err := _Lendingpool.contract.UnpackLog(event, "ReserveUsedAsCollateralEnabled", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2513,18 +2516,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchReserveUsedAsCollateralEna
 // ParseReserveUsedAsCollateralEnabled is a log parse operation binding the contract event 0x00058a56ea94653cdf4f152d227ace22d4c00ad99e2a43f58cb7d9e3feb295f2.
 //
 // Solidity: event ReserveUsedAsCollateralEnabled(address indexed reserve, address indexed user)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseReserveUsedAsCollateralEnabled(log types.Log) (*AaveLendingPoolReserveUsedAsCollateralEnabled, error) {
-	event := new(AaveLendingPoolReserveUsedAsCollateralEnabled)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "ReserveUsedAsCollateralEnabled", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseReserveUsedAsCollateralEnabled(log types.Log) (*LendingpoolReserveUsedAsCollateralEnabled, error) {
+	event := new(LendingpoolReserveUsedAsCollateralEnabled)
+	if err := _Lendingpool.contract.UnpackLog(event, "ReserveUsedAsCollateralEnabled", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolSwapIterator is returned from FilterSwap and is used to iterate over the raw logs and unpacked data for Swap events raised by the AaveLendingPool contract.
-type AaveLendingPoolSwapIterator struct {
-	Event *AaveLendingPoolSwap // Event containing the contract specifics and raw log
+// LendingpoolSwapIterator is returned from FilterSwap and is used to iterate over the raw logs and unpacked data for Swap events raised by the Lendingpool contract.
+type LendingpoolSwapIterator struct {
+	Event *LendingpoolSwap // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2538,7 +2541,7 @@ type AaveLendingPoolSwapIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolSwapIterator) Next() bool {
+func (it *LendingpoolSwapIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2547,7 +2550,7 @@ func (it *AaveLendingPoolSwapIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolSwap)
+			it.Event = new(LendingpoolSwap)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2562,7 +2565,7 @@ func (it *AaveLendingPoolSwapIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolSwap)
+		it.Event = new(LendingpoolSwap)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2578,19 +2581,19 @@ func (it *AaveLendingPoolSwapIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolSwapIterator) Error() error {
+func (it *LendingpoolSwapIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolSwapIterator) Close() error {
+func (it *LendingpoolSwapIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolSwap represents a Swap event raised by the AaveLendingPool contract.
-type AaveLendingPoolSwap struct {
+// LendingpoolSwap represents a Swap event raised by the Lendingpool contract.
+type LendingpoolSwap struct {
 	Reserve  common.Address
 	User     common.Address
 	RateMode *big.Int
@@ -2600,7 +2603,7 @@ type AaveLendingPoolSwap struct {
 // FilterSwap is a free log retrieval operation binding the contract event 0xea368a40e9570069bb8e6511d668293ad2e1f03b0d982431fd223de9f3b70ca6.
 //
 // Solidity: event Swap(address indexed reserve, address indexed user, uint256 rateMode)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterSwap(opts *bind.FilterOpts, reserve []common.Address, user []common.Address) (*AaveLendingPoolSwapIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterSwap(opts *bind.FilterOpts, reserve []common.Address, user []common.Address) (*LendingpoolSwapIterator, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -2611,17 +2614,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterSwap(opts *bind.FilterOpt
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "Swap", reserveRule, userRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "Swap", reserveRule, userRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolSwapIterator{contract: _AaveLendingPool.contract, event: "Swap", logs: logs, sub: sub}, nil
+	return &LendingpoolSwapIterator{contract: _Lendingpool.contract, event: "Swap", logs: logs, sub: sub}, nil
 }
 
 // WatchSwap is a free log subscription operation binding the contract event 0xea368a40e9570069bb8e6511d668293ad2e1f03b0d982431fd223de9f3b70ca6.
 //
 // Solidity: event Swap(address indexed reserve, address indexed user, uint256 rateMode)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchSwap(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolSwap, reserve []common.Address, user []common.Address) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchSwap(opts *bind.WatchOpts, sink chan<- *LendingpoolSwap, reserve []common.Address, user []common.Address) (event.Subscription, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -2632,7 +2635,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchSwap(opts *bind.WatchOpts,
 		userRule = append(userRule, userItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "Swap", reserveRule, userRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "Swap", reserveRule, userRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2642,8 +2645,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchSwap(opts *bind.WatchOpts,
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolSwap)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "Swap", log); err != nil {
+				event := new(LendingpoolSwap)
+				if err := _Lendingpool.contract.UnpackLog(event, "Swap", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2667,18 +2670,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchSwap(opts *bind.WatchOpts,
 // ParseSwap is a log parse operation binding the contract event 0xea368a40e9570069bb8e6511d668293ad2e1f03b0d982431fd223de9f3b70ca6.
 //
 // Solidity: event Swap(address indexed reserve, address indexed user, uint256 rateMode)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseSwap(log types.Log) (*AaveLendingPoolSwap, error) {
-	event := new(AaveLendingPoolSwap)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "Swap", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseSwap(log types.Log) (*LendingpoolSwap, error) {
+	event := new(LendingpoolSwap)
+	if err := _Lendingpool.contract.UnpackLog(event, "Swap", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolUnpausedIterator is returned from FilterUnpaused and is used to iterate over the raw logs and unpacked data for Unpaused events raised by the AaveLendingPool contract.
-type AaveLendingPoolUnpausedIterator struct {
-	Event *AaveLendingPoolUnpaused // Event containing the contract specifics and raw log
+// LendingpoolUnpausedIterator is returned from FilterUnpaused and is used to iterate over the raw logs and unpacked data for Unpaused events raised by the Lendingpool contract.
+type LendingpoolUnpausedIterator struct {
+	Event *LendingpoolUnpaused // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2692,7 +2695,7 @@ type AaveLendingPoolUnpausedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolUnpausedIterator) Next() bool {
+func (it *LendingpoolUnpausedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2701,7 +2704,7 @@ func (it *AaveLendingPoolUnpausedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolUnpaused)
+			it.Event = new(LendingpoolUnpaused)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2716,7 +2719,7 @@ func (it *AaveLendingPoolUnpausedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolUnpaused)
+		it.Event = new(LendingpoolUnpaused)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2732,40 +2735,40 @@ func (it *AaveLendingPoolUnpausedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolUnpausedIterator) Error() error {
+func (it *LendingpoolUnpausedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolUnpausedIterator) Close() error {
+func (it *LendingpoolUnpausedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolUnpaused represents a Unpaused event raised by the AaveLendingPool contract.
-type AaveLendingPoolUnpaused struct {
+// LendingpoolUnpaused represents a Unpaused event raised by the Lendingpool contract.
+type LendingpoolUnpaused struct {
 	Raw types.Log // Blockchain specific contextual infos
 }
 
 // FilterUnpaused is a free log retrieval operation binding the contract event 0xa45f47fdea8a1efdd9029a5691c7f759c32b7c698632b563573e155625d16933.
 //
 // Solidity: event Unpaused()
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterUnpaused(opts *bind.FilterOpts) (*AaveLendingPoolUnpausedIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterUnpaused(opts *bind.FilterOpts) (*LendingpoolUnpausedIterator, error) {
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "Unpaused")
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "Unpaused")
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolUnpausedIterator{contract: _AaveLendingPool.contract, event: "Unpaused", logs: logs, sub: sub}, nil
+	return &LendingpoolUnpausedIterator{contract: _Lendingpool.contract, event: "Unpaused", logs: logs, sub: sub}, nil
 }
 
 // WatchUnpaused is a free log subscription operation binding the contract event 0xa45f47fdea8a1efdd9029a5691c7f759c32b7c698632b563573e155625d16933.
 //
 // Solidity: event Unpaused()
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchUnpaused(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolUnpaused) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchUnpaused(opts *bind.WatchOpts, sink chan<- *LendingpoolUnpaused) (event.Subscription, error) {
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "Unpaused")
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "Unpaused")
 	if err != nil {
 		return nil, err
 	}
@@ -2775,8 +2778,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchUnpaused(opts *bind.WatchO
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolUnpaused)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "Unpaused", log); err != nil {
+				event := new(LendingpoolUnpaused)
+				if err := _Lendingpool.contract.UnpackLog(event, "Unpaused", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2800,18 +2803,18 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchUnpaused(opts *bind.WatchO
 // ParseUnpaused is a log parse operation binding the contract event 0xa45f47fdea8a1efdd9029a5691c7f759c32b7c698632b563573e155625d16933.
 //
 // Solidity: event Unpaused()
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseUnpaused(log types.Log) (*AaveLendingPoolUnpaused, error) {
-	event := new(AaveLendingPoolUnpaused)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "Unpaused", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseUnpaused(log types.Log) (*LendingpoolUnpaused, error) {
+	event := new(LendingpoolUnpaused)
+	if err := _Lendingpool.contract.UnpackLog(event, "Unpaused", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// AaveLendingPoolWithdrawIterator is returned from FilterWithdraw and is used to iterate over the raw logs and unpacked data for Withdraw events raised by the AaveLendingPool contract.
-type AaveLendingPoolWithdrawIterator struct {
-	Event *AaveLendingPoolWithdraw // Event containing the contract specifics and raw log
+// LendingpoolWithdrawIterator is returned from FilterWithdraw and is used to iterate over the raw logs and unpacked data for Withdraw events raised by the Lendingpool contract.
+type LendingpoolWithdrawIterator struct {
+	Event *LendingpoolWithdraw // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2825,7 +2828,7 @@ type AaveLendingPoolWithdrawIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *AaveLendingPoolWithdrawIterator) Next() bool {
+func (it *LendingpoolWithdrawIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2834,7 +2837,7 @@ func (it *AaveLendingPoolWithdrawIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(AaveLendingPoolWithdraw)
+			it.Event = new(LendingpoolWithdraw)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2849,7 +2852,7 @@ func (it *AaveLendingPoolWithdrawIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(AaveLendingPoolWithdraw)
+		it.Event = new(LendingpoolWithdraw)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2865,19 +2868,19 @@ func (it *AaveLendingPoolWithdrawIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *AaveLendingPoolWithdrawIterator) Error() error {
+func (it *LendingpoolWithdrawIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *AaveLendingPoolWithdrawIterator) Close() error {
+func (it *LendingpoolWithdrawIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// AaveLendingPoolWithdraw represents a Withdraw event raised by the AaveLendingPool contract.
-type AaveLendingPoolWithdraw struct {
+// LendingpoolWithdraw represents a Withdraw event raised by the Lendingpool contract.
+type LendingpoolWithdraw struct {
 	Reserve common.Address
 	User    common.Address
 	To      common.Address
@@ -2888,7 +2891,7 @@ type AaveLendingPoolWithdraw struct {
 // FilterWithdraw is a free log retrieval operation binding the contract event 0x3115d1449a7b732c986cba18244e897a450f61e1bb8d589cd2e69e6c8924f9f7.
 //
 // Solidity: event Withdraw(address indexed reserve, address indexed user, address indexed to, uint256 amount)
-func (_AaveLendingPool *AaveLendingPoolFilterer) FilterWithdraw(opts *bind.FilterOpts, reserve []common.Address, user []common.Address, to []common.Address) (*AaveLendingPoolWithdrawIterator, error) {
+func (_Lendingpool *LendingpoolFilterer) FilterWithdraw(opts *bind.FilterOpts, reserve []common.Address, user []common.Address, to []common.Address) (*LendingpoolWithdrawIterator, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -2903,17 +2906,17 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) FilterWithdraw(opts *bind.Filte
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.FilterLogs(opts, "Withdraw", reserveRule, userRule, toRule)
+	logs, sub, err := _Lendingpool.contract.FilterLogs(opts, "Withdraw", reserveRule, userRule, toRule)
 	if err != nil {
 		return nil, err
 	}
-	return &AaveLendingPoolWithdrawIterator{contract: _AaveLendingPool.contract, event: "Withdraw", logs: logs, sub: sub}, nil
+	return &LendingpoolWithdrawIterator{contract: _Lendingpool.contract, event: "Withdraw", logs: logs, sub: sub}, nil
 }
 
 // WatchWithdraw is a free log subscription operation binding the contract event 0x3115d1449a7b732c986cba18244e897a450f61e1bb8d589cd2e69e6c8924f9f7.
 //
 // Solidity: event Withdraw(address indexed reserve, address indexed user, address indexed to, uint256 amount)
-func (_AaveLendingPool *AaveLendingPoolFilterer) WatchWithdraw(opts *bind.WatchOpts, sink chan<- *AaveLendingPoolWithdraw, reserve []common.Address, user []common.Address, to []common.Address) (event.Subscription, error) {
+func (_Lendingpool *LendingpoolFilterer) WatchWithdraw(opts *bind.WatchOpts, sink chan<- *LendingpoolWithdraw, reserve []common.Address, user []common.Address, to []common.Address) (event.Subscription, error) {
 
 	var reserveRule []interface{}
 	for _, reserveItem := range reserve {
@@ -2928,7 +2931,7 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchWithdraw(opts *bind.WatchO
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _AaveLendingPool.contract.WatchLogs(opts, "Withdraw", reserveRule, userRule, toRule)
+	logs, sub, err := _Lendingpool.contract.WatchLogs(opts, "Withdraw", reserveRule, userRule, toRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2938,8 +2941,8 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchWithdraw(opts *bind.WatchO
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(AaveLendingPoolWithdraw)
-				if err := _AaveLendingPool.contract.UnpackLog(event, "Withdraw", log); err != nil {
+				event := new(LendingpoolWithdraw)
+				if err := _Lendingpool.contract.UnpackLog(event, "Withdraw", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2963,9 +2966,9 @@ func (_AaveLendingPool *AaveLendingPoolFilterer) WatchWithdraw(opts *bind.WatchO
 // ParseWithdraw is a log parse operation binding the contract event 0x3115d1449a7b732c986cba18244e897a450f61e1bb8d589cd2e69e6c8924f9f7.
 //
 // Solidity: event Withdraw(address indexed reserve, address indexed user, address indexed to, uint256 amount)
-func (_AaveLendingPool *AaveLendingPoolFilterer) ParseWithdraw(log types.Log) (*AaveLendingPoolWithdraw, error) {
-	event := new(AaveLendingPoolWithdraw)
-	if err := _AaveLendingPool.contract.UnpackLog(event, "Withdraw", log); err != nil {
+func (_Lendingpool *LendingpoolFilterer) ParseWithdraw(log types.Log) (*LendingpoolWithdraw, error) {
+	event := new(LendingpoolWithdraw)
+	if err := _Lendingpool.contract.UnpackLog(event, "Withdraw", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

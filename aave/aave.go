@@ -11,7 +11,6 @@ import (
 
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/rs/zerolog/log"
-	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -74,7 +73,7 @@ func (c *Connector) Start() {
 		//	Listen to event logs
 		case vLog := <-c.sub.Logs():
 			if msg := c.parse(vLog); msg != nil {
-				log.Debug().Msg(protojson.Format(msg))
+				// log.Debug().Msg(protojson.Format(msg))
 				c.EventSink <- msg
 			}
 		}
@@ -88,7 +87,7 @@ func (c *Connector) parse(vLog types.Log) proto.Message {
 		return nil
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Second)
+	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
 	defer cancel()
 
 	t, err := c.sub.GetBlockTime(ctx, vLog)

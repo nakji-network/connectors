@@ -12,7 +12,6 @@ import (
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
 	_ "go.uber.org/automaxprocs"
-	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 func main() {
@@ -37,12 +36,7 @@ func main() {
 	}
 
 	// Register topic and protobuf type mappings
-	protos := make([]protoreflect.ProtoMessage, 0, len(aave.TopicTypes))
-	for _, topicProto := range aave.TopicTypes {
-		protos = append(protos, topicProto)
-	}
-
-	c.RegisterProtos(protos...)
+	c.RegisterProtos(aave.TopicTypes...)
 
 	conf := &aave.Config{
 		ConnectorName: "aave",
@@ -52,7 +46,7 @@ func main() {
 		Namespace:     "aave",
 	}
 
-	lendingPoolContract, err := lendingpool.NewContract(aave.LendingPoolContractAddr, "aave")
+	lendingPoolContract, err := lendingpool.NewContract(aave.LendingPoolContractAddr)
 	if err != nil {
 		log.Err(err).Msg("Cannot create lending pool contract")
 	}
