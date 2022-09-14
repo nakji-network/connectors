@@ -1,0 +1,203 @@
+log:
+  level: debug
+  format: console
+kafka:
+  url: localhost:9092
+  env: test
+websocket:
+  lruCacheSize: 128
+  allowedBlocksBehind: 3
+  wcReplicationFactor: 1
+  hcReplicationFactor: 1
+  maxIdleSecond: 60
+  coolDownSecond: 70
+timescaledb:
+  connection: "host=localhost port=5432 user=postgres password=password database=blep_local"
+  writestreams: # must match table name and any stream that matches must have correct struct
+    #- blockchain_eth_txstats_1m
+    #- blockchain_eth_blockstats_1m
+    #- binance_BTCUSDT_openinterest_5m
+    #- binance_ETHUSDT_openinterest_5m
+    - "*,*,openinterest,1m"
+    - "*,*,kline,1m"
+streamserver:
+  addr: ":8080"
+aws:
+  id: "<aws_id>"
+  secret: "<aws_secret>"
+ethereum:
+  rpc:
+    - https://hopeful-leakey:spud-chaste-trance-width-upward-harbor@nd-334-593-626.p2pify.com
+    - wss://hopeful-leakey:spud-chaste-trance-width-upward-harbor@ws-nd-334-593-626.p2pify.com
+    - https://sparkling-wild-water.quiknode.pro/886d6e59b11a916a403259ad83de327d15ad0c33/
+    - wss://sparkling-wild-water.quiknode.pro/886d6e59b11a916a403259ad83de327d15ad0c33/
+#    - wss://rinkeby.infura.io/ws/v3/bf72fdf782ff4e57a517f9795d65c8f7
+#    - https://rinkeby.infura.io/v3/bf72fdf782ff4e57a517f9795d65c8f7
+#    - http://127.0.0.1:7545
+  privateKey: "ea89c72343863e8411e7e71a2e359b3a374e4c822846f8943689e4b7f7eea210"
+#  privateKey: "81d43f1e5e29d10e09c58162b07ea55fc195864ab1e27b8a801f8e5164ae4d3e"
+  archival:
+    scheme: https
+    host: sparkling-wild-water.quiknode.pro
+    path: /886d6e59b11a916a403259ad83de327d15ad0c33/
+    #username: cocky-hugle
+    #password: cosmic-snack-lion-front-sneer-come
+    #scheme: https
+    #host: nd-653-072-430.p2pify.com
+    #path: /
+  #host: mainnet.infura.io
+  #path: /ws/v3/fdd3a1faf52042c8986293e2fabc50cf
+  kafka:
+    txID: ethereum-source
+xdai:
+  scheme: wss
+  host: rpc.xdaichain.com
+  path: "/wss"
+bsc:
+  scheme: wss
+  host: bsc-ws-node.nariox.org
+  path: "/"
+  rpc:
+    #- wss://bsc-ws-node.nariox.org:443/
+    #- https://apis.ankr.com/13a170454b204a09a5a74969d9e6ee1f/83b3887f64a3367f3dc84901e67971a9/binance/full/main
+    #- wss://apis.ankr.com/wss/13a170454b204a09a5a74969d9e6ee1f/83b3887f64a3367f3dc84901e67971a9/binance/full/main #Ankr RPCs failing
+    - wss://solitary-autumn-lake.bsc.quiknode.pro/5ae982d695add4572c00074294efbc338e5a4c18/
+    - https://solitary-autumn-lake.bsc.quiknode.pro/5ae982d695add4572c00074294efbc338e5a4c18/
+snapshots:
+  apiUrl: https://api.blep.ai/ss/
+  s3bucket: blep.tvss
+  s3upload: false # upload to Amazon S3
+  s3region: ap-northeast-1
+  timeout: 10 # in seconds
+  debug: true # print to kitty terminal. MUST BE false for docker images
+googleanalytics:
+  measurementID: G-XXXXXXXXXX
+uniswapv2:
+  numPairs: 1000
+  numTokens: 1000
+  grpc:
+    endpoint: localhost
+bitcoin:
+  rpc:
+    url: localhost:8334
+    user: blep
+    password: password
+    workerCount: 8
+
+rpcs:
+  ethereum: #working
+    full:
+      - https://hopeful-leakey:spud-chaste-trance-width-upward-harbor@nd-334-593-626.p2pify.com
+      - wss://hopeful-leakey:spud-chaste-trance-width-upward-harbor@ws-nd-334-593-626.p2pify.com
+      - https://sparkling-wild-water.quiknode.pro/886d6e59b11a916a403259ad83de327d15ad0c33/
+      - wss://sparkling-wild-water.quiknode.pro/886d6e59b11a916a403259ad83de327d15ad0c33/
+#      - wss://rinkeby.infura.io/ws/v3/bf72fdf782ff4e57a517f9795d65c8f7
+#      - https://rinkeby.infura.io/v3/bf72fdf782ff4e57a517f9795d65c8f7
+#      - http://127.0.0.1:7545
+    archival:
+      - https://
+  avalanche: # can't get block by hash (https://docs.avax.network/build/tutorials/platform/integrate-exchange-with-avalanche/#optional-custom-golang-sdk)
+    # works with chainstack, not with official RPCs because "eth_getBlockByNumber does not exist/is not available"
+    getBlockByNumber: false
+    full:
+      - https://api.avax.network/ext/bc/C/rpc
+      - wss://api.avax.network/ext/bc/C/ws
+#      - https://
+#      - wss://
+  fantom: #can't get block by hash, works with block number
+    getBlockByNumber: true
+    full:
+      - https://rpc.ftm.tools/
+      - wss://wsapi.fantom.network/
+  arbitrum: #working
+    full:
+      - https://arb1.arbitrum.io/rpc
+      - https://arbitrum-mainnet.infura.io/v3/
+      - https://apis.ankr.com///arbitrum/full/main
+      - wss://apis.ankr.com/wss///arbitrum/full/main
+  optimism: #working
+    full:
+      - https://mainnet.optimism.io/
+      - https://optimism-mainnet.infura.io/v3/
+      - wss://ws-mainnet.optimism.io
+  polygon: #working
+    full:
+      - https://nd-230-877-172.p2pify.com/5ff135b48390557e98be83ff5f4606de
+      - wss://ws-nd-230-877-172.p2pify.com/5ff135b48390557e98be83ff5f4606de
+      - https://polygon-mainnet.infura.io/v3/a1e775f9d09745d295e8f2502ae300d7
+      #- https://apis.ankr.com/7f3568fc7cd34da0a6fd791557562fd0/83b3887f64a3367f3dc84901e67971a9/polygon/full/main # Ankr RPCs not working
+      #- wss://apis.ankr.com/wss/7f3568fc7cd34da0a6fd791557562fd0/83b3887f64a3367f3dc84901e67971a9/polygon/full/main # Ankr RPCs not working
+      #- wss://rpc-mainnet.matic.network
+      - wss://ws-matic-mainnet.chainstacklabs.com
+      #- wss://rpc-mainnet.maticvigil.com/ws
+      - wss://rpc-mainnet.matic.quiknode.pro
+      #- wss://matic-mainnet-full-ws.bwarelabs.com
+      #- wss://matic-mainnet-archive-ws.bwarelabs.com # Bwarelabs wss RPCs return method not found errors
+  heco: #working
+    full:
+      - https://apis.ankr.com///heco/fast/main
+      - wss://pub001.hg.network/ws
+  xdai: #working
+    full:
+      - https://apis.ankr.com///xdai/fast/main
+      - wss://rpc.xdaichain.com/wss
+  bsc: #working
+    full:
+      #- wss://bsc-ws-node.nariox.org:443/
+      #- https://apis.ankr.com/13a170454b204a09a5a74969d9e6ee1f/83b3887f64a3367f3dc84901e67971a9/binance/full/main
+      #- wss://apis.ankr.com/wss/13a170454b204a09a5a74969d9e6ee1f/83b3887f64a3367f3dc84901e67971a9/binance/full/main #Ankr RPCs failing
+      - wss://solitary-autumn-lake.bsc.quiknode.pro/5ae982d695add4572c00074294efbc338e5a4c18/
+      - https://solitary-autumn-lake.bsc.quiknode.pro/5ae982d695add4572c00074294efbc338e5a4c18/
+  harmony: #doesn't work with shards since each shard has a different range of blocks and messes up our ethclient
+    # rpc lists are available at https://api.hmny.io/
+    full:
+      - wss://ws.s0.t.hmny.io/
+      - https://api.s0.t.hmny.io/
+      - https://api.harmony.one/
+      #archival:
+      - wss://a.ws.s0.t.hmny.io
+      - wss://ws.s1.t.hmny.io
+      - wss://ws.s2.t.hmny.io
+      - wss://ws.s3.t.hmny.io
+  klaytn: #need klay_subscribe
+    full:
+      - https://public-node-api.klaytnapi.com/v1/cypress
+      - wss://:@node-api.klaytnapi.com/v1/ws/open?chain-id=8217
+  celo: # websocket not available?
+    full:
+      - https://forno.celo.org
+
+  moonbeam: # working
+    # https://docs.moonbeam.network/builders/get-started/endpoints/
+    full:
+      - https://moonbeam.api.onfinality.io/public
+      - wss://moonbeam.api.onfinality.io/public-ws
+      - https://rpc.api.moonbeam.network
+      - wss://wss.api.moonbeam.network
+  moonriver: # working
+    full:
+      - https://moonriver.api.onfinality.io/public
+      - wss://moonriver.api.onfinality.io/public-ws
+      - https://rpc.moonriver.moonbeam.network
+      - wss://wss.moonriver.moonbeam.network
+  palm: # websocket not supported yet
+    full:
+      - https://palm-mainnet.infura.io/v3/
+      - wss://palm-mainnet.infura.io/ws/v3/
+  oec: # broken: Key not found in database: block height not found for hash. Works for BlockNumber
+    # https://forum.okt.club/d/257-how-to-use-oec-websocket
+    getBlockByNumber: true
+    full:
+      - https://exchaintmrpc.okex.org
+      - wss://exchainws.okex.org:8443
+solana:
+  lowPrioMaxRetries: 2
+  lowPrioRetryDelay: 100
+  rpc:
+    url: https://holy-dry-smoke.solana-mainnet.quiknode.pro/7f998df3fde5c9b99f724d8d7ae0668dc340225d/
+  ws:
+    url: wss://holy-dry-smoke.solana-mainnet.quiknode.pro/7f998df3fde5c9b99f724d8d7ae0668dc340225d/
+
+tsdb:
+ protoregistry:
+   enabled: true
