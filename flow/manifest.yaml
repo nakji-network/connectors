@@ -1,0 +1,7 @@
+name: flow
+author: nakji
+version: "0.0.0"
+
+outputPath: flow
+package: flow
+owner: nakji

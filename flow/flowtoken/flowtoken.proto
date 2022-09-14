@@ -1,0 +1,26 @@
+syntax = "proto3";
+package flowtoken;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/flow/flowtoken";
+
+message TokensDeposited {
+    google.protobuf.Timestamp   ts          = 1;
+    bytes                       blockId     = 2;
+    uint64                      height      = 3;
+    bytes                       txID        = 4;
+    uint64                      txIdx       = 5;
+    double                      amount      = 6;
+    bytes                       to          = 7;
+}
+
+message TokensWithdrawn {
+    google.protobuf.Timestamp   ts          = 1;
+    bytes                       blockId     = 2;
+    uint64                      height      = 3;
+    bytes                       txID        = 4;
+    uint64                      txIdx       = 5;
+    double                      amount      = 6;
+    bytes                       from        = 7;
+}
