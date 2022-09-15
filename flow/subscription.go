@@ -12,6 +12,7 @@ import (
 	"github.com/onflow/flow-go-sdk"
 	"github.com/onflow/flow-go-sdk/access/grpc"
 	"github.com/rs/zerolog/log"
+	"google.golang.org/grpc/codes"
 )
 
 type EventType struct {
@@ -108,7 +109,7 @@ func (s *Subscription) Logs() <-chan Log {
 
 func (s *Subscription) subscribe() {
 	backfilled := false
-	t := time.NewTicker(1 * time.Second)
+	t := time.NewTicker(2 * time.Second) // Block initialization time on main net is 2 seconds
 	for {
 		select {
 		case <-s.done:
@@ -117,16 +118,19 @@ func (s *Subscription) subscribe() {
 		case <-t.C:
 			// Try getting next block until success
 			if err := s.nextBlock(); err != nil {
-				s.errchan <- err
+				// Ignore not found error
+				if grpcErr, ok := err.(grpc.RPCError); !ok || grpcErr.GRPCStatus().Code() != codes.NotFound {
+					s.errchan <- err
+				}
 				continue
 			}
-			// backfill if needed
+			// Backfill if needed
 			if !backfilled && (s.fromBlock > 0 || s.numBlocks > 0) {
 				s.backfill()
 				backfilled = true
 			}
-			// get events for lastest block
-			s.getEvents(s.curBlock.Height, s.curBlock.Height)
+			// Get events for the lastest block
+			go s.getEvents(s.curBlock.Height, s.curBlock.Height)
 		}
 	}
 }
@@ -159,7 +163,7 @@ func (s *Subscription) backfill() {
 	} else if s.numBlocks > 0 {
 		startHeight = s.curBlock.Height - s.numBlocks
 	}
-	// backfill 250 blocks at once
+	// Backfill 250 blocks at once
 	for ; startHeight <= s.curBlock.Height; startHeight += 250 {
 		select {
 		case <-s.done:
@@ -183,7 +187,10 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 	for _, event := range s.events {
 		blockEvents, err := s.grpc.GetEventsForHeightRange(ctx, event, startHeight, endHeight)
 		if err != nil {
-			s.errchan <- err
+			// Ignore out of range error
+			if grpcErr, ok := err.(grpc.RPCError); !ok || grpcErr.GRPCStatus().Code() != codes.OutOfRange {
+				s.errchan <- err
+			}
 			continue
 		}
 		for _, blockEvent := range blockEvents {
