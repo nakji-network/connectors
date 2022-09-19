@@ -40,15 +40,23 @@ func (c SmartContract) Events() []string {
 func (c SmartContract) Message(vLog flow.Log) proto.Message {
 	switch vLog.Type.EventName {
 	case "TokensInitialized":
+		initialSupply := vLog.Value.Fields[0].(cadence.UFix64)
+		msg := &TokensInitialized{
+			Ts:          timestamppb.New(vLog.Timestamp),
+			BlockNumber: vLog.Height,
+			TxID:        vLog.TransactionID[:],
+			LogIndex:    uint64(vLog.TransactionIndex),
+		}
+		msg.InitialSupply, _ = strconv.ParseFloat(initialSupply.String(), 64)
+		return msg
 	case "TokensWithdrawn":
 		amount := vLog.Value.Fields[0].(cadence.UFix64)
 		from := vLog.Value.Fields[1].(cadence.Optional)
 		msg := &TokensWithdrawn{
-			Ts:      timestamppb.New(vLog.Timestamp),
-			BlockId: vLog.BlockID[:],
-			Height:  vLog.Height,
-			TxID:    vLog.TransactionID[:],
-			TxIdx:   uint64(vLog.TransactionIndex),
+			Ts:          timestamppb.New(vLog.Timestamp),
+			BlockNumber: vLog.Height,
+			TxID:        vLog.TransactionID[:],
+			LogIndex:    uint64(vLog.TransactionIndex),
 		}
 		msg.Amount, _ = strconv.ParseFloat(amount.String(), 64)
 		if from.Value != nil {
@@ -59,11 +67,10 @@ func (c SmartContract) Message(vLog flow.Log) proto.Message {
 		amount := vLog.Value.Fields[0].(cadence.UFix64)
 		to := vLog.Value.Fields[1].(cadence.Optional)
 		msg := &TokensDeposited{
-			Ts:      timestamppb.New(vLog.Timestamp),
-			BlockId: vLog.BlockID[:],
-			Height:  vLog.Height,
-			TxID:    vLog.TransactionID[:],
-			TxIdx:   uint64(vLog.TransactionIndex),
+			Ts:          timestamppb.New(vLog.Timestamp),
+			BlockNumber: vLog.Height,
+			TxID:        vLog.TransactionID[:],
+			LogIndex:    uint64(vLog.TransactionIndex),
 		}
 		msg.Amount, _ = strconv.ParseFloat(amount.String(), 64)
 		if to.Value != nil {
@@ -71,12 +78,45 @@ func (c SmartContract) Message(vLog flow.Log) proto.Message {
 		}
 		return msg
 	case "TokensMinted":
+		amount := vLog.Value.Fields[0].(cadence.UFix64)
+		msg := &TokensMinted{
+			Ts:          timestamppb.New(vLog.Timestamp),
+			BlockNumber: vLog.Height,
+			TxID:        vLog.TransactionID[:],
+			LogIndex:    uint64(vLog.TransactionIndex),
+		}
+		msg.Amount, _ = strconv.ParseFloat(amount.String(), 64)
+		return msg
 	case "TokensBurned":
+		amount := vLog.Value.Fields[0].(cadence.UFix64)
+		msg := &TokensBurned{
+			Ts:          timestamppb.New(vLog.Timestamp),
+			BlockNumber: vLog.Height,
+			TxID:        vLog.TransactionID[:],
+			LogIndex:    uint64(vLog.TransactionIndex),
+		}
+		msg.Amount, _ = strconv.ParseFloat(amount.String(), 64)
+		return msg
 	case "MinterCreated":
+		allowedAmount := vLog.Value.Fields[0].(cadence.UFix64)
+		msg := &MinterCreated{
+			Ts:          timestamppb.New(vLog.Timestamp),
+			BlockNumber: vLog.Height,
+			TxID:        vLog.TransactionID[:],
+			LogIndex:    uint64(vLog.TransactionIndex),
+		}
+		msg.AllowedAmount, _ = strconv.ParseFloat(allowedAmount.String(), 64)
+		return msg
 	case "BurnerCreated":
+		msg := &BurnerCreated{
+			Ts:          timestamppb.New(vLog.Timestamp),
+			BlockNumber: vLog.Height,
+			TxID:        vLog.TransactionID[:],
+			LogIndex:    uint64(vLog.TransactionIndex),
+		}
+		return msg
 	default:
 		log.Error().Msgf("invalid event: %s", vLog.Type.EventName)
 		return nil
 	}
-	return nil
 }

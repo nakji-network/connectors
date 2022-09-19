@@ -5,22 +5,59 @@ import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/nakji-network/connectors/flow/flowtoken";
 
-message TokensDeposited {
-    google.protobuf.Timestamp   ts          = 1;
-    bytes                       blockId     = 2;
-    uint64                      height      = 3;
-    bytes                       txID        = 4;
-    uint64                      txIdx       = 5;
-    double                      amount      = 6;
-    bytes                       to          = 7;
+message TokensInitialized {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    double                      initialSupply   = 5;
 }
 
 message TokensWithdrawn {
-    google.protobuf.Timestamp   ts          = 1;
-    bytes                       blockId     = 2;
-    uint64                      height      = 3;
-    bytes                       txID        = 4;
-    uint64                      txIdx       = 5;
-    double                      amount      = 6;
-    bytes                       from        = 7;
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    double                      amount          = 5;
+    bytes                       from            = 6;
+}
+
+message TokensDeposited {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    double                      amount          = 5;
+    bytes                       to              = 6;
+}
+
+message TokensMinted {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    double                      amount          = 5;                      
+}
+
+message TokensBurned {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    double                      amount          = 5;                      
+}
+
+message MinterCreated {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    double                      allowedAmount   = 5;
+}
+
+message BurnerCreated {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
 }
