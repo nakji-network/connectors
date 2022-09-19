@@ -1,0 +1,58 @@
+syntax = "proto3";
+package flowstakingcollection;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/flow/flowstakingcollection";
+
+message NodeAddedToStakingCollection {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      role                = 6;
+    double                      amountCommitted     = 7;
+    bytes                       address             = 8;
+}
+
+message DelegatorAddedToStakingCollection {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+    double                      amountCommitted     = 7;
+    bytes                       address             = 8;
+}
+
+message NodeRemovedFromStakingCollection {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      role                = 6;
+    bytes                       address             = 7;
+}
+
+message DelegatorRemovedFromStakingCollection {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+    bytes                       address             = 7;
+}
+
+message MachineAccountCreated {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      role                = 6;
+    bytes                       address             = 7;
+}

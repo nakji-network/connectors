@@ -1,0 +1,220 @@
+syntax = "proto3";
+package flowidtablestaking;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/flow/flowidtablestaking";
+
+message NewEpoch {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    double                      totalStaked         = 5;
+    double                      totalRewardPayout   = 6;
+}
+
+message EpochTotalRewardsPaid {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    double                      total               = 5;
+    double                      fromFees            = 6;
+    double                      minted              = 7;
+    double                      feesBurned          = 8;
+}
+
+message NewNodeCreated {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      role                = 6;
+    double                      amountCommitted     = 7;
+}
+
+message TokensCommitted {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    double                      amount              = 6;
+}
+
+message TokensStaked {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    double                      amount              = 6;
+}
+
+message TokensUnstaking {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    double                      amount              = 6;
+}
+
+message TokensUnstaked {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    double                      amount              = 6;
+}
+
+message NodeRemovedAndRefunded {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    double                      amount              = 6;
+}
+
+message RewardsPaid {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    double                      amount              = 6;
+}
+
+message UnstakedTokensWithdrawn {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    double                      amount              = 6;
+}
+
+message RewardTokensWithdrawn {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    double                      amount              = 6;
+}
+
+message NetworkingAddressUpdated {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    string                      newAddress          = 6;
+}
+
+message NewDelegatorCreated {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+}
+
+message DelegatorTokensCommitted {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+    double                      amount              = 7;
+}
+
+message DelegatorTokensStaked {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+    double                      amount              = 7;
+}
+
+message DelegatorTokensUnstaking {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+    double                      amount              = 7;
+}
+
+message DelegatorTokensUnstaked {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+    double                      amount              = 7;
+}
+
+message DelegatorRewardsPaid {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+    double                      amount              = 7;
+}
+
+message DelegatorUnstakedTokensWithdrawn {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+    double                      amount              = 7;
+}
+
+message DelegatorRewardTokensWithdrawn {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      nodeID              = 5;
+    uint32                      delegatorID         = 6;
+    double                      amount              = 7;
+}
+
+message NewDelegatorCutPercentage {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    double                      newCutPercentage    = 5;
+}
+
+message NewWeeklyPayout {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    double                      newPayout           = 5;
+}
+
+message NewStakingMinimums {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    map<uint32, double>         newMinimums         = 5;
+}

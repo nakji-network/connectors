@@ -1,0 +1,42 @@
+syntax = "proto3";
+package flowfees;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/flow/flowfees";
+
+message TokensDeposited {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    double                      amount          = 5;
+}
+
+message TokensWithdrawn {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    double                      amount          = 5;
+}
+
+message FeesDeducted {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    double                      amount          = 5;
+    double                      inclusionEffort = 6;
+    double                      executionEffort = 7;
+}
+
+message FeeParametersChanged {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    double                      surgeFactor         = 5;
+    double                      inclusionEffortCost = 6;
+    double                      executionEffortCost = 7;
+}

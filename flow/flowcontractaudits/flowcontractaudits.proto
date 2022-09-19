@@ -1,0 +1,44 @@
+syntax = "proto3";
+package flowcontractaudits;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/flow/flowcontractaudits";
+
+message AuditorCreated {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+}
+
+message VoucherCreated {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    bytes                       address             = 5;
+    bool                        recurrent           = 6;
+    uint64                      expiryBlockHeight   = 7;
+    string                      codeHash            = 8;
+}
+
+message VoucherUsed {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    bytes                       address             = 5;
+    bool                        recurrent           = 6;
+    uint64                      expiryBlockHeight   = 7;
+}
+
+message VoucherRemoved {
+    google.protobuf.Timestamp   ts                  = 1;
+    uint64                      blockNumber         = 2;
+    bytes                       txID                = 3;
+    uint64                      logIndex            = 4;
+    string                      key                 = 5;
+    bool                        recurrent           = 6;
+    uint64                      expiryBlockHeight   = 7;
+}

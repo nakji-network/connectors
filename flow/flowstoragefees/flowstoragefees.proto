@@ -1,0 +1,22 @@
+syntax = "proto3";
+package flowstoragefees;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/flow/flowstoragefees";
+
+message StorageMegaBytesPerReservedFLOWChanged {
+    google.protobuf.Timestamp   ts                              = 1;
+    uint64                      blockNumber                     = 2;
+    bytes                       txID                            = 3;
+    uint64                      logIndex                        = 4;
+    double                      storageMegaBytesPerReservedFLOW = 5;
+}
+
+message MinimumStorageReservationChanged {
+    google.protobuf.Timestamp   ts                        = 1;
+    uint64                      blockNumber               = 2;
+    bytes                       txID                      = 3;
+    uint64                      logIndex                  = 4;
+    double                      minimumStorageReservation = 5;
+}

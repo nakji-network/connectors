@@ -1,0 +1,59 @@
+syntax = "proto3";
+package lockedtokens;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/flow/lockedtokens";
+
+message SharedAccountRegistered {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    bytes                       address         = 5;
+}
+
+message UnlockedAccountRegistered {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    bytes                       address         = 5;
+}
+
+message UnlockLimitIncreased {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    bytes                       address         = 5;
+    double                      increaseAmount  = 6;
+    double                      newLimit        = 7;
+}
+
+message LockedAccountRegisteredAsNode {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    bytes                       address         = 5;
+    string                      nodeID          = 6;
+}
+
+message LockedAccountRegisteredAsDelegator {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    bytes                       address         = 5;
+    string                      nodeID          = 6;
+}
+
+message LockedTokensDeposited {
+    google.protobuf.Timestamp   ts              = 1;
+    uint64                      blockNumber     = 2;
+    bytes                       txID            = 3;
+    uint64                      logIndex        = 4;
+    bytes                       address         = 5;
+    double                      amount          = 6;
+}
