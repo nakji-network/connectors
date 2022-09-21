@@ -105,27 +105,27 @@ func (sub *Subscription[Log]) subscribe() {
 			if sub.curBlock == latestBlock {
 				continue
 			}
-			if sub.curBlock == 0 {
-				sub.curBlock = latestBlock
-			}
 			// Backfill if needed
 			if !backfilled && (sub.FromBlock > 0 || sub.NumBlocks > 0) {
-				sub.backfill()
+				sub.backfill(latestBlock)
 				backfilled = true
+			} else if sub.curBlock == 0 {
+				go sub.getEvents(latestBlock, latestBlock)
+			} else {
+				go sub.getEvents(sub.curBlock+1, latestBlock)
 			}
-			go sub.getEvents(sub.curBlock, latestBlock)
 			sub.curBlock = latestBlock
 		}
 	}
 }
 
-func (sub *Subscription[Log]) backfill() {
+func (sub *Subscription[Log]) backfill(latestBlock uint64) {
 	log.Info().Msg("start backfilling")
 	defer log.Info().Msg("stop backfilling")
 	if sub.FromBlock > 0 {
-		sub.getEvents(sub.FromBlock, sub.curBlock)
+		sub.getEvents(sub.FromBlock, latestBlock)
 	} else if sub.NumBlocks > 0 {
-		sub.getEvents(sub.curBlock-sub.NumBlocks, sub.curBlock)
+		sub.getEvents(latestBlock-sub.NumBlocks, latestBlock)
 	}
 }
 
