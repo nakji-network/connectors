@@ -125,30 +125,28 @@ func (s *Subscription) subscribe() {
 			if s.curBlock != nil && s.curBlock.Height == latest.Height {
 				continue
 			}
-			if s.curBlock == nil {
-				s.curBlock = latest
-			}
 			// Backfill if needed
 			if !backfilled && (s.fromBlock > 0 || s.numBlocks > 0) {
-				s.backfill()
+				s.backfill(latest.Height)
 				backfilled = true
+			} else if s.curBlock == nil {
+				go s.getEvents(latest.Height, latest.Height)
+			} else {
+				go s.getEvents(s.curBlock.Height+1, latest.Height)
 			}
-			go s.getEvents(s.curBlock.Height, latest.Height)
 			s.curBlock = latest
 		}
 	}
 }
 
-func (s *Subscription) backfill() {
+func (s *Subscription) backfill(latestBlock uint64) {
 	log.Info().Msg("start backfilling")
 	defer log.Info().Msg("stop backfilling")
-	var startHeight uint64
 	if s.fromBlock > 0 {
-		startHeight = s.fromBlock
+		s.getEvents(s.fromBlock, latestBlock)
 	} else if s.numBlocks > 0 {
-		startHeight = s.curBlock.Height - s.numBlocks
+		s.getEvents(latestBlock-s.numBlocks, latestBlock)
 	}
-	s.getEvents(startHeight, s.curBlock.Height)
 }
 
 func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
