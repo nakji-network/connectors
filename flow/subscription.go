@@ -10,8 +10,10 @@ import (
 
 	"github.com/onflow/cadence"
 	"github.com/onflow/flow-go-sdk"
-	"github.com/onflow/flow-go-sdk/access/grpc"
+	flowgrpc "github.com/onflow/flow-go-sdk/access/grpc"
 	"github.com/rs/zerolog/log"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 type EventType struct {
@@ -44,7 +46,7 @@ type Log struct {
 
 type Subscription struct {
 	host      string
-	grpc      *grpc.Client
+	grpc      *flowgrpc.Client
 	fromBlock uint64
 	numBlocks uint64
 	events    []string
@@ -55,7 +57,11 @@ type Subscription struct {
 }
 
 func NewSubscription(ctx context.Context, host string, events []string, fromBlock uint64, numBlocks uint64) (*Subscription, error) {
-	cli, err := grpc.NewClient(host)
+	cli, err := flowgrpc.NewClient(
+		host,
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(1<<25)), // 32 MB
+	)
 	if err != nil {
 		return nil, err
 	}
