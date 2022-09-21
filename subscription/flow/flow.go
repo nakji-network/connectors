@@ -8,8 +8,10 @@ import (
 
 	"github.com/onflow/cadence"
 	"github.com/onflow/flow-go-sdk"
-	"github.com/onflow/flow-go-sdk/access/grpc"
+	flowgrpc "github.com/onflow/flow-go-sdk/access/grpc"
+	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
+	"google.golang.org/grpc/credentials/insecure"
 )
 
 type EventType struct {
@@ -41,11 +43,15 @@ type Log struct {
 }
 
 type GrpcClient struct {
-	gprc *grpc.Client
+	gprc *flowgrpc.Client
 }
 
 func NewGrpcClient(ctx context.Context, host string) (*GrpcClient, error) {
-	cli, err := grpc.NewClient(host)
+	cli, err := flowgrpc.NewClient(
+		host,
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(1<<25)), // 32 MB
+	)
 	if err != nil {
 		return nil, err
 	}
@@ -78,7 +84,7 @@ func (cli *GrpcClient) GetLogsForHeightRange(ctx context.Context, topics []strin
 			default:
 				blockEvents, err := cli.gprc.GetEventsForHeightRange(ctx, topic, startHeight, endHeight)
 				if err != nil {
-					if grpcErr, ok := err.(grpc.RPCError); ok && grpcErr.GRPCStatus().Code() == codes.OutOfRange {
+					if grpcErr, ok := err.(flowgrpc.RPCError); ok && grpcErr.GRPCStatus().Code() == codes.OutOfRange {
 						return
 					}
 					errChan <- err

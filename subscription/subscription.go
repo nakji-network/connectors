@@ -137,9 +137,6 @@ func (sub *Subscription[Log]) getEvents(startHeight uint64, endHeight uint64) {
 				return
 			default:
 				end := start + sub.BackfillBatchSize - 1
-				if start > endHeight {
-					start = endHeight
-				}
 				if end > endHeight {
 					end = endHeight
 				}
@@ -150,11 +147,24 @@ func (sub *Subscription[Log]) getEvents(startHeight uint64, endHeight uint64) {
 		ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
 		defer cancel()
 		logs, errs := sub.Grpc.GetLogsForHeightRange(ctx, sub.Topics, startHeight, endHeight)
-		for log := range logs {
-			sub.logChan <- log
-		}
-		for err := range errs {
-			sub.errChan <- err
+		for {
+			select {
+			case log, ok := <-logs:
+				if ok {
+					sub.logChan <- log
+				} else {
+					logs = nil
+				}
+			case err, ok := <-errs:
+				if ok {
+					sub.errChan <- err
+				} else {
+					errs = nil
+				}
+			}
+			if logs == nil && errs == nil {
+				break
+			}
 		}
 	}
 }
