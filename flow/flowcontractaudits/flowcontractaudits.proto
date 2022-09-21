@@ -29,8 +29,9 @@ message VoucherUsed {
     bytes                       txID                = 3;
     uint64                      logIndex            = 4;
     bytes                       address             = 5;
-    bool                        recurrent           = 6;
-    uint64                      expiryBlockHeight   = 7;
+    string                      key                 = 6;
+    bool                        recurrent           = 7;
+    uint64                      expiryBlockHeight   = 8;
 }
 
 message VoucherRemoved {

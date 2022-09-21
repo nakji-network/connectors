@@ -8,6 +8,11 @@ import (
 	"google.golang.org/protobuf/proto"
 )
 
+type ContractID struct {
+	Addr string
+	Name string
+}
+
 type Config struct {
 	Host      string
 	FromBlock uint64
@@ -17,23 +22,23 @@ type Config struct {
 type Connector struct {
 	*connector.Connector
 	*Config
-	contracts map[string]ISmartContract
+	contracts map[ContractID]ISmartContract
 }
 
 func New(c *connector.Connector, config *Config) *Connector {
 	return &Connector{
 		Connector: c,
 		Config:    config,
-		contracts: make(map[string]ISmartContract),
+		contracts: make(map[ContractID]ISmartContract),
 	}
 }
 
 func (c *Connector) AddContract(sc ISmartContract) {
-	c.contracts[sc.Address()] = sc
+	c.contracts[ContractID{sc.Address(), sc.Name()}] = sc
 }
 
-func (c *Connector) GetContract(addr string) ISmartContract {
-	return c.contracts[addr]
+func (c *Connector) GetContract(addr string, name string) ISmartContract {
+	return c.contracts[ContractID{addr, name}]
 }
 
 func (c *Connector) Start() {
@@ -69,9 +74,9 @@ func (c *Connector) Start() {
 }
 
 func (c *Connector) parse(vLog Log) proto.Message {
-	contract := c.GetContract(vLog.Type.ContractAddr)
+	contract := c.GetContract(vLog.Type.ContractAddr, vLog.Type.ContractName)
 	if contract == nil {
-		log.Info().Str("address", vLog.Type.ContractAddr).Msg("event from unsupported address")
+		log.Info().Str("address", vLog.Type.ContractAddr).Str("name", vLog.Type.ContractName).Msg("event from unsupported address")
 		return nil
 	}
 	return contract.Message(vLog)

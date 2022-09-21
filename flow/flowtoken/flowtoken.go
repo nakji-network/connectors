@@ -1,8 +1,6 @@
 package flowtoken
 
 import (
-	"strconv"
-
 	"github.com/nakji-network/connectors/flow"
 	"github.com/onflow/cadence"
 	"github.com/rs/zerolog/log"
@@ -11,8 +9,13 @@ import (
 )
 
 var Types = []proto.Message{
+	&TokensInitialized{},
 	&TokensWithdrawn{},
 	&TokensDeposited{},
+	&TokensMinted{},
+	&TokensBurned{},
+	&MinterCreated{},
+	&BurnerCreated{},
 }
 
 type SmartContract struct{}
@@ -42,12 +45,12 @@ func (c SmartContract) Message(vLog flow.Log) proto.Message {
 	case "TokensInitialized":
 		initialSupply := vLog.Value.Fields[0].(cadence.UFix64)
 		msg := &TokensInitialized{
-			Ts:          timestamppb.New(vLog.Timestamp),
-			BlockNumber: vLog.Height,
-			TxID:        vLog.TransactionID[:],
-			LogIndex:    uint64(vLog.TransactionIndex),
+			Ts:            timestamppb.New(vLog.Timestamp),
+			BlockNumber:   vLog.Height,
+			TxID:          vLog.TransactionID[:],
+			LogIndex:      uint64(vLog.TransactionIndex),
+			InitialSupply: flow.UFix64ToFloat64(initialSupply),
 		}
-		msg.InitialSupply, _ = strconv.ParseFloat(initialSupply.String(), 64)
 		return msg
 	case "TokensWithdrawn":
 		amount := vLog.Value.Fields[0].(cadence.UFix64)
@@ -57,8 +60,8 @@ func (c SmartContract) Message(vLog flow.Log) proto.Message {
 			BlockNumber: vLog.Height,
 			TxID:        vLog.TransactionID[:],
 			LogIndex:    uint64(vLog.TransactionIndex),
+			Amount:      flow.UFix64ToFloat64(amount),
 		}
-		msg.Amount, _ = strconv.ParseFloat(amount.String(), 64)
 		if from.Value != nil {
 			msg.From = from.Value.(cadence.Address).Bytes()
 		}
@@ -71,8 +74,8 @@ func (c SmartContract) Message(vLog flow.Log) proto.Message {
 			BlockNumber: vLog.Height,
 			TxID:        vLog.TransactionID[:],
 			LogIndex:    uint64(vLog.TransactionIndex),
+			Amount:      flow.UFix64ToFloat64(amount),
 		}
-		msg.Amount, _ = strconv.ParseFloat(amount.String(), 64)
 		if to.Value != nil {
 			msg.To = to.Value.(cadence.Address).Bytes()
 		}
@@ -84,8 +87,8 @@ func (c SmartContract) Message(vLog flow.Log) proto.Message {
 			BlockNumber: vLog.Height,
 			TxID:        vLog.TransactionID[:],
 			LogIndex:    uint64(vLog.TransactionIndex),
+			Amount:      flow.UFix64ToFloat64(amount),
 		}
-		msg.Amount, _ = strconv.ParseFloat(amount.String(), 64)
 		return msg
 	case "TokensBurned":
 		amount := vLog.Value.Fields[0].(cadence.UFix64)
@@ -94,18 +97,18 @@ func (c SmartContract) Message(vLog flow.Log) proto.Message {
 			BlockNumber: vLog.Height,
 			TxID:        vLog.TransactionID[:],
 			LogIndex:    uint64(vLog.TransactionIndex),
+			Amount:      flow.UFix64ToFloat64(amount),
 		}
-		msg.Amount, _ = strconv.ParseFloat(amount.String(), 64)
 		return msg
 	case "MinterCreated":
 		allowedAmount := vLog.Value.Fields[0].(cadence.UFix64)
 		msg := &MinterCreated{
-			Ts:          timestamppb.New(vLog.Timestamp),
-			BlockNumber: vLog.Height,
-			TxID:        vLog.TransactionID[:],
-			LogIndex:    uint64(vLog.TransactionIndex),
+			Ts:            timestamppb.New(vLog.Timestamp),
+			BlockNumber:   vLog.Height,
+			TxID:          vLog.TransactionID[:],
+			LogIndex:      uint64(vLog.TransactionIndex),
+			AllowedAmount: flow.UFix64ToFloat64(allowedAmount),
 		}
-		msg.AllowedAmount, _ = strconv.ParseFloat(allowedAmount.String(), 64)
 		return msg
 	case "BurnerCreated":
 		msg := &BurnerCreated{
