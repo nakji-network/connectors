@@ -12,7 +12,6 @@ import (
 	"github.com/onflow/flow-go-sdk"
 	"github.com/onflow/flow-go-sdk/access/grpc"
 	"github.com/rs/zerolog/log"
-	"google.golang.org/grpc/codes"
 )
 
 type EventType struct {
@@ -116,42 +115,28 @@ func (s *Subscription) subscribe() {
 			t.Stop()
 			return
 		case <-t.C:
-			// Try getting next block until success
-			if err := s.nextBlock(); err != nil {
-				// Ignore not found error
-				if grpcErr, ok := err.(grpc.RPCError); !ok || grpcErr.GRPCStatus().Code() != codes.NotFound {
-					s.errchan <- err
-				}
+			ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+			latest, err := s.grpc.GetLatestBlockHeader(ctx, true)
+			cancel()
+			if err != nil {
+				s.errchan <- err
 				continue
+			}
+			if s.curBlock != nil && s.curBlock.Height == latest.Height {
+				continue
+			}
+			if s.curBlock == nil {
+				s.curBlock = latest
 			}
 			// Backfill if needed
 			if !backfilled && (s.fromBlock > 0 || s.numBlocks > 0) {
 				s.backfill()
 				backfilled = true
 			}
-			// Get events for the lastest block
-			go s.getEvents(s.curBlock.Height, s.curBlock.Height)
+			go s.getEvents(s.curBlock.Height, latest.Height)
+			s.curBlock = latest
 		}
 	}
-}
-
-func (s *Subscription) nextBlock() error {
-	var (
-		nextBlock *flow.BlockHeader
-		err       error
-	)
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	defer cancel()
-	if s.curBlock == nil {
-		nextBlock, err = s.grpc.GetLatestBlockHeader(ctx, true)
-	} else {
-		nextBlock, err = s.grpc.GetBlockHeaderByHeight(ctx, s.curBlock.Height+1)
-	}
-	if err != nil {
-		return err
-	}
-	s.curBlock = nextBlock
-	return nil
 }
 
 func (s *Subscription) backfill() {
@@ -163,53 +148,49 @@ func (s *Subscription) backfill() {
 	} else if s.numBlocks > 0 {
 		startHeight = s.curBlock.Height - s.numBlocks
 	}
-	// Backfill 250 blocks at once
-	for ; startHeight <= s.curBlock.Height; startHeight += 250 {
+	s.getEvents(startHeight, s.curBlock.Height)
+}
+
+func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
+	for start := startHeight; start <= endHeight; start += 250 {
 		select {
 		case <-s.done:
 			return
 		default:
-			endHeight := startHeight + 249
-			if startHeight > s.curBlock.Height {
-				startHeight = s.curBlock.Height
+			end := start + 249
+			if start > endHeight {
+				start = endHeight
 			}
-			if endHeight > s.curBlock.Height {
-				endHeight = s.curBlock.Height
+			if end > endHeight {
+				end = endHeight
 			}
-			s.getEvents(startHeight, endHeight)
-		}
-	}
-}
-
-func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
-	defer cancel()
-	for _, event := range s.events {
-		blockEvents, err := s.grpc.GetEventsForHeightRange(ctx, event, startHeight, endHeight)
-		if err != nil {
-			// Ignore out of range error
-			if grpcErr, ok := err.(grpc.RPCError); !ok || grpcErr.GRPCStatus().Code() != codes.OutOfRange {
-				s.errchan <- err
-			}
-			continue
-		}
-		for _, blockEvent := range blockEvents {
-			for _, ev := range blockEvent.Events {
-				t := strings.Split(ev.Type, ".")
-				s.logs <- Log{
-					BlockID:   blockEvent.BlockID,
-					Height:    blockEvent.Height,
-					Timestamp: blockEvent.BlockTimestamp,
-					Type: EventType{
-						ContractAddr: t[1],
-						ContractName: t[2],
-						EventName:    t[3],
-					},
-					TransactionID:    ev.TransactionID,
-					TransactionIndex: ev.TransactionIndex,
-					EventIndex:       ev.EventIndex,
-					Value:            ev.Value,
-					Payload:          ev.Payload,
+			for _, event := range s.events {
+				ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
+				blockEvents, err := s.grpc.GetEventsForHeightRange(ctx, event, start, end)
+				cancel()
+				if err != nil {
+					s.errchan <- err
+					continue
+				}
+				for _, blockEvent := range blockEvents {
+					for _, ev := range blockEvent.Events {
+						t := strings.Split(ev.Type, ".")
+						s.logs <- Log{
+							BlockID:   blockEvent.BlockID,
+							Height:    blockEvent.Height,
+							Timestamp: blockEvent.BlockTimestamp,
+							Type: EventType{
+								ContractAddr: t[1],
+								ContractName: t[2],
+								EventName:    t[3],
+							},
+							TransactionID:    ev.TransactionID,
+							TransactionIndex: ev.TransactionIndex,
+							EventIndex:       ev.EventIndex,
+							Value:            ev.Value,
+							Payload:          ev.Payload,
+						}
+					}
 				}
 			}
 		}
