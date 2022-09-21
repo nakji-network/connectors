@@ -63,17 +63,6 @@ func (cli *GrpcClient) GetLatestBlock(ctx context.Context) (uint64, error) {
 	return header.Height, nil
 }
 
-func (cli *GrpcClient) CheckIfBlockExists(ctx context.Context, height uint64) (bool, error) {
-	_, err := cli.gprc.GetBlockHeaderByHeight(ctx, height)
-	if err != nil {
-		if grpcErr, ok := err.(grpc.RPCError); ok && grpcErr.GRPCStatus().Code() == codes.OutOfRange {
-			return false, nil
-		}
-		return false, err
-	}
-	return true, nil
-}
-
 func (cli *GrpcClient) GetLogsForHeightRange(ctx context.Context, topics []string, startHeight uint64, endHeight uint64) (<-chan Log, <-chan error) {
 	logChan := make(chan Log, 100)
 	errChan := make(chan error, 100)

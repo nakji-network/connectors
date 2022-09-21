@@ -11,14 +11,12 @@ import (
 )
 
 const (
-	DefaultLogChanSize       = 1000
-	DefaultErrChanSize       = 1000
-	DefaultBackfillBatchSize = 100
+	DefaultLogChanSize = 1000
+	DefaultErrChanSize = 1000
 )
 
 type GrpcClient[Log any] interface {
 	GetLatestBlock(ctx context.Context) (height uint64, err error)
-	CheckIfBlockExists(ctx context.Context, height uint64) (exists bool, err error)
 	GetLogsForHeightRange(ctx context.Context, topics []string, startHeight uint64, endHeight uint64) (logs <-chan Log, errs <-chan error)
 }
 
@@ -38,7 +36,7 @@ type Subscription[Log any] struct {
 
 	done    chan struct{}
 	logChan chan Log
-	errchan chan error
+	errChan chan error
 }
 
 func (sub *Subscription[Log]) Subscribe(ctx context.Context) error {
@@ -69,7 +67,7 @@ func (sub *Subscription[Log]) Done() <-chan struct{} {
 }
 
 func (sub *Subscription[Log]) Errs() <-chan error {
-	return sub.errchan
+	return sub.errChan
 }
 
 func (sub *Subscription[Log]) Logs() <-chan Log {
@@ -83,12 +81,9 @@ func (sub *Subscription[Log]) init() {
 	if sub.ErrChanSize == 0 {
 		sub.ErrChanSize = DefaultErrChanSize
 	}
-	if sub.BackfillBatchSize == 0 {
-		sub.BackfillBatchSize = DefaultBackfillBatchSize
-	}
 	sub.done = make(chan struct{})
 	sub.logChan = make(chan Log, sub.LogChanSize)
-	sub.errchan = make(chan error, sub.ErrChanSize)
+	sub.errChan = make(chan error, sub.ErrChanSize)
 }
 
 func (sub *Subscription[Log]) subscribe() {
@@ -100,82 +95,66 @@ func (sub *Subscription[Log]) subscribe() {
 			t.Stop()
 			return
 		case <-t.C:
-			// Try getting next block until success
-			if ok, err := sub.nextBlock(); err != nil {
-				sub.errchan <- err
+			ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+			latestBlock, err := sub.Grpc.GetLatestBlock(ctx)
+			cancel()
+			if err != nil {
+				sub.errChan <- err
 				continue
-			} else if !ok {
+			}
+			if sub.curBlock == latestBlock {
 				continue
+			}
+			if sub.curBlock == 0 {
+				sub.curBlock = latestBlock
 			}
 			// Backfill if needed
 			if !backfilled && (sub.FromBlock > 0 || sub.NumBlocks > 0) {
 				sub.backfill()
 				backfilled = true
 			}
-			// Get events for the lastest block
-			go sub.getEvents(sub.curBlock, sub.curBlock)
+			go sub.getEvents(sub.curBlock, latestBlock)
+			sub.curBlock = latestBlock
 		}
-	}
-}
-
-func (sub *Subscription[Log]) nextBlock() (bool, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-	defer cancel()
-	if sub.curBlock == 0 {
-		lastestBlock, err := sub.Grpc.GetLatestBlock(ctx)
-		if err != nil {
-			return false, err
-		}
-		sub.curBlock = lastestBlock
-		return true, nil
-	} else {
-		ok, err := sub.Grpc.CheckIfBlockExists(ctx, sub.curBlock+1)
-		if err != nil {
-			return false, err
-		}
-		if !ok {
-			return false, nil
-		}
-		sub.curBlock++
-		return true, nil
 	}
 }
 
 func (sub *Subscription[Log]) backfill() {
 	log.Info().Msg("start backfilling")
 	defer log.Info().Msg("stop backfilling")
-	var startHeight uint64
 	if sub.FromBlock > 0 {
-		startHeight = sub.FromBlock
+		sub.getEvents(sub.FromBlock, sub.curBlock)
 	} else if sub.NumBlocks > 0 {
-		startHeight = sub.curBlock - sub.NumBlocks
-	}
-	// Backfill {{ BackfillBatchSize }} blocks at once
-	for ; startHeight <= sub.curBlock; startHeight += sub.BackfillBatchSize {
-		select {
-		case <-sub.done:
-			return
-		default:
-			endHeight := startHeight + sub.BackfillBatchSize - 1
-			if startHeight > sub.curBlock {
-				startHeight = sub.curBlock
-			}
-			if endHeight > sub.curBlock {
-				endHeight = sub.curBlock
-			}
-			sub.getEvents(startHeight, endHeight)
-		}
+		sub.getEvents(sub.curBlock-sub.NumBlocks, sub.curBlock)
 	}
 }
 
 func (sub *Subscription[Log]) getEvents(startHeight uint64, endHeight uint64) {
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
-	defer cancel()
-	logs, errs := sub.Grpc.GetLogsForHeightRange(ctx, sub.Topics, startHeight, endHeight)
-	for log := range logs {
-		sub.logChan <- log
-	}
-	for err := range errs {
-		sub.errchan <- err
+	if sub.BackfillBatchSize > 0 && endHeight-startHeight > sub.BackfillBatchSize {
+		for start := startHeight; start <= endHeight; start += sub.BackfillBatchSize {
+			select {
+			case <-sub.done:
+				return
+			default:
+				end := start + sub.BackfillBatchSize - 1
+				if start > endHeight {
+					start = endHeight
+				}
+				if end > endHeight {
+					end = endHeight
+				}
+				sub.getEvents(start, end)
+			}
+		}
+	} else {
+		ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
+		defer cancel()
+		logs, errs := sub.Grpc.GetLogsForHeightRange(ctx, sub.Topics, startHeight, endHeight)
+		for log := range logs {
+			sub.logChan <- log
+		}
+		for err := range errs {
+			sub.errChan <- err
+		}
 	}
 }

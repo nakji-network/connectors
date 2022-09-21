@@ -15,28 +15,28 @@ type Log struct {
 	Timestamp time.Time
 	// Consensus fields:
 	// address of the contract that generated the event
-	Address common.Address `json:"address" gencodec:"required"`
+	Address common.Address
 	// list of topics provided by the contract.
-	Topics []common.Hash `json:"topics" gencodec:"required"`
+	Topics []common.Hash
 	// supplied by the contract, usually ABI-encoded
-	Data []byte `json:"data" gencodec:"required"`
+	Data []byte
 
 	// Derived fields. These fields are filled in by the node
 	// but not secured by consensus.
 	// block in which the transaction was included
-	BlockNumber uint64 `json:"blockNumber"`
+	BlockNumber uint64
 	// hash of the transaction
-	TxHash common.Hash `json:"transactionHash" gencodec:"required"`
+	TxHash common.Hash
 	// index of the transaction in the block
-	TxIndex uint `json:"transactionIndex"`
+	TxIndex uint
 	// hash of the block in which the transaction was included
-	BlockHash common.Hash `json:"blockHash"`
+	BlockHash common.Hash
 	// index of the log in the block
-	Index uint `json:"logIndex"`
+	Index uint
 
 	// The Removed field is true if this log was reverted due to a chain reorganisation.
 	// You must pay attention to this field if you receive logs through a filter query.
-	Removed bool `json:"removed"`
+	Removed bool
 }
 
 type GrpcClient struct {
@@ -58,18 +58,6 @@ func NewGrpcClient(ctx context.Context, url string) (*GrpcClient, error) {
 
 func (cli *GrpcClient) GetLatestBlock(ctx context.Context) (uint64, error) {
 	return cli.grpc.BlockNumber(ctx)
-}
-
-func (cli *GrpcClient) CheckIfBlockExists(ctx context.Context, height uint64) (bool, error) {
-	header, err := cli.grpc.HeaderByNumber(ctx, big.NewInt(int64(height)))
-	if err != nil {
-		if err == ethereum.NotFound {
-			return false, nil
-		}
-		return false, err
-	}
-	cli.cache.Add(height, blockTimeToTime(header.Time))
-	return true, nil
 }
 
 func (cli *GrpcClient) GetLogsForHeightRange(ctx context.Context, topics []string, startHeight uint64, endHeight uint64) (<-chan Log, <-chan error) {
