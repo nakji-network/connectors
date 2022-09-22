@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package googletrends;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "blep.ai/data/connectors/source/googletrends";
+
+message TrendScore {
+  google.protobuf.Timestamp Ts        = 1;
+  google.protobuf.Timestamp Fetched   = 2;
+  double Value                        = 3;
+  double ValueNormalized              = 4;
+}

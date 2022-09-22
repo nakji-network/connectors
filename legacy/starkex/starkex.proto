@@ -1,0 +1,16 @@
+syntax = "proto3";
+package starkex;
+
+option go_package = "blep.ai/data/connectors/source/starkex";
+
+import "google/protobuf/timestamp.proto";
+
+message Position {
+	google.protobuf.Timestamp ts = 1;
+	string asset = 2;
+	string assetType = 3;
+    string amount = 4;
+    int64 cachedFundingIndex = 5;
+    string vaultKey = 6;
+    uint64 blockNumber = 7;
+}

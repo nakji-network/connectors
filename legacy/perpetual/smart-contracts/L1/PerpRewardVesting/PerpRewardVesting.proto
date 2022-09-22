@@ -1,0 +1,20 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package PerpRewardVesting;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/perpetual/smart-contracts/L1/PerpRewardVesting";
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	bytes PreviousOwner = 2;		//	address
+	bytes NewOwner = 3;		//	address
+}
+
+message Claimed {
+	google.protobuf.Timestamp ts = 1;
+	bytes Claimant = 2;		//	address
+	bytes Balance = 3;		//	uint256
+}

@@ -1,0 +1,5 @@
+
+outputPath: "."
+package: starknet
+owner: nakji
+version: "0_0_0"

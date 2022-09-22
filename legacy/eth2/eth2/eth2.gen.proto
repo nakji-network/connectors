@@ -1,0 +1,23 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package eth2;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/eth2";
+
+
+message DepositEvent {
+	google.protobuf.Timestamp ts = 1;
+	bytes pubkey = 2; 
+	bytes WithdrawalCredentials = 3;
+	uint64 amount = 4;
+	bytes signature = 5;
+	bytes index = 6;
+}
+
+message DepositCount {
+	google.protobuf.Timestamp ts = 1;
+	uint64 count = 2;
+}

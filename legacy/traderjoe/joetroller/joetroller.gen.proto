@@ -1,0 +1,40 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package joetroller;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/joetroller";
+
+
+message NewPendingImplementation {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldPendingImplementation = 2; 
+	bytes newPendingImplementation = 3; 
+}
+
+message Failure {
+	google.protobuf.Timestamp ts = 1;
+	bytes error = 2; // uint256
+	bytes info = 3; // uint256
+	bytes detail = 4; // uint256
+}
+
+message NewAdmin {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldAdmin = 2; 
+	bytes newAdmin = 3; 
+}
+
+message NewImplementation {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldImplementation = 2; 
+	bytes newImplementation = 3; 
+}
+
+message NewPendingAdmin {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldPendingAdmin = 2; 
+	bytes newPendingAdmin = 3; 
+}

@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+import "google/protobuf/timestamp.proto";
+
+package pair;
+
+option go_package = "blep.ai/data/connectors/source/daofi/pair";
+
+message Pair {
+  string ns                       = 2;
+  bytes  id                       = 3;
+	google.protobuf.Timestamp added = 1;
+	string app                      = 4;
+  int64 i                         = 5;
+	bytes token0                    = 6;
+	bytes token1                    = 7;
+}

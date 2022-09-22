@@ -1,0 +1,53 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package joepair;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/joepair";
+
+message Swap {
+	google.protobuf.Timestamp ts = 1;
+	bytes sender = 2; 
+	bytes amount0In = 3; // uint256
+	bytes amount1In = 4; // uint256
+	bytes amount0Out = 5; // uint256
+	bytes amount1Out = 6; // uint256
+	bytes to = 7; 
+}
+
+message Sync {
+	google.protobuf.Timestamp ts = 1;
+	bytes reserve0 = 2; // uint112
+	bytes reserve1 = 3; // uint112
+}
+
+message Burn {
+	google.protobuf.Timestamp ts = 1;
+	bytes sender = 2; 
+	bytes amount0 = 3; // uint256
+	bytes amount1 = 4; // uint256
+	bytes to = 5; 
+}
+
+message Mint {
+	google.protobuf.Timestamp ts = 1;
+	bytes sender = 2; 
+	bytes amount0 = 3; // uint256
+	bytes amount1 = 4; // uint256
+}
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes owner = 2; 
+	bytes spender = 3; 
+	bytes value = 4; // uint256
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes from = 2; 
+	bytes to = 3; 
+	bytes value = 4; // uint256
+}

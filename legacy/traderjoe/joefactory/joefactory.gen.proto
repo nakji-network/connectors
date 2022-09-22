@@ -1,0 +1,17 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package joefactory;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/joefactory";
+
+
+message PairCreated {
+	google.protobuf.Timestamp ts = 1;
+	bytes token0 = 2; 
+	bytes token1 = 3; 
+	bytes pair = 4; 
+	bytes arg3 = 5; // uint256
+}

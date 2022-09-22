@@ -1,0 +1,14 @@
+outputPath: "."
+package: daofi
+owner: nakji
+version: "0_0_0"
+topicVersion: "0_0_0"
+contracts:
+- name: factory
+  source: smart-contracts/factory-abi.json
+  address: '0xEaC9260C59693f180936779451B996b303a0A488'
+  createEvent: PairCreated
+  blockNumber: 12105674
+- name: pair
+  source: smart-contracts/pair-abi.json
+  addressField: Pair

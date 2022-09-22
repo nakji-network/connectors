@@ -1,0 +1,75 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package landitem;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/landitem";
+
+
+message Paused {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message SpenderUnwhitelisted {
+	google.protobuf.Timestamp ts = 1;
+	bytes spender = 2; 
+}
+
+message SpenderWhitelisted {
+	google.protobuf.Timestamp ts = 1;
+	bytes spender = 2; 
+}
+
+message Unpaused {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message AdminChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldAdmin = 2; 
+	bytes newAdmin = 3; 
+}
+
+message AdminRemoved {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldAdmin = 2; 
+}
+
+message MinterRemoved {
+	google.protobuf.Timestamp ts = 1;
+	bytes minter = 2; 
+}
+
+message NonceUpdated {
+	google.protobuf.Timestamp ts = 1;
+	bytes tokenId = 2; // uint256
+	bytes nonce = 3; // uint256
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes from = 2; 
+	bytes to = 3; 
+	bytes tokenId = 4; // uint256
+}
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes owner = 2; 
+	bytes approved = 3; 
+	bytes tokenId = 4; // uint256
+}
+
+message ApprovalForAll {
+	google.protobuf.Timestamp ts = 1;
+	bytes owner = 2; 
+	bytes operator = 3; 
+	bool approved = 4; 
+}
+
+message MinterAdded {
+	google.protobuf.Timestamp ts = 1;
+	bytes minter = 2; 
+}

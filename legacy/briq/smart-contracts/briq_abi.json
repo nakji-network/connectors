@@ -1,0 +1,1211 @@
+[
+  {
+    "members": [
+      {
+        "name": "material",
+        "offset": 0,
+        "type": "felt"
+      },
+      {
+        "name": "token_id",
+        "offset": 1,
+        "type": "felt"
+      }
+    ],
+    "name": "NFTSpec",
+    "size": 2,
+    "type": "struct",
+    "selector": "1173818392376504685271509923718923329033994383129611452906301755409176600026"
+  },
+  {
+    "data": [
+      {
+        "name": "operator_",
+        "type": "felt"
+      },
+      {
+        "name": "from_",
+        "type": "felt"
+      },
+      {
+        "name": "to_",
+        "type": "felt"
+      },
+      {
+        "name": "id_",
+        "type": "felt"
+      },
+      {
+        "name": "value_",
+        "type": "felt"
+      }
+    ],
+    "keys": [],
+    "name": "TransferSingle",
+    "type": "event",
+    "selector": "683496163923431355190492689148098320408454942853027468141918222244294018099"
+  },
+  {
+    "data": [
+      {
+        "name": "owner_",
+        "type": "felt"
+      },
+      {
+        "name": "old_id_",
+        "type": "felt"
+      },
+      {
+        "name": "new_id_",
+        "type": "felt"
+      },
+      {
+        "name": "from_material_",
+        "type": "felt"
+      },
+      {
+        "name": "to_material_",
+        "type": "felt"
+      }
+    ],
+    "keys": [],
+    "name": "Mutate",
+    "type": "event",
+    "selector": "967867388035029439552127639290524996876884956131565523540352854763760654995"
+  },
+  {
+    "data": [
+      {
+        "name": "owner_",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "id_",
+        "type": "felt"
+      }
+    ],
+    "keys": [],
+    "name": "ConvertToFT",
+    "type": "event",
+    "selector": "131098218050589708285193267299719914225166976521286216603695800597387712042"
+  },
+  {
+    "data": [
+      {
+        "name": "owner_",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "id_",
+        "type": "felt"
+      }
+    ],
+    "keys": [],
+    "name": "ConvertToNFT",
+    "type": "event",
+    "selector": "539192748151932678710084396035114304729424071208752472708676196981127592146"
+  },
+  {
+    "inputs": [
+      {
+        "name": "address",
+        "type": "felt"
+      }
+    ],
+    "name": "setSetAddress",
+    "outputs": [],
+    "type": "function",
+    "selector": "1605712148864469384819142683277642892248058853316087462205642362481064495565"
+  },
+  {
+    "inputs": [
+      {
+        "name": "address",
+        "type": "felt"
+      }
+    ],
+    "name": "setMintContract",
+    "outputs": [],
+    "type": "function",
+    "selector": "1524975625646140893445041835250056263620919066236016409803118883184541467151"
+  },
+  {
+    "inputs": [],
+    "name": "getMintContract",
+    "outputs": [
+      {
+        "name": "address",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "960685955384326130423324423982085257432934283697572036571643350589882269389"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "name": "balance",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "1307730684388977109649524593492043083703013045633289330664425380824804018030"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "materials_len",
+        "type": "felt"
+      },
+      {
+        "name": "materials",
+        "type": "felt*"
+      }
+    ],
+    "name": "multiBalanceOf",
+    "outputs": [
+      {
+        "name": "balances_len",
+        "type": "felt"
+      },
+      {
+        "name": "balances",
+        "type": "felt*"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "241628263872532458068758351128629377111776254114490976720639181705559964529"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      }
+    ],
+    "name": "balanceDetailsOf",
+    "outputs": [
+      {
+        "name": "ft_balance",
+        "type": "felt"
+      },
+      {
+        "name": "nft_ids_len",
+        "type": "felt"
+      },
+      {
+        "name": "nft_ids",
+        "type": "felt*"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "94472178658014876294375316386342834129772880855980891253709451421913612668"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "index",
+        "type": "felt"
+      }
+    ],
+    "name": "tokenOfOwnerByIndex",
+    "outputs": [
+      {
+        "name": "token_id",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "1495235351872889917991459503981207085696761033763427035437578338428157164409"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token_id",
+        "type": "felt"
+      }
+    ],
+    "name": "ownerOf",
+    "outputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "73122117822990066614852869276021392412342625629800410280609241172256672489"
+  },
+  {
+    "inputs": [
+      {
+        "name": "material",
+        "type": "felt"
+      }
+    ],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "name": "supply",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "227334030968744315992796982100494617316223563777432855541120004521101595501"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "qty",
+        "type": "felt"
+      }
+    ],
+    "name": "mintFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "1642441528522787028801318361451934725222063457271363559556202514296447645233"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "uid",
+        "type": "felt"
+      }
+    ],
+    "name": "mintOneNFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "88895929006483415093659945427342576965642842717104348468135196864014347065"
+  },
+  {
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "felt"
+      },
+      {
+        "name": "recipient",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "qty",
+        "type": "felt"
+      }
+    ],
+    "name": "transferFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "31040348821185438429361526215693119858157737114548327447197751795913707215"
+  },
+  {
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "felt"
+      },
+      {
+        "name": "recipient",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "briq_token_id",
+        "type": "felt"
+      }
+    ],
+    "name": "transferOneNFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "285848543416480885058464834099120947692794748447433666235135359021770351583"
+  },
+  {
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "felt"
+      },
+      {
+        "name": "recipient",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "token_ids_len",
+        "type": "felt"
+      },
+      {
+        "name": "token_ids",
+        "type": "felt*"
+      }
+    ],
+    "name": "transferNFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "532424949445381787683279938968880090240141827967030566467203082817383415735"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "source_material",
+        "type": "felt"
+      },
+      {
+        "name": "target_material",
+        "type": "felt"
+      },
+      {
+        "name": "qty",
+        "type": "felt"
+      }
+    ],
+    "name": "mutateFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "407887988748668609712161549312506641090933380914284855496269233894724238676"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "source_material",
+        "type": "felt"
+      },
+      {
+        "name": "target_material",
+        "type": "felt"
+      },
+      {
+        "name": "uid",
+        "type": "felt"
+      },
+      {
+        "name": "new_uid",
+        "type": "felt"
+      }
+    ],
+    "name": "mutateOneNFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "1530785583494303876534874454703529265043142912935909139863114499297743284433"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "token_id",
+        "type": "felt"
+      }
+    ],
+    "name": "convertOneToFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "1146646273001756945591395879655786031082216671389881161127752062877646620961"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "token_ids_len",
+        "type": "felt"
+      },
+      {
+        "name": "token_ids",
+        "type": "NFTSpec*"
+      }
+    ],
+    "name": "convertToFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "286309995902673017237490224046787178681354838900666556612153342450476172775"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "material",
+        "type": "felt"
+      },
+      {
+        "name": "uid",
+        "type": "felt"
+      }
+    ],
+    "name": "convertOneToNFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "381219000385662354482673529685223351799918830006592918416608294813233946432"
+  },
+  {
+    "inputs": [
+      {
+        "name": "briq_contract_address",
+        "type": "felt"
+      },
+      {
+        "name": "max_mint",
+        "type": "felt"
+      }
+    ],
+    "name": "constructor",
+    "outputs": [],
+    "type": "constructor",
+    "selector": "1159040026212278395030414237414753050475174923702621880048416706425641521556"
+  },
+  {
+    "inputs": [
+      {
+        "name": "user",
+        "type": "felt"
+      }
+    ],
+    "name": "amountMinted",
+    "outputs": [
+      {
+        "name": "res",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "214567535309919046785588960568245195539666680004647743632497245083023158785"
+  },
+  {
+    "inputs": [
+      {
+        "name": "user",
+        "type": "felt"
+      }
+    ],
+    "name": "mint",
+    "outputs": [],
+    "type": "function",
+    "selector": "1329909728320632088402217562277154056711815095720684343816173432540100887380"
+  },
+  {
+    "inputs": [
+      {
+        "name": "user",
+        "type": "felt"
+      },
+      {
+        "name": "amount",
+        "type": "felt"
+      }
+    ],
+    "name": "mintAmount",
+    "outputs": [],
+    "type": "function",
+    "selector": "53685294252622186487967505428757507309601263762614561137438841319371770206"
+  },
+  {
+    "members": [
+      {
+        "name": "low",
+        "offset": 0,
+        "type": "felt"
+      },
+      {
+        "name": "high",
+        "offset": 1,
+        "type": "felt"
+      }
+    ],
+    "name": "Uint256",
+    "size": 2,
+    "type": "struct",
+    "selector": "1310096764338730459982069037253146995320867405579583610390578074651898784541"
+  },
+  {
+    "members": [
+      {
+        "name": "token_id",
+        "offset": 0,
+        "type": "felt"
+      },
+      {
+        "name": "qty",
+        "offset": 1,
+        "type": "felt"
+      }
+    ],
+    "name": "FTSpec",
+    "size": 2,
+    "type": "struct",
+    "selector": "1099662619648832651347647646146052013299700370189137282409594249018170074031"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token_id",
+        "type": "felt"
+      }
+    ],
+    "name": "get_approved",
+    "outputs": [
+      {
+        "name": "approved",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "1372884143127220298872006344483631742615150468767958936494240727074184669001"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "operator",
+        "type": "felt"
+      }
+    ],
+    "name": "is_approved_for_all",
+    "outputs": [
+      {
+        "name": "is_approved",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "1205421962903345660045435118044971463613229679762114965449342708481084240093"
+  },
+  {
+    "data": [
+      {
+        "name": "from_",
+        "type": "felt"
+      },
+      {
+        "name": "to_",
+        "type": "felt"
+      },
+      {
+        "name": "token_id_",
+        "type": "Uint256"
+      }
+    ],
+    "keys": [],
+    "name": "Transfer",
+    "type": "event",
+    "selector": "271746229759260285552388728919865295615886751538523744128730118297934206697"
+  },
+  {
+    "data": [
+      {
+        "name": "value__len",
+        "type": "felt"
+      },
+      {
+        "name": "value_",
+        "type": "felt*"
+      },
+      {
+        "name": "id_",
+        "type": "felt"
+      }
+    ],
+    "keys": [],
+    "name": "URI",
+    "type": "event",
+    "selector": "1117463774533926613053234597629606061954066182299846485506120526289006522655"
+  },
+  {
+    "inputs": [
+      {
+        "name": "address",
+        "type": "felt"
+      }
+    ],
+    "name": "setBriqAddress",
+    "outputs": [],
+    "type": "function",
+    "selector": "1046341482885382118708937769925895958256498876721108484471179154595643879039"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      }
+    ],
+    "name": "balanceOf_",
+    "outputs": [
+      {
+        "name": "balance",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "860149441678666248427524896045053279013825218527910784425897787231661289603"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      }
+    ],
+    "name": "balanceDetailsOf_",
+    "outputs": [
+      {
+        "name": "token_ids_len",
+        "type": "felt"
+      },
+      {
+        "name": "token_ids",
+        "type": "felt*"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "1081990104592795540510524317102262151399462732241029076201374685221623610616"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "index",
+        "type": "felt"
+      }
+    ],
+    "name": "tokenOfOwnerByIndex_",
+    "outputs": [
+      {
+        "name": "token_id",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "801625689647505296533330037378241659856142161732113896510751558629199028441"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token_id",
+        "type": "felt"
+      }
+    ],
+    "name": "ownerOf_",
+    "outputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "279992367252951487643029807734675042712124363594948533145895759552070840518"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token_id",
+        "type": "felt"
+      }
+    ],
+    "name": "tokenURI_",
+    "outputs": [
+      {
+        "name": "uri_len",
+        "type": "felt"
+      },
+      {
+        "name": "uri",
+        "type": "felt*"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "561102243023796124749626217599679959112182552293326437453346140565985501338"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "token_id_hint",
+        "type": "felt"
+      },
+      {
+        "name": "fts_len",
+        "type": "felt"
+      },
+      {
+        "name": "fts",
+        "type": "FTSpec*"
+      },
+      {
+        "name": "nfts_len",
+        "type": "felt"
+      },
+      {
+        "name": "nfts",
+        "type": "felt*"
+      },
+      {
+        "name": "uri_len",
+        "type": "felt"
+      },
+      {
+        "name": "uri",
+        "type": "felt*"
+      }
+    ],
+    "name": "assemble",
+    "outputs": [],
+    "type": "function",
+    "selector": "900515088291907014246024985967390105957655003449706852724539784431876714417"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token_id",
+        "type": "felt"
+      },
+      {
+        "name": "uri_len",
+        "type": "felt"
+      },
+      {
+        "name": "uri",
+        "type": "felt*"
+      }
+    ],
+    "name": "setTokenURI",
+    "outputs": [],
+    "type": "function",
+    "selector": "1666280413007685345835009347245486186849048659296771829295834864552151408561"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "token_id",
+        "type": "felt"
+      },
+      {
+        "name": "add_fts_len",
+        "type": "felt"
+      },
+      {
+        "name": "add_fts",
+        "type": "FTSpec*"
+      },
+      {
+        "name": "add_nfts_len",
+        "type": "felt"
+      },
+      {
+        "name": "add_nfts",
+        "type": "felt*"
+      },
+      {
+        "name": "remove_fts_len",
+        "type": "felt"
+      },
+      {
+        "name": "remove_fts",
+        "type": "FTSpec*"
+      },
+      {
+        "name": "remove_nfts_len",
+        "type": "felt"
+      },
+      {
+        "name": "remove_nfts",
+        "type": "felt*"
+      },
+      {
+        "name": "uri_len",
+        "type": "felt"
+      },
+      {
+        "name": "uri",
+        "type": "felt*"
+      }
+    ],
+    "name": "updateBriqs",
+    "outputs": [],
+    "type": "function",
+    "selector": "1687972979409349932968772299375935509161146822703420214648827218473906671422"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "token_id",
+        "type": "felt"
+      },
+      {
+        "name": "fts_len",
+        "type": "felt"
+      },
+      {
+        "name": "fts",
+        "type": "FTSpec*"
+      },
+      {
+        "name": "nfts_len",
+        "type": "felt"
+      },
+      {
+        "name": "nfts",
+        "type": "felt*"
+      }
+    ],
+    "name": "disassemble",
+    "outputs": [],
+    "type": "function",
+    "selector": "810819968026419015732711640824391307509246350835834040281435735070453775608"
+  },
+  {
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "felt"
+      },
+      {
+        "name": "recipient",
+        "type": "felt"
+      },
+      {
+        "name": "token_id",
+        "type": "felt"
+      }
+    ],
+    "name": "transferOneNFT",
+    "outputs": [],
+    "type": "function",
+    "selector": "285848543416480885058464834099120947692794748447433666235135359021770351583"
+  },
+  {
+    "inputs": [
+      {
+        "name": "approved_address",
+        "type": "felt"
+      },
+      {
+        "name": "token_id",
+        "type": "felt"
+      }
+    ],
+    "name": "approve_",
+    "outputs": [],
+    "type": "function",
+    "selector": "57599653547016799006533618571025513475669458898814385356396234936913498415"
+  },
+  {
+    "inputs": [
+      {
+        "name": "approved_address",
+        "type": "felt"
+      },
+      {
+        "name": "allowed",
+        "type": "felt"
+      }
+    ],
+    "name": "setApprovalForAll_",
+    "outputs": [],
+    "type": "function",
+    "selector": "662365895270353850491085809761893164065884734712039496969406933350674710402"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      }
+    ],
+    "name": "balanceOf",
+    "outputs": [
+      {
+        "name": "balance",
+        "type": "Uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "1307730684388977109649524593492043083703013045633289330664425380824804018030"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      }
+    ],
+    "name": "balanceDetailsOf",
+    "outputs": [
+      {
+        "name": "token_ids_len",
+        "type": "felt"
+      },
+      {
+        "name": "token_ids",
+        "type": "felt*"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "94472178658014876294375316386342834129772880855980891253709451421913612668"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "index",
+        "type": "felt"
+      }
+    ],
+    "name": "tokenOfOwnerByIndex",
+    "outputs": [
+      {
+        "name": "token_id",
+        "type": "Uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "1495235351872889917991459503981207085696761033763427035437578338428157164409"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token_id",
+        "type": "Uint256"
+      }
+    ],
+    "name": "ownerOf",
+    "outputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "73122117822990066614852869276021392412342625629800410280609241172256672489"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token_id",
+        "type": "Uint256"
+      }
+    ],
+    "name": "tokenURI",
+    "outputs": [
+      {
+        "name": "uri_len",
+        "type": "felt"
+      },
+      {
+        "name": "uri",
+        "type": "felt*"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "527349597080429316600677333550588288293424769527062261567739596074387138637"
+  },
+  {
+    "inputs": [
+      {
+        "name": "sender",
+        "type": "felt"
+      },
+      {
+        "name": "recipient",
+        "type": "felt"
+      },
+      {
+        "name": "token_id",
+        "type": "Uint256"
+      }
+    ],
+    "name": "transferFrom",
+    "outputs": [],
+    "type": "function",
+    "selector": "116061167288211781254449158074459916871457383008289084697957612485591092000"
+  },
+  {
+    "inputs": [
+      {
+        "name": "token_id",
+        "type": "Uint256"
+      }
+    ],
+    "name": "getApproved",
+    "outputs": [
+      {
+        "name": "approved",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "313621473760873935122783910304240840031223477451753145243382550859039628062"
+  },
+  {
+    "inputs": [
+      {
+        "name": "owner",
+        "type": "felt"
+      },
+      {
+        "name": "operator",
+        "type": "felt"
+      }
+    ],
+    "name": "isApprovedForAll",
+    "outputs": [
+      {
+        "name": "is_approved",
+        "type": "felt"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function",
+    "selector": "955640681311292084896022829531366384024621189567662336953606158378698906672"
+  },
+  {
+    "inputs": [
+      {
+        "name": "approved_address",
+        "type": "felt"
+      },
+      {
+        "name": "token_id",
+        "type": "Uint256"
+      }
+    ],
+    "name": "approve",
+    "outputs": [],
+    "type": "function",
+    "selector": "949021990203918389843157787496164629863144228991510976554585288817234167820"
+  },
+  {
+    "inputs": [
+      {
+        "name": "approved_address",
+        "type": "felt"
+      },
+      {
+        "name": "allowed",
+        "type": "felt"
+      }
+    ],
+    "name": "setApprovalForAll",
+    "outputs": [],
+    "type": "function",
+    "selector": "1280583940859288259579061247154630474140520431395903753515491282704959909530"
+  }
+]

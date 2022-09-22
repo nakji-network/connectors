@@ -1,0 +1,119 @@
+syntax = "proto3";
+
+package chain;
+
+option go_package = "blep.ai/data/connectors/source/solana/chain";
+
+
+// https://pkg.go.dev/github.com/gagliardetto/solana-go/rpc@v1.0.0#GetBlockResult
+// has many rewards
+// has many transactions
+message Block {
+    string hash = 1;
+    string previousBlockhash = 2;
+    uint64 parentSlot = 3;
+    repeated string signatures = 4;
+    int64 blockTime = 5;
+    uint64 blockHeight = 6;
+}
+
+// https://pkg.go.dev/github.com/gagliardetto/solana-go/rpc@v1.0.0#TransactionWithMeta
+// https://pkg.go.dev/github.com/gagliardetto/solana-go/rpc@v1.0.0#TransactionMeta
+// https://pkg.go.dev/github.com/gagliardetto/solana-go@v1.0.0#Transaction
+// has many blockRewards
+// belongs to block
+// has one message 
+message Transaction {
+    // TransactionMeta fields
+    string blockHash = 1;
+    string err = 2;
+    uint64 fee = 3;
+    repeated uint64 preBalances = 4;
+    repeated uint64 postBalances = 5;
+    repeated TokenBalance preTokenBalances = 7;
+    repeated TokenBalance postTokenBalances = 8;
+    repeated string logMessages = 9;
+    // Transaction fields
+    repeated string signatures = 11;
+    string id = 12;
+}
+
+// https://pkg.go.dev/github.com/gagliardetto/solana-go@v1.0.0#Message
+// has many compiledInstructions
+message Message {
+    string transactionId = 7;
+    // MessageHeader fields
+    uint32 numRequiredSignatures = 1;
+    uint32 numReadOnlySignedAccounts = 2;
+    uint32 numReadOnlyUnsignedAccounts = 3;
+    // Message fields
+    repeated string accountKeys = 4;
+    string recentBlockHash = 5;
+    repeated CompiledInstruction instructions = 6;
+}
+
+// https://pkg.go.dev/github.com/gagliardetto/solana-go@v1.0.0#CompiledInstruction
+message CompiledInstruction {
+    uint32 programIdIndex = 1;
+    uint32 accountCount = 2;
+    uint32 dataLength = 3;
+    repeated uint32 accounts = 4;
+    string data = 5;
+}
+
+// https://pkg.go.dev/github.com/gagliardetto/solana-go/rpc@v1.0.0#TokenBalance
+message TokenBalance {
+    uint32 accountIndex = 1;
+    string mint = 2;
+    UiTokenAmount uiTokenAmount = 3;
+}
+
+// https://pkg.go.dev/github.com/gagliardetto/solana-go/rpc@v1.0.0#UiTokenAmount
+message UiTokenAmount {
+    string amount = 1;
+    uint32 decimals = 2;
+    string uiAmount = 3;
+}
+
+// https://pkg.go.dev/github.com/gagliardetto/solana-go@v1.0.0/rpc#Account
+// has many rewards
+message Account {
+    string publicKey = 1; // primary key
+    uint64 lamports = 2;
+    optional string owner = 3; // foreign key referencing a program. a program is an account which contains static, executable code
+    bool executable = 4;
+    uint64 rentEpoch = 5;
+    optional bytes dataJson = 6;
+    optional bytes dataBytes = 7;
+    string dataEncoding = 8;
+}
+
+// https://pkg.go.dev/github.com/gagliardetto/solana-go/rpc@v1.0.0#`BlockReward`
+// belongs to account
+message BlockReward {
+    string blockHash = 1; // foreign key referencing a block
+    string pubkey = 2;    // foreign key referencing an account
+    int64 lamports = 3;
+    uint64 postBalance = 4;
+    // https://pkg.go.dev/github.com/gagliardetto/solana-go/rpc@v1.0.0#RewardType
+    enum RewardType {
+        FEE = 0;
+        RENT = 1;
+        VOTING = 2;
+        STAKING = 3;
+    }
+    RewardType rewardType = 5;
+    string transactionId = 6;
+}
+
+message Solana {
+    string table = 1;
+
+    oneof msg {
+        Block block = 2;
+        Account account = 3;
+        BlockReward blockReward = 4;
+        Transaction transaction = 5;
+        Message message = 6;
+    }
+}

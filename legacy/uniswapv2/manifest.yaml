@@ -1,0 +1,15 @@
+outputPath: "."
+package: uniswapv2
+owner: nakji
+version: "0_0_0"
+topicVersion: "0_0_0"
+contracts:
+  - name: pair
+    source: smart-contracts/uniswapv2-pair-abi.json
+    addressField: Pair
+  - name: factory
+    source: smart-contracts/uniswapv2-factory-abi.json
+    address: '0x5C69bEe701ef814a2B6a3EDD4B1652CB9cc5aA6f'
+    createEvent: PairCreated
+    blockNumber: 10000835
+sqlgen: true

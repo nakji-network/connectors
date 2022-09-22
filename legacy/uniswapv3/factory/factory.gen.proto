@@ -1,0 +1,30 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package factory;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/factory";
+
+
+message OwnerChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes oldOwner = 2;
+	bytes newOwner = 3;
+}
+
+message PoolCreated {
+	google.protobuf.Timestamp ts = 1;
+	bytes token0 = 2;
+	bytes token1 = 3;
+	bytes fee = 4;
+	bytes tickSpacing = 5;
+	bytes pool = 6;
+}
+
+message FeeAmountEnabled {
+	google.protobuf.Timestamp ts = 1;
+	bytes fee = 2;
+	bytes tickSpacing = 3;
+}

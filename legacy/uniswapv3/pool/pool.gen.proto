@@ -1,0 +1,89 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package pool;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/pool";
+
+
+message Mint {
+	google.protobuf.Timestamp ts = 1;
+	bytes sender = 2;
+	bytes owner = 3;
+	bytes tickLower = 4;
+	bytes tickUpper = 5;
+	bytes amount = 6;
+	bytes amount0 = 7;
+	bytes amount1 = 8;
+}
+
+message SetFeeProtocol {
+	google.protobuf.Timestamp ts = 1;
+	uint32 feeProtocol0Old = 2;
+	uint32 feeProtocol1Old = 3;
+	uint32 feeProtocol0New = 4;
+	uint32 feeProtocol1New = 5;
+}
+
+message Swap {
+	google.protobuf.Timestamp ts = 1;
+	bytes sender = 2;
+	bytes recipient = 3;
+	bytes amount0 = 4;
+	bytes amount1 = 5;
+	bytes sqrtPriceX96 = 6;
+	bytes liquidity = 7;
+	bytes tick = 8;
+}
+
+message Burn {
+	google.protobuf.Timestamp ts = 1;
+	bytes owner = 2;
+	bytes tickLower = 3;
+	bytes tickUpper = 4;
+	bytes amount = 5;
+	bytes amount0 = 6;
+	bytes amount1 = 7;
+}
+
+message Collect {
+	google.protobuf.Timestamp ts = 1;
+	bytes owner = 2;
+	bytes recipient = 3;
+	bytes tickLower = 4;
+	bytes tickUpper = 5;
+	bytes amount0 = 6;
+	bytes amount1 = 7;
+}
+
+message IncreaseObservationCardinalityNext {
+	google.protobuf.Timestamp ts = 1;
+	uint32 observationCardinalityNextOld = 2;
+	uint32 observationCardinalityNextNew = 3;
+}
+
+message Initialize {
+	google.protobuf.Timestamp ts = 1;
+	bytes sqrtPriceX96 = 2;
+	bytes tick = 3;
+}
+
+message CollectProtocol {
+	google.protobuf.Timestamp ts = 1;
+	bytes sender = 2;
+	bytes recipient = 3;
+	bytes amount0 = 4;
+	bytes amount1 = 5;
+}
+
+message Flash {
+	google.protobuf.Timestamp ts = 1;
+	bytes sender = 2;
+	bytes recipient = 3;
+	bytes amount0 = 4;
+	bytes amount1 = 5;
+	bytes paid0 = 6;
+	bytes paid1 = 7;
+}

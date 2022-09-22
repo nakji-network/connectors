@@ -1,0 +1,15 @@
+outputPath: "."
+package: uniswapv3
+owner: nakji
+version: "0_0_0"
+topicVersion: "0_0_0"
+contracts:
+  - name: pool
+    source: smart-contracts/uniswapv3-pool-abi.json
+    addressField: Pool
+  - name: factory
+    source: smart-contracts/uniswapv3-factory-abi.json
+    address: '0x1F98431c8aD98523631AE4a59f267346ea31F984'
+    createEvent: PoolCreated
+    blockNumber: 12369621
+sqlgen: true
