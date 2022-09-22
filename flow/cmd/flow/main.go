@@ -7,14 +7,7 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/flow"
-	"github.com/nakji-network/connectors/flow/flowcontractaudits"
-	"github.com/nakji-network/connectors/flow/flowfees"
-	"github.com/nakji-network/connectors/flow/flowidtablestaking"
-	"github.com/nakji-network/connectors/flow/flowserviceaccount"
-	"github.com/nakji-network/connectors/flow/flowstakingcollection"
-	"github.com/nakji-network/connectors/flow/flowstoragefees"
 	"github.com/nakji-network/connectors/flow/flowtoken"
-	"github.com/nakji-network/connectors/flow/lockedtokens"
 	"google.golang.org/protobuf/proto"
 
 	"github.com/onflow/flow-go-sdk/access/grpc"
@@ -45,14 +38,14 @@ func main() {
 	}
 
 	var topicTypes []proto.Message
-	topicTypes = append(topicTypes, flowcontractaudits.Types...)
-	topicTypes = append(topicTypes, flowfees.Types...)
-	topicTypes = append(topicTypes, flowidtablestaking.Types...)
-	topicTypes = append(topicTypes, flowserviceaccount.Types...)
-	topicTypes = append(topicTypes, flowstakingcollection.Types...)
-	topicTypes = append(topicTypes, flowstoragefees.Types...)
+	// topicTypes = append(topicTypes, flowcontractaudits.Types...)
+	// topicTypes = append(topicTypes, flowfees.Types...)
+	// topicTypes = append(topicTypes, flowidtablestaking.Types...)
+	// topicTypes = append(topicTypes, flowserviceaccount.Types...)
+	// topicTypes = append(topicTypes, flowstakingcollection.Types...)
+	// topicTypes = append(topicTypes, flowstoragefees.Types...)
 	topicTypes = append(topicTypes, flowtoken.Types...)
-	topicTypes = append(topicTypes, lockedtokens.Types...)
+	// topicTypes = append(topicTypes, lockedtokens.Types...)
 
 	// Register topic and protobuf type mappings
 	c.RegisterProtos(topicTypes...)
@@ -64,14 +57,14 @@ func main() {
 	}
 
 	m := flow.New(c, conf)
-	m.AddContract(flowcontractaudits.SmartContract{})
-	m.AddContract(flowidtablestaking.SmartContract{})
-	m.AddContract(flowidtablestaking.SmartContract{})
-	m.AddContract(flowserviceaccount.SmartContract{})
-	m.AddContract(flowstakingcollection.SmartContract{})
-	m.AddContract(flowstoragefees.SmartContract{})
+	// m.AddContract(flowcontractaudits.SmartContract{})
+	// m.AddContract(flowidtablestaking.SmartContract{})
+	// m.AddContract(flowidtablestaking.SmartContract{})
+	// m.AddContract(flowserviceaccount.SmartContract{})
+	// m.AddContract(flowstakingcollection.SmartContract{})
+	// m.AddContract(flowstoragefees.SmartContract{})
 	m.AddContract(flowtoken.SmartContract{})
-	m.AddContract(lockedtokens.SmartContract{})
+	// m.AddContract(lockedtokens.SmartContract{})
 	m.Start()
 }
 
