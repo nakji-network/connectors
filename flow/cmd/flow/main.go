@@ -8,12 +8,12 @@ import (
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/flow"
 	"github.com/nakji-network/connectors/flow/flowtoken"
-	"google.golang.org/protobuf/proto"
 
 	"github.com/onflow/flow-go-sdk/access/grpc"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
 	_ "go.uber.org/automaxprocs"
+	"google.golang.org/protobuf/proto"
 )
 
 func main() {

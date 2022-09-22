@@ -2,6 +2,7 @@ package lockedtokens
 
 import (
 	"github.com/nakji-network/connectors/flow"
+
 	"github.com/onflow/cadence"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/protobuf/proto"
