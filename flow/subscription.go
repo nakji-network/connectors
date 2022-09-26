@@ -132,7 +132,7 @@ func (s *Subscription) Logs() <-chan Log {
 	return s.logChan
 }
 
-func (s *Subscription) Errs() <-chan error {
+func (s *Subscription) Err() <-chan error {
 	return s.errChan
 }
 
