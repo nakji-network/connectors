@@ -307,6 +307,20 @@ func (c SmartContract) Message(vLog flow.Log) proto.Message {
 			Amount:      flow.UFix64ToFloat64(amount),
 		}
 		return msg
+	case "DelegatorRewardTokensWithdrawn":
+		nodeID := vLog.Value.Fields[0].(cadence.String)
+		delegatorID := vLog.Value.Fields[1].(cadence.UInt32)
+		amount := vLog.Value.Fields[2].(cadence.UFix64)
+		msg := &DelegatorRewardTokensWithdrawn{
+			Ts:          timestamppb.New(vLog.Timestamp),
+			BlockNumber: vLog.Height,
+			TxID:        vLog.TransactionID[:],
+			LogIndex:    uint64(vLog.TransactionIndex),
+			NodeID:      string(nodeID),
+			DelegatorID: uint32(delegatorID),
+			Amount:      flow.UFix64ToFloat64(amount),
+		}
+		return msg
 	case "NewDelegatorCutPercentage":
 		newCutPercentage := vLog.Value.Fields[0].(cadence.UFix64)
 		msg := &NewDelegatorCutPercentage{
