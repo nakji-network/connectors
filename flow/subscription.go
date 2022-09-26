@@ -6,14 +6,21 @@ import (
 	"os"
 	"os/signal"
 	"strings"
+	"sync/atomic"
 	"time"
 
+	lru "github.com/hashicorp/golang-lru"
 	"github.com/onflow/cadence"
 	"github.com/onflow/flow-go-sdk"
 	flowgrpc "github.com/onflow/flow-go-sdk/access/grpc"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+)
+
+const (
+	maxApiUsage    = 20 // Limit GetEventsForHeightRange API usage rate.
+	defaultTimeout = 3 * time.Minute
 )
 
 type EventType struct {
@@ -50,10 +57,12 @@ type Subscription struct {
 	fromBlock uint64
 	numBlocks uint64
 	events    []string
-	curBlock  *flow.BlockHeader
-	logs      chan Log
-	done      chan bool
-	errchan   chan error
+	cache     *lru.Cache
+	curBlock  uint64
+	apiUsage  uint64 // GetEventsForHeightRange API usage rate.
+	done      chan struct{}
+	logChan   chan Log
+	errChan   chan error
 }
 
 func NewSubscription(ctx context.Context, host string, events []string, fromBlock uint64, numBlocks uint64) (*Subscription, error) {
@@ -68,15 +77,20 @@ func NewSubscription(ctx context.Context, host string, events []string, fromBloc
 	if err := cli.Ping(ctx); err != nil {
 		return nil, err
 	}
+	cache, err := lru.New(100000)
+	if err != nil {
+		return nil, err
+	}
 	sub := &Subscription{
 		host:      host,
 		grpc:      cli,
 		events:    events,
 		fromBlock: fromBlock,
 		numBlocks: numBlocks,
-		logs:      make(chan Log, 1000),
-		done:      make(chan bool),
-		errchan:   make(chan error, 1000),
+		cache:     cache,
+		done:      make(chan struct{}),
+		logChan:   make(chan Log, 1000),
+		errChan:   make(chan error, 1000),
 	}
 	go func() {
 		interupt := make(chan os.Signal, 1)
@@ -88,28 +102,38 @@ func NewSubscription(ctx context.Context, host string, events []string, fromBloc
 			sub.Unsubscribe()
 		}
 	}()
+	go func() {
+		t := time.NewTicker(1 * time.Second)
+		for {
+			select {
+			case <-sub.done:
+				t.Stop()
+				return
+			case <-t.C:
+				// Reset API usage to zero every second.
+				atomic.StoreUint64(&sub.apiUsage, 0)
+			}
+		}
+	}()
 	go sub.subscribe()
 	return sub, nil
 }
 
 func (s *Subscription) Unsubscribe() {
 	log.Info().Str("host", s.host).Msg("shutting down subscription")
-	s.done <- true
-	close(s.logs)
 	close(s.done)
-	close(s.errchan)
 }
 
-func (s *Subscription) Done() <-chan bool {
+func (s *Subscription) Done() <-chan struct{} {
 	return s.done
 }
 
-func (s *Subscription) Err() <-chan error {
-	return s.errchan
+func (s *Subscription) Logs() <-chan Log {
+	return s.logChan
 }
 
-func (s *Subscription) Logs() <-chan Log {
-	return s.logs
+func (s *Subscription) Errs() <-chan error {
+	return s.errChan
 }
 
 func (s *Subscription) subscribe() {
@@ -121,24 +145,22 @@ func (s *Subscription) subscribe() {
 			t.Stop()
 			return
 		case <-t.C:
-			ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
-			latest, err := s.grpc.GetLatestBlockHeader(ctx, true)
-			cancel()
+			latest, err := s.getLatestBlockHeight()
 			if err != nil {
-				s.errchan <- err
+				s.errChan <- err
 				continue
 			}
-			if s.curBlock != nil && s.curBlock.Height == latest.Height {
+			if s.curBlock == latest {
 				continue
 			}
 			// Backfill if needed
 			if !backfilled && (s.fromBlock > 0 || s.numBlocks > 0) {
-				s.backfill(latest.Height)
+				s.backfill(latest)
 				backfilled = true
-			} else if s.curBlock == nil {
-				go s.getEvents(latest.Height, latest.Height)
+			} else if s.curBlock == 0 {
+				go s.getEvents(latest, latest)
 			} else {
-				go s.getEvents(s.curBlock.Height+1, latest.Height)
+				go s.getEvents(s.curBlock+1, latest)
 			}
 			s.curBlock = latest
 		}
@@ -169,17 +191,15 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 				end = endHeight
 			}
 			for _, event := range s.events {
-				ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
-				blockEvents, err := s.grpc.GetEventsForHeightRange(ctx, event, start, end)
-				cancel()
+				blockEvents, err := s.getEventsForHeightRange(event, start, end)
 				if err != nil {
-					s.errchan <- err
+					s.errChan <- err
 					continue
 				}
 				for _, blockEvent := range blockEvents {
 					for _, ev := range blockEvent.Events {
 						t := strings.Split(ev.Type, ".")
-						s.logs <- Log{
+						s.logChan <- Log{
 							BlockID:   blockEvent.BlockID,
 							Height:    blockEvent.Height,
 							Timestamp: blockEvent.BlockTimestamp,
@@ -198,5 +218,51 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 				}
 			}
 		}
+	}
+}
+
+func (s *Subscription) getLatestBlockHeight() (uint64, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	defer cancel()
+	header, err := s.grpc.GetLatestBlockHeader(ctx, true)
+	if err != nil {
+		return 0, err
+	}
+	s.cache.Add(header.Height, header.ID)
+	return header.Height, nil
+}
+
+func (s *Subscription) getBlockIDByHeight(height uint64) (flow.Identifier, error) {
+	if id, ok := s.cache.Get(height); ok {
+		return id.(flow.Identifier), nil
+	}
+	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	defer cancel()
+	header, err := s.grpc.GetBlockHeaderByHeight(ctx, height)
+	if err != nil {
+		return flow.Identifier{}, err
+	}
+	s.cache.Add(header.Height, header.ID)
+	return header.ID, nil
+}
+
+func (s *Subscription) getEventsForHeightRange(eventType string, startHeight uint64, endHeight uint64) ([]flow.BlockEvents, error) {
+	if endHeight > startHeight && atomic.AddUint64(&s.apiUsage, 1) <= maxApiUsage {
+		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+		defer cancel()
+		return s.grpc.GetEventsForHeightRange(ctx, eventType, startHeight, endHeight)
+	} else { // Exceed maximun API usage. Try using different APIs.
+		blockIDs := make([]flow.Identifier, 0, endHeight-startHeight+1)
+		for height := startHeight; height <= endHeight; height++ {
+			id, err := s.getBlockIDByHeight(height)
+			if err != nil {
+				s.errChan <- err
+				continue
+			}
+			blockIDs = append(blockIDs, id)
+		}
+		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+		defer cancel()
+		return s.grpc.GetEventsForBlockIDs(ctx, eventType, blockIDs)
 	}
 }

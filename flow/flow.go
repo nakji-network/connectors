@@ -62,7 +62,7 @@ func (c *Connector) Start() {
 			return
 
 		//	Listen to error channel
-		case err := <-sub.Err():
+		case err := <-sub.Errs():
 			log.Error().Err(err).Str("host", c.Host).Msg("subscription failed")
 
 		//	Listen to event logs
