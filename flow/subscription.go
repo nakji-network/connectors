@@ -178,15 +178,13 @@ func (s *Subscription) backfill(latestBlock uint64) {
 }
 
 func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
+	// Get events for maximun of 250 blocks at once
 	for start := startHeight; start <= endHeight; start += 250 {
 		select {
 		case <-s.done:
 			return
 		default:
 			end := start + 249
-			if start > endHeight {
-				start = endHeight
-			}
 			if end > endHeight {
 				end = endHeight
 			}
