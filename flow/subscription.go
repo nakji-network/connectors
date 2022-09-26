@@ -93,10 +93,10 @@ func NewSubscription(ctx context.Context, host string, events []string, fromBloc
 		errChan:   make(chan error, 1000),
 	}
 	go func() {
-		interupt := make(chan os.Signal, 1)
-		signal.Notify(interupt, os.Interrupt)
+		interrupt := make(chan os.Signal, 1)
+		signal.Notify(interrupt, os.Interrupt)
 		select {
-		case <-interupt:
+		case <-interrupt:
 			sub.Unsubscribe()
 		case <-ctx.Done():
 			sub.Unsubscribe()
