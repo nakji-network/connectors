@@ -158,9 +158,9 @@ func (s *Subscription) subscribe() {
 				s.backfill(latest)
 				backfilled = true
 			} else if s.curBlock == 0 {
-				go s.getEvents(latest, latest)
+				s.getEvents(latest, latest)
 			} else {
-				go s.getEvents(s.curBlock+1, latest)
+				s.getEvents(s.curBlock+1, latest)
 			}
 			s.curBlock = latest
 		}
