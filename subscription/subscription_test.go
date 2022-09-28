@@ -6,10 +6,10 @@ import (
 	"time"
 
 	"github.com/nakji-network/connectors/subscription"
-	"github.com/onflow/flow-go-sdk/access/grpc"
-
 	"github.com/nakji-network/connectors/subscription/ethereum"
 	"github.com/nakji-network/connectors/subscription/flow"
+
+	"github.com/onflow/flow-go-sdk/access/grpc"
 )
 
 func TestFlowSubscription(t *testing.T) {

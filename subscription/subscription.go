@@ -13,6 +13,7 @@ import (
 const (
 	DefaultLogChanSize = 1000
 	DefaultErrChanSize = 1000
+	DefaultTimeout     = 3 * time.Minute
 )
 
 type GrpcClient[Log any] interface {
@@ -28,6 +29,7 @@ type Subscription[Log any] struct {
 	NumBlocks         uint64
 	LogChanSize       int
 	ErrChanSize       int
+	Timeout           time.Duration
 	BackfillBatchSize uint64
 
 	initOnce sync.Once
@@ -81,6 +83,9 @@ func (sub *Subscription[Log]) init() {
 	if sub.ErrChanSize == 0 {
 		sub.ErrChanSize = DefaultErrChanSize
 	}
+	if sub.Timeout == 0 {
+		sub.Timeout = DefaultTimeout
+	}
 	sub.done = make(chan struct{})
 	sub.logChan = make(chan Log, sub.LogChanSize)
 	sub.errChan = make(chan error, sub.ErrChanSize)
@@ -95,7 +100,7 @@ func (sub *Subscription[Log]) subscribe() {
 			t.Stop()
 			return
 		case <-t.C:
-			ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
+			ctx, cancel := context.WithTimeout(context.Background(), sub.Timeout)
 			latestBlock, err := sub.Grpc.GetLatestBlock(ctx)
 			cancel()
 			if err != nil {
@@ -110,9 +115,9 @@ func (sub *Subscription[Log]) subscribe() {
 				sub.backfill(latestBlock)
 				backfilled = true
 			} else if sub.curBlock == 0 {
-				go sub.getEvents(latestBlock, latestBlock)
+				sub.getEvents(latestBlock, latestBlock)
 			} else {
-				go sub.getEvents(sub.curBlock+1, latestBlock)
+				sub.getEvents(sub.curBlock+1, latestBlock)
 			}
 			sub.curBlock = latestBlock
 		}
@@ -144,7 +149,7 @@ func (sub *Subscription[Log]) getEvents(startHeight uint64, endHeight uint64) {
 			}
 		}
 	} else {
-		ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
+		ctx, cancel := context.WithTimeout(context.Background(), sub.Timeout)
 		defer cancel()
 		logs, errs := sub.Grpc.GetLogsForHeightRange(ctx, sub.Topics, startHeight, endHeight)
 		for {
