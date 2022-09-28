@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"os/signal"
+	"sort"
 	"strings"
 	"sync/atomic"
 	"time"
@@ -188,6 +189,7 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 			if end > endHeight {
 				end = endHeight
 			}
+			var logs []Log
 			for _, event := range s.events {
 				blockEvents, err := s.getEventsForHeightRange(event, start, end)
 				if err != nil {
@@ -197,7 +199,7 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 				for _, blockEvent := range blockEvents {
 					for _, ev := range blockEvent.Events {
 						t := strings.Split(ev.Type, ".")
-						s.logChan <- Log{
+						log := Log{
 							BlockID:   blockEvent.BlockID,
 							Height:    blockEvent.Height,
 							Timestamp: blockEvent.BlockTimestamp,
@@ -212,8 +214,18 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 							Value:            ev.Value,
 							Payload:          ev.Payload,
 						}
+						logs = append(logs, log)
 					}
 				}
+			}
+			// Sort logs based on block height, transaction index and event index
+			sort.Slice(logs, func(i, j int) bool {
+				log1 := logs[i]
+				log2 := logs[j]
+				return (log1.Height < log2.Height) || (log1.Height == log2.Height && log1.TransactionIndex < log2.TransactionIndex) || (log1.Height == log2.Height && log1.TransactionIndex == log2.TransactionIndex && log1.EventIndex < log2.EventIndex)
+			})
+			for _, log := range logs {
+				s.logChan <- log
 			}
 		}
 	}
