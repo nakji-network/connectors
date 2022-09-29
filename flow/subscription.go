@@ -358,9 +358,9 @@ func (s *Subscription) getBlockByHeight(height uint64) (*flow.Block, error) {
 }
 
 func (s *Subscription) getEventsForHeightRange(eventType string, startHeight uint64, endHeight uint64) ([]flow.BlockEvents, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	defer cancel()
 	if endHeight > startHeight && atomic.AddUint64(&s.apiUsage, 1) <= maxApiUsage {
-		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
-		defer cancel()
 		return s.grpc.GetEventsForHeightRange(ctx, eventType, startHeight, endHeight)
 	} else { // Exceed maximun API usage. Try using different APIs.
 		blockIDs := make([]flow.Identifier, 0, endHeight-startHeight+1)
@@ -372,8 +372,6 @@ func (s *Subscription) getEventsForHeightRange(eventType string, startHeight uin
 			}
 			blockIDs = append(blockIDs, block.ID)
 		}
-		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
-		defer cancel()
 		return s.grpc.GetEventsForBlockIDs(ctx, eventType, blockIDs)
 	}
 }
