@@ -1,0 +1,41 @@
+syntax = "proto3";
+package flow;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/flow";
+
+message Block {
+    google.protobuf.Timestamp   ts          = 1;
+    bytes                       id          = 2;
+    bytes                       parentID    = 3;
+    uint64                      height      = 4;
+}
+
+message Transaction {
+    bytes                           id                  = 1;
+    bytes                           blockID             = 2;
+    bytes                           collectionID        = 3;
+    bytes                           script              = 4;
+	repeated bytes                  arguments           = 5;
+	bytes                           referenceBlockID    = 6;
+	uint64                          gasLimit            = 7;
+	ProposalKey                     proposalKey         = 8;
+	bytes                           payer               = 9;
+	repeated bytes                  authorizers         = 10;
+	repeated TransactionSignature   payloadSignatures   = 11;
+	repeated TransactionSignature   envelopeSignatures  = 12;
+}
+
+message ProposalKey {
+    bytes   address         = 1;
+	int64   keyIndex        = 2;
+	uint64  sequenceNumber  = 3;
+}
+
+message TransactionSignature {
+	bytes address     = 1;
+	int64 signerIndex = 2;
+	int64 keyIndex    = 3;
+	bytes signature   = 4;
+}

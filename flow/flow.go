@@ -61,11 +61,19 @@ func (c *Connector) Start() {
 			log.Info().Msg("connector shutdown")
 			return
 
-		//	Listen to error channel
+		// Listen to error channel
 		case err := <-sub.Err():
 			log.Error().Err(err).Str("host", c.Host).Msg("subscription failed")
 
-		//	Listen to event logs
+		// Listen for new blocks
+		case block := <-sub.Blocks():
+			c.EventSink <- block
+
+		// Listen for new transactions
+		case tx := <-sub.Transactions():
+			c.EventSink <- tx
+
+		// Listen to event logs
 		case vLog := <-sub.Logs():
 			if msg := c.parse(vLog); msg != nil {
 				c.EventSink <- msg
@@ -74,7 +82,7 @@ func (c *Connector) Start() {
 	}
 }
 
-func (c *Connector) parse(vLog Log) proto.Message {
+func (c *Connector) parse(vLog *Log) proto.Message {
 	contract := c.GetContract(vLog.Type.ContractAddr, vLog.Type.ContractName)
 	if contract == nil {
 		log.Info().Str("address", vLog.Type.ContractAddr).Str("name", vLog.Type.ContractName).Msg("event from unsupported address")
