@@ -7,6 +7,7 @@ import (
 	"os/signal"
 	"sort"
 	"strings"
+	"sync"
 	"sync/atomic"
 	"time"
 
@@ -17,6 +18,7 @@ import (
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 const (
@@ -53,17 +55,19 @@ type Log struct {
 }
 
 type Subscription struct {
-	host      string
-	grpc      *flowgrpc.Client
-	fromBlock uint64
-	numBlocks uint64
-	events    []string
-	cache     *lru.Cache
-	curBlock  uint64
-	apiUsage  uint64 // GetEventsForHeightRange API usage rate.
-	done      chan struct{}
-	logChan   chan Log
-	errChan   chan error
+	host            string
+	grpc            *flowgrpc.Client
+	fromBlock       uint64
+	numBlocks       uint64
+	events          []string
+	cache           *lru.Cache
+	curBlock        uint64
+	apiUsage        uint64 // GetEventsForHeightRange API usage rate.
+	done            chan struct{}
+	blockChan       chan *Block
+	transactionChan chan *Transaction
+	logChan         chan *Log
+	errChan         chan error
 }
 
 func NewSubscription(ctx context.Context, host string, events []string, fromBlock uint64, numBlocks uint64) (*Subscription, error) {
@@ -83,15 +87,17 @@ func NewSubscription(ctx context.Context, host string, events []string, fromBloc
 		return nil, err
 	}
 	sub := &Subscription{
-		host:      host,
-		grpc:      cli,
-		events:    events,
-		fromBlock: fromBlock,
-		numBlocks: numBlocks,
-		cache:     cache,
-		done:      make(chan struct{}),
-		logChan:   make(chan Log, 1000),
-		errChan:   make(chan error, 1000),
+		host:            host,
+		grpc:            cli,
+		events:          events,
+		fromBlock:       fromBlock,
+		numBlocks:       numBlocks,
+		cache:           cache,
+		done:            make(chan struct{}),
+		blockChan:       make(chan *Block, 10000),
+		transactionChan: make(chan *Transaction, 10000),
+		logChan:         make(chan *Log, 10000),
+		errChan:         make(chan error, 10000),
 	}
 	go func() {
 		interrupt := make(chan os.Signal, 1)
@@ -129,7 +135,15 @@ func (s *Subscription) Done() <-chan struct{} {
 	return s.done
 }
 
-func (s *Subscription) Logs() <-chan Log {
+func (s *Subscription) Blocks() <-chan *Block {
+	return s.blockChan
+}
+
+func (s *Subscription) Transactions() <-chan *Transaction {
+	return s.transactionChan
+}
+
+func (s *Subscription) Logs() <-chan *Log {
 	return s.logChan
 }
 
@@ -159,9 +173,9 @@ func (s *Subscription) subscribe() {
 				s.backfill(latest)
 				backfilled = true
 			} else if s.curBlock == 0 {
-				go s.getEvents(latest, latest)
+				s.getEvents(latest, latest)
 			} else {
-				go s.getEvents(s.curBlock+1, latest)
+				s.getEvents(s.curBlock+1, latest)
 			}
 			s.curBlock = latest
 		}
@@ -189,71 +203,158 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 			if end > endHeight {
 				end = endHeight
 			}
-			var logs []Log
-			for _, event := range s.events {
-				blockEvents, err := s.getEventsForHeightRange(event, start, end)
+			var wg sync.WaitGroup
+			wg.Add(2)
+			go func() {
+				s.getBlocks(start, end)
+				wg.Done()
+			}()
+			go func() {
+				s.getLogs(start, end)
+				wg.Done()
+			}()
+			wg.Wait()
+		}
+	}
+}
+
+func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
+	for height := startHeight; height <= endHeight; height++ {
+		block, err := s.getBlockByHeight(height)
+		if err != nil {
+			s.errChan <- err
+			continue
+		}
+		s.blockChan <- &Block{
+			Ts:       timestamppb.New(block.Timestamp),
+			Id:       block.ID[:],
+			ParentID: block.ParentID[:],
+			Height:   block.Height,
+		}
+		for i := range block.CollectionGuarantees {
+			collID := block.CollectionGuarantees[i].CollectionID
+			ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+			coll, err := s.grpc.GetCollection(ctx, collID)
+			cancel()
+			if err != nil {
+				s.errChan <- err
+				continue
+			}
+			for _, txID := range coll.TransactionIDs {
+				ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+				tx, err := s.grpc.GetTransaction(ctx, txID)
+				cancel()
 				if err != nil {
 					s.errChan <- err
 					continue
 				}
-				for _, blockEvent := range blockEvents {
-					for _, ev := range blockEvent.Events {
-						t := strings.Split(ev.Type, ".")
-						log := Log{
-							BlockID:   blockEvent.BlockID,
-							Height:    blockEvent.Height,
-							Timestamp: blockEvent.BlockTimestamp,
-							Type: EventType{
-								ContractAddr: t[1],
-								ContractName: t[2],
-								EventName:    t[3],
-							},
-							TransactionID:    ev.TransactionID,
-							TransactionIndex: ev.TransactionIndex,
-							EventIndex:       ev.EventIndex,
-							Value:            ev.Value,
-							Payload:          ev.Payload,
-						}
-						logs = append(logs, log)
-					}
+				transaction := Transaction{
+					Id:               txID[:],
+					BlockID:          block.ID[:],
+					CollectionID:     collID[:],
+					Script:           tx.Script,
+					Arguments:        tx.Arguments,
+					ReferenceBlockID: tx.ReferenceBlockID[:],
+					GasLimit:         tx.GasLimit,
+					ProposalKey: &ProposalKey{
+						Address:        tx.ProposalKey.Address[:],
+						KeyIndex:       int64(tx.ProposalKey.KeyIndex),
+						SequenceNumber: tx.ProposalKey.SequenceNumber,
+					},
+					Payer:              tx.Payer[:],
+					Authorizers:        make([][]byte, 0, len(tx.Authorizers)),
+					PayloadSignatures:  make([]*TransactionSignature, 0, len(tx.PayloadSignatures)),
+					EnvelopeSignatures: make([]*TransactionSignature, 0, len(tx.EnvelopeSignatures)),
 				}
-			}
-			// Sort logs based on block height, transaction index and event index
-			sort.Slice(logs, func(i, j int) bool {
-				log1 := logs[i]
-				log2 := logs[j]
-				return (log1.Height < log2.Height) || (log1.Height == log2.Height && log1.TransactionIndex < log2.TransactionIndex) || (log1.Height == log2.Height && log1.TransactionIndex == log2.TransactionIndex && log1.EventIndex < log2.EventIndex)
-			})
-			for _, log := range logs {
-				s.logChan <- log
+				for _, authorizers := range tx.Authorizers {
+					transaction.Authorizers = append(transaction.Authorizers, authorizers[:])
+				}
+				for _, sig := range tx.PayloadSignatures {
+					transaction.PayloadSignatures = append(transaction.PayloadSignatures, &TransactionSignature{
+						Address:     sig.Address[:],
+						SignerIndex: int64(sig.SignerIndex),
+						KeyIndex:    int64(sig.KeyIndex),
+						Signature:   sig.Signature,
+					})
+				}
+				for _, sig := range tx.EnvelopeSignatures {
+					transaction.EnvelopeSignatures = append(transaction.EnvelopeSignatures, &TransactionSignature{
+						Address:     sig.Address[:],
+						SignerIndex: int64(sig.SignerIndex),
+						KeyIndex:    int64(sig.KeyIndex),
+						Signature:   sig.Signature,
+					})
+				}
+				s.transactionChan <- &transaction
 			}
 		}
+	}
+}
+
+func (s *Subscription) getLogs(startHeight uint64, endHeight uint64) {
+	var logs []*Log
+	for _, event := range s.events {
+		blockEvents, err := s.getEventsForHeightRange(event, startHeight, endHeight)
+		if err != nil {
+			s.errChan <- err
+			continue
+		}
+		for _, blockEvent := range blockEvents {
+			for _, ev := range blockEvent.Events {
+				t := strings.Split(ev.Type, ".")
+				log := Log{
+					BlockID:   blockEvent.BlockID,
+					Height:    blockEvent.Height,
+					Timestamp: blockEvent.BlockTimestamp,
+					Type: EventType{
+						ContractAddr: t[1],
+						ContractName: t[2],
+						EventName:    t[3],
+					},
+					TransactionID:    ev.TransactionID,
+					TransactionIndex: ev.TransactionIndex,
+					EventIndex:       ev.EventIndex,
+					Value:            ev.Value,
+					Payload:          ev.Payload,
+				}
+				logs = append(logs, &log)
+			}
+		}
+	}
+	// Sort logs based on block height, transaction index and event index
+	sort.Slice(logs, func(i, j int) bool {
+		log1 := logs[i]
+		log2 := logs[j]
+		return (log1.Height < log2.Height) || (log1.Height == log2.Height && log1.TransactionIndex < log2.TransactionIndex) || (log1.Height == log2.Height && log1.TransactionIndex == log2.TransactionIndex && log1.EventIndex < log2.EventIndex)
+	})
+	for _, log := range logs {
+		s.logChan <- log
 	}
 }
 
 func (s *Subscription) getLatestBlockHeight() (uint64, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
 	defer cancel()
-	header, err := s.grpc.GetLatestBlockHeader(ctx, true)
+	block, err := s.grpc.GetLatestBlock(ctx, true)
 	if err != nil {
 		return 0, err
 	}
-	s.cache.Add(header.Height, header.ID)
-	return header.Height, nil
+	s.cache.Add(block.Height, block)
+	return block.Height, nil
 }
 
-func (s *Subscription) getBlockIDByHeight(height uint64) (flow.Identifier, error) {
-	if id, ok := s.cache.Get(height); ok {
-		return id.(flow.Identifier), nil
+func (s *Subscription) getBlockByHeight(height uint64) (*flow.Block, error) {
+	if block, ok := s.cache.Get(height); ok {
+		return block.(*flow.Block), nil
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
 	defer cancel()
-	header, err := s.grpc.GetBlockHeaderByHeight(ctx, height)
+	block, err := s.grpc.GetBlockByHeight(ctx, height)
 	if err != nil {
-		return flow.Identifier{}, err
+		return nil, err
 	}
-	s.cache.Add(header.Height, header.ID)
-	return header.ID, nil
+	s.cache.Add(height, block)
+	return block, nil
 }
 
 func (s *Subscription) getEventsForHeightRange(eventType string, startHeight uint64, endHeight uint64) ([]flow.BlockEvents, error) {
@@ -264,12 +365,12 @@ func (s *Subscription) getEventsForHeightRange(eventType string, startHeight uin
 	} else { // Exceed maximun API usage. Try using different APIs.
 		blockIDs := make([]flow.Identifier, 0, endHeight-startHeight+1)
 		for height := startHeight; height <= endHeight; height++ {
-			id, err := s.getBlockIDByHeight(height)
+			block, err := s.getBlockByHeight(height)
 			if err != nil {
 				s.errChan <- err
 				continue
 			}
-			blockIDs = append(blockIDs, id)
+			blockIDs = append(blockIDs, block.ID)
 		}
 		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
 		defer cancel()
