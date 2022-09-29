@@ -249,6 +249,7 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 					continue
 				}
 				transaction := Transaction{
+					Ts:               timestamppb.New(block.Timestamp),
 					Id:               txID[:],
 					BlockID:          block.ID[:],
 					CollectionID:     collID[:],
