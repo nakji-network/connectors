@@ -219,77 +219,100 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 }
 
 func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
+	wp := NewWorkerPool(10)
 	for height := startHeight; height <= endHeight; height++ {
-		block, err := s.getBlockByHeight(height)
-		if err != nil {
-			s.errChan <- err
-			continue
-		}
-		s.blockChan <- &Block{
-			Ts:       timestamppb.New(block.Timestamp),
-			Id:       block.ID[:],
-			ParentID: block.ParentID[:],
-			Height:   block.Height,
-		}
-		for i := range block.CollectionGuarantees {
-			collID := block.CollectionGuarantees[i].CollectionID
-			ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
-			coll, err := s.grpc.GetCollection(ctx, collID)
-			cancel()
-			if err != nil {
-				s.errChan <- err
-				continue
-			}
-			for _, txID := range coll.TransactionIDs {
-				ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
-				tx, err := s.grpc.GetTransaction(ctx, txID)
-				cancel()
-				if err != nil {
-					s.errChan <- err
-					continue
-				}
-				transaction := Transaction{
-					Ts:               timestamppb.New(block.Timestamp),
-					Id:               txID[:],
-					BlockID:          block.ID[:],
-					CollectionID:     collID[:],
-					Script:           tx.Script,
-					Arguments:        tx.Arguments,
-					ReferenceBlockID: tx.ReferenceBlockID[:],
-					GasLimit:         tx.GasLimit,
-					ProposalKey: &ProposalKey{
-						Address:        tx.ProposalKey.Address[:],
-						KeyIndex:       int64(tx.ProposalKey.KeyIndex),
-						SequenceNumber: tx.ProposalKey.SequenceNumber,
-					},
-					Payer:              tx.Payer[:],
-					Authorizers:        make([][]byte, 0, len(tx.Authorizers)),
-					PayloadSignatures:  make([]*TransactionSignature, 0, len(tx.PayloadSignatures)),
-					EnvelopeSignatures: make([]*TransactionSignature, 0, len(tx.EnvelopeSignatures)),
-				}
-				for _, authorizers := range tx.Authorizers {
-					transaction.Authorizers = append(transaction.Authorizers, authorizers[:])
-				}
-				for _, sig := range tx.PayloadSignatures {
-					transaction.PayloadSignatures = append(transaction.PayloadSignatures, &TransactionSignature{
-						Address:     sig.Address[:],
-						SignerIndex: int64(sig.SignerIndex),
-						KeyIndex:    int64(sig.KeyIndex),
-						Signature:   sig.Signature,
-					})
-				}
-				for _, sig := range tx.EnvelopeSignatures {
-					transaction.EnvelopeSignatures = append(transaction.EnvelopeSignatures, &TransactionSignature{
-						Address:     sig.Address[:],
-						SignerIndex: int64(sig.SignerIndex),
-						KeyIndex:    int64(sig.KeyIndex),
-						Signature:   sig.Signature,
-					})
-				}
-				s.transactionChan <- &transaction
-			}
-		}
+		wp.Run(func() {
+			s.getBlock(height)
+		})
 	}
+	wp.Wait()
+}
+
+func (s *Subscription) getBlock(height uint64) {
+	block, err := s.getBlockByHeight(height)
+	if err != nil {
+		s.errChan <- err
+		return
+	}
+	s.blockChan <- &Block{
+		Ts:       timestamppb.New(block.Timestamp),
+		Id:       block.ID[:],
+		ParentID: block.ParentID[:],
+		Height:   block.Height,
+	}
+	wp := NewWorkerPool(5)
+	for i := range block.CollectionGuarantees {
+		collID := block.CollectionGuarantees[i].CollectionID
+		wp.Run(func() {
+			s.getTransactions(block, collID)
+		})
+	}
+	wp.Wait()
+}
+
+func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier) {
+	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	coll, err := s.grpc.GetCollection(ctx, collID)
+	cancel()
+	if err != nil {
+		return
+	}
+	wp := NewWorkerPool(10)
+	for _, txID := range coll.TransactionIDs {
+		wp.Run(func() {
+			s.getTransaction(block, collID, txID)
+		})
+	}
+	wp.Wait()
+}
+
+func (s *Subscription) getTransaction(block *flow.Block, collID flow.Identifier, txID flow.Identifier) {
+	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	tx, err := s.grpc.GetTransaction(ctx, txID)
+	cancel()
+	if err != nil {
+		s.errChan <- err
+		return
+	}
+	transaction := Transaction{
+		Ts:               timestamppb.New(block.Timestamp),
+		Id:               txID[:],
+		BlockID:          block.ID[:],
+		CollectionID:     collID[:],
+		Script:           tx.Script,
+		Arguments:        tx.Arguments,
+		ReferenceBlockID: tx.ReferenceBlockID[:],
+		GasLimit:         tx.GasLimit,
+		ProposalKey: &ProposalKey{
+			Address:        tx.ProposalKey.Address[:],
+			KeyIndex:       int64(tx.ProposalKey.KeyIndex),
+			SequenceNumber: tx.ProposalKey.SequenceNumber,
+		},
+		Payer:              tx.Payer[:],
+		Authorizers:        make([][]byte, 0, len(tx.Authorizers)),
+		PayloadSignatures:  make([]*TransactionSignature, 0, len(tx.PayloadSignatures)),
+		EnvelopeSignatures: make([]*TransactionSignature, 0, len(tx.EnvelopeSignatures)),
+	}
+	for _, authorizers := range tx.Authorizers {
+		transaction.Authorizers = append(transaction.Authorizers, authorizers[:])
+	}
+	for _, sig := range tx.PayloadSignatures {
+		transaction.PayloadSignatures = append(transaction.PayloadSignatures, &TransactionSignature{
+			Address:     sig.Address[:],
+			SignerIndex: int64(sig.SignerIndex),
+			KeyIndex:    int64(sig.KeyIndex),
+			Signature:   sig.Signature,
+		})
+	}
+	for _, sig := range tx.EnvelopeSignatures {
+		transaction.EnvelopeSignatures = append(transaction.EnvelopeSignatures, &TransactionSignature{
+			Address:     sig.Address[:],
+			SignerIndex: int64(sig.SignerIndex),
+			KeyIndex:    int64(sig.KeyIndex),
+			Signature:   sig.Signature,
+		})
+	}
+	s.transactionChan <- &transaction
 }
 
 func (s *Subscription) getLogs(startHeight uint64, endHeight uint64) {
