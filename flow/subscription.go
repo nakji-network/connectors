@@ -24,6 +24,8 @@ import (
 
 const (
 	maxApiUsage       = 20 // Limit GetEventsForHeightRange API usage rate.
+	cacheSize         = 2000
+	channelSize       = 1000
 	workerPoolMaxSize = 5
 	defaultTimeout    = 3 * time.Minute
 )
@@ -84,7 +86,7 @@ func NewSubscription(ctx context.Context, host string, events []string, fromBloc
 	if err := cli.Ping(ctx); err != nil {
 		return nil, err
 	}
-	cache, err := lru.New(100000)
+	cache, err := lru.New(cacheSize)
 	if err != nil {
 		return nil, err
 	}
@@ -96,10 +98,10 @@ func NewSubscription(ctx context.Context, host string, events []string, fromBloc
 		numBlocks:       numBlocks,
 		cache:           cache,
 		done:            make(chan struct{}),
-		blockChan:       make(chan *Block, 10000),
-		transactionChan: make(chan *Transaction, 10000),
-		logChan:         make(chan *Log, 10000),
-		errChan:         make(chan error, 10000),
+		blockChan:       make(chan *Block, channelSize),
+		transactionChan: make(chan *Transaction, channelSize),
+		logChan:         make(chan *Log, channelSize),
+		errChan:         make(chan error, channelSize),
 	}
 	go func() {
 		interrupt := make(chan os.Signal, 1)
