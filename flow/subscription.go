@@ -240,10 +240,23 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 				return
 			}
 			b := &Block{
-				Ts:       timestamppb.New(block.Timestamp),
-				Id:       block.ID[:],
-				ParentID: block.ParentID[:],
-				Height:   block.Height,
+				Ts:                   timestamppb.New(block.Timestamp),
+				Id:                   block.ID[:],
+				ParentID:             block.ParentID[:],
+				Height:               block.Height,
+				CollectionGuarantees: make([]*CollectionGuarantee, 0, len(block.CollectionGuarantees)),
+				Seals:                make([]*BlockSeal, 0, len(block.Seals)),
+			}
+			for _, collectionGuarantee := range block.CollectionGuarantees {
+				b.CollectionGuarantees = append(b.CollectionGuarantees, &CollectionGuarantee{
+					CollectionID: collectionGuarantee.CollectionID[:],
+				})
+			}
+			for _, seal := range block.Seals {
+				b.Seals = append(b.Seals, &BlockSeal{
+					BlockID:            seal.BlockID[:],
+					ExecutionReceiptID: seal.ExecutionReceiptID[:],
+				})
 			}
 			blockMtx.Lock()
 			blocks = append(blocks, b)
