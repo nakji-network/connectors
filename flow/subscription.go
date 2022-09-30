@@ -23,8 +23,9 @@ import (
 )
 
 const (
-	maxApiUsage    = 20 // Limit GetEventsForHeightRange API usage rate.
-	defaultTimeout = 3 * time.Minute
+	maxApiUsage       = 20 // Limit GetEventsForHeightRange API usage rate.
+	workerPoolMaxSize = 5
+	defaultTimeout    = 3 * time.Minute
 )
 
 type EventType struct {
@@ -227,8 +228,8 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 		blocks       = make([]*Block, 0, endHeight-startHeight+1)
 	)
 	wpSize1 := endHeight - startHeight + 1
-	if wpSize1 > 10 {
-		wpSize1 = 10 // Limit WorkerPool size
+	if wpSize1 > workerPoolMaxSize {
+		wpSize1 = workerPoolMaxSize // Limit WorkerPool size
 	}
 	wp1 := NewWorkerPool(int(wpSize1))
 	for height := startHeight; height <= endHeight; height++ {
@@ -244,13 +245,11 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 				Id:                   block.ID[:],
 				ParentID:             block.ParentID[:],
 				Height:               block.Height,
-				CollectionGuarantees: make([]*CollectionGuarantee, 0, len(block.CollectionGuarantees)),
+				CollectionGuarantees: make([][]byte, 0, len(block.CollectionGuarantees)),
 				Seals:                make([]*BlockSeal, 0, len(block.Seals)),
 			}
 			for _, collectionGuarantee := range block.CollectionGuarantees {
-				b.CollectionGuarantees = append(b.CollectionGuarantees, &CollectionGuarantee{
-					CollectionID: collectionGuarantee.CollectionID[:],
-				})
+				b.CollectionGuarantees = append(b.CollectionGuarantees, collectionGuarantee.CollectionID[:])
 			}
 			for _, seal := range block.Seals {
 				b.Seals = append(b.Seals, &BlockSeal{
@@ -263,8 +262,8 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 			blockMtx.Unlock()
 			// Get Transactions for Block
 			wpSize2 := len(block.CollectionGuarantees)
-			if wpSize2 > 5 {
-				wpSize2 = 5 // Limit WorkerPool size
+			if wpSize2 > workerPoolMaxSize {
+				wpSize2 = workerPoolMaxSize // Limit WorkerPool size
 			}
 			wp2 := NewWorkerPool(wpSize2)
 			for i := range block.CollectionGuarantees {
@@ -307,8 +306,8 @@ func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier
 	var mtx sync.Mutex
 	transactions := make([]*Transaction, 0, len(coll.TransactionIDs))
 	wpSize := len(coll.TransactionIDs)
-	if wpSize > 10 {
-		wpSize = 10 // Limit WorkerPool size
+	if wpSize > workerPoolMaxSize {
+		wpSize = workerPoolMaxSize // Limit WorkerPool size
 	}
 	wp := NewWorkerPool(wpSize)
 	for i := range coll.TransactionIDs {
