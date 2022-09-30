@@ -17,6 +17,7 @@ import (
 	flowgrpc "github.com/onflow/flow-go-sdk/access/grpc"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials/insecure"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
@@ -219,60 +220,107 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 }
 
 func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
-	wp := NewWorkerPool(10)
+	var (
+		txMtx        sync.Mutex
+		blockMtx     sync.Mutex
+		transactions []*Transaction
+		blocks       = make([]*Block, 0, endHeight-startHeight+1)
+	)
+	wpSize := endHeight - startHeight + 1
+	if wpSize > 10 {
+		wpSize = 10 // Limit WorkerPool size
+	}
+	wp := NewWorkerPool(int(wpSize))
 	for height := startHeight; height <= endHeight; height++ {
 		wp.Run(func() {
-			s.getBlock(height)
+			// Get Block
+			block, err := s.getBlockByHeight(height)
+			if err != nil {
+				s.errChan <- err
+				return
+			}
+			b := &Block{
+				Ts:       timestamppb.New(block.Timestamp),
+				Id:       block.ID[:],
+				ParentID: block.ParentID[:],
+				Height:   block.Height,
+			}
+			blockMtx.Lock()
+			blocks = append(blocks, b)
+			blockMtx.Unlock()
+			// Get Transactions for Block
+			wpSize := len(block.CollectionGuarantees)
+			if wpSize > 5 {
+				wpSize = 5 // Limit WorkerPool size
+			}
+			wp := NewWorkerPool(wpSize)
+			for i := range block.CollectionGuarantees {
+				collID := block.CollectionGuarantees[i].CollectionID
+				wp.Run(func() {
+					txs := s.getTransactions(block, collID)
+					txMtx.Lock()
+					transactions = append(transactions, txs...)
+					txMtx.Unlock()
+				})
+			}
+			wp.Wait()
 		})
 	}
 	wp.Wait()
+	// Sort blocks by height
+	sort.Slice(blocks, func(i, j int) bool {
+		return blocks[i].Height < blocks[j].Height
+	})
+	// Sort transactions by timestamp and collection ID
+	sort.Slice(transactions, func(i, j int) bool {
+		tx1 := transactions[i]
+		tx2 := transactions[j]
+		return tx1.Ts.AsTime().Before(tx2.Ts.AsTime()) || (tx1.Ts.AsTime().Equal(tx2.Ts.AsTime()) && string(tx1.CollectionID) < string(tx2.CollectionID))
+	})
+	for _, block := range blocks {
+		s.blockChan <- block
+	}
+	for _, transaction := range transactions {
+		s.transactionChan <- transaction
+	}
 }
 
-func (s *Subscription) getBlock(height uint64) {
-	block, err := s.getBlockByHeight(height)
+func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier) []*Transaction {
+	coll, err := s.getCollection(collID)
 	if err != nil {
 		s.errChan <- err
-		return
+		return nil
 	}
-	s.blockChan <- &Block{
-		Ts:       timestamppb.New(block.Timestamp),
-		Id:       block.ID[:],
-		ParentID: block.ParentID[:],
-		Height:   block.Height,
+	var mtx sync.Mutex
+	transactions := make([]*Transaction, 0, len(coll.TransactionIDs))
+	wpSize := len(coll.TransactionIDs)
+	if wpSize > 10 {
+		wpSize = 10 // Limit WorkerPool size
 	}
-	wp := NewWorkerPool(5)
-	for i := range block.CollectionGuarantees {
-		collID := block.CollectionGuarantees[i].CollectionID
+	wp := NewWorkerPool(wpSize)
+	for i := range coll.TransactionIDs {
+		txID := coll.TransactionIDs[i]
 		wp.Run(func() {
-			s.getTransactions(block, collID)
+			transaction, err := s.getTransaction(block, collID, txID)
+			if err != nil {
+				s.errChan <- err
+				return
+			}
+			mtx.Lock()
+			transactions = append(transactions, transaction)
+			mtx.Unlock()
 		})
 	}
 	wp.Wait()
+	return transactions
 }
 
-func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier) {
-	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
-	coll, err := s.grpc.GetCollection(ctx, collID)
-	cancel()
-	if err != nil {
-		return
-	}
-	wp := NewWorkerPool(10)
-	for _, txID := range coll.TransactionIDs {
-		wp.Run(func() {
-			s.getTransaction(block, collID, txID)
-		})
-	}
-	wp.Wait()
-}
-
-func (s *Subscription) getTransaction(block *flow.Block, collID flow.Identifier, txID flow.Identifier) {
+func (s *Subscription) getTransaction(block *flow.Block, collID flow.Identifier, txID flow.Identifier) (*Transaction, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
 	tx, err := s.grpc.GetTransaction(ctx, txID)
 	cancel()
 	if err != nil {
-		s.errChan <- err
-		return
+		return nil, err
 	}
 	transaction := Transaction{
 		Ts:               timestamppb.New(block.Timestamp),
@@ -312,7 +360,7 @@ func (s *Subscription) getTransaction(block *flow.Block, collID flow.Identifier,
 			Signature:   sig.Signature,
 		})
 	}
-	s.transactionChan <- &transaction
+	return &transaction, nil
 }
 
 func (s *Subscription) getLogs(startHeight uint64, endHeight uint64) {
@@ -345,7 +393,7 @@ func (s *Subscription) getLogs(startHeight uint64, endHeight uint64) {
 			}
 		}
 	}
-	// Sort logs based on block height, transaction index and event index
+	// Sort logs by block height, transaction index and event index
 	sort.Slice(logs, func(i, j int) bool {
 		log1 := logs[i]
 		log2 := logs[j]
@@ -399,5 +447,26 @@ func (s *Subscription) getEventsForHeightRange(eventType string, startHeight uin
 		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
 		defer cancel()
 		return s.grpc.GetEventsForBlockIDs(ctx, eventType, blockIDs)
+	}
+}
+
+func (s *Subscription) getCollection(collID flow.Identifier) (*flow.Collection, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	defer cancel()
+	for {
+		select {
+		case <-ctx.Done():
+			return nil, ctx.Err()
+		default:
+			coll, err := s.grpc.GetCollection(ctx, collID)
+			if err != nil {
+				if rpcErr, ok := err.(flowgrpc.RPCError); ok && rpcErr.GRPCStatus().Code() == codes.NotFound {
+					time.Sleep(1 * time.Second) // Retry after 1s
+					continue
+				}
+				return nil, err
+			}
+			return coll, nil
+		}
 	}
 }

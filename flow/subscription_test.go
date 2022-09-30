@@ -40,7 +40,7 @@ func TestSubscription(t *testing.T) {
 			b, _ := json.MarshalIndent(log, "", "  ")
 			t.Logf("Log: %s", string(b))
 		case err := <-sub.Err():
-			t.Log(err)
+			t.Error(err)
 		}
 	}
 }
