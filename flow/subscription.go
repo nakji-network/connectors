@@ -226,13 +226,13 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 		transactions []*Transaction
 		blocks       = make([]*Block, 0, endHeight-startHeight+1)
 	)
-	wpSize := endHeight - startHeight + 1
-	if wpSize > 10 {
-		wpSize = 10 // Limit WorkerPool size
+	wpSize1 := endHeight - startHeight + 1
+	if wpSize1 > 10 {
+		wpSize1 = 10 // Limit WorkerPool size
 	}
-	wp := NewWorkerPool(int(wpSize))
+	wp1 := NewWorkerPool(int(wpSize1))
 	for height := startHeight; height <= endHeight; height++ {
-		wp.Run(func() {
+		wp1.Run(func() {
 			// Get Block
 			block, err := s.getBlockByHeight(height)
 			if err != nil {
@@ -262,24 +262,24 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 			blocks = append(blocks, b)
 			blockMtx.Unlock()
 			// Get Transactions for Block
-			wpSize := len(block.CollectionGuarantees)
-			if wpSize > 5 {
-				wpSize = 5 // Limit WorkerPool size
+			wpSize2 := len(block.CollectionGuarantees)
+			if wpSize2 > 5 {
+				wpSize2 = 5 // Limit WorkerPool size
 			}
-			wp := NewWorkerPool(wpSize)
+			wp2 := NewWorkerPool(wpSize2)
 			for i := range block.CollectionGuarantees {
 				collID := block.CollectionGuarantees[i].CollectionID
-				wp.Run(func() {
+				wp2.Run(func() {
 					txs := s.getTransactions(block, collID)
 					txMtx.Lock()
 					transactions = append(transactions, txs...)
 					txMtx.Unlock()
 				})
 			}
-			wp.Wait()
+			wp2.Wait()
 		})
 	}
-	wp.Wait()
+	wp1.Wait()
 	// Sort blocks by height
 	sort.Slice(blocks, func(i, j int) bool {
 		return blocks[i].Height < blocks[j].Height
