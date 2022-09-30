@@ -6,16 +6,12 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/nakji-network/connectors/flow";
 
 message Block {
-    google.protobuf.Timestamp    ts                   = 1;
-    bytes                        id                   = 2;
-    bytes                        parentID             = 3;
-    uint64                       height               = 4;
-    repeated CollectionGuarantee collectionGuarantees = 5;
-    repeated BlockSeal           seals                = 6; 
-}
-
-message CollectionGuarantee {
-    bytes collectionID = 1;
+    google.protobuf.Timestamp ts                   = 1;
+    bytes                     id                   = 2;
+    bytes                     parentID             = 3;
+    uint64                    height               = 4;
+    repeated bytes            collectionGuarantees = 5;
+    repeated BlockSeal        seals                = 6;
 }
 
 message BlockSeal {
