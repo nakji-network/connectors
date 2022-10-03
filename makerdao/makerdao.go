@@ -3,6 +3,7 @@ package makerdao
 import (
 	"context"
 	"fmt"
+	"sync"
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/chain"
@@ -148,15 +149,20 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc) {
 		lastBlock = c.FromBlock
 	}
 
+	wg := sync.WaitGroup{}
+	wg.Add(1)
+
 	go func() {
 		for bfLog := range c.bfLogs {
 			if msg := c.parse(ctx, kafkautils.MsgTypeBf, bfLog); msg != nil {
 				c.EventSink <- msg
 			}
 		}
+		wg.Done()
 	}()
 
 	chain.Backfill(ctx, c.sub.Client(), c.addresses, c.bfLogs, lastBlock, toBlock)
+	wg.Wait()
 
 	if c.FromBlock != 0 || c.NumBlocks != 0 {
 		log.Info().Msg("backfill completed. shutting down connector.")
