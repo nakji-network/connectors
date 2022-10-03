@@ -322,8 +322,8 @@ func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier
 
 func (s *Subscription) getTransaction(block *flow.Block, collID flow.Identifier, txID flow.Identifier) (*Transaction, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	defer cancel()
 	tx, err := s.grpc.GetTransaction(ctx, txID)
-	cancel()
 	if err != nil {
 		return nil, err
 	}
