@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/deribit/market"
 
 	"github.com/golang/protobuf/ptypes"
@@ -71,10 +72,13 @@ func (c *DeribitConnector) Start() {
 				}
 
 				// write to Kafka
-				c.EventSink <- &market.OpenInterest{
-					Ts:           ts,
-					OpenInterest: inst.DerivStatus.OpenInterest,
-					Asset:        inst.Pair.String(),
+				c.EventSink <- &kafkautils.Message{
+					MsgType: kafkautils.MsgTypeFct,
+					ProtoMsg: &market.OpenInterest{
+						Ts:           ts,
+						OpenInterest: inst.DerivStatus.OpenInterest,
+						Asset:        inst.Pair.String(),
+					},
 				}
 
 				//fmt.Println(cache.String())
