@@ -52,6 +52,7 @@ func (r *repositoryImpl) GetLatestBlock(ctx context.Context, isSealed bool) (*fl
 			block, err := r.grpc.GetLatestBlock(ctx, isSealed)
 			if err != nil {
 				if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+					time.Sleep(retryInterval)
 					continue
 				}
 				return nil, fmt.Errorf("GetLatestBlock: %w", err)
