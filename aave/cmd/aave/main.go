@@ -6,6 +6,7 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/aave"
 	"github.com/nakji-network/connectors/aave/lendingpool"
 
@@ -36,7 +37,8 @@ func main() {
 	}
 
 	// Register topic and protobuf type mappings
-	c.RegisterProtos(aave.TopicTypes...)
+	c.RegisterProtos(kafkautils.MsgTypeBf, aave.TopicTypes...)
+	c.RegisterProtos(kafkautils.MsgTypeFct, aave.TopicTypes...)
 
 	conf := &aave.Config{
 		ConnectorName: "aave",
