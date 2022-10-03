@@ -6,6 +6,7 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/makerdao"
 
 	"github.com/rs/zerolog/log"
@@ -49,7 +50,7 @@ func main() {
 		i++
 	}
 
-	c.RegisterProtos(protos...)
+	c.RegisterProtos(kafkautils.MsgTypeFct, protos...)
 
 	conf := &makerdao.Config{
 		ContractsUrl:   c.Config.GetString("contracts.url"),

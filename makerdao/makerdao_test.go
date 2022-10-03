@@ -25,13 +25,14 @@ type MockSubscription struct{}
 
 var mockConnector *Connector
 
-func (MockSubscription) Done() <-chan bool           { return nil }
-func (MockSubscription) Err() <-chan error           { return nil }
-func (MockSubscription) Headers() chan *types.Header { return nil }
-func (MockSubscription) Logs() chan types.Log        { return nil }
-func (MockSubscription) Subscribe()                  {}
-func (MockSubscription) Unsubscribe()                {}
-func (MockSubscription) Client() *ethclient.Client   { return nil }
+func (MockSubscription) AddAddress(context.Context, common.Address, kafkautils.MsgType) {}
+func (MockSubscription) Client() *ethclient.Client                                      { return nil }
+func (MockSubscription) Done() <-chan bool                                              { return nil }
+func (MockSubscription) Err() <-chan error                                              { return nil }
+func (MockSubscription) Headers() chan *types.Header                                    { return nil }
+func (MockSubscription) Logs() chan types.Log                                           { return nil }
+func (MockSubscription) Subscribe(context.Context)                                      {}
+func (MockSubscription) Close()                                                         {}
 func (MockSubscription) GetBlockTime(ctx context.Context, vLog types.Log) (uint64, error) {
 	cache := map[uint64]uint64{
 		uint64(13145410): uint64(1629274175),
@@ -57,6 +58,7 @@ func TestMain(*testing.M) {
 func TestParse(t *testing.T) {
 	t.Parallel()
 
+	ctx := context.Background()
 	for _, testCase := range []struct {
 		input *types.Log
 		want  protoreflect.ProtoMessage
@@ -130,8 +132,8 @@ func TestParse(t *testing.T) {
 			},
 		},
 	} {
-		res := mockConnector.parse(*testCase.input)
-		if testCase.want != res {
+		res := mockConnector.parse(ctx, kafkautils.MsgTypeFct, *testCase.input)
+		if testCase.want != res.ProtoMsg {
 			t.Error("Event log PROTOMSG parse failed.", "got:", res, "want:", testCase.want)
 		}
 	}
