@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/huobi/market"
 
 	"github.com/rs/zerolog/log"
@@ -59,11 +60,14 @@ func (c *HuobiConnector) Start() {
 			if d.Amount != cache[p].OpenInterest && d.Amount != 0 {
 				cache[p] = UpdateData{LastUpdated: ts, OpenInterest: d.Amount}
 
-				c.EventSink <- &market.OpenInterest{
-					Ts:                timestamppb.New(ts),
-					OpenInterest:      d.Volume,
-					OpenInterestValue: d.Amount,
-					Asset:             p.String(),
+				c.EventSink <- &kafkautils.Message{
+					MsgType: kafkautils.MsgTypeFct,
+					ProtoMsg: &market.OpenInterest{
+						Ts:                timestamppb.New(ts),
+						OpenInterest:      d.Volume,
+						OpenInterestValue: d.Amount,
+						Asset:             p.String(),
+					},
 				}
 
 				log.Info().
