@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/okex"
 	"github.com/nakji-network/connectors/okex/market"
 
@@ -16,9 +17,7 @@ func main() {
 	}
 
 	// Register topic and protobuf type mappings
-	conn.RegisterProtos(
-		&market.OpenInterest{},
-	)
+	conn.RegisterProtos(kafkautils.MsgTypeFct, &market.OpenInterest{})
 
 	c := okex.OkexConnector{
 		Connector: conn,

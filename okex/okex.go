@@ -6,6 +6,7 @@ import (
 	"time"
 
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/okex/market"
 
 	"github.com/rs/zerolog/log"
@@ -67,10 +68,13 @@ func (c *OkexConnector) Start() {
 				// write to Kafka
 				log.Info().Str("exch.Name", exch.Name).Str("pair", inst.Pair.String())
 
-				c.EventSink <- &market.OpenInterest{
-					Ts:           timestamppb.New(inst.LastUpdated),
-					OpenInterest: inst.OpenInterest,
-					Asset:        inst.Pair.String(),
+				c.EventSink <- &kafkautils.Message{
+					MsgType: kafkautils.MsgTypeFct,
+					ProtoMsg: &market.OpenInterest{
+						Ts:           timestamppb.New(inst.LastUpdated),
+						OpenInterest: inst.OpenInterest,
+						Asset:        inst.Pair.String(),
+					},
 				}
 
 				log.Info().Msgf("%s: %+v\tOI: %f", inst.LastUpdated, inst.Pair, inst.OpenInterest)
