@@ -2,6 +2,7 @@ package bitmex
 
 import (
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/bitmex/market"
 
 	"github.com/rs/zerolog/log"
@@ -61,10 +62,13 @@ func (c *BitmexConnector) Start() {
 					Str("sym", inst.Pair.String()).
 					Msg("Update")
 
-				c.EventSink <- &market.OpenInterest{
-					Ts:           timestamppb.New(inst.LastUpdated),
-					OpenInterest: inst.OpenInterest,
-					Asset:        inst.Pair.String(),
+				c.EventSink <- &kafkautils.Message{
+					MsgType: kafkautils.MsgTypeFct,
+					ProtoMsg: &market.OpenInterest{
+						Ts:           timestamppb.New(inst.LastUpdated),
+						OpenInterest: inst.OpenInterest,
+						Asset:        inst.Pair.String(),
+					},
 				}
 			}
 

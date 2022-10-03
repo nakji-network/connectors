@@ -1,0 +1,16 @@
+
+ÿ
+google/protobuf/timestamp.protogoogle.protobuf";
+	Timestamp
+seconds (Rseconds
+nanos (RnanosB…
+com.google.protobufBTimestampProtoPZ2google.golang.org/protobuf/types/known/timestamppbø¢GPBªGoogle.Protobuf.WellKnownTypesbproto3
+·
+market.protomarketgoogle/protobuf/timestamp.proto"À
+OpenInterest*
+ts (2.google.protobuf.TimestampRts"
+openInterest (RopenInterest,
+openInterestValue (RopenInterestValue
+asset (	Rasset
+ns (	Rns
+s (	RsB3Z1github.com/nakji-network/connectors/bitmex/marketbproto3
