@@ -6,6 +6,7 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/woofi"
 
 	"github.com/rs/zerolog/log"
@@ -44,7 +45,8 @@ func main() {
 		i++
 	}
 
-	c.RegisterProtos(protos...)
+	c.RegisterProtos(kafkautils.MsgTypeFct, protos...)
+	c.RegisterProtos(kafkautils.MsgTypeBf, protos...)
 
 	conf := &woofi.Config{
 		ConnectorName: "woofi",
