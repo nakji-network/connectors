@@ -3,9 +3,8 @@
 package main
 
 import (
-	"context"
-
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/ethnft"
 	"github.com/nakji-network/connectors/ethnft/erc1155"
 	"github.com/nakji-network/connectors/ethnft/erc721"
@@ -25,7 +24,7 @@ func main() {
 	)
 
 	// Register topic and protobuf type mappings
-	c.RegisterProtos(
+	c.RegisterProtos(kafkautils.MsgTypeFct,
 		&erc1155.ApprovalForAll{},
 		&erc1155.TransferBatch{},
 		&erc1155.TransferSingle{},
@@ -35,5 +34,5 @@ func main() {
 		&erc721.Transfer{},
 	)
 
-	connector.Start(context.Background()) //, c.Config.GetUint64("nft.backfillNumBlocks"))
+	connector.Start() //, c.Config.GetUint64("nft.backfillNumBlocks"))
 }

@@ -6,6 +6,12 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/nakji-network/connector"
+	nakjicommon "github.com/nakji-network/connector/common"
+	"github.com/nakji-network/connector/kafkautils"
+	"github.com/nakji-network/connectors/ethnft/erc1155"
+	"github.com/nakji-network/connectors/ethnft/erc721"
+
 	"github.com/alitto/pond"
 	geth "github.com/ethereum/go-ethereum"
 	"github.com/ethereum/go-ethereum/accounts/abi"
@@ -15,10 +21,6 @@ import (
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/event"
 
-	"github.com/nakji-network/connector"
-	nakjicommon "github.com/nakji-network/connector/common"
-	"github.com/nakji-network/connectors/ethnft/erc1155"
-	"github.com/nakji-network/connectors/ethnft/erc721"
 	"github.com/rs/zerolog/log"
 )
 
@@ -44,20 +46,22 @@ func NewConnector(c *connector.Connector) *Connector {
 	}
 }
 
-func (c *Connector) setup() {
-	ctx := context.Background()
+func (c *Connector) Start() { //, backfillNumBlocks uint64) {
+	ctx, cancel := context.WithCancel(context.Background())
 
-	sub, err := connector.NewSubscription(ctx, c.Connector, network, nil, 0, 0)
-	c.sub = sub
-	if err != nil {
-		log.Fatal().Err(err).Msg(fmt.Sprintf("%s connection error", network))
-	}
-	c.Client = c.Connector.ChainClients.Ethereum(context.Background())
+	c.setup(ctx)
+
+	go func() {
+		<-c.sub.Done()
+		cancel()
+	}()
+
+	go c.listen(ctx)
+	<-ctx.Done()
+	c.sub.Close()
 }
 
-func (c *Connector) Start(ctx context.Context) { //, backfillNumBlocks uint64) {
-	c.setup()
-
+func (c *Connector) listen(ctx context.Context) {
 	erc721Abi, err := erc721.ERC721MetaData.GetAbi()
 	if err != nil {
 		log.Fatal().Err(err).Msg("Unable to get ABI")
@@ -114,6 +118,16 @@ func (c *Connector) Start(ctx context.Context) { //, backfillNumBlocks uint64) {
 			return
 		}
 	}
+}
+
+func (c *Connector) setup(ctx context.Context) {
+
+	sub, err := connector.NewSubscription(ctx, c.Connector, network, nil)
+	c.sub = sub
+	if err != nil {
+		log.Fatal().Err(err).Msg(fmt.Sprintf("%s connection error", network))
+	}
+	c.Client = c.Connector.ChainClients.Ethereum(context.Background())
 }
 
 func (c *Connector) consumeLogs(logs <-chan types.Log, contractAbi *abi.ABI, processLog func(evLog types.Log, a *abi.ABI) error) {
@@ -230,7 +244,7 @@ func (c *Connector) Erc1155LogToMsg(evLog types.Log, a *abi.ABI) error {
 			return nil
 		}
 
-		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), &erc1155.ApprovalForAll{
+		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), kafkautils.MsgTypeFct, &erc1155.ApprovalForAll{
 			Ts:       nakjicommon.UnixToTimestampPb(int64(ts * 1000)),
 			Account:  event.Account.Bytes(),
 			Operator: event.Operator.Bytes(),
@@ -243,7 +257,7 @@ func (c *Connector) Erc1155LogToMsg(evLog types.Log, a *abi.ABI) error {
 			return nil
 		}
 
-		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), &erc1155.TransferBatch{
+		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), kafkautils.MsgTypeFct, &erc1155.TransferBatch{
 			Ts:       nakjicommon.UnixToTimestampPb(int64(ts * 1000)),
 			Operator: event.Operator.Bytes(),
 			From:     event.From.Bytes(),
@@ -258,7 +272,7 @@ func (c *Connector) Erc1155LogToMsg(evLog types.Log, a *abi.ABI) error {
 			return nil
 		}
 
-		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), &erc1155.TransferSingle{
+		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), kafkautils.MsgTypeFct, &erc1155.TransferSingle{
 			Ts:       nakjicommon.UnixToTimestampPb(int64(ts * 1000)),
 			Operator: event.Operator.Bytes(),
 			From:     event.From.Bytes(),
@@ -273,7 +287,7 @@ func (c *Connector) Erc1155LogToMsg(evLog types.Log, a *abi.ABI) error {
 			return nil
 		}
 
-		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), &erc1155.URI{
+		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), kafkautils.MsgTypeFct, &erc1155.URI{
 			Ts:    nakjicommon.UnixToTimestampPb(int64(ts * 1000)),
 			Value: event.Value,
 			Id:    event.Id.Bytes(),
@@ -318,7 +332,7 @@ func (c *Connector) Erc721LogToMsg(evLog types.Log, a *abi.ABI) error {
 		}
 
 		// TODO: subject should be contract address? or contract_tokenid
-		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), &erc721.Approval{
+		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), kafkautils.MsgTypeFct, &erc721.Approval{
 			Ts:       nakjicommon.UnixToTimestampPb(int64(ts * 1000)),
 			Owner:    event.Owner.Bytes(),
 			Approved: event.Approved.Bytes(),
@@ -332,7 +346,7 @@ func (c *Connector) Erc721LogToMsg(evLog types.Log, a *abi.ABI) error {
 			return nil
 		}
 
-		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), &erc721.ApprovalForAll{
+		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), kafkautils.MsgTypeFct, &erc721.ApprovalForAll{
 			Ts:       nakjicommon.UnixToTimestampPb(int64(ts * 1000)),
 			Owner:    event.Owner.Bytes(),
 			Operator: event.Operator.Bytes(),
@@ -346,7 +360,7 @@ func (c *Connector) Erc721LogToMsg(evLog types.Log, a *abi.ABI) error {
 			return nil
 		}
 
-		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), &erc721.Transfer{
+		return c.Connector.ProduceAndCommitMessage(Namespace, evLog.Address.Hex(), kafkautils.MsgTypeFct, &erc721.Transfer{
 			Ts:      nakjicommon.UnixToTimestampPb(int64(ts * 1000)),
 			From:    event.From.Bytes(),
 			To:      event.To.Bytes(),
