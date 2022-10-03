@@ -7,6 +7,7 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/chain"
+	"github.com/nakji-network/connector/kafkautils"
 
 	candymachinev2 "github.com/gagliardetto/metaplex-go/clients/nft-candy-machine-v2"
 	"github.com/gagliardetto/solana-go"
@@ -62,7 +63,7 @@ func (c *Connector) Start() {
 		i++
 	}
 
-	c.RegisterProtos(protos...)
+	c.RegisterProtos(kafkautils.MsgTypeFct, protos...)
 
 	//backfillLimit := c.config.GetInt("candymachine.backfillLimit")
 
@@ -92,7 +93,10 @@ func (c *Connector) processListenerTransaction(txResult *rpc.GetTransactionResul
 
 		if msg != nil {
 			log.Info().Interface("msg", msg).Msg("candy machine message published")
-			c.EventSink <- msg
+			c.EventSink <- &kafkautils.Message{
+				MsgType:  kafkautils.MsgTypeFct,
+				ProtoMsg: msg,
+			}
 		}
 	}
 }
@@ -105,7 +109,10 @@ func (c *Connector) processBackfillerTransaction(txResult *rpc.GetTransactionRes
 
 		if msg != nil {
 			log.Info().Interface("msg", msg).Msg("candy machine message published via backfill")
-			c.EventSink <- msg
+			c.EventSink <- &kafkautils.Message{
+				MsgType:  kafkautils.MsgTypeFct,
+				ProtoMsg: msg,
+			}
 		}
 	}
 }
