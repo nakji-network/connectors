@@ -7,7 +7,7 @@ replace github.com/nakji-network/connectors/bybit/market => ./market
 replace github.com/thrasher-corp/gocryptotrader => github.com/blep-ai/gocryptotrader v0.0.0-20210824033446-5f39de372417
 
 require (
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220928122513-c51982adda53
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20221003070900-09975ac99160
 	github.com/rs/zerolog v1.26.1
 	github.com/thrasher-corp/gocryptotrader v0.0.0-00010101000000-000000000000
 	google.golang.org/protobuf v1.27.1

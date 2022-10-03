@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/bybit/market"
 
 	"github.com/rs/zerolog/log"
@@ -67,11 +68,14 @@ func (c *BybitConnector) Start() {
 				}
 
 				// write to Kafka
-				c.EventSink <- &market.OpenInterest{
-					Ts:                timestamppb.New(ts),
-					OpenInterest:      d.OpenInterest,
-					OpenInterestValue: ov,
-					Asset:             d.Symbol,
+				c.EventSink <- &kafkautils.Message{
+					MsgType: kafkautils.MsgTypeFct,
+					ProtoMsg: &market.OpenInterest{
+						Ts:                timestamppb.New(ts),
+						OpenInterest:      d.OpenInterest,
+						OpenInterestValue: ov,
+						Asset:             d.Symbol,
+					},
 				}
 
 				log.Info().
