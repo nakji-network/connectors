@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 
 	"github.com/btcsuite/btcd/btcjson"
 	"github.com/btcsuite/btcd/chaincfg/chainhash"
@@ -95,7 +96,10 @@ func (c *BitcoinConnector) Start(ctx context.Context) {
 
 			var blockData Block
 			blockData.UnmarshalBTCBlock(verboseBlock)
-			c.EventSink <- &blockData
+			c.EventSink <- &kafkautils.Message{
+				MsgType:  kafkautils.MsgTypeFct,
+				ProtoMsg: &blockData,
+			}
 
 			block := btcutil.NewBlock(wireBlock)
 			for _, tx := range block.Transactions() {
@@ -106,7 +110,10 @@ func (c *BitcoinConnector) Start(ctx context.Context) {
 
 				var txData Transaction
 				txData.UnmarshalBTCTransaction(rawTx)
-				c.EventSink <- &txData
+				c.EventSink <- &kafkautils.Message{
+					MsgType:  kafkautils.MsgTypeFct,
+					ProtoMsg: &txData,
+				}
 			}
 			c.callback()
 		}
