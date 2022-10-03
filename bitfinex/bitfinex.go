@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/bitfinex/market"
 
 	"github.com/rs/zerolog/log"
@@ -64,10 +65,13 @@ func (c *BitfinexConnector) Start() {
 				cache[inst.Pair] = UpdateData{inst.LastUpdated, inst.DerivStatus.OpenInterest}
 
 				// write to Kafka
-				c.EventSink <- &market.OpenInterest{
-					Ts:           timestamppb.New(inst.LastUpdated),
-					OpenInterest: inst.DerivStatus.OpenInterest,
-					Asset:        inst.Pair.String(),
+				c.EventSink <- &kafkautils.Message{
+					MsgType: kafkautils.MsgTypeFct,
+					ProtoMsg: &market.OpenInterest{
+						Ts:           timestamppb.New(inst.LastUpdated),
+						OpenInterest: inst.DerivStatus.OpenInterest,
+						Asset:        inst.Pair.String(),
+					},
 				}
 
 				log.Info().
