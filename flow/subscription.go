@@ -14,11 +14,7 @@ import (
 	lru "github.com/hashicorp/golang-lru"
 	"github.com/onflow/cadence"
 	"github.com/onflow/flow-go-sdk"
-	flowgrpc "github.com/onflow/flow-go-sdk/access/grpc"
 	"github.com/rs/zerolog/log"
-	"google.golang.org/grpc"
-	"google.golang.org/grpc/codes"
-	"google.golang.org/grpc/credentials/insecure"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -60,7 +56,7 @@ type Log struct {
 
 type Subscription struct {
 	host            string
-	grpc            *flowgrpc.Client
+	grpc            Repository
 	fromBlock       uint64
 	numBlocks       uint64
 	events          []string
@@ -75,15 +71,8 @@ type Subscription struct {
 }
 
 func NewSubscription(ctx context.Context, host string, events []string, fromBlock uint64, numBlocks uint64) (*Subscription, error) {
-	cli, err := flowgrpc.NewClient(
-		host,
-		grpc.WithTransportCredentials(insecure.NewCredentials()),
-		grpc.WithDefaultCallOptions(grpc.MaxCallRecvMsgSize(1<<25)), // 32 MB
-	)
+	repo, err := NewRepository(host)
 	if err != nil {
-		return nil, err
-	}
-	if err := cli.Ping(ctx); err != nil {
 		return nil, err
 	}
 	cache, err := lru.New(cacheSize)
@@ -92,7 +81,7 @@ func NewSubscription(ctx context.Context, host string, events []string, fromBloc
 	}
 	sub := &Subscription{
 		host:            host,
-		grpc:            cli,
+		grpc:            repo,
 		events:          events,
 		fromBlock:       fromBlock,
 		numBlocks:       numBlocks,
@@ -300,7 +289,9 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 }
 
 func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier) []*Transaction {
-	coll, err := s.getCollection(collID)
+	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	defer cancel()
+	coll, err := s.grpc.GetCollection(ctx, collID)
 	if err != nil {
 		s.errChan <- err
 		return nil
@@ -331,8 +322,8 @@ func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier
 
 func (s *Subscription) getTransaction(block *flow.Block, collID flow.Identifier, txID flow.Identifier) (*Transaction, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	defer cancel()
 	tx, err := s.grpc.GetTransaction(ctx, txID)
-	cancel()
 	if err != nil {
 		return nil, err
 	}
@@ -461,26 +452,5 @@ func (s *Subscription) getEventsForHeightRange(eventType string, startHeight uin
 		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
 		defer cancel()
 		return s.grpc.GetEventsForBlockIDs(ctx, eventType, blockIDs)
-	}
-}
-
-func (s *Subscription) getCollection(collID flow.Identifier) (*flow.Collection, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
-	defer cancel()
-	for {
-		select {
-		case <-ctx.Done():
-			return nil, ctx.Err()
-		default:
-			coll, err := s.grpc.GetCollection(ctx, collID)
-			if err != nil {
-				if rpcErr, ok := err.(flowgrpc.RPCError); ok && rpcErr.GRPCStatus().Code() == codes.NotFound {
-					time.Sleep(1 * time.Second) // Retry after 1s
-					continue
-				}
-				return nil, err
-			}
-			return coll, nil
-		}
 	}
 }
