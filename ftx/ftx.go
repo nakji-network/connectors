@@ -7,6 +7,7 @@ import (
 	"time"
 
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/ftx/market"
 
 	"github.com/rs/zerolog/log"
@@ -83,10 +84,13 @@ func (c *FTXConnector) Start() {
 				cache[f] = UpdateData{LastUpdated: ts, OpenInterest: futureStatsData.OpenInterest}
 
 				// write to Kafka
-				c.EventSink <- &market.OpenInterest{
-					Ts:           timestamppb.New(ts),
-					OpenInterest: futureStatsData.OpenInterest,
-					Asset:        f,
+				c.EventSink <- &kafkautils.Message{
+					MsgType: kafkautils.MsgTypeFct,
+					ProtoMsg: &market.OpenInterest{
+						Ts:           timestamppb.New(ts),
+						OpenInterest: futureStatsData.OpenInterest,
+						Asset:        f,
+					},
 				}
 
 				//fmt.Println(cache.OrderedString())
