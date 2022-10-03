@@ -7,6 +7,7 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/common"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/binance/market"
 
 	"github.com/rs/zerolog/log"
@@ -49,11 +50,14 @@ func (c *BinanceConnector) Start() {
 			ts := common.UnixToTimestampPb(msInt)
 
 			// write to Kafka
-			c.EventSink <- &market.OpenInterest{
-				Ts:                ts,
-				OpenInterest:      val.Get("sumOpenInterest").Float(),
-				OpenInterestValue: val.Get("sumOpenInterestValue").Float(),
-				Asset:             symbol,
+			c.EventSink <- &kafkautils.Message{
+				MsgType: kafkautils.MsgTypeFct,
+				ProtoMsg: &market.OpenInterest{
+					Ts:                ts,
+					OpenInterest:      val.Get("sumOpenInterest").Float(),
+					OpenInterestValue: val.Get("sumOpenInterestValue").Float(),
+					Asset:             symbol,
+				},
 			}
 		})
 	}
