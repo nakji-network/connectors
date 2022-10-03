@@ -61,6 +61,16 @@ func (c *Connector) Start() { //, backfillNumBlocks uint64) {
 	c.sub.Close()
 }
 
+func (c *Connector) setup(ctx context.Context) {
+
+	sub, err := connector.NewSubscription(ctx, c.Connector, network, nil)
+	c.sub = sub
+	if err != nil {
+		log.Fatal().Err(err).Msg(fmt.Sprintf("%s connection error", network))
+	}
+	c.Client = c.Connector.ChainClients.Ethereum(context.Background())
+}
+
 func (c *Connector) listen(ctx context.Context) {
 	erc721Abi, err := erc721.ERC721MetaData.GetAbi()
 	if err != nil {
@@ -118,16 +128,6 @@ func (c *Connector) listen(ctx context.Context) {
 			return
 		}
 	}
-}
-
-func (c *Connector) setup(ctx context.Context) {
-
-	sub, err := connector.NewSubscription(ctx, c.Connector, network, nil)
-	c.sub = sub
-	if err != nil {
-		log.Fatal().Err(err).Msg(fmt.Sprintf("%s connection error", network))
-	}
-	c.Client = c.Connector.ChainClients.Ethereum(context.Background())
 }
 
 func (c *Connector) consumeLogs(logs <-chan types.Log, contractAbi *abi.ABI, processLog func(evLog types.Log, a *abi.ABI) error) {

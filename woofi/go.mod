@@ -2,14 +2,6 @@ module github.com/nakji-network/connectors/woofi
 
 go 1.18
 
-replace github.com/nakji-network/connector => ../../connector
-
-replace github.com/nakji-network/connector/chain => ../../connector/chain
-
-replace github.com/nakji-network/connector/common => ../../connector/common
-
-replace github.com/nakji-network/connector/kafkautils => ../../connector/kafkautils
-
 require (
 	github.com/ethereum/go-ethereum v1.10.21
 	github.com/nakji-network/connector v0.0.1-beta.1.0.20221003070900-09975ac99160
