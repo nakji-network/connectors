@@ -5,7 +5,7 @@ syntax = "proto3";
 package bsc_WOOPP;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/bsc_WOOPP";
+option go_package = "github.com/nakji-network/connectors/woofi/bsc_WOOPP";
 
 
 message RewardManagerUpdated {

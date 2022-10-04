@@ -5,7 +5,7 @@ syntax = "proto3";
 package polygon_WOOPP;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/polygon_WOOPP";
+option go_package = "github.com/nakji-network/connectors/woofi/polygon_WOOPP";
 
 
 message RewardManagerUpdated {
