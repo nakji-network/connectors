@@ -163,9 +163,10 @@ func (s *Subscription) subscribe() {
 			}
 			// Backfill if needed
 			if !backfilled && (s.fromBlock > 0 || s.numBlocks > 0) {
-				s.backfill(latest)
+				go s.backfill(latest - 1)
 				backfilled = true
-			} else if s.curBlock == 0 {
+			}
+			if s.curBlock == 0 {
 				s.getEvents(latest, latest)
 			} else {
 				s.getEvents(s.curBlock+1, latest)
