@@ -26,6 +26,7 @@ func main() {
 	c.Config.SetDefault("waitBlocks", 4)
 
 	//	Woo initial block is #18675185
+	pflag.StringP("network", "n", "bsc", "network to connect to e.g. bsc")
 	pflag.Int64P("from-block", "f", 0, "block number to start backfill from (optional")
 	pflag.Int64P("num-blocks", "b", 0, "number of blocks to backfill (optional)")
 
@@ -36,10 +37,12 @@ func main() {
 		log.Fatal().Err(err).Msg("input is not correct")
 	}
 
+	networkName := c.Config.GetString("network")
+
 	// Register topic and protobuf type mappings
-	protos := make([]protoreflect.ProtoMessage, len(woofi.TopicTypes))
+	protos := make([]protoreflect.ProtoMessage, len(woofi.TopicTypes[networkName]))
 	i := 0
-	for _, topicProto := range woofi.TopicTypes {
+	for _, topicProto := range woofi.TopicTypes[networkName] {
 		protos[i] = topicProto
 		i++
 	}
@@ -47,8 +50,8 @@ func main() {
 	c.RegisterProtos(protos...)
 
 	conf := &woofi.Config{
-		ConnectorName: "woofi",
-		NetworkName:   "bsc",
+		ConnectorName: "woofi-" + networkName,
+		NetworkName:   networkName,
 		FromBlock:     c.Config.GetUint64("from-block"),
 		NumBlocks:     c.Config.GetUint64("num-blocks"),
 	}
@@ -58,8 +61,20 @@ func main() {
 }
 
 func validateFlags(conf config.IConfig) error {
+	networkName := conf.GetString("network")
 	fromBlock := conf.GetInt64("from-block")
 	numBlocks := conf.GetInt64("num-blocks")
+
+	availableNetworks := map[string]bool{"bsc": true, "polygon": true}
+
+	if _, isExists := availableNetworks[networkName]; !isExists {
+		errorMsg := "network is not supported, please try again with one of these: "
+		for k := range availableNetworks {
+			errorMsg += k + " "
+		}
+		return fmt.Errorf(errorMsg)
+	}
+
 
 	if fromBlock < 0 {
 		return fmt.Errorf("backfill input value cannot be negative. from-block: %d", fromBlock)

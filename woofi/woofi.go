@@ -6,7 +6,8 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/common"
-	"github.com/nakji-network/connectors/woofi/WOOPP"
+	"github.com/nakji-network/connectors/woofi/bsc_WOOPP"
+	"github.com/nakji-network/connectors/woofi/polygon_WOOPP"
 
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/rs/zerolog/log"
@@ -35,8 +36,8 @@ func New(c *connector.Connector, config *Config) *Connector {
 }
 
 func (c *Connector) Start() {
-	addresses := GetAddresses(ContractAddresses)
-	c.contracts = GetContracts(ContractAddresses)
+	addresses := GetAddresses(ContractAddresses[c.NetworkName])
+	c.contracts = GetContracts(ContractAddresses[c.NetworkName])
 
 	ctx := context.Background()
 
@@ -96,8 +97,10 @@ func (c *Connector) parse(vLog types.Log) protoreflect.ProtoMessage {
 
 func getContract(contractType string) ISmartContract {
 	switch contractType {
-	case "WOOPP":
-		return &WOOPP.SmartContract{}
+	case "bsc_WOOPP":
+		return &bsc_WOOPP.SmartContract{}
+	case "polygon_WOOPP":
+		return &polygon_WOOPP.SmartContract{}
 	}
 
 	return nil

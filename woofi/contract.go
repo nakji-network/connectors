@@ -29,7 +29,6 @@ func GetContracts(addresses map[string]string) map[string]*Contract {
 			if err != nil {
 				log.Fatal().Err(err).Msg("failed to read contract ABI")
 			}
-
 			contracts[v] = &Contract{
 				ABI:  &abiObj,
 				Name: k,
