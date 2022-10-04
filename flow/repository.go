@@ -3,6 +3,7 @@ package flow
 import (
 	"context"
 	"fmt"
+	"math/rand"
 	"time"
 
 	"github.com/onflow/flow-go-sdk"
@@ -13,8 +14,7 @@ import (
 )
 
 const (
-	maxRetryCount  = 5
-	retryInterval  = 1 * time.Second
+	maxRetryCount  = 6
 	maxGrpcMsgSize = 64 * 1024 * 1024 // 64 MB
 )
 
@@ -45,115 +45,127 @@ func NewRepository(host string) (Repository, error) {
 
 func (r *repositoryImpl) GetLatestBlock(ctx context.Context, isSealed bool) (*flow.Block, error) {
 	for retryCount := 0; ; retryCount++ {
-		select {
-		case <-ctx.Done():
-			return nil, fmt.Errorf("GetLatestBlock: %w", ctx.Err())
-		default:
-			block, err := r.grpc.GetLatestBlock(ctx, isSealed)
-			if err != nil {
-				if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
-					time.Sleep(retryInterval)
+		block, err := r.grpc.GetLatestBlock(ctx, isSealed)
+		if err != nil {
+			if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+				// Do exponential backoff with 10% jitter
+				backoff := float64(int(1) << retryCount)
+				backoff += backoff * (0.1 * rand.Float64())
+				select {
+				case <-ctx.Done():
+					return nil, fmt.Errorf("GetLatestBlock: %w", ctx.Err())
+				case <-time.After(time.Second * time.Duration(backoff)):
 					continue
 				}
-				return nil, fmt.Errorf("GetLatestBlock: %w", err)
 			}
-			return block, nil
+			return nil, fmt.Errorf("GetLatestBlock: %w", err)
 		}
+		return block, nil
 	}
 }
 
 func (r *repositoryImpl) GetBlockByHeight(ctx context.Context, height uint64) (*flow.Block, error) {
 	for retryCount := 0; ; retryCount++ {
-		select {
-		case <-ctx.Done():
-			return nil, fmt.Errorf("GetBlockByHeight: %w", ctx.Err())
-		default:
-			block, err := r.grpc.GetBlockByHeight(ctx, height)
-			if err != nil {
-				if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
-					time.Sleep(retryInterval)
+		block, err := r.grpc.GetBlockByHeight(ctx, height)
+		if err != nil {
+			if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+				// Do exponential backoff with 10% jitter
+				backoff := float64(int(1) << retryCount)
+				backoff += backoff * (0.1 * rand.Float64())
+				select {
+				case <-ctx.Done():
+					return nil, fmt.Errorf("GetBlockByHeight: %w", ctx.Err())
+				case <-time.After(time.Second * time.Duration(backoff)):
 					continue
 				}
-				return nil, fmt.Errorf("GetBlockByHeight: %w", err)
 			}
-			return block, nil
+			return nil, fmt.Errorf("GetBlockByHeight: %w", err)
 		}
+		return block, nil
 	}
 }
 
 func (r *repositoryImpl) GetCollection(ctx context.Context, colID flow.Identifier) (*flow.Collection, error) {
 	for retryCount := 0; ; retryCount++ {
-		select {
-		case <-ctx.Done():
-			return nil, fmt.Errorf("GetCollection: %w", ctx.Err())
-		default:
-			col, err := r.grpc.GetCollection(ctx, colID)
-			if err != nil {
-				if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable, codes.NotFound) {
-					time.Sleep(retryInterval)
+		col, err := r.grpc.GetCollection(ctx, colID)
+		if err != nil {
+			if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable, codes.NotFound) {
+				// Do exponential backoff with 10% jitter
+				backoff := float64(int(1) << retryCount)
+				backoff += backoff * (0.1 * rand.Float64())
+				select {
+				case <-ctx.Done():
+					return nil, fmt.Errorf("GetCollection: %w", ctx.Err())
+				case <-time.After(time.Second * time.Duration(backoff)):
 					continue
 				}
-				return nil, fmt.Errorf("GetCollection: %w", err)
 			}
-			return col, nil
+			return nil, fmt.Errorf("GetCollection: %w", err)
 		}
+		return col, nil
 	}
 }
 
 func (r *repositoryImpl) GetTransaction(ctx context.Context, txID flow.Identifier) (*flow.Transaction, error) {
 	for retryCount := 0; ; retryCount++ {
-		select {
-		case <-ctx.Done():
-			return nil, fmt.Errorf("GetTransaction: %w", ctx.Err())
-		default:
-			tx, err := r.grpc.GetTransaction(ctx, txID)
-			if err != nil {
-				if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
-					time.Sleep(retryInterval)
+		tx, err := r.grpc.GetTransaction(ctx, txID)
+		if err != nil {
+			if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+				// Do exponential backoff with 10% jitter
+				backoff := float64(int(1) << retryCount)
+				backoff += backoff * (0.1 * rand.Float64())
+				select {
+				case <-ctx.Done():
+					return nil, fmt.Errorf("GetTransaction: %w", ctx.Err())
+				case <-time.After(time.Second * time.Duration(backoff)):
 					continue
 				}
-				return nil, fmt.Errorf("GetTransaction: %w", err)
 			}
-			return tx, nil
+			return nil, fmt.Errorf("GetTransaction: %w", err)
 		}
+		return tx, nil
 	}
 }
 
 func (r *repositoryImpl) GetEventsForBlockIDs(ctx context.Context, eventType string, blockIDs []flow.Identifier) ([]flow.BlockEvents, error) {
 	for retryCount := 0; ; retryCount++ {
-		select {
-		case <-ctx.Done():
-			return nil, fmt.Errorf("GetEventsForBlockIDs: %w", ctx.Err())
-		default:
-			events, err := r.grpc.GetEventsForBlockIDs(ctx, eventType, blockIDs)
-			if err != nil {
-				if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
-					time.Sleep(retryInterval)
+		events, err := r.grpc.GetEventsForBlockIDs(ctx, eventType, blockIDs)
+		if err != nil {
+			if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+				// Do exponential backoff with 10% jitter
+				backoff := float64(int(1) << retryCount)
+				backoff += backoff * (0.1 * rand.Float64())
+				select {
+				case <-ctx.Done():
+					return nil, fmt.Errorf("GetEventsForBlockIDs: %w", ctx.Err())
+				case <-time.After(time.Second * time.Duration(backoff)):
 					continue
 				}
-				return nil, fmt.Errorf("GetEventsForBlockIDs: %w", err)
 			}
-			return events, nil
+			return nil, fmt.Errorf("GetEventsForBlockIDs: %w", err)
 		}
+		return events, nil
 	}
 }
 
 func (r *repositoryImpl) GetEventsForHeightRange(ctx context.Context, eventType string, startHeight uint64, endHeight uint64) ([]flow.BlockEvents, error) {
 	for retryCount := 0; ; retryCount++ {
-		select {
-		case <-ctx.Done():
-			return nil, fmt.Errorf("GetEventsForHeightRange: %w", ctx.Err())
-		default:
-			events, err := r.grpc.GetEventsForHeightRange(ctx, eventType, startHeight, endHeight)
-			if err != nil {
-				if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
-					time.Sleep(retryInterval)
+		events, err := r.grpc.GetEventsForHeightRange(ctx, eventType, startHeight, endHeight)
+		if err != nil {
+			if retryCount < maxRetryCount && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+				// Do exponential backoff with 10% jitter
+				backoff := float64(int(1) << retryCount)
+				backoff += backoff * (0.1 * rand.Float64())
+				select {
+				case <-ctx.Done():
+					return nil, fmt.Errorf("GetEventsForHeightRange: %w", ctx.Err())
+				case <-time.After(time.Second * time.Duration(backoff)):
 					continue
 				}
-				return nil, fmt.Errorf("GetEventsForHeightRange: %w", err)
 			}
-			return events, nil
+			return nil, fmt.Errorf("GetEventsForHeightRange: %w", err)
 		}
+		return events, nil
 	}
 }
 
