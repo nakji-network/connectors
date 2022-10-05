@@ -237,11 +237,13 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 				Id:                   block.ID[:],
 				ParentID:             block.ParentID[:],
 				Height:               block.Height,
-				CollectionGuarantees: make([][]byte, 0, len(block.CollectionGuarantees)),
+				CollectionGuarantees: make([]*CollectionGuarantee, 0, len(block.CollectionGuarantees)),
 				Seals:                make([]*BlockSeal, 0, len(block.Seals)),
 			}
 			for _, collectionGuarantee := range block.CollectionGuarantees {
-				b.CollectionGuarantees = append(b.CollectionGuarantees, collectionGuarantee.CollectionID[:])
+				b.CollectionGuarantees = append(b.CollectionGuarantees, &CollectionGuarantee{
+					CollectionID: collectionGuarantee.CollectionID[:],
+				})
 			}
 			for _, seal := range block.Seals {
 				b.Seals = append(b.Seals, &BlockSeal{
