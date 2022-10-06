@@ -51,7 +51,7 @@ func init() {
 
 	workerCount := pflag.UintP("worker-count", "w", 1, "Number of worker goroutines")
 	taskCount := pflag.UintP("task-count", "n", 0, "Number of messages sent to Kafka")
-	pflag.VarP(&duration, "duration", "d", "Benchamrk duration")
+	pflag.VarP(&duration, "duration", "d", "Benchmark duration")
 	tps := pflag.UintP("tps", "t", 10000, "Limit number of mesages per second sent to Kafka")
 	pflag.VarP(&latencyStart, "latency-start", "l", "Latency report starting interval")
 	latencyStep := pflag.UintP("latency-step", "e", 6, "Number of latency report intervals")
