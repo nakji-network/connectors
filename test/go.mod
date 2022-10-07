@@ -3,7 +3,7 @@ module github.com/nakji-network/connectors/test
 go 1.19
 
 require (
-	github.com/hugjobk/go-benchmark v0.0.0-20220228042935-8875e60e4da5
+	github.com/hugjobk/go-benchmark v0.0.0-20221007105059-ccb02b037c3c
 	github.com/nakji-network/connector v0.0.1-beta.1.0.20220928122513-c51982adda53
 	github.com/rs/zerolog v1.28.0
 	github.com/spf13/pflag v1.0.5
