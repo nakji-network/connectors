@@ -1,43 +1,43 @@
 package woofi
 
 import (
-	"github.com/nakji-network/connectors/woofi/bsc_WOOPP"
-	"github.com/nakji-network/connectors/woofi/polygon_WOOPP"
+	"github.com/nakji-network/connectors/woofi/bscWOOPP"
+	"github.com/nakji-network/connectors/woofi/polygonWOOPP"
 	"google.golang.org/protobuf/proto"
 )
 
 var TopicTypes = map[string]map[string]proto.Message{
 	"bsc": {
-		"nakji.woofi.0_0_0.bsc_woopp_feemanagerupdated":         &bsc_WOOPP.FeeManagerUpdated{},
-		"nakji.woofi.0_0_0.bsc_woopp_ownershiptransferprepared": &bsc_WOOPP.OwnershipTransferPrepared{},
-		"nakji.woofi.0_0_0.bsc_woopp_ownershiptransferred":      &bsc_WOOPP.OwnershipTransferred{},
-		"nakji.woofi.0_0_0.bsc_woopp_parametersupdated":         &bsc_WOOPP.ParametersUpdated{},
-		"nakji.woofi.0_0_0.bsc_woopp_paused":                    &bsc_WOOPP.Paused{},
-		"nakji.woofi.0_0_0.bsc_woopp_rewardmanagerupdated":      &bsc_WOOPP.RewardManagerUpdated{},
-		"nakji.woofi.0_0_0.bsc_woopp_strategistupdated":         &bsc_WOOPP.StrategistUpdated{},
-		"nakji.woofi.0_0_0.bsc_woopp_unpaused":                  &bsc_WOOPP.Unpaused{},
-		"nakji.woofi.0_0_0.bsc_woopp_withdraw":                  &bsc_WOOPP.Withdraw{},
-		"nakji.woofi.0_0_0.bsc_woopp_wooguardianupdated":        &bsc_WOOPP.WooGuardianUpdated{},
-		"nakji.woofi.0_0_0.bsc_woopp_wooracleupdated":           &bsc_WOOPP.WooracleUpdated{},
-		"nakji.woofi.0_0_0.bsc_woopp_wooswap":                   &bsc_WOOPP.WooSwap{},
+		"nakji.woofi.0_0_0.bscwoopp_feemanagerupdated":         &bscWOOPP.FeeManagerUpdated{},
+		"nakji.woofi.0_0_0.bscwoopp_ownershiptransferprepared": &bscWOOPP.OwnershipTransferPrepared{},
+		"nakji.woofi.0_0_0.bscwoopp_ownershiptransferred":      &bscWOOPP.OwnershipTransferred{},
+		"nakji.woofi.0_0_0.bscwoopp_parametersupdated":         &bscWOOPP.ParametersUpdated{},
+		"nakji.woofi.0_0_0.bscwoopp_paused":                    &bscWOOPP.Paused{},
+		"nakji.woofi.0_0_0.bscwoopp_rewardmanagerupdated":      &bscWOOPP.RewardManagerUpdated{},
+		"nakji.woofi.0_0_0.bscwoopp_strategistupdated":         &bscWOOPP.StrategistUpdated{},
+		"nakji.woofi.0_0_0.bscwoopp_unpaused":                  &bscWOOPP.Unpaused{},
+		"nakji.woofi.0_0_0.bscwoopp_withdraw":                  &bscWOOPP.Withdraw{},
+		"nakji.woofi.0_0_0.bscwoopp_wooguardianupdated":        &bscWOOPP.WooGuardianUpdated{},
+		"nakji.woofi.0_0_0.bscwoopp_wooracleupdated":           &bscWOOPP.WooracleUpdated{},
+		"nakji.woofi.0_0_0.bscwoopp_wooswap":                   &bscWOOPP.WooSwap{},
 	},
 	"polygon": {
-		"nakji.woofi.0_0_0.polygon_woopp_feemanagerupdated":         &polygon_WOOPP.FeeManagerUpdated{},
-		"nakji.woofi.0_0_0.polygon_woopp_ownershiptransferprepared": &polygon_WOOPP.OwnershipTransferPrepared{},
-		"nakji.woofi.0_0_0.polygon_woopp_ownershiptransferred":      &polygon_WOOPP.OwnershipTransferred{},
-		"nakji.woofi.0_0_0.polygon_woopp_parametersupdated":         &polygon_WOOPP.ParametersUpdated{},
-		"nakji.woofi.0_0_0.polygon_woopp_paused":                    &polygon_WOOPP.Paused{},
-		"nakji.woofi.0_0_0.polygon_woopp_rewardmanagerupdated":      &polygon_WOOPP.RewardManagerUpdated{},
-		"nakji.woofi.0_0_0.polygon_woopp_strategistupdated":         &polygon_WOOPP.StrategistUpdated{},
-		"nakji.woofi.0_0_0.polygon_woopp_unpaused":                  &polygon_WOOPP.Unpaused{},
-		"nakji.woofi.0_0_0.polygon_woopp_withdraw":                  &polygon_WOOPP.Withdraw{},
-		"nakji.woofi.0_0_0.polygon_woopp_wooguardianupdated":        &polygon_WOOPP.WooGuardianUpdated{},
-		"nakji.woofi.0_0_0.polygon_woopp_wooracleupdated":           &polygon_WOOPP.WooracleUpdated{},
-		"nakji.woofi.0_0_0.polygon_woopp_wooswap":                   &polygon_WOOPP.WooSwap{},
+		"nakji.woofi.0_0_0.polygonwoopp_feemanagerupdated":         &polygonWOOPP.FeeManagerUpdated{},
+		"nakji.woofi.0_0_0.polygonwoopp_ownershiptransferprepared": &polygonWOOPP.OwnershipTransferPrepared{},
+		"nakji.woofi.0_0_0.polygonwoopp_ownershiptransferred":      &polygonWOOPP.OwnershipTransferred{},
+		"nakji.woofi.0_0_0.polygonwoopp_parametersupdated":         &polygonWOOPP.ParametersUpdated{},
+		"nakji.woofi.0_0_0.polygonwoopp_paused":                    &polygonWOOPP.Paused{},
+		"nakji.woofi.0_0_0.polygonwoopp_rewardmanagerupdated":      &polygonWOOPP.RewardManagerUpdated{},
+		"nakji.woofi.0_0_0.polygonwoopp_strategistupdated":         &polygonWOOPP.StrategistUpdated{},
+		"nakji.woofi.0_0_0.polygonwoopp_unpaused":                  &polygonWOOPP.Unpaused{},
+		"nakji.woofi.0_0_0.polygonwoopp_withdraw":                  &polygonWOOPP.Withdraw{},
+		"nakji.woofi.0_0_0.polygonwoopp_wooguardianupdated":        &polygonWOOPP.WooGuardianUpdated{},
+		"nakji.woofi.0_0_0.polygonwoopp_wooracleupdated":           &polygonWOOPP.WooracleUpdated{},
+		"nakji.woofi.0_0_0.polygonwoopp_wooswap":                   &polygonWOOPP.WooSwap{},
 	},
 }
 
 var ABIs = map[string]string{
-	"bsc_WOOPP":     bsc_WOOPP.BscWOOPPABI,
-	"polygon_WOOPP": polygon_WOOPP.PolygonWOOPPABI,
+	"bscWOOPP":     bscWOOPP.BscWOOPPABI,
+	"polygonWOOPP": polygonWOOPP.PolygonWOOPPABI,
 }
