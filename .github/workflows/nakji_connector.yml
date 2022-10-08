@@ -3,7 +3,7 @@ name: Nakji Connector
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches: [ main, staging ]
     paths:
       - '**'
       - '.github/workflows/nakji_connector.yml'

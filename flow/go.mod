@@ -3,12 +3,14 @@ module github.com/nakji-network/connectors/flow
 go 1.18
 
 require (
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220902124638-851acb20ff47
+	github.com/hashicorp/golang-lru v0.5.5-0.20210104140557-80c98217689d
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20220928122513-c51982adda53
 	github.com/onflow/cadence v0.26.0
 	github.com/onflow/flow-go-sdk v0.27.0
 	github.com/rs/zerolog v1.28.0
 	github.com/spf13/pflag v1.0.5
 	go.uber.org/automaxprocs v1.5.1
+	google.golang.org/grpc v1.44.0
 	google.golang.org/protobuf v1.27.1
 )
 
@@ -18,6 +20,7 @@ require (
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6 // indirect
 	github.com/andres-erbsen/clock v0.0.0-20160526145045-9e14626cd129 // indirect
+	github.com/avast/retry-go v3.0.0+incompatible // indirect
 	github.com/aybabtme/rgbterm v0.0.0-20170906152045-cc83f3b3ce59 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/bits-and-blooms/bitset v1.2.2 // indirect
@@ -39,6 +42,7 @@ require (
 	github.com/fxamacker/cbor/v2 v2.4.1-0.20220515183430-ad2eae63303f // indirect
 	github.com/fxamacker/circlehash v0.3.0 // indirect
 	github.com/gagliardetto/binary v0.6.1 // indirect
+	github.com/gagliardetto/metaplex-go v0.2.0 // indirect
 	github.com/gagliardetto/solana-go v1.1.0 // indirect
 	github.com/gagliardetto/treeout v0.1.4 // indirect
 	github.com/go-ole/go-ole v1.2.1 // indirect
@@ -48,7 +52,6 @@ require (
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/gorilla/rpc v1.2.0 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
-	github.com/hashicorp/golang-lru v0.5.5-0.20210104140557-80c98217689d // indirect
 	github.com/hashicorp/hcl v1.0.0 // indirect
 	github.com/heptiolabs/healthcheck v0.0.0-20211123025425-613501dd5deb // indirect
 	github.com/joonix/log v0.0.0-20200409080653-9c1d2ceb5f1d // indirect
@@ -107,7 +110,6 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	golang.org/x/xerrors v0.0.0-20200804184101-5ec99f83aff1 // indirect
 	google.golang.org/genproto v0.0.0-20220222213610-43724f9ea8cf // indirect
-	google.golang.org/grpc v1.44.0 // indirect
 	gopkg.in/ini.v1 v1.66.2 // indirect
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect

@@ -71,7 +71,7 @@ func (c SmartContract) Events() []string {
 	}
 }
 
-func (c SmartContract) Message(vLog flow.Log) proto.Message {
+func (c SmartContract) Message(vLog *flow.Log) proto.Message {
 	switch vLog.Type.EventName {
 	case "NewEpoch":
 		totalStaked := vLog.Value.Fields[0].(cadence.UFix64)
@@ -298,6 +298,20 @@ func (c SmartContract) Message(vLog flow.Log) proto.Message {
 		delegatorID := vLog.Value.Fields[1].(cadence.UInt32)
 		amount := vLog.Value.Fields[2].(cadence.UFix64)
 		msg := &DelegatorUnstakedTokensWithdrawn{
+			Ts:          timestamppb.New(vLog.Timestamp),
+			BlockNumber: vLog.Height,
+			TxID:        vLog.TransactionID[:],
+			LogIndex:    uint64(vLog.TransactionIndex),
+			NodeID:      string(nodeID),
+			DelegatorID: uint32(delegatorID),
+			Amount:      flow.UFix64ToFloat64(amount),
+		}
+		return msg
+	case "DelegatorRewardTokensWithdrawn":
+		nodeID := vLog.Value.Fields[0].(cadence.String)
+		delegatorID := vLog.Value.Fields[1].(cadence.UInt32)
+		amount := vLog.Value.Fields[2].(cadence.UFix64)
+		msg := &DelegatorRewardTokensWithdrawn{
 			Ts:          timestamppb.New(vLog.Timestamp),
 			BlockNumber: vLog.Height,
 			TxID:        vLog.TransactionID[:],

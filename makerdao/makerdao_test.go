@@ -15,6 +15,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/core/types"
+	"github.com/ethereum/go-ethereum/ethclient"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/timestamppb"
@@ -30,6 +31,7 @@ func (MockSubscription) Headers() chan *types.Header { return nil }
 func (MockSubscription) Logs() chan types.Log        { return nil }
 func (MockSubscription) Subscribe()                  {}
 func (MockSubscription) Unsubscribe()                {}
+func (MockSubscription) Client() *ethclient.Client   { return nil }
 func (MockSubscription) GetBlockTime(ctx context.Context, vLog types.Log) (uint64, error) {
 	cache := map[uint64]uint64{
 		uint64(13145410): uint64(1629274175),

@@ -37,7 +37,7 @@ func (c SmartContract) Events() []string {
 	}
 }
 
-func (c SmartContract) Message(vLog flow.Log) proto.Message {
+func (c SmartContract) Message(vLog *flow.Log) proto.Message {
 	switch vLog.Type.EventName {
 	case "NodeAddedToStakingCollection":
 		nodeID := vLog.Value.Fields[0].(cadence.String)

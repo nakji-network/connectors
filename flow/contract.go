@@ -6,5 +6,5 @@ type ISmartContract interface {
 	Address() string
 	Name() string
 	Events() []string
-	Message(Log) proto.Message
+	Message(*Log) proto.Message
 }

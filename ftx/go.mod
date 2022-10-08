@@ -7,7 +7,7 @@ replace github.com/nakji-network/connectors/ftx/market => ./market
 replace github.com/thrasher-corp/gocryptotrader => github.com/blep-ai/gocryptotrader v0.0.0-20210824033446-5f39de372417
 
 require (
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20220902124638-851acb20ff47
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20220928122513-c51982adda53
 	github.com/rs/zerolog v1.26.1
 	github.com/thrasher-corp/gocryptotrader v0.0.0-00010101000000-000000000000
 	go.uber.org/automaxprocs v1.5.1
@@ -20,6 +20,7 @@ require (
 	github.com/Masterminds/semver v1.5.0 // indirect
 	github.com/StackExchange/wmi v0.0.0-20180116203802-5d049714c4a6 // indirect
 	github.com/andres-erbsen/clock v0.0.0-20160526145045-9e14626cd129 // indirect
+	github.com/avast/retry-go v3.0.0+incompatible // indirect
 	github.com/aybabtme/rgbterm v0.0.0-20170906152045-cc83f3b3ce59 // indirect
 	github.com/beorn7/perks v1.0.1 // indirect
 	github.com/blendle/zapdriver v1.3.1 // indirect
@@ -40,6 +41,7 @@ require (
 	github.com/friendsofgo/errors v0.9.2 // indirect
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
 	github.com/gagliardetto/binary v0.6.1 // indirect
+	github.com/gagliardetto/metaplex-go v0.2.0 // indirect
 	github.com/gagliardetto/solana-go v1.1.0 // indirect
 	github.com/gagliardetto/treeout v0.1.4 // indirect
 	github.com/go-ole/go-ole v1.2.1 // indirect

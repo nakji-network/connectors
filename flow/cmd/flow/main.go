@@ -38,6 +38,7 @@ func main() {
 	}
 
 	var topicTypes []proto.Message
+	topicTypes = append(topicTypes, &flow.Block{}, &flow.Transaction{})
 	// topicTypes = append(topicTypes, flowcontractaudits.Types...)
 	// topicTypes = append(topicTypes, flowfees.Types...)
 	// topicTypes = append(topicTypes, flowidtablestaking.Types...)
