@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
@@ -21,11 +20,6 @@ func main() {
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to instantiate connector")
 	}
-
-	c.Config.SetDefault("flow.author", "nakji")
-	c.Config.SetDefault("flow.version", "0_0_0")
-	c.Config.SetDefault("blockTime", 15*time.Second)
-	c.Config.SetDefault("waitBlocks", 4)
 
 	pflag.Int64P("from-block", "f", 0, "block number to start backfill from (optional")
 	pflag.Int64P("num-blocks", "b", 0, "number of blocks to backfill (optional)")

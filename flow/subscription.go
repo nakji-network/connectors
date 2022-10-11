@@ -182,7 +182,7 @@ func (s *Subscription) backfill(latestBlock uint64) {
 	if s.fromBlock > 0 {
 		s.getEvents(s.fromBlock, latestBlock)
 	} else if s.numBlocks > 0 {
-		s.getEvents(latestBlock-s.numBlocks, latestBlock)
+		s.getEvents(latestBlock-s.numBlocks+1, latestBlock)
 	}
 }
 
@@ -225,9 +225,10 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 	}
 	wp1 := NewWorkerPool(int(wpSize1))
 	for height := startHeight; height <= endHeight; height++ {
+		blockHeight := height
 		wp1.Run(func() {
 			// Get Block
-			block, err := s.getBlockByHeight(height)
+			block, err := s.getBlockByHeight(blockHeight)
 			if err != nil {
 				s.errChan <- err
 				return
