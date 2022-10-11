@@ -14,7 +14,7 @@ import (
 )
 
 const (
-	maxRetryCount  = 6
+	maxRetryCount  = 7
 	maxGrpcMsgSize = 64 * 1024 * 1024 // 64 MB
 )
 
