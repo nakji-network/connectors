@@ -4,57 +4,63 @@ import (
 	"context"
 
 	"github.com/nakji-network/connector"
+	"github.com/rs/zerolog/log"
 	"google.golang.org/protobuf/proto"
 )
 
 type Config struct {
-	ConnectorName string
-	NetworkName   string
-	FromBlock     uint64
-	NumBlocks     uint64
-	Namespace     string
-	WsPort        string
+	FromBlock uint64
+	NumBlocks uint64
+	Host      string
+	MsgTypes  []proto.Message
 }
 
 type Connector struct {
 	*connector.Connector
 	*Config
-	client *Client
 }
 
-func NewConnector(c *connector.Connector, config *Config) *Connector {
-
-	client := NewClient(config)
-
+func New(c *connector.Connector, config *Config) *Connector {
 	return &Connector{
 		Connector: c,
 		Config:    config,
-		client:    client,
 	}
 }
 
 func (c *Connector) Start() {
+	var events []string
 	ctx := context.Background()
 
-	c.client.Start(ctx)
+	sub, err := NewSubscription(ctx, c.Host, c.MsgTypes, events, c.FromBlock, c.NumBlocks)
+	if err != nil {
+		log.Fatal().Err(err).Msg("connection error")
+	}
 
 	for {
 		select {
-		case <-ctx.Done():
+		case <-sub.Done():
+			log.Info().Msg("connector shutdown")
 			return
-		case event := <-c.client.events:
-			if msg := c.parse(event); msg != nil {
-				c.EventSink <- msg
-			}
+
+		// Listen to error channel
+		case err := <-sub.Err():
+			log.Error().Err(err).Msg("subscription failed")
+
+		// Listen for new blocks
+		case block := <-sub.Blocks():
+			c.EventSink <- block
+
+		// Listen for new transactions
+		case tx := <-sub.Transactions():
+			c.EventSink <- tx
+
+		// Listen for new transactions
+		case receipt := <-sub.Receipts():
+			c.EventSink <- receipt
+
+		// Listen for new transactions
+		case outcome := <-sub.ExecutionOutcomes():
+			c.EventSink <- outcome
 		}
 	}
-}
-
-func (c *Connector) parse(event *NearMessage) proto.Message {
-	if msg := event.GetBlock(); msg != nil {
-		return msg
-	} else if msg := event.GetTx(); msg != nil {
-		return msg
-	}
-	return nil
 }

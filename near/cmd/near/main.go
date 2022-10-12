@@ -9,6 +9,7 @@ import (
 	"github.com/nakji-network/connectors/near"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
+	"google.golang.org/protobuf/proto"
 )
 
 func main() {
@@ -34,15 +35,13 @@ func main() {
 	}
 
 	config := &near.Config{
-		ConnectorName: "near",
-		NetworkName:   "near",
-		FromBlock:     c.Config.GetUint64("from-block"),
-		NumBlocks:     c.Config.GetUint64("num-blocks"),
-		Namespace:     "near",
-		WsPort:        "9944",
+		FromBlock: c.Config.GetUint64("from-block"),
+		NumBlocks: c.Config.GetUint64("num-blocks"),
+		Host:      "localhost",
+		MsgTypes:  []proto.Message{&near.Block{}, &near.Transaction{}},
 	}
 
-	connector := near.NewConnector(c, config)
+	connector := near.New(c, config)
 
 	// Register topic and protobuf type mapping
 	connector.RegisterProtos(
