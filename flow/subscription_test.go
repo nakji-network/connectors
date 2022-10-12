@@ -13,6 +13,18 @@ import (
 )
 
 func TestSubscription(t *testing.T) {
+	config := &flow.Config{
+		Host:              grpc.MainnetHost,
+		FromBlock:         0,
+		NumBlocks:         0,
+		MaxRetry:          7,
+		MaxGrpcMsgSize:    64 * 1024 * 1024,
+		MaxApiUsage:       20,
+		MaxWorkerPoolSize: 5,
+		CacheSize:         2000,
+		ChannelSize:       1000,
+		Timeout:           3 * time.Minute,
+	}
 	events := []string{
 		"A.1654653399040a61.FlowToken.TokensInitialized",
 		"A.1654653399040a61.FlowToken.TokensWithdrawn",
@@ -24,7 +36,7 @@ func TestSubscription(t *testing.T) {
 	}
 	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
 	defer cancel()
-	sub, err := flow.NewSubscription(ctx, grpc.MainnetHost, events, 0, 0)
+	sub, err := flow.NewSubscription(ctx, config, events)
 	if err != nil {
 		t.Fatal(err)
 	}

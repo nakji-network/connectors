@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
@@ -20,6 +21,15 @@ func main() {
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to instantiate connector")
 	}
+
+	c.Config.SetDefault("rpc.url", grpc.MainnetHost)
+	c.Config.SetDefault("maxRetry", 7)
+	c.Config.SetDefault("maxGrpcMsgSize", 64*1024*1024) // 64 MB
+	c.Config.SetDefault("maxApiUsage", 20)
+	c.Config.SetDefault("maxWorkerPoolSize", 5)
+	c.Config.SetDefault("cacheSize", 2000)
+	c.Config.SetDefault("channelSize", 1000)
+	c.Config.SetDefault("timeout", 3*time.Minute)
 
 	pflag.Int64P("from-block", "f", 0, "block number to start backfill from (optional")
 	pflag.Int64P("num-blocks", "b", 0, "number of blocks to backfill (optional)")
@@ -46,9 +56,16 @@ func main() {
 	c.RegisterProtos(topicTypes...)
 
 	conf := &flow.Config{
-		Host:      grpc.MainnetHost,
-		FromBlock: c.Config.GetUint64("from-block"),
-		NumBlocks: c.Config.GetUint64("num-blocks"),
+		Host:              c.Config.GetString("rpc.url"),
+		FromBlock:         c.Config.GetUint64("from-block"),
+		NumBlocks:         c.Config.GetUint64("num-blocks"),
+		MaxRetry:          c.Config.GetInt("maxRetry"),
+		MaxGrpcMsgSize:    c.Config.GetInt("maxGrpcMsgSize"),
+		MaxApiUsage:       c.Config.GetInt("maxApiUsage"),
+		MaxWorkerPoolSize: c.Config.GetInt("maxWorkerPoolSize"),
+		CacheSize:         c.Config.GetInt("cacheSize"),
+		ChannelSize:       c.Config.GetInt("channelSize"),
+		Timeout:           c.Config.GetDuration("timeout"),
 	}
 
 	m := flow.New(c, conf)
