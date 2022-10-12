@@ -511,6 +511,82 @@ func (*AccessKey_FullAccess) isAccessKey_Permission() {}
 
 func (*AccessKey_FunctionCall) isAccessKey_Permission() {}
 
+type Receipt struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *Receipt) Reset() {
+	*x = Receipt{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_near_proto_msgTypes[5]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *Receipt) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Receipt) ProtoMessage() {}
+
+func (x *Receipt) ProtoReflect() protoreflect.Message {
+	mi := &file_near_proto_msgTypes[5]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Receipt.ProtoReflect.Descriptor instead.
+func (*Receipt) Descriptor() ([]byte, []int) {
+	return file_near_proto_rawDescGZIP(), []int{5}
+}
+
+type ExecutionOutcome struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+}
+
+func (x *ExecutionOutcome) Reset() {
+	*x = ExecutionOutcome{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_near_proto_msgTypes[6]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *ExecutionOutcome) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ExecutionOutcome) ProtoMessage() {}
+
+func (x *ExecutionOutcome) ProtoReflect() protoreflect.Message {
+	mi := &file_near_proto_msgTypes[6]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ExecutionOutcome.ProtoReflect.Descriptor instead.
+func (*ExecutionOutcome) Descriptor() ([]byte, []int) {
+	return file_near_proto_rawDescGZIP(), []int{6}
+}
+
 type Block_BlockHeader struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
@@ -550,7 +626,7 @@ type Block_BlockHeader struct {
 func (x *Block_BlockHeader) Reset() {
 	*x = Block_BlockHeader{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[5]
+		mi := &file_near_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -563,7 +639,7 @@ func (x *Block_BlockHeader) String() string {
 func (*Block_BlockHeader) ProtoMessage() {}
 
 func (x *Block_BlockHeader) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[5]
+	mi := &file_near_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -808,7 +884,7 @@ type Block_Chunk struct {
 func (x *Block_Chunk) Reset() {
 	*x = Block_Chunk{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[6]
+		mi := &file_near_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -821,7 +897,7 @@ func (x *Block_Chunk) String() string {
 func (*Block_Chunk) ProtoMessage() {}
 
 func (x *Block_Chunk) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[6]
+	mi := &file_near_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -962,7 +1038,7 @@ type Block_ValidatorStake struct {
 func (x *Block_ValidatorStake) Reset() {
 	*x = Block_ValidatorStake{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[7]
+		mi := &file_near_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -975,7 +1051,7 @@ func (x *Block_ValidatorStake) String() string {
 func (*Block_ValidatorStake) ProtoMessage() {}
 
 func (x *Block_ValidatorStake) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[7]
+	mi := &file_near_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1024,7 +1100,7 @@ type Block_BlockHeader_SlashedValidator struct {
 func (x *Block_BlockHeader_SlashedValidator) Reset() {
 	*x = Block_BlockHeader_SlashedValidator{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[8]
+		mi := &file_near_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1037,7 +1113,7 @@ func (x *Block_BlockHeader_SlashedValidator) String() string {
 func (*Block_BlockHeader_SlashedValidator) ProtoMessage() {}
 
 func (x *Block_BlockHeader_SlashedValidator) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[8]
+	mi := &file_near_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1076,7 +1152,7 @@ type Action_CreateAccount struct {
 func (x *Action_CreateAccount) Reset() {
 	*x = Action_CreateAccount{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[9]
+		mi := &file_near_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1089,7 +1165,7 @@ func (x *Action_CreateAccount) String() string {
 func (*Action_CreateAccount) ProtoMessage() {}
 
 func (x *Action_CreateAccount) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[9]
+	mi := &file_near_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1116,7 +1192,7 @@ type Action_DeployContract struct {
 func (x *Action_DeployContract) Reset() {
 	*x = Action_DeployContract{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[10]
+		mi := &file_near_proto_msgTypes[12]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1129,7 +1205,7 @@ func (x *Action_DeployContract) String() string {
 func (*Action_DeployContract) ProtoMessage() {}
 
 func (x *Action_DeployContract) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[10]
+	mi := &file_near_proto_msgTypes[12]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1166,7 +1242,7 @@ type Action_FunctionCall struct {
 func (x *Action_FunctionCall) Reset() {
 	*x = Action_FunctionCall{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[11]
+		mi := &file_near_proto_msgTypes[13]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1179,7 +1255,7 @@ func (x *Action_FunctionCall) String() string {
 func (*Action_FunctionCall) ProtoMessage() {}
 
 func (x *Action_FunctionCall) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[11]
+	mi := &file_near_proto_msgTypes[13]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1234,7 +1310,7 @@ type Action_Transfer struct {
 func (x *Action_Transfer) Reset() {
 	*x = Action_Transfer{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[12]
+		mi := &file_near_proto_msgTypes[14]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1247,7 +1323,7 @@ func (x *Action_Transfer) String() string {
 func (*Action_Transfer) ProtoMessage() {}
 
 func (x *Action_Transfer) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[12]
+	mi := &file_near_proto_msgTypes[14]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1282,7 +1358,7 @@ type Action_Stake struct {
 func (x *Action_Stake) Reset() {
 	*x = Action_Stake{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[13]
+		mi := &file_near_proto_msgTypes[15]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1295,7 +1371,7 @@ func (x *Action_Stake) String() string {
 func (*Action_Stake) ProtoMessage() {}
 
 func (x *Action_Stake) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[13]
+	mi := &file_near_proto_msgTypes[15]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1337,7 +1413,7 @@ type Action_AddKey struct {
 func (x *Action_AddKey) Reset() {
 	*x = Action_AddKey{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[14]
+		mi := &file_near_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1350,7 +1426,7 @@ func (x *Action_AddKey) String() string {
 func (*Action_AddKey) ProtoMessage() {}
 
 func (x *Action_AddKey) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[14]
+	mi := &file_near_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1391,7 +1467,7 @@ type Action_DeleteKey struct {
 func (x *Action_DeleteKey) Reset() {
 	*x = Action_DeleteKey{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[15]
+		mi := &file_near_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1404,7 +1480,7 @@ func (x *Action_DeleteKey) String() string {
 func (*Action_DeleteKey) ProtoMessage() {}
 
 func (x *Action_DeleteKey) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[15]
+	mi := &file_near_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1438,7 +1514,7 @@ type Action_DeleteAccount struct {
 func (x *Action_DeleteAccount) Reset() {
 	*x = Action_DeleteAccount{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[16]
+		mi := &file_near_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1451,7 +1527,7 @@ func (x *Action_DeleteAccount) String() string {
 func (*Action_DeleteAccount) ProtoMessage() {}
 
 func (x *Action_DeleteAccount) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[16]
+	mi := &file_near_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1483,7 +1559,7 @@ type AccessKey_FullAccessPermission struct {
 func (x *AccessKey_FullAccessPermission) Reset() {
 	*x = AccessKey_FullAccessPermission{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[17]
+		mi := &file_near_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1496,7 +1572,7 @@ func (x *AccessKey_FullAccessPermission) String() string {
 func (*AccessKey_FullAccessPermission) ProtoMessage() {}
 
 func (x *AccessKey_FullAccessPermission) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[17]
+	mi := &file_near_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1525,7 +1601,7 @@ type AccessKey_FunctionCallPermission struct {
 func (x *AccessKey_FunctionCallPermission) Reset() {
 	*x = AccessKey_FunctionCallPermission{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_near_proto_msgTypes[18]
+		mi := &file_near_proto_msgTypes[20]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1538,7 +1614,7 @@ func (x *AccessKey_FunctionCallPermission) String() string {
 func (*AccessKey_FunctionCallPermission) ProtoMessage() {}
 
 func (x *AccessKey_FunctionCallPermission) ProtoReflect() protoreflect.Message {
-	mi := &file_near_proto_msgTypes[18]
+	mi := &file_near_proto_msgTypes[20]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1822,10 +1898,12 @@ var file_near_proto_rawDesc = []byte{
 	0x6f, 0x64, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x73, 0x18, 0x03, 0x20, 0x03, 0x28, 0x09, 0x52, 0x0b,
 	0x6d, 0x65, 0x74, 0x68, 0x6f, 0x64, 0x4e, 0x61, 0x6d, 0x65, 0x73, 0x42, 0x0c, 0x0a, 0x0a, 0x5f,
 	0x61, 0x6c, 0x6c, 0x6f, 0x77, 0x61, 0x6e, 0x63, 0x65, 0x42, 0x0c, 0x0a, 0x0a, 0x70, 0x65, 0x72,
-	0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x42, 0x2a, 0x5a, 0x28, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6e, 0x61, 0x6b, 0x6a, 0x69, 0x2d, 0x6e, 0x65, 0x74, 0x77,
-	0x6f, 0x72, 0x6b, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x2f, 0x6e,
-	0x65, 0x61, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x6d, 0x69, 0x73, 0x73, 0x69, 0x6f, 0x6e, 0x22, 0x09, 0x0a, 0x07, 0x52, 0x65, 0x63, 0x65, 0x69,
+	0x70, 0x74, 0x22, 0x12, 0x0a, 0x10, 0x45, 0x78, 0x65, 0x63, 0x75, 0x74, 0x69, 0x6f, 0x6e, 0x4f,
+	0x75, 0x74, 0x63, 0x6f, 0x6d, 0x65, 0x42, 0x2a, 0x5a, 0x28, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62,
+	0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x6e, 0x61, 0x6b, 0x6a, 0x69, 0x2d, 0x6e, 0x65, 0x74, 0x77, 0x6f,
+	0x72, 0x6b, 0x2f, 0x63, 0x6f, 0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x2f, 0x6e, 0x65,
+	0x61, 0x72, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -1840,50 +1918,52 @@ func file_near_proto_rawDescGZIP() []byte {
 	return file_near_proto_rawDescData
 }
 
-var file_near_proto_msgTypes = make([]protoimpl.MessageInfo, 19)
+var file_near_proto_msgTypes = make([]protoimpl.MessageInfo, 21)
 var file_near_proto_goTypes = []interface{}{
 	(*NearMessage)(nil),                        // 0: near.NearMessage
 	(*Block)(nil),                              // 1: near.Block
 	(*Transaction)(nil),                        // 2: near.Transaction
 	(*Action)(nil),                             // 3: near.Action
 	(*AccessKey)(nil),                          // 4: near.AccessKey
-	(*Block_BlockHeader)(nil),                  // 5: near.Block.BlockHeader
-	(*Block_Chunk)(nil),                        // 6: near.Block.Chunk
-	(*Block_ValidatorStake)(nil),               // 7: near.Block.ValidatorStake
-	(*Block_BlockHeader_SlashedValidator)(nil), // 8: near.Block.BlockHeader.SlashedValidator
-	(*Action_CreateAccount)(nil),               // 9: near.Action.CreateAccount
-	(*Action_DeployContract)(nil),              // 10: near.Action.DeployContract
-	(*Action_FunctionCall)(nil),                // 11: near.Action.FunctionCall
-	(*Action_Transfer)(nil),                    // 12: near.Action.Transfer
-	(*Action_Stake)(nil),                       // 13: near.Action.Stake
-	(*Action_AddKey)(nil),                      // 14: near.Action.AddKey
-	(*Action_DeleteKey)(nil),                   // 15: near.Action.DeleteKey
-	(*Action_DeleteAccount)(nil),               // 16: near.Action.DeleteAccount
-	(*AccessKey_FullAccessPermission)(nil),     // 17: near.AccessKey.FullAccessPermission
-	(*AccessKey_FunctionCallPermission)(nil),   // 18: near.AccessKey.FunctionCallPermission
-	(*timestamppb.Timestamp)(nil),              // 19: google.protobuf.Timestamp
+	(*Receipt)(nil),                            // 5: near.Receipt
+	(*ExecutionOutcome)(nil),                   // 6: near.ExecutionOutcome
+	(*Block_BlockHeader)(nil),                  // 7: near.Block.BlockHeader
+	(*Block_Chunk)(nil),                        // 8: near.Block.Chunk
+	(*Block_ValidatorStake)(nil),               // 9: near.Block.ValidatorStake
+	(*Block_BlockHeader_SlashedValidator)(nil), // 10: near.Block.BlockHeader.SlashedValidator
+	(*Action_CreateAccount)(nil),               // 11: near.Action.CreateAccount
+	(*Action_DeployContract)(nil),              // 12: near.Action.DeployContract
+	(*Action_FunctionCall)(nil),                // 13: near.Action.FunctionCall
+	(*Action_Transfer)(nil),                    // 14: near.Action.Transfer
+	(*Action_Stake)(nil),                       // 15: near.Action.Stake
+	(*Action_AddKey)(nil),                      // 16: near.Action.AddKey
+	(*Action_DeleteKey)(nil),                   // 17: near.Action.DeleteKey
+	(*Action_DeleteAccount)(nil),               // 18: near.Action.DeleteAccount
+	(*AccessKey_FullAccessPermission)(nil),     // 19: near.AccessKey.FullAccessPermission
+	(*AccessKey_FunctionCallPermission)(nil),   // 20: near.AccessKey.FunctionCallPermission
+	(*timestamppb.Timestamp)(nil),              // 21: google.protobuf.Timestamp
 }
 var file_near_proto_depIdxs = []int32{
 	1,  // 0: near.NearMessage.block:type_name -> near.Block
 	2,  // 1: near.NearMessage.tx:type_name -> near.Transaction
-	5,  // 2: near.Block.header:type_name -> near.Block.BlockHeader
-	6,  // 3: near.Block.chunks:type_name -> near.Block.Chunk
-	19, // 4: near.Transaction.ts:type_name -> google.protobuf.Timestamp
+	7,  // 2: near.Block.header:type_name -> near.Block.BlockHeader
+	8,  // 3: near.Block.chunks:type_name -> near.Block.Chunk
+	21, // 4: near.Transaction.ts:type_name -> google.protobuf.Timestamp
 	3,  // 5: near.Transaction.actions:type_name -> near.Action
-	9,  // 6: near.Action.create_account:type_name -> near.Action.CreateAccount
-	10, // 7: near.Action.deploy_contract:type_name -> near.Action.DeployContract
-	11, // 8: near.Action.function_call:type_name -> near.Action.FunctionCall
-	12, // 9: near.Action.transfer:type_name -> near.Action.Transfer
-	13, // 10: near.Action.stake:type_name -> near.Action.Stake
-	14, // 11: near.Action.add_key:type_name -> near.Action.AddKey
-	15, // 12: near.Action.delete_key:type_name -> near.Action.DeleteKey
-	16, // 13: near.Action.delete_account:type_name -> near.Action.DeleteAccount
-	17, // 14: near.AccessKey.full_access:type_name -> near.AccessKey.FullAccessPermission
-	18, // 15: near.AccessKey.function_call:type_name -> near.AccessKey.FunctionCallPermission
-	19, // 16: near.Block.BlockHeader.ts:type_name -> google.protobuf.Timestamp
-	7,  // 17: near.Block.BlockHeader.validator_proposals:type_name -> near.Block.ValidatorStake
-	8,  // 18: near.Block.BlockHeader.challenges_result:type_name -> near.Block.BlockHeader.SlashedValidator
-	7,  // 19: near.Block.Chunk.validator_proposals:type_name -> near.Block.ValidatorStake
+	11, // 6: near.Action.create_account:type_name -> near.Action.CreateAccount
+	12, // 7: near.Action.deploy_contract:type_name -> near.Action.DeployContract
+	13, // 8: near.Action.function_call:type_name -> near.Action.FunctionCall
+	14, // 9: near.Action.transfer:type_name -> near.Action.Transfer
+	15, // 10: near.Action.stake:type_name -> near.Action.Stake
+	16, // 11: near.Action.add_key:type_name -> near.Action.AddKey
+	17, // 12: near.Action.delete_key:type_name -> near.Action.DeleteKey
+	18, // 13: near.Action.delete_account:type_name -> near.Action.DeleteAccount
+	19, // 14: near.AccessKey.full_access:type_name -> near.AccessKey.FullAccessPermission
+	20, // 15: near.AccessKey.function_call:type_name -> near.AccessKey.FunctionCallPermission
+	21, // 16: near.Block.BlockHeader.ts:type_name -> google.protobuf.Timestamp
+	9,  // 17: near.Block.BlockHeader.validator_proposals:type_name -> near.Block.ValidatorStake
+	10, // 18: near.Block.BlockHeader.challenges_result:type_name -> near.Block.BlockHeader.SlashedValidator
+	9,  // 19: near.Block.Chunk.validator_proposals:type_name -> near.Block.ValidatorStake
 	4,  // 20: near.Action.AddKey.access_key:type_name -> near.AccessKey
 	21, // [21:21] is the sub-list for method output_type
 	21, // [21:21] is the sub-list for method input_type
@@ -1959,7 +2039,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Block_BlockHeader); i {
+			switch v := v.(*Receipt); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1971,7 +2051,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Block_Chunk); i {
+			switch v := v.(*ExecutionOutcome); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1983,7 +2063,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Block_ValidatorStake); i {
+			switch v := v.(*Block_BlockHeader); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -1995,7 +2075,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Block_BlockHeader_SlashedValidator); i {
+			switch v := v.(*Block_Chunk); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2007,7 +2087,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Action_CreateAccount); i {
+			switch v := v.(*Block_ValidatorStake); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2019,7 +2099,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Action_DeployContract); i {
+			switch v := v.(*Block_BlockHeader_SlashedValidator); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2031,7 +2111,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Action_FunctionCall); i {
+			switch v := v.(*Action_CreateAccount); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2043,7 +2123,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[12].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Action_Transfer); i {
+			switch v := v.(*Action_DeployContract); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2055,7 +2135,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[13].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Action_Stake); i {
+			switch v := v.(*Action_FunctionCall); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2067,7 +2147,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Action_AddKey); i {
+			switch v := v.(*Action_Transfer); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2079,7 +2159,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Action_DeleteKey); i {
+			switch v := v.(*Action_Stake); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2091,7 +2171,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*Action_DeleteAccount); i {
+			switch v := v.(*Action_AddKey); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2103,7 +2183,7 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*AccessKey_FullAccessPermission); i {
+			switch v := v.(*Action_DeleteKey); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -2115,6 +2195,30 @@ func file_near_proto_init() {
 			}
 		}
 		file_near_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*Action_DeleteAccount); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_near_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AccessKey_FullAccessPermission); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_near_proto_msgTypes[20].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*AccessKey_FunctionCallPermission); i {
 			case 0:
 				return &v.state
@@ -2145,15 +2249,15 @@ func file_near_proto_init() {
 		(*AccessKey_FullAccess)(nil),
 		(*AccessKey_FunctionCall)(nil),
 	}
-	file_near_proto_msgTypes[5].OneofWrappers = []interface{}{}
-	file_near_proto_msgTypes[18].OneofWrappers = []interface{}{}
+	file_near_proto_msgTypes[7].OneofWrappers = []interface{}{}
+	file_near_proto_msgTypes[20].OneofWrappers = []interface{}{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_near_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   19,
+			NumMessages:   21,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

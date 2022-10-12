@@ -133,3 +133,7 @@ message AccessKey {
     repeated string method_names = 3;
   }
 }
+
+message Receipt {}
+
+message ExecutionOutcome {}
