@@ -5,7 +5,6 @@ use crate::near_proto::{
     action::{self, AddKey, CreateAccount, DeleteAccount, DeleteKey, FunctionCall, Stake},
     AccessKey, Action, Transaction,
 };
-use crate::near_proto::{near_message::Message::Tx, NearMessage};
 use action::{DeployContract, Transfer};
 use crossbeam_channel::Sender;
 use near_lake_framework::near_indexer_primitives::{
@@ -17,7 +16,7 @@ use prost_types::Timestamp;
 use super::handle::ParseStreamMessage;
 
 impl ParseStreamMessage<Transaction> for Transaction {
-    fn handle_streamer_message(message: &StreamerMessage, sender: Sender<NearMessage>) {
+    fn handle_streamer_message(message: StreamerMessage, sender: Sender<Transaction>) {
         // Parse ts from timestamp_nanosec in block header since tx do not have a ts
         let ts_duration = Duration::from_nanos(message.block.header.timestamp_nanosec);
         let ts = Timestamp {
@@ -31,11 +30,9 @@ impl ParseStreamMessage<Transaction> for Transaction {
                     let mut tx_proto = Transaction::from(tx);
                     // Set transaction ts to block ts
                     tx_proto.ts = Some(ts.clone());
-                    let msg = NearMessage {
-                        message: Some(Tx(tx_proto)),
-                    };
+
                     sender
-                        .send(msg)
+                        .send(tx_proto)
                         .expect("Unable to send tx to NearHandle Sender");
                 }
             }

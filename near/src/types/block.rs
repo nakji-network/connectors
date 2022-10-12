@@ -2,8 +2,7 @@ use std::time::Duration;
 
 use crate::near_proto::{
     block::{block_header::SlashedValidator, BlockHeader, Chunk, ValidatorStake},
-    near_message::Message,
-    Block, NearMessage,
+    Block
 };
 use crossbeam_channel::Sender;
 use near_lake_framework::near_indexer_primitives::{
@@ -17,13 +16,9 @@ use prost_types::Timestamp;
 use super::handle::ParseStreamMessage;
 
 impl ParseStreamMessage<Block> for Block {
-    fn handle_streamer_message(message: &StreamerMessage, sender: Sender<NearMessage>) {
-        let block = Block::from(&message.block);
-        let block_msg = NearMessage {
-            message: Some(Message::Block(block)),
-        };
+    fn handle_streamer_message(message: StreamerMessage, sender: Sender<Block>) {
         sender
-            .send(block_msg)
+            .send(Block::from(&message.block))
             .expect("Unable to send block to NearHandle Sender");
     }
 }
