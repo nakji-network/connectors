@@ -18,14 +18,6 @@ import (
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
-const (
-	maxApiUsage       = 20 // Limit GetEventsForHeightRange API usage rate.
-	cacheSize         = 2000
-	channelSize       = 1000
-	workerPoolMaxSize = 5
-	defaultTimeout    = 3 * time.Minute
-)
-
 type EventType struct {
 	ContractAddr string
 	ContractName string
@@ -55,10 +47,8 @@ type Log struct {
 }
 
 type Subscription struct {
-	host            string
+	*Config
 	grpc            Repository
-	fromBlock       uint64
-	numBlocks       uint64
 	events          []string
 	cache           *lru.Cache
 	curBlock        uint64
@@ -70,27 +60,25 @@ type Subscription struct {
 	errChan         chan error
 }
 
-func NewSubscription(ctx context.Context, host string, events []string, fromBlock uint64, numBlocks uint64) (*Subscription, error) {
-	repo, err := NewRepository(host)
+func NewSubscription(ctx context.Context, config *Config, events []string) (*Subscription, error) {
+	repo, err := NewRepository(ctx, config)
 	if err != nil {
 		return nil, err
 	}
-	cache, err := lru.New(cacheSize)
+	cache, err := lru.New(config.CacheSize)
 	if err != nil {
 		return nil, err
 	}
 	sub := &Subscription{
-		host:            host,
+		Config:          config,
 		grpc:            repo,
 		events:          events,
-		fromBlock:       fromBlock,
-		numBlocks:       numBlocks,
 		cache:           cache,
 		done:            make(chan struct{}),
-		blockChan:       make(chan *Block, channelSize),
-		transactionChan: make(chan *Transaction, channelSize),
-		logChan:         make(chan *Log, channelSize),
-		errChan:         make(chan error, channelSize),
+		blockChan:       make(chan *Block, config.ChannelSize),
+		transactionChan: make(chan *Transaction, config.ChannelSize),
+		logChan:         make(chan *Log, config.ChannelSize),
+		errChan:         make(chan error, config.ChannelSize),
 	}
 	go func() {
 		interrupt := make(chan os.Signal, 1)
@@ -120,7 +108,7 @@ func NewSubscription(ctx context.Context, host string, events []string, fromBloc
 }
 
 func (s *Subscription) Unsubscribe() {
-	log.Info().Str("host", s.host).Msg("shutting down subscription")
+	log.Info().Str("host", s.Host).Msg("shutting down subscription")
 	close(s.done)
 }
 
@@ -162,7 +150,7 @@ func (s *Subscription) subscribe() {
 				continue
 			}
 			// Backfill if needed
-			if !backfilled && (s.fromBlock > 0 || s.numBlocks > 0) {
+			if !backfilled && (s.FromBlock > 0 || s.NumBlocks > 0) {
 				go s.backfill(latest - 1)
 				backfilled = true
 			}
@@ -179,10 +167,10 @@ func (s *Subscription) subscribe() {
 func (s *Subscription) backfill(latestBlock uint64) {
 	log.Info().Msg("start backfilling")
 	defer log.Info().Msg("stop backfilling")
-	if s.fromBlock > 0 {
-		s.getEvents(s.fromBlock, latestBlock)
-	} else if s.numBlocks > 0 {
-		s.getEvents(latestBlock-s.numBlocks+1, latestBlock)
+	if s.FromBlock > 0 {
+		s.getEvents(s.FromBlock, latestBlock)
+	} else if s.NumBlocks > 0 {
+		s.getEvents(latestBlock-s.NumBlocks+1, latestBlock)
 	}
 }
 
@@ -220,8 +208,8 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 		blocks       = make([]*Block, 0, endHeight-startHeight+1)
 	)
 	wpSize1 := endHeight - startHeight + 1
-	if wpSize1 > workerPoolMaxSize {
-		wpSize1 = workerPoolMaxSize // Limit WorkerPool size
+	if wpSize1 > uint64(s.MaxWorkerPoolSize) {
+		wpSize1 = uint64(s.MaxWorkerPoolSize) // Limit WorkerPool size
 	}
 	wp1 := NewWorkerPool(int(wpSize1))
 	for height := startHeight; height <= endHeight; height++ {
@@ -257,8 +245,8 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 			blockMtx.Unlock()
 			// Get Transactions for Block
 			wpSize2 := len(block.CollectionGuarantees)
-			if wpSize2 > workerPoolMaxSize {
-				wpSize2 = workerPoolMaxSize // Limit WorkerPool size
+			if wpSize2 > s.MaxWorkerPoolSize {
+				wpSize2 = s.MaxWorkerPoolSize // Limit WorkerPool size
 			}
 			wp2 := NewWorkerPool(wpSize2)
 			for i := range block.CollectionGuarantees {
@@ -293,7 +281,7 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 }
 
 func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier) []*Transaction {
-	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), s.Timeout)
 	defer cancel()
 	coll, err := s.grpc.GetCollection(ctx, collID)
 	if err != nil {
@@ -303,8 +291,8 @@ func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier
 	var mtx sync.Mutex
 	transactions := make([]*Transaction, 0, len(coll.TransactionIDs))
 	wpSize := len(coll.TransactionIDs)
-	if wpSize > workerPoolMaxSize {
-		wpSize = workerPoolMaxSize // Limit WorkerPool size
+	if wpSize > s.MaxWorkerPoolSize {
+		wpSize = s.MaxWorkerPoolSize // Limit WorkerPool size
 	}
 	wp := NewWorkerPool(wpSize)
 	for i := range coll.TransactionIDs {
@@ -325,7 +313,7 @@ func (s *Subscription) getTransactions(block *flow.Block, collID flow.Identifier
 }
 
 func (s *Subscription) getTransaction(block *flow.Block, collID flow.Identifier, txID flow.Identifier) (*Transaction, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), s.Timeout)
 	defer cancel()
 	tx, err := s.grpc.GetTransaction(ctx, txID)
 	if err != nil {
@@ -414,7 +402,7 @@ func (s *Subscription) getLogs(startHeight uint64, endHeight uint64) {
 }
 
 func (s *Subscription) getLatestBlockHeight() (uint64, error) {
-	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), s.Timeout)
 	defer cancel()
 	block, err := s.grpc.GetLatestBlock(ctx, true)
 	if err != nil {
@@ -428,7 +416,7 @@ func (s *Subscription) getBlockByHeight(height uint64) (*flow.Block, error) {
 	if block, ok := s.cache.Get(height); ok {
 		return block.(*flow.Block), nil
 	}
-	ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), s.Timeout)
 	defer cancel()
 	block, err := s.grpc.GetBlockByHeight(ctx, height)
 	if err != nil {
@@ -439,8 +427,8 @@ func (s *Subscription) getBlockByHeight(height uint64) (*flow.Block, error) {
 }
 
 func (s *Subscription) getEventsForHeightRange(eventType string, startHeight uint64, endHeight uint64) ([]flow.BlockEvents, error) {
-	if endHeight > startHeight && atomic.AddUint64(&s.apiUsage, 1) <= maxApiUsage {
-		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+	if endHeight > startHeight && atomic.AddUint64(&s.apiUsage, 1) <= uint64(s.MaxApiUsage) {
+		ctx, cancel := context.WithTimeout(context.Background(), s.Timeout)
 		defer cancel()
 		return s.grpc.GetEventsForHeightRange(ctx, eventType, startHeight, endHeight)
 	} else { // Exceed maximun API usage. Try using different APIs.
@@ -453,7 +441,7 @@ func (s *Subscription) getEventsForHeightRange(eventType string, startHeight uin
 			}
 			blockIDs = append(blockIDs, block.ID)
 		}
-		ctx, cancel := context.WithTimeout(context.Background(), defaultTimeout)
+		ctx, cancel := context.WithTimeout(context.Background(), s.Timeout)
 		defer cancel()
 		return s.grpc.GetEventsForBlockIDs(ctx, eventType, blockIDs)
 	}
