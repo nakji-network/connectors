@@ -1,4 +1,4 @@
-use std::{thread, process};
+use std::{process, thread};
 
 use clap::{Parser, Subcommand};
 use crossbeam_channel::unbounded;
@@ -35,6 +35,11 @@ impl Opts {
     }
 }
 
+// Config
+const RPC_URL: &str = "https://rpc.mainnet.near.org";
+const BUFFER_SIZE: usize = 2;
+const BLOCK_POOL_SIZE: usize = 500;
+
 fn main() {
     let opts = Opts::parse();
 
@@ -53,7 +58,13 @@ fn main() {
 
     // Start lake stream with output to lake_stream_send
     join_handles.push(thread::spawn(move || {
-        lake_stream::start_lake_stream(lake_stream_send, from_block, num_blocks)
+        lake_stream::start_lake_stream(
+            lake_stream_send,
+            from_block,
+            num_blocks,
+            BUFFER_SIZE,
+            BLOCK_POOL_SIZE,
+        )
     }));
 
     // Create senders and receivers for NEAR Handlers
@@ -105,24 +116,24 @@ fn main() {
 }
 
 async fn get_start_opts(opts: &Opts) -> (u64, u64) {
+    let latest_block = final_block_height().await;
     match opts.start_options() {
-        StartOptions::FromBlock { height } => (*height, final_block_height().await - *height),
-        StartOptions::FromLatest => (final_block_height().await, 0),
-        StartOptions::NumBlocks { num_blocks } => {
-            let latest_block = final_block_height().await;
-            (latest_block - *num_blocks, *num_blocks)
-        }
+        StartOptions::FromBlock { height } => (*height, latest_block - *height),
+        StartOptions::FromLatest => (latest_block, 0),
+        StartOptions::NumBlocks { num_blocks } => (latest_block - *num_blocks, *num_blocks),
     }
 }
 
 async fn final_block_height() -> u64 {
-    let rpc_url = "https://rpc.mainnet.near.org";
-    let client = JsonRpcClient::connect(rpc_url);
+    let client = JsonRpcClient::connect(RPC_URL);
     let request = methods::block::RpcBlockRequest {
         block_reference: BlockReference::Finality(Finality::None),
     };
 
-    let latest_block = client.call(request).await.expect("Unable to connect to NEAR RPC");
+    let latest_block = client
+        .call(request)
+        .await
+        .expect("Unable to connect to NEAR RPC");
 
     latest_block.header.height
 }
