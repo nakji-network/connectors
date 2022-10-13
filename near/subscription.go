@@ -10,6 +10,7 @@ import (
 	"os/exec"
 	"os/signal"
 	reflect "reflect"
+	sync "sync"
 	"time"
 
 	"github.com/gorilla/websocket"
@@ -29,7 +30,7 @@ var endpointMap = map[string]proto.Message{
 }
 
 type Subscription struct {
-	host                 string
+	hostname             string
 	port                 string
 	backfillPort         string
 	maxRetries           int
@@ -47,18 +48,20 @@ type Subscription struct {
 }
 
 func NewSubscription(ctx context.Context, config *Config, events []string) (*Subscription, error) {
+	// Read binary from embed
 	bin, err := f.ReadFile("target/release/nakji_near_client")
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed read embedded Nakji Near Client binary")
 	}
 
+	// Write binary to file so we can execute it
 	err = os.WriteFile("nakji_near_client", bin, 0755)
 	if err != nil {
-		log.Fatal().Err(err).Msg("failed to write Nakji Near Client binary to local fs")
+		log.Fatal().Err(err).Msg("failed to write embedded Nakji Near Client binary to local fs")
 	}
 
 	sub := &Subscription{
-		host:                 config.Host,
+		hostname:             config.Hostname,
 		port:                 config.Port,
 		backfillPort:         config.BackfillPort,
 		maxRetries:           config.MaxRetries,
@@ -90,7 +93,7 @@ func NewSubscription(ctx context.Context, config *Config, events []string) (*Sub
 }
 
 func (s *Subscription) Unsubscribe() {
-	log.Info().Str("host", s.host).Msg("shutting down subscription")
+	log.Info().Str("hostname", s.hostname).Msg("shutting down subscription")
 	close(s.done)
 }
 
@@ -120,28 +123,27 @@ func (s *Subscription) Err() <-chan error {
 
 func (s *Subscription) subscribe() {
 	// Start Lake Stream from current block
-	go s.startLakeStream(s.port, 0, 0)
-	s.initWsStreams(false)
+	s.startLakeStream(s.port, 0, 0)
+	go s.initWsStreams(false)
 	// Backfill if needed
 	if s.fromBlock > 0 || s.numBlocks > 0 {
-		s.backfill()
+		go s.backfill()
 	}
 }
 
 func (s *Subscription) backfill() {
-	log.Info().Msg("start backfilling")
+	log.Info().Msg("starting backfill")
+	defer log.Info().Msg("finished backfill")
 	if s.fromBlock > 0 {
-		go s.startLakeStream(s.backfillPort, s.fromBlock, 0)
+		s.startLakeStream(s.backfillPort, s.fromBlock, 0)
 		s.initWsStreams(true)
 	} else if s.numBlocks > 0 {
-		go s.startLakeStream(s.backfillPort, 0, s.numBlocks)
+		s.startLakeStream(s.backfillPort, 0, s.numBlocks)
 		s.initWsStreams(true)
 	}
 }
 
 func (s *Subscription) startLakeStream(port string, fromBlock uint64, numBlocks uint64) {
-	ctx := context.Background()
-
 	// Setup command for Lake stream
 	cmd := []string{
 		"./nakji_near_client",
@@ -160,44 +162,36 @@ func (s *Subscription) startLakeStream(port string, fromBlock uint64, numBlocks 
 		cmd = append(cmd, "from-latest")
 	}
 
-	execCmd := exec.CommandContext(ctx, cmd[0], cmd[1:]...)
+	execCmd := exec.Command(cmd[0], cmd[1:]...)
 	execCmd.Stdout = os.Stdout
 	execCmd.Stderr = os.Stderr
 
 	// Run binary in goroutine
 	go func() {
 		if err := execCmd.Run(); err != nil {
-			s.Unsubscribe()
-			log.Fatal().Err(err).Msg(fmt.Sprintf("%s Error running NEAR Rust binary: ", err))
+			log.Fatal().Err(err).Msg(fmt.Sprintf("%s Error running Nakji NEAR Client (Rust binary): ", err))
 		}
 	}()
-
-	// Ensure that the binaary does not continue running after shutdown
-	for {
-		select {
-		case <-s.done:
-			ctx.Done()
-			return
-		default:
-			continue
-		}
-	}
-
 }
 
 func (s *Subscription) initWsStreams(isBackfill bool) {
+	var wg sync.WaitGroup
 	// Connect to ws server to receive data from Lake stream
 	for endpoint, msgType := range endpointMap {
 		// Check if msgType is in sub's msgTypes
 		for _, subType := range s.msgTypes {
 			if reflect.TypeOf(msgType) == reflect.TypeOf(subType) {
-				go s.startWsStream(endpoint, msgType, isBackfill)
+				wg.Add(1)
+				go s.startWsStream(&wg, endpoint, msgType, isBackfill)
 			}
 		}
 	}
+	wg.Wait()
 }
 
-func (s *Subscription) startWsStream(endpoint string, msgType proto.Message, isBackfill bool) {
+func (s *Subscription) startWsStream(wg *sync.WaitGroup, endpoint string, msgType proto.Message, isBackfill bool) {
+	defer wg.Done()
+
 	// Get port from config
 	var port string
 	if isBackfill {
@@ -207,7 +201,7 @@ func (s *Subscription) startWsStream(endpoint string, msgType proto.Message, isB
 	}
 
 	// Construct ws url
-	host := fmt.Sprintf("%s%s%s", s.host, ":", port)
+	host := fmt.Sprintf("%s%s%s", s.hostname, ":", port)
 	u := url.URL{Scheme: "ws", Host: host, Path: endpoint}
 	log.Info().Str("host", host).Str("endpoint", endpoint).Msg("connecting to ws server")
 
@@ -241,10 +235,6 @@ func (s *Subscription) startWsStream(endpoint string, msgType proto.Message, isB
 	}
 
 	defer conn.Close()
-
-	if isBackfill {
-		defer log.Info().Msg("stop backfilling")
-	}
 
 	// Read messages from connection
 	for {

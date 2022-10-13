@@ -11,7 +11,7 @@ import (
 type Config struct {
 	FromBlock    uint64
 	NumBlocks    uint64
-	Host         string
+	Hostname     string
 	Port         string
 	BackfillPort string
 	MaxRetries   int

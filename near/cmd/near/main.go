@@ -35,7 +35,7 @@ func main() {
 	config := &near.Config{
 		FromBlock:    c.Config.GetUint64("from-block"),
 		NumBlocks:    c.Config.GetUint64("num-blocks"),
-		Host:         "localhost",
+		Hostname:     "localhost",
 		Port:         c.Config.GetString("port"),
 		BackfillPort: c.Config.GetString("backfillPort"),
 		MaxRetries:   c.Config.GetInt("maxRetries"),
