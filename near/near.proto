@@ -5,9 +5,10 @@ import "google/protobuf/timestamp.proto";
 option go_package = "github.com/nakji-network/connectors/near";
 
 message Block {
-  string author = 1;
-  BlockHeader header = 2;
-  repeated Chunk chunks = 3;
+  google.protobuf.Timestamp ts = 1;
+  string author = 2;
+  BlockHeader header = 3;
+  repeated Chunk chunks = 4;
 
   message BlockHeader {
     uint64 height = 1;
@@ -23,22 +24,23 @@ message Block {
     string outcome_root = 11;
     uint64 chunks_included = 12;
     string challenges_root = 13;
-    google.protobuf.Timestamp ts = 14;
-    string random_value = 15;
-    repeated ValidatorStake validator_proposals = 16;
-    repeated bool chunk_mask = 17;
-    bytes gas_price = 18; // uint128
-    optional uint64 block_ordinal = 19;
-    bytes total_supply = 20; // uint128
-    repeated SlashedValidator challenges_result = 21;
-    string last_final_block = 22;
-    string last_ds_final_block = 23;
-    string next_bp_hash = 24;
-    string block_merkle_root = 25;
-    optional string epoch_sync_data_hash = 26;
-    repeated string approvals = 27;
-    string signature = 28;
-    uint32 latest_protocol_version = 29;
+    uint64 timestamp = 14;
+    uint64 timestamp_nanosec = 15;
+    string random_value = 16;
+    repeated ValidatorStake validator_proposals = 17;
+    repeated bool chunk_mask = 18;
+    bytes gas_price = 19; // uint128
+    optional uint64 block_ordinal = 20;
+    bytes total_supply = 21; // uint128
+    repeated SlashedValidator challenges_result = 22;
+    string last_final_block = 23;
+    string last_ds_final_block = 24;
+    string next_bp_hash = 25;
+    string block_merkle_root = 26;
+    optional string epoch_sync_data_hash = 27;
+    repeated string approvals = 28;
+    string signature = 29;
+    uint32 latest_protocol_version = 30;
     message SlashedValidator {
       string account_id = 1;
       bool is_double_sign = 2;

@@ -37,10 +37,18 @@ impl From<&BlockView> for Block {
             chunks_proto.push(chunk_proto);
         }
 
+        // Parse ts from timestamp_nanosec
+        let ts_duration = Duration::from_nanos(header.timestamp_nanosec);
+        let ts = Timestamp {
+            seconds: ts_duration.as_secs() as i64,
+            nanos: ts_duration.subsec_nanos() as i32,
+        };
+        
         Self {
             author: author.to_string(),
             header: Some(BlockHeader::from(header)),
             chunks: chunks_proto,
+            ts: Some(ts)
         }
     }
 }
@@ -61,7 +69,7 @@ impl From<&BlockHeaderView> for BlockHeader {
             outcome_root,
             chunks_included,
             challenges_root,
-            timestamp: _,
+            timestamp,
             timestamp_nanosec,
             random_value,
             validator_proposals,
@@ -82,12 +90,7 @@ impl From<&BlockHeaderView> for BlockHeader {
             latest_protocol_version,
         }: &BlockHeaderView,
     ) -> Self {
-        // Parse ts from timestamp_nanosec
-        let ts_duration = Duration::from_nanos(*timestamp_nanosec);
-        let ts = Timestamp {
-            seconds: ts_duration.as_secs() as i64,
-            nanos: ts_duration.subsec_nanos() as i32,
-        };
+        
 
         // Get vector of String representation of approval hashes
         let mut approvals_str = Vec::<String>::new();
@@ -120,7 +123,8 @@ impl From<&BlockHeaderView> for BlockHeader {
             chunks_included: *chunks_included,
             challenges_root: challenges_root.to_string(),
             random_value: random_value.to_string(),
-            ts: Some(ts),
+            timestamp: *timestamp,
+            timestamp_nanosec: *timestamp_nanosec,
             chunk_mask: chunk_mask.to_vec(),
             gas_price: gas_price.to_ne_bytes().to_vec(),
             block_ordinal: *block_ordinal,
