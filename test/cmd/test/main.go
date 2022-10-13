@@ -76,11 +76,6 @@ func main() {
 		log.Fatal().Err(err).Msg("failed to instantiate connector")
 	}
 
-	c.Config.SetDefault("flow.author", "nakji")
-	c.Config.SetDefault("flow.version", "0_0_0")
-	c.Config.SetDefault("blockTime", 15*time.Second)
-	c.Config.SetDefault("waitBlocks", 4)
-
 	c.RegisterProtos(&test.Message{})
 
 	b := benchmark.Benchmark{
