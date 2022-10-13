@@ -9,10 +9,14 @@ import (
 )
 
 type Config struct {
-	FromBlock uint64
-	NumBlocks uint64
-	Host      string
-	MsgTypes  []proto.Message
+	FromBlock    uint64
+	NumBlocks    uint64
+	Host         string
+	Port         string
+	BackfillPort string
+	MaxRetries   int
+	MsgTypes     []proto.Message
+	ChannelSize  int
 }
 
 type Connector struct {
@@ -31,7 +35,7 @@ func (c *Connector) Start() {
 	var events []string
 	ctx := context.Background()
 
-	sub, err := NewSubscription(ctx, c.Host, c.MsgTypes, events, c.FromBlock, c.NumBlocks)
+	sub, err := NewSubscription(ctx, c.Config, events)
 	if err != nil {
 		log.Fatal().Err(err).Msg("connection error")
 	}
@@ -54,11 +58,11 @@ func (c *Connector) Start() {
 		case tx := <-sub.Transactions():
 			c.EventSink <- tx
 
-		// Listen for new transactions
+		// Listen for new receipts
 		case receipt := <-sub.Receipts():
 			c.EventSink <- receipt
 
-		// Listen for new transactions
+		// Listen for new execution outcomes
 		case outcome := <-sub.ExecutionOutcomes():
 			c.EventSink <- outcome
 		}

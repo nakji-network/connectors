@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"time"
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
@@ -18,12 +17,11 @@ func main() {
 		log.Fatal().Err(err).Msg("failed to instantiate connector")
 	}
 
-	c.Config.SetDefault("near.author", "nakji")
-	c.Config.SetDefault("near.version", "0_0_0")
-	c.Config.SetDefault("blockTime", 1*time.Second)
-	c.Config.SetDefault("waitBlocks", 0)
+	c.Config.SetDefault("channelSize", 1000)
+	c.Config.SetDefault("port", "3030")
+	c.Config.SetDefault("backfillPort", "3031")
+	c.Config.SetDefault("maxRetries", 5)
 
-	// Genesis height is 9820210. Setting from-block to 0 will default to latest block.
 	pflag.Int64P("from-block", "f", 0, "block number to start backfill from (optional")
 	pflag.Int64P("num-blocks", "b", 0, "number of blocks to backfill (optional)")
 
@@ -35,10 +33,14 @@ func main() {
 	}
 
 	config := &near.Config{
-		FromBlock: c.Config.GetUint64("from-block"),
-		NumBlocks: c.Config.GetUint64("num-blocks"),
-		Host:      "localhost",
-		MsgTypes:  []proto.Message{&near.Block{}, &near.Transaction{}},
+		FromBlock:    c.Config.GetUint64("from-block"),
+		NumBlocks:    c.Config.GetUint64("num-blocks"),
+		Host:         "localhost",
+		Port:         c.Config.GetString("port"),
+		BackfillPort: c.Config.GetString("backfillPort"),
+		MaxRetries:   c.Config.GetInt("maxRetries"),
+		MsgTypes:     []proto.Message{&near.Block{}, &near.Transaction{}},
+		ChannelSize:  c.Config.GetInt("channelSize"),
 	}
 
 	connector := near.New(c, config)
