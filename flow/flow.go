@@ -2,6 +2,7 @@ package flow
 
 import (
 	"context"
+	"time"
 
 	"github.com/nakji-network/connector"
 
@@ -15,9 +16,16 @@ type ContractID struct {
 }
 
 type Config struct {
-	Host      string
-	FromBlock uint64
-	NumBlocks uint64
+	Host              string
+	FromBlock         uint64
+	NumBlocks         uint64
+	MaxRetry          int
+	MaxGrpcMsgSize    int
+	MaxApiUsage       int // Limit GetEventsForHeightRange API usage rate.
+	MaxWorkerPoolSize int
+	CacheSize         int
+	ChannelSize       int
+	Timeout           time.Duration
 }
 
 type Connector struct {
@@ -50,7 +58,7 @@ func (c *Connector) Start() {
 
 	ctx := context.Background()
 
-	sub, err := NewSubscription(ctx, c.Host, events, c.FromBlock, c.NumBlocks)
+	sub, err := NewSubscription(ctx, c.Config, events)
 	if err != nil {
 		log.Fatal().Err(err).Str("host", c.Host).Msg("connection error")
 	}
