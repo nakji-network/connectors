@@ -1,0 +1,7 @@
+name: near
+author: nakji
+version: "0.0.0"
+
+outputPath: near
+package: near
+owner: nakji

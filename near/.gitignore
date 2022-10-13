@@ -1,0 +1,16 @@
+// Rust output files
+/target/*
+!/target/release
+/target/release/*
+!/target/release/nakji_near_client
+
+// Rust dev files
+**/*.rs.bk
+Cargo.lock
+
+// Nakji files
+local.yaml
+
+// Proto files
+*.proto
+!near.proto
