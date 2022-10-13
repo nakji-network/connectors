@@ -13,20 +13,20 @@ pub async fn start_lake_stream(
     stream_sender: Sender<StreamerMessage>,
     from_block: u64,
     num_blocks: u64,
+    buffer_size: usize,
+    block_pool_size: usize
 ) {
     // create a NEAR Lake Framework config
-    let config = lake_config(from_block);
-
-    println!("",);
+    let config = lake_config(from_block, block_pool_size);
 
     // instantiate the NEAR Lake Framework Stream
     let (_sender, stream) = near_lake_framework::streamer(config);
 
     // read the stream events and pass them to a handler function with
-    // buffered list of pending futures (size 4)
+    // buffered list of pending futures
     let mut handlers = tokio_stream::wrappers::ReceiverStream::new(stream)
         .map(|streamer_message| handle_streamer_message(streamer_message, stream_sender.clone()))
-        .buffer_unordered(4usize);
+        .buffer_unordered(buffer_size);
 
     // Ensure that stream stops if we are backfilling
     if num_blocks > 0 {
@@ -52,7 +52,7 @@ async fn handle_streamer_message(
     sender.send(streamer_message).unwrap();
 }
 
-fn lake_config(from_block: u64) -> LakeConfig {
+fn lake_config(from_block: u64, block_pool_size: usize) -> LakeConfig {
     // Create a NEAR Lake Framework config
     // Begin by checking config volume for credentials
     let yaml_string = read_to_string("/etc/nakji/config.yaml").ok();
@@ -67,6 +67,13 @@ fn lake_config(from_block: u64) -> LakeConfig {
         let aws_id = doc["aws"]["id"].as_str().unwrap();
         let aws_secret = doc["aws"]["secret"].as_str().unwrap();
 
+        // Create str representation of credentials file
+        let mut credential_str = "[default]\naws_access_key_id=".to_string();
+        credential_str.push_str(aws_id);
+        credential_str.push_str("\naws_secret_access_key=");
+        credential_str.push_str(aws_secret);
+
+        // Find home dir
         let home_dir = home::home_dir()
             .expect("Unable to find home dir")
             .to_str()
@@ -77,36 +84,27 @@ fn lake_config(from_block: u64) -> LakeConfig {
         let mut aws_dir = home_dir.clone();
         aws_dir.push_str("/.aws");
 
-        fs::create_dir(aws_dir.clone()).expect("Could not create directory for credentials");
+        let result = fs::create_dir(aws_dir.clone());
+        
+        // If directory was successfully created
+        if result.is_ok() {
+            // Add credentials file to directory path
+            let mut credentials_dir = aws_dir.clone();
+            credentials_dir.push_str(&"/credentials".to_string());
 
-        // Create str representation of credentials file
-        let mut credential_str = "[default]\naws_access_key_id=".to_string();
-        credential_str.push_str(aws_id);
-        credential_str.push_str("\naws_secret_access_key=");
-        credential_str.push_str(aws_secret);
-
-        // Add credentials file to directory path
-        let mut credentials_dir = aws_dir.clone();
-        credentials_dir.push_str(&"/credentials".to_string());
-
-        // Write to file
-        let mut file = File::create(credentials_dir).expect("Unable to create credentials file");
-        file.write_all(credential_str.as_bytes())
-            .expect("Unable to write credentials str to file");
-
-        LakeConfigBuilder::default()
-            .mainnet()
-            .start_block_height(from_block)
-            .blocks_preload_pool_size(2000)
-            .build()
-            .expect("Unable to find AWS credentials. To automatically configure, add them to ~/.aws/credentials")
-    } else {
-        println!("Unable to find AWS credentials on config volume. Checking for credentials in local environment.");
-        LakeConfigBuilder::default()
-            .mainnet()
-            .start_block_height(from_block)
-            .blocks_preload_pool_size(2000)
-            .build()
-            .expect("Unable to find AWS credentials. To automatically configure, add them to ~/.aws/credentials")
-    }
+            // Write to file
+            let mut file = File::create(credentials_dir).expect("Unable to create credentials file");
+            file.write_all(credential_str.as_bytes())
+                .expect("Unable to write credentials to file");
+        }
+    } 
+    
+    // Build and return lake config
+    LakeConfigBuilder::default()
+        .mainnet()
+        .start_block_height(from_block)
+        .blocks_preload_pool_size(block_pool_size)
+        .build()
+        .expect("Unable to find AWS credentials.")
+    
 }
