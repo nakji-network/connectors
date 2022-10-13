@@ -27,9 +27,9 @@ message Block {
     string random_value = 15;
     repeated ValidatorStake validator_proposals = 16;
     repeated bool chunk_mask = 17;
-    bytes gas_price = 18;
+    bytes gas_price = 18; // uint128
     optional uint64 block_ordinal = 19;
-    bytes total_supply = 20;
+    bytes total_supply = 20; // uint128
     repeated SlashedValidator challenges_result = 21;
     string last_final_block = 22;
     string last_ds_final_block = 23;
@@ -56,7 +56,7 @@ message Block {
     uint64 shard_id = 9;
     uint64 gas_used = 10;
     uint64 gas_limit = 11;
-    bytes balance_burnt = 12;
+    bytes balance_burnt = 12; // uint128
     string outgoing_receipts_root = 13;
     string tx_root = 14;
     repeated ValidatorStake validator_proposals = 16;
@@ -65,7 +65,7 @@ message Block {
   message ValidatorStake {
     string account_id = 1;
     string public_key = 2;
-    bytes stake = 3;
+    bytes stake = 3; // uint128
   }
 }
 
@@ -97,11 +97,13 @@ message Action {
     string method_name = 1;
     string args = 2;
     uint64 gas = 3;
-    bytes deposit = 4;
+    bytes deposit = 4; // uint128
   }
-  message Transfer { bytes deposit = 1; }
+  message Transfer { 
+    bytes deposit = 1; // uint128 
+  }
   message Stake {
-    bytes stake = 1;
+    bytes stake = 1; // uint128
     string public_key = 2;
   }
   message AddKey {
@@ -121,7 +123,7 @@ message AccessKey {
 
   message FullAccessPermission {}
   message FunctionCallPermission {
-    optional bytes allowance = 1;
+    optional bytes allowance = 1; // uint128
     string receiver_id = 2;
     repeated string method_names = 3;
   }
