@@ -4,13 +4,6 @@ package near;
 import "google/protobuf/timestamp.proto";
 option go_package = "github.com/nakji-network/connectors/near";
 
-message NearMessage {
-  oneof message {
-    Block block = 1;
-    Transaction tx = 2;
-  }
-}
-
 message Block {
   string author = 1;
   BlockHeader header = 2;
