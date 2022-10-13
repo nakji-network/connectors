@@ -1,0 +1,7 @@
+name: test
+author: nakji
+version: "0.0.0"
+
+outputPath: test
+package: test
+owner: nakji
