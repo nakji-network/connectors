@@ -19,7 +19,7 @@ import (
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
-//go:embed target/release/nakji_near_client
+//go:embed target/x86_64-unknown-linux-musl/release/nakji_near_client
 var f embed.FS
 
 var endpointMap = map[string]proto.Message{
@@ -49,7 +49,7 @@ type Subscription struct {
 
 func NewSubscription(ctx context.Context, config *Config, events []string) (*Subscription, error) {
 	// Read binary from embed
-	bin, err := f.ReadFile("target/release/nakji_near_client")
+	bin, err := f.ReadFile("target/x86_64-unknown-linux-musl/release/nakji_near_client")
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed read embedded Nakji Near Client binary")
 	}
