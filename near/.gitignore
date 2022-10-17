@@ -1,8 +1,12 @@
 // Rust output files
 /target/*
-!/target/release
-/target/release/*
-!/target/release/nakji_near_client
+
+// Linux build output 
+!/target/x86_64-unknown-linux-musl
+/target/x86_64-unknown-linux-musl/*
+!/target/x86_64-unknown-linux-musl/release
+/target/x86_64-unknown-linux-musl/release/*
+!/target/x86_64-unknown-linux-musl/release/nakji_near_client
 
 // Rust dev files
 **/*.rs.bk
