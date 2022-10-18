@@ -30,6 +30,7 @@ func main() {
 	c.Config.SetDefault("cacheSize", 2000)
 	c.Config.SetDefault("channelSize", 1000)
 	c.Config.SetDefault("timeout", 3*time.Minute)
+	c.Config.SetDefault("reportInterval", 1*time.Minute)
 
 	pflag.Int64P("from-block", "f", 0, "block number to start backfill from (optional")
 	pflag.Int64P("num-blocks", "b", 0, "number of blocks to backfill (optional)")
@@ -66,6 +67,7 @@ func main() {
 		CacheSize:         c.Config.GetInt("cacheSize"),
 		ChannelSize:       c.Config.GetInt("channelSize"),
 		Timeout:           c.Config.GetDuration("timeout"),
+		ReportInterval:    c.Config.GetDuration("reportInterval"),
 	}
 
 	m := flow.New(c, conf)

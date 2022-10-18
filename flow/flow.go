@@ -26,19 +26,25 @@ type Config struct {
 	CacheSize         int
 	ChannelSize       int
 	Timeout           time.Duration
+	ReportInterval    time.Duration
 }
 
 type Connector struct {
 	*connector.Connector
 	*Config
-	contracts map[ContractID]ISmartContract
+	contracts    map[ContractID]ISmartContract
+	errCounter   uint64
+	blockCounter uint64
+	txCounter    uint64
+	eventCounter map[string]uint64
 }
 
 func New(c *connector.Connector, config *Config) *Connector {
 	return &Connector{
-		Connector: c,
-		Config:    config,
-		contracts: make(map[ContractID]ISmartContract),
+		Connector:    c,
+		Config:       config,
+		contracts:    make(map[ContractID]ISmartContract),
+		eventCounter: make(map[string]uint64),
 	}
 }
 
@@ -63,29 +69,41 @@ func (c *Connector) Start() {
 		log.Fatal().Err(err).Str("host", c.Host).Msg("connection error")
 	}
 
+	t := time.NewTicker(c.ReportInterval)
+	defer t.Stop()
+
 	for {
 		select {
 		case <-sub.Done():
+			c.reportCounters()
 			log.Info().Msg("connector shutdown")
 			return
 
 		// Listen to error channel
 		case err := <-sub.Err():
+			c.errCounter++
 			log.Error().Err(err).Str("host", c.Host).Msg("subscription failed")
 
 		// Listen for new blocks
 		case block := <-sub.Blocks():
+			c.blockCounter++
 			c.EventSink <- block
 
 		// Listen for new transactions
 		case tx := <-sub.Transactions():
+			c.txCounter++
 			c.EventSink <- tx
 
 		// Listen to event logs
 		case vLog := <-sub.Logs():
 			if msg := c.parse(vLog); msg != nil {
+				c.eventCounter[vLog.Type.String()]++
 				c.EventSink <- msg
 			}
+
+		// Report counters
+		case <-t.C:
+			c.reportCounters()
 		}
 	}
 }
@@ -97,4 +115,13 @@ func (c *Connector) parse(vLog *Log) proto.Message {
 		return nil
 	}
 	return contract.Message(vLog)
+}
+
+func (c *Connector) reportCounters() {
+	log.Info().Msgf("# Error: %d", c.errCounter)
+	log.Info().Msgf("# Block: %d", c.blockCounter)
+	log.Info().Msgf("# Transaction: %d", c.txCounter)
+	for event, counter := range c.eventCounter {
+		log.Info().Msgf("# %s: %d", event, counter)
+	}
 }
