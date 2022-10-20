@@ -1,7 +1,7 @@
 use std::{process, thread};
 
 use clap::{Parser, Subcommand};
-use crossbeam_channel::unbounded;
+use crossbeam_channel::bounded;
 use nakji_near_client::{
     lake_stream,
     near_proto::{Block, Transaction},
@@ -39,6 +39,7 @@ impl Opts {
 const RPC_URL: &str = "https://rpc.mainnet.near.org";
 const BUFFER_SIZE: usize = 2;
 const BLOCK_POOL_SIZE: usize = 500;
+const CHANNEL_SIZE: usize = 10000;
 
 fn main() {
     let opts = Opts::parse();
@@ -50,7 +51,7 @@ fn main() {
 
     // lake_stream_send: Sender that NEAR Lake stream will write to
     // lake_stream_rx: Receiver for StreamerMessages from NEAR Lake
-    let (lake_stream_send, lake_stream_rx) = unbounded();
+    let (lake_stream_send, lake_stream_rx) = bounded(CHANNEL_SIZE);
 
     // Create a vector of join handles
     // If the join handles are not held, the threads will detach, causing a resource leak
@@ -68,11 +69,11 @@ fn main() {
     }));
 
     // Create senders and receivers for NEAR Handlers
-    let (block_send, block_rx) = unbounded();
+    let (block_send, block_rx) = bounded(CHANNEL_SIZE);
     let block_handler = NearHandler::<Block>::new_handler(block_rx);
     join_handles.push(block_handler.start());
 
-    let (tx_send, tx_rx) = unbounded();
+    let (tx_send, tx_rx) = bounded(CHANNEL_SIZE);
     let tx_handler = NearHandler::<Transaction>::new_handler(tx_rx);
     join_handles.push(tx_handler.start());
 
