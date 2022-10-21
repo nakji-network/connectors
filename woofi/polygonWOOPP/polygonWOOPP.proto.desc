@@ -1,0 +1,99 @@
+
+ÿ
+google/protobuf/timestamp.protogoogle.protobuf";
+	Timestamp
+seconds (Rseconds
+nanos (RnanosB…
+com.google.protobufBTimestampProtoPZ2google.golang.org/protobuf/types/known/timestamppbø¢GPBªGoogle.Protobuf.WellKnownTypesbproto3
+“
+polygonWOOPP.protopolygonWOOPPgoogle/protobuf/timestamp.proto"¾
+RewardManagerUpdated*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash*
+newRewardManager (RnewRewardManager"µ
+FeeManagerUpdated*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash$
+newFeeManager (RnewFeeManager" 
+Unpaused*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash
+account (Raccount"Ä
+Withdraw*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash
+token (Rtoken
+to (Rto
+amount (Ramount"Ù
+OwnershipTransferPrepared*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash$
+previousOwner (RpreviousOwner
+newOwner (RnewOwner"å
+ParametersUpdated*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash
+	baseToken (R	baseToken"
+newThreshold (RnewThreshold
+newR (RnewR"Ô
+OwnershipTransferred*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash$
+previousOwner (RpreviousOwner
+newOwner (RnewOwner"¹
+WooSwap*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash
+	fromToken (R	fromToken
+toToken (RtoToken
+
+fromAmount (R
+fromAmount
+toAmount (RtoAmount
+from	 (Rfrom
+to
+ (Rto
+rebateTo (RrebateTo"Ã
+StrategistUpdated*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash
+
+strategist (R
+strategist
+flag (Rflag"¸
+WooGuardianUpdated*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash&
+newWooGuardian (RnewWooGuardian"¯
+WooracleUpdated*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash 
+newWooracle (RnewWooracle"ž
+Paused*
+ts (2.google.protobuf.TimestampRts 
+blockNumber (RblockNumber
+index (Rindex
+txHash (RtxHash
+account (RaccountB8Z6github.com/nakji-network/connectors/woofi/polygonWOOPPbproto3
