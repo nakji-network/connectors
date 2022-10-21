@@ -7,6 +7,7 @@ import (
 )
 
 type ISmartContract interface {
+	Network() string
 	Address() string
 	Message(vLog types.Log, ts *timestamppb.Timestamp) proto.Message
 }

@@ -7,7 +7,8 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/woofi"
-	"github.com/nakji-network/connectors/woofi/WOOPP"
+	"github.com/nakji-network/connectors/woofi/bscWOOPP"
+	"github.com/nakji-network/connectors/woofi/polygonWOOPP"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -46,13 +47,19 @@ func main() {
 		NumBlocks:     c.Config.GetUint64("num-blocks"),
 	}
 
-	wooppContract, err := WOOPP.NewContract(woofi.WOOPPContractAddr)
+	bscWooppContract, err := bscWOOPP.NewContract(woofi.BscNetwork, woofi.BscWOOPPContractAddr)
 	if err != nil {
-		log.Err(err).Msg("Cannot create WOOPP contract")
+		log.Err(err).Msg("cannot create bsc WOOPP contract")
+	}
+
+	polygonWooppContract, err := polygonWOOPP.NewContract(woofi.PolygonNetwork, woofi.PolygonWOOPPContractAddr)
+	if err != nil {
+		log.Err(err).Msg("cannot create polygon WOOPP contract")
 	}
 
 	m := woofi.New(c, conf)
-	m.AddContract(wooppContract)
+	m.AddContract(bscWooppContract)
+	m.AddContract(polygonWooppContract)
 	m.Start()
 }
 
