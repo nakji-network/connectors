@@ -16,7 +16,8 @@ prost-types = "0.11.0"
 ws = "0.9.2"
 crossbeam-channel = "0.5.6"
 near-jsonrpc-client = "0.4.0"
-near-primitives = "0.15.0"
+near_primitives = { package = "near-primitives", version = "0.14.0" }
+near_primitives_rpc = { package = "near-primitives", version = "0.15.0" }
 serde_json = "1.0.86"
 yaml-rust = "0.4.5"
 home = "0.5.4"
