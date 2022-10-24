@@ -15,7 +15,8 @@ type Config struct {
 	Port         string
 	BackfillPort string
 	MaxRetries   int
-	MsgTypes     []proto.Message
+	FctMsgTypes  []proto.Message
+	BfMsgTypes   []proto.Message
 	ChannelSize  int
 }
 

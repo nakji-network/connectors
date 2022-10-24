@@ -5,6 +5,7 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/near"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -39,17 +40,16 @@ func main() {
 		Port:         c.Config.GetString("port"),
 		BackfillPort: c.Config.GetString("backfillPort"),
 		MaxRetries:   c.Config.GetInt("maxRetries"),
-		MsgTypes:     []proto.Message{&near.Block{}, &near.Transaction{}},
+		FctMsgTypes:  []proto.Message{&near.Block{}, &near.Transaction{}, &near.Receipt{}, &near.ExecutionOutcome{}},
+		BfMsgTypes:   []proto.Message{&near.Block{}, &near.Transaction{}},
 		ChannelSize:  c.Config.GetInt("channelSize"),
 	}
 
 	connector := near.New(c, config)
 
-	// Register topic and protobuf type mapping
-	connector.RegisterProtos(
-		&near.Block{},
-		&near.Transaction{},
-	)
+	// Register topic and protobuf type mappings
+	connector.RegisterProtos(kafkautils.MsgTypeFct, connector.FctMsgTypes...)
+	connector.RegisterProtos(kafkautils.MsgTypeBf, connector.BfMsgTypes...)
 
 	connector.Start()
 }

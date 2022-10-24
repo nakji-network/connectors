@@ -14,9 +14,9 @@ import (
 	"time"
 
 	"github.com/gorilla/websocket"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 //go:embed target/x86_64-unknown-linux-musl/release/nakji_near_client
@@ -37,13 +37,14 @@ type Subscription struct {
 	fromBlock            uint64
 	numBlocks            uint64
 	events               []string
-	msgTypes             []proto.Message
+	fctMsgTypes          []proto.Message
+	bfMsgTypes           []proto.Message
 	done                 chan struct{}
 	ctx                  context.Context
-	blockChan            chan proto.Message
-	transactionChan      chan proto.Message
-	receiptChan          chan proto.Message
-	executionOutcomeChan chan proto.Message
+	blockChan            chan *kafkautils.Message
+	transactionChan      chan *kafkautils.Message
+	receiptChan          chan *kafkautils.Message
+	executionOutcomeChan chan *kafkautils.Message
 	errChan              chan error
 }
 
@@ -66,15 +67,16 @@ func NewSubscription(ctx context.Context, config *Config, events []string) (*Sub
 		backfillPort:         config.BackfillPort,
 		maxRetries:           config.MaxRetries,
 		events:               events,
-		msgTypes:             config.MsgTypes,
+		fctMsgTypes:          config.FctMsgTypes,
+		bfMsgTypes:           config.BfMsgTypes,
 		fromBlock:            config.FromBlock,
 		numBlocks:            config.NumBlocks,
 		done:                 make(chan struct{}),
 		ctx:                  ctx,
-		blockChan:            make(chan proto.Message, config.ChannelSize),
-		transactionChan:      make(chan proto.Message, config.ChannelSize),
-		receiptChan:          make(chan proto.Message, config.ChannelSize),
-		executionOutcomeChan: make(chan proto.Message, config.ChannelSize),
+		blockChan:            make(chan *kafkautils.Message, config.ChannelSize),
+		transactionChan:      make(chan *kafkautils.Message, config.ChannelSize),
+		receiptChan:          make(chan *kafkautils.Message, config.ChannelSize),
+		executionOutcomeChan: make(chan *kafkautils.Message, config.ChannelSize),
 		errChan:              make(chan error, config.ChannelSize),
 	}
 	go func() {
@@ -101,19 +103,19 @@ func (s *Subscription) Done() <-chan struct{} {
 	return s.done
 }
 
-func (s *Subscription) Blocks() <-chan proto.Message {
+func (s *Subscription) Blocks() <-chan *kafkautils.Message {
 	return s.blockChan
 }
 
-func (s *Subscription) Transactions() <-chan proto.Message {
+func (s *Subscription) Transactions() <-chan *kafkautils.Message {
 	return s.transactionChan
 }
 
-func (s *Subscription) Receipts() <-chan proto.Message {
+func (s *Subscription) Receipts() <-chan *kafkautils.Message {
 	return s.receiptChan
 }
 
-func (s *Subscription) ExecutionOutcomes() <-chan proto.Message {
+func (s *Subscription) ExecutionOutcomes() <-chan *kafkautils.Message {
 	return s.executionOutcomeChan
 }
 
@@ -176,10 +178,16 @@ func (s *Subscription) startLakeStream(port string, fromBlock uint64, numBlocks 
 
 func (s *Subscription) initWsStreams(isBackfill bool) {
 	var wg sync.WaitGroup
+	var msgTypes []proto.Message
 	// Connect to ws server to receive data from Lake stream
+	if isBackfill {
+		msgTypes = s.bfMsgTypes
+	} else {
+		msgTypes = s.fctMsgTypes
+	}
 	for endpoint, msgType := range endpointMap {
-		// Check if msgType is in sub's msgTypes
-		for _, subType := range s.msgTypes {
+		// Check if msgType is in sub's msgTypes (based on bf or fct msgTypes)
+		for _, subType := range msgTypes {
 			if reflect.TypeOf(msgType) == reflect.TypeOf(subType) {
 				wg.Add(1)
 				go s.startWsStream(&wg, endpoint, msgType, isBackfill)
@@ -189,7 +197,7 @@ func (s *Subscription) initWsStreams(isBackfill bool) {
 	wg.Wait()
 }
 
-func (s *Subscription) startWsStream(wg *sync.WaitGroup, endpoint string, msgType proto.Message, isBackfill bool) {
+func (s *Subscription) startWsStream(wg *sync.WaitGroup, endpoint string, protoMsgType proto.Message, isBackfill bool) {
 	defer wg.Done()
 
 	// Get port from config
@@ -205,11 +213,19 @@ func (s *Subscription) startWsStream(wg *sync.WaitGroup, endpoint string, msgTyp
 	u := url.URL{Scheme: "ws", Host: host, Path: endpoint}
 	log.Info().Str("host", host).Str("endpoint", endpoint).Msg("connecting to ws server")
 
-	// Output chan determined by msgType
-	ch := s.getMsgChan(msgType)
+	// Output chan determined by protoMsgType
+	ch := s.getMsgChan(protoMsgType)
 	if ch == nil {
 		log.Error().Msg("could not determine output channel")
 		return
+	}
+
+	// kafkaMsgType determined by backfill
+	var kafkaMsgType kafkautils.MsgType
+	if isBackfill {
+		kafkaMsgType = kafkautils.MsgTypeBf
+	} else {
+		kafkaMsgType = kafkautils.MsgTypeFct
 	}
 
 	// Connect to ws server with retry
@@ -251,19 +267,23 @@ func (s *Subscription) startWsStream(wg *sync.WaitGroup, endpoint string, msgTyp
 				continue
 			}
 
-			msg := proto.Clone(msgType)
+			protoMsg := proto.Clone(protoMsgType)
 
-			if err := proto.Unmarshal(wsMessage, msg); err != nil {
+			if err := proto.Unmarshal(wsMessage, protoMsg); err != nil {
 				s.errChan <- err
 				continue
 			}
 
-			ch <- msg
+			ch <- &kafkautils.Message{
+				MsgType:  kafkaMsgType,
+				ProtoMsg: protoMsg,
+			}
+
 		}
 	}
 }
 
-func (s *Subscription) getMsgChan(msgType proto.Message) chan protoreflect.ProtoMessage {
+func (s *Subscription) getMsgChan(msgType proto.Message) chan *kafkautils.Message {
 	switch reflect.TypeOf(msgType) {
 	case reflect.TypeOf(&Block{}):
 		return s.blockChan
