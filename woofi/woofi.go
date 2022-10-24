@@ -88,7 +88,7 @@ func (c *Connector) Start() {
 func (c *Connector) parse(vLog Log) protoreflect.ProtoMessage {
 	contract := c.GetContract(vLog.Network, vLog.Address.String())
 	if contract == nil {
-		log.Info().Str("network", vLog.Network).Str("address", vLog.Address.String()).Msg("unknown event")
+		log.Error().Str("network", vLog.Network).Str("address", vLog.Address.String()).Msg("unknown event")
 		return nil
 	}
 

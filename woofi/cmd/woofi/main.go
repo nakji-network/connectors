@@ -9,6 +9,7 @@ import (
 	"github.com/nakji-network/connectors/woofi"
 	"github.com/nakji-network/connectors/woofi/bscWooPP"
 	"github.com/nakji-network/connectors/woofi/bscWooRouter"
+	"github.com/nakji-network/connectors/woofi/bscWooRouterV2"
 	"github.com/nakji-network/connectors/woofi/polygonWooPP"
 
 	"github.com/rs/zerolog/log"
@@ -58,6 +59,11 @@ func main() {
 		log.Err(err).Msg("cannot create bsc WooRouter contract")
 	}
 
+	bscWooRouterV2Contract, err := bscWooRouterV2.NewContract(woofi.BscNetwork, woofi.BscWooRouterV2ContractAddr)
+	if err != nil {
+		log.Err(err).Msg("cannot create bsc WooRouterV2 contract")
+	}
+
 	polygonWooPPContract, err := polygonWooPP.NewContract(woofi.PolygonNetwork, woofi.PolygonWooPPContractAddr)
 	if err != nil {
 		log.Err(err).Msg("cannot create polygon WooPP contract")
@@ -66,6 +72,7 @@ func main() {
 	m := woofi.New(c, conf)
 	m.AddContract(bscWooPPContract)
 	m.AddContract(bscWooRouterContract)
+	m.AddContract(bscWooRouterV2Contract)
 	m.AddContract(polygonWooPPContract)
 	m.Start()
 }
