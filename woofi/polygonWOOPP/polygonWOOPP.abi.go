@@ -1,9 +1,7 @@
 // Code generated - DO NOT EDIT.
 // This file is a generated binding and any manual changes will be lost.
-// Taken by creating a .abi file from bscscan, then running
-// abigen --abi WOOPP.abi --pkg WOOPP --out WOOPP.abi.go
 
-package WOOPP
+package polygonWOOPP
 
 import (
 	"errors"
@@ -30,113 +28,113 @@ var (
 	_ = event.NewSubscription
 )
 
-// WOOPPMetaData contains all meta data concerning the WOOPP contract.
-var WOOPPMetaData = &bind.MetaData{
+// PolygonWOOPPMetaData contains all meta data concerning the PolygonWOOPP contract.
+var PolygonWOOPPMetaData = &bind.MetaData{
 	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newQuoteToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"newWooracle\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"newFeeManager\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"newWooGuardian\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newFeeManager\",\"type\":\"address\"}],\"name\":\"FeeManagerUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferPrepared\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newThreshold\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"newR\",\"type\":\"uint256\"}],\"name\":\"ParametersUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Paused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newRewardManager\",\"type\":\"address\"}],\"name\":\"RewardManagerUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"strategist\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bool\",\"name\":\"flag\",\"type\":\"bool\"}],\"name\":\"StrategistUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"account\",\"type\":\"address\"}],\"name\":\"Unpaused\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"Withdraw\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newWooGuardian\",\"type\":\"address\"}],\"name\":\"WooGuardianUpdated\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"fromToken\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"toToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fromAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"toAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"from\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"rebateTo\",\"type\":\"address\"}],\"name\":\"WooSwap\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newWooracle\",\"type\":\"address\"}],\"name\":\"WooracleUpdated\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"_NEW_OWNER_\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"_OWNER_\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"threshold\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"R\",\"type\":\"uint256\"}],\"name\":\"addBaseToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"claimOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"feeManager\",\"outputs\":[{\"internalType\":\"contractIWooFeeManager\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"initOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"isStrategist\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pairsInfo\",\"outputs\":[{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"pause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"paused\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"poolSize\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"baseAmount\",\"type\":\"uint256\"}],\"name\":\"querySellBase\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"quoteAmount\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"quoteAmount\",\"type\":\"uint256\"}],\"name\":\"querySellQuote\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"baseAmount\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"quoteToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"}],\"name\":\"removeBaseToken\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"baseAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minQuoteAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rebateTo\",\"type\":\"address\"}],\"name\":\"sellBase\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"quoteAmount\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"baseToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"quoteAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"minBaseAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"rebateTo\",\"type\":\"address\"}],\"name\":\"sellQuote\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"baseAmount\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newFeeManager\",\"type\":\"address\"}],\"name\":\"setFeeManager\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"string\",\"name\":\"newPairsInfo\",\"type\":\"string\"}],\"name\":\"setPairsInfo\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"strategist\",\"type\":\"address\"},{\"internalType\":\"bool\",\"name\":\"flag\",\"type\":\"bool\"}],\"name\":\"setStrategist\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newWooGuardian\",\"type\":\"address\"}],\"name\":\"setWooGuardian\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newWooracle\",\"type\":\"address\"}],\"name\":\"setWooracle\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"tokenInfo\",\"outputs\":[{\"internalType\":\"uint112\",\"name\":\"reserve\",\"type\":\"uint112\"},{\"internalType\":\"uint112\",\"name\":\"threshold\",\"type\":\"uint112\"},{\"internalType\":\"uint32\",\"name\":\"lastResetTimestamp\",\"type\":\"uint32\"},{\"internalType\":\"uint64\",\"name\":\"R\",\"type\":\"uint64\"},{\"internalType\":\"uint112\",\"name\":\"target\",\"type\":\"uint112\"},{\"internalType\":\"bool\",\"name\":\"isValid\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"newThreshold\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"newR\",\"type\":\"uint256\"}],\"name\":\"tuneParameters\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"unpause\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amount\",\"type\":\"uint256\"}],\"name\":\"withdraw\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"withdrawAll\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"token\",\"type\":\"address\"}],\"name\":\"withdrawAllToOwner\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"wooGuardian\",\"outputs\":[{\"internalType\":\"contractIWooGuardian\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"wooracle\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"}]",
 }
 
-// WOOPPABI is the input ABI used to generate the binding from.
-// Deprecated: Use WOOPPMetaData.ABI instead.
-var WOOPPABI = WOOPPMetaData.ABI
+// PolygonWOOPPABI is the input ABI used to generate the binding from.
+// Deprecated: Use PolygonWOOPPMetaData.ABI instead.
+var PolygonWOOPPABI = PolygonWOOPPMetaData.ABI
 
-// WOOPP is an auto generated Go binding around an Ethereum contract.
-type WOOPP struct {
-	WOOPPCaller     // Read-only binding to the contract
-	WOOPPTransactor // Write-only binding to the contract
-	WOOPPFilterer   // Log filterer for contract events
+// PolygonWOOPP is an auto generated Go binding around an Ethereum contract.
+type PolygonWOOPP struct {
+	PolygonWOOPPCaller     // Read-only binding to the contract
+	PolygonWOOPPTransactor // Write-only binding to the contract
+	PolygonWOOPPFilterer   // Log filterer for contract events
 }
 
-// WOOPPCaller is an auto generated read-only Go binding around an Ethereum contract.
-type WOOPPCaller struct {
+// PolygonWOOPPCaller is an auto generated read-only Go binding around an Ethereum contract.
+type PolygonWOOPPCaller struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// WOOPPTransactor is an auto generated write-only Go binding around an Ethereum contract.
-type WOOPPTransactor struct {
+// PolygonWOOPPTransactor is an auto generated write-only Go binding around an Ethereum contract.
+type PolygonWOOPPTransactor struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// WOOPPFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
-type WOOPPFilterer struct {
+// PolygonWOOPPFilterer is an auto generated log filtering Go binding around an Ethereum contract events.
+type PolygonWOOPPFilterer struct {
 	contract *bind.BoundContract // Generic contract wrapper for the low level calls
 }
 
-// WOOPPSession is an auto generated Go binding around an Ethereum contract,
+// PolygonWOOPPSession is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
-type WOOPPSession struct {
-	Contract     *WOOPP            // Generic contract binding to set the session for
+type PolygonWOOPPSession struct {
+	Contract     *PolygonWOOPP     // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
 
-// WOOPPCallerSession is an auto generated read-only Go binding around an Ethereum contract,
+// PolygonWOOPPCallerSession is an auto generated read-only Go binding around an Ethereum contract,
 // with pre-set call options.
-type WOOPPCallerSession struct {
-	Contract *WOOPPCaller  // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts // Call options to use throughout this session
+type PolygonWOOPPCallerSession struct {
+	Contract *PolygonWOOPPCaller // Generic contract caller binding to set the session for
+	CallOpts bind.CallOpts       // Call options to use throughout this session
 }
 
-// WOOPPTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
+// PolygonWOOPPTransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
-type WOOPPTransactorSession struct {
-	Contract     *WOOPPTransactor  // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
+type PolygonWOOPPTransactorSession struct {
+	Contract     *PolygonWOOPPTransactor // Generic contract transactor binding to set the session for
+	TransactOpts bind.TransactOpts       // Transaction auth options to use throughout this session
 }
 
-// WOOPPRaw is an auto generated low-level Go binding around an Ethereum contract.
-type WOOPPRaw struct {
-	Contract *WOOPP // Generic contract binding to access the raw methods on
+// PolygonWOOPPRaw is an auto generated low-level Go binding around an Ethereum contract.
+type PolygonWOOPPRaw struct {
+	Contract *PolygonWOOPP // Generic contract binding to access the raw methods on
 }
 
-// WOOPPCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
-type WOOPPCallerRaw struct {
-	Contract *WOOPPCaller // Generic read-only contract binding to access the raw methods on
+// PolygonWOOPPCallerRaw is an auto generated low-level read-only Go binding around an Ethereum contract.
+type PolygonWOOPPCallerRaw struct {
+	Contract *PolygonWOOPPCaller // Generic read-only contract binding to access the raw methods on
 }
 
-// WOOPPTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
-type WOOPPTransactorRaw struct {
-	Contract *WOOPPTransactor // Generic write-only contract binding to access the raw methods on
+// PolygonWOOPPTransactorRaw is an auto generated low-level write-only Go binding around an Ethereum contract.
+type PolygonWOOPPTransactorRaw struct {
+	Contract *PolygonWOOPPTransactor // Generic write-only contract binding to access the raw methods on
 }
 
-// NewWOOPP creates a new instance of WOOPP, bound to a specific deployed contract.
-func NewWOOPP(address common.Address, backend bind.ContractBackend) (*WOOPP, error) {
-	contract, err := bindWOOPP(address, backend, backend, backend)
+// NewPolygonWOOPP creates a new instance of PolygonWOOPP, bound to a specific deployed contract.
+func NewPolygonWOOPP(address common.Address, backend bind.ContractBackend) (*PolygonWOOPP, error) {
+	contract, err := bindPolygonWOOPP(address, backend, backend, backend)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPP{WOOPPCaller: WOOPPCaller{contract: contract}, WOOPPTransactor: WOOPPTransactor{contract: contract}, WOOPPFilterer: WOOPPFilterer{contract: contract}}, nil
+	return &PolygonWOOPP{PolygonWOOPPCaller: PolygonWOOPPCaller{contract: contract}, PolygonWOOPPTransactor: PolygonWOOPPTransactor{contract: contract}, PolygonWOOPPFilterer: PolygonWOOPPFilterer{contract: contract}}, nil
 }
 
-// NewWOOPPCaller creates a new read-only instance of WOOPP, bound to a specific deployed contract.
-func NewWOOPPCaller(address common.Address, caller bind.ContractCaller) (*WOOPPCaller, error) {
-	contract, err := bindWOOPP(address, caller, nil, nil)
+// NewPolygonWOOPPCaller creates a new read-only instance of PolygonWOOPP, bound to a specific deployed contract.
+func NewPolygonWOOPPCaller(address common.Address, caller bind.ContractCaller) (*PolygonWOOPPCaller, error) {
+	contract, err := bindPolygonWOOPP(address, caller, nil, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPCaller{contract: contract}, nil
+	return &PolygonWOOPPCaller{contract: contract}, nil
 }
 
-// NewWOOPPTransactor creates a new write-only instance of WOOPP, bound to a specific deployed contract.
-func NewWOOPPTransactor(address common.Address, transactor bind.ContractTransactor) (*WOOPPTransactor, error) {
-	contract, err := bindWOOPP(address, nil, transactor, nil)
+// NewPolygonWOOPPTransactor creates a new write-only instance of PolygonWOOPP, bound to a specific deployed contract.
+func NewPolygonWOOPPTransactor(address common.Address, transactor bind.ContractTransactor) (*PolygonWOOPPTransactor, error) {
+	contract, err := bindPolygonWOOPP(address, nil, transactor, nil)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPTransactor{contract: contract}, nil
+	return &PolygonWOOPPTransactor{contract: contract}, nil
 }
 
-// NewWOOPPFilterer creates a new log filterer instance of WOOPP, bound to a specific deployed contract.
-func NewWOOPPFilterer(address common.Address, filterer bind.ContractFilterer) (*WOOPPFilterer, error) {
-	contract, err := bindWOOPP(address, nil, nil, filterer)
+// NewPolygonWOOPPFilterer creates a new log filterer instance of PolygonWOOPP, bound to a specific deployed contract.
+func NewPolygonWOOPPFilterer(address common.Address, filterer bind.ContractFilterer) (*PolygonWOOPPFilterer, error) {
+	contract, err := bindPolygonWOOPP(address, nil, nil, filterer)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPFilterer{contract: contract}, nil
+	return &PolygonWOOPPFilterer{contract: contract}, nil
 }
 
-// bindWOOPP binds a generic wrapper to an already deployed contract.
-func bindWOOPP(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
-	parsed, err := abi.JSON(strings.NewReader(WOOPPABI))
+// bindPolygonWOOPP binds a generic wrapper to an already deployed contract.
+func bindPolygonWOOPP(address common.Address, caller bind.ContractCaller, transactor bind.ContractTransactor, filterer bind.ContractFilterer) (*bind.BoundContract, error) {
+	parsed, err := abi.JSON(strings.NewReader(PolygonWOOPPABI))
 	if err != nil {
 		return nil, err
 	}
@@ -147,46 +145,46 @@ func bindWOOPP(address common.Address, caller bind.ContractCaller, transactor bi
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_WOOPP *WOOPPRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _WOOPP.Contract.WOOPPCaller.contract.Call(opts, result, method, params...)
+func (_PolygonWOOPP *PolygonWOOPPRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _PolygonWOOPP.Contract.PolygonWOOPPCaller.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_WOOPP *WOOPPRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _WOOPP.Contract.WOOPPTransactor.contract.Transfer(opts)
+func (_PolygonWOOPP *PolygonWOOPPRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.PolygonWOOPPTransactor.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_WOOPP *WOOPPRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _WOOPP.Contract.WOOPPTransactor.contract.Transact(opts, method, params...)
+func (_PolygonWOOPP *PolygonWOOPPRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.PolygonWOOPPTransactor.contract.Transact(opts, method, params...)
 }
 
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result. The result type might be a single field for simple
 // returns, a slice of interfaces for anonymous returns and a struct for named
 // returns.
-func (_WOOPP *WOOPPCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
-	return _WOOPP.Contract.contract.Call(opts, result, method, params...)
+func (_PolygonWOOPP *PolygonWOOPPCallerRaw) Call(opts *bind.CallOpts, result *[]interface{}, method string, params ...interface{}) error {
+	return _PolygonWOOPP.Contract.contract.Call(opts, result, method, params...)
 }
 
 // Transfer initiates a plain transaction to move funds to the contract, calling
 // its default method if one is available.
-func (_WOOPP *WOOPPTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _WOOPP.Contract.contract.Transfer(opts)
+func (_PolygonWOOPP *PolygonWOOPPTransactorRaw) Transfer(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.contract.Transfer(opts)
 }
 
 // Transact invokes the (paid) contract method with params as input values.
-func (_WOOPP *WOOPPTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
-	return _WOOPP.Contract.contract.Transact(opts, method, params...)
+func (_PolygonWOOPP *PolygonWOOPPTransactorRaw) Transact(opts *bind.TransactOpts, method string, params ...interface{}) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.contract.Transact(opts, method, params...)
 }
 
 // NEWOWNER is a free data retrieval call binding the contract method 0x8456db15.
 //
 // Solidity: function _NEW_OWNER_() view returns(address)
-func (_WOOPP *WOOPPCaller) NEWOWNER(opts *bind.CallOpts) (common.Address, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) NEWOWNER(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "_NEW_OWNER_")
+	err := _PolygonWOOPP.contract.Call(opts, &out, "_NEW_OWNER_")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -201,23 +199,23 @@ func (_WOOPP *WOOPPCaller) NEWOWNER(opts *bind.CallOpts) (common.Address, error)
 // NEWOWNER is a free data retrieval call binding the contract method 0x8456db15.
 //
 // Solidity: function _NEW_OWNER_() view returns(address)
-func (_WOOPP *WOOPPSession) NEWOWNER() (common.Address, error) {
-	return _WOOPP.Contract.NEWOWNER(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) NEWOWNER() (common.Address, error) {
+	return _PolygonWOOPP.Contract.NEWOWNER(&_PolygonWOOPP.CallOpts)
 }
 
 // NEWOWNER is a free data retrieval call binding the contract method 0x8456db15.
 //
 // Solidity: function _NEW_OWNER_() view returns(address)
-func (_WOOPP *WOOPPCallerSession) NEWOWNER() (common.Address, error) {
-	return _WOOPP.Contract.NEWOWNER(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) NEWOWNER() (common.Address, error) {
+	return _PolygonWOOPP.Contract.NEWOWNER(&_PolygonWOOPP.CallOpts)
 }
 
 // OWNER is a free data retrieval call binding the contract method 0x16048bc4.
 //
 // Solidity: function _OWNER_() view returns(address)
-func (_WOOPP *WOOPPCaller) OWNER(opts *bind.CallOpts) (common.Address, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) OWNER(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "_OWNER_")
+	err := _PolygonWOOPP.contract.Call(opts, &out, "_OWNER_")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -232,23 +230,23 @@ func (_WOOPP *WOOPPCaller) OWNER(opts *bind.CallOpts) (common.Address, error) {
 // OWNER is a free data retrieval call binding the contract method 0x16048bc4.
 //
 // Solidity: function _OWNER_() view returns(address)
-func (_WOOPP *WOOPPSession) OWNER() (common.Address, error) {
-	return _WOOPP.Contract.OWNER(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) OWNER() (common.Address, error) {
+	return _PolygonWOOPP.Contract.OWNER(&_PolygonWOOPP.CallOpts)
 }
 
 // OWNER is a free data retrieval call binding the contract method 0x16048bc4.
 //
 // Solidity: function _OWNER_() view returns(address)
-func (_WOOPP *WOOPPCallerSession) OWNER() (common.Address, error) {
-	return _WOOPP.Contract.OWNER(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) OWNER() (common.Address, error) {
+	return _PolygonWOOPP.Contract.OWNER(&_PolygonWOOPP.CallOpts)
 }
 
 // FeeManager is a free data retrieval call binding the contract method 0xd0fb0203.
 //
 // Solidity: function feeManager() view returns(address)
-func (_WOOPP *WOOPPCaller) FeeManager(opts *bind.CallOpts) (common.Address, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) FeeManager(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "feeManager")
+	err := _PolygonWOOPP.contract.Call(opts, &out, "feeManager")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -263,23 +261,23 @@ func (_WOOPP *WOOPPCaller) FeeManager(opts *bind.CallOpts) (common.Address, erro
 // FeeManager is a free data retrieval call binding the contract method 0xd0fb0203.
 //
 // Solidity: function feeManager() view returns(address)
-func (_WOOPP *WOOPPSession) FeeManager() (common.Address, error) {
-	return _WOOPP.Contract.FeeManager(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) FeeManager() (common.Address, error) {
+	return _PolygonWOOPP.Contract.FeeManager(&_PolygonWOOPP.CallOpts)
 }
 
 // FeeManager is a free data retrieval call binding the contract method 0xd0fb0203.
 //
 // Solidity: function feeManager() view returns(address)
-func (_WOOPP *WOOPPCallerSession) FeeManager() (common.Address, error) {
-	return _WOOPP.Contract.FeeManager(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) FeeManager() (common.Address, error) {
+	return _PolygonWOOPP.Contract.FeeManager(&_PolygonWOOPP.CallOpts)
 }
 
 // IsStrategist is a free data retrieval call binding the contract method 0x6734faee.
 //
 // Solidity: function isStrategist(address ) view returns(bool)
-func (_WOOPP *WOOPPCaller) IsStrategist(opts *bind.CallOpts, arg0 common.Address) (bool, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) IsStrategist(opts *bind.CallOpts, arg0 common.Address) (bool, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "isStrategist", arg0)
+	err := _PolygonWOOPP.contract.Call(opts, &out, "isStrategist", arg0)
 
 	if err != nil {
 		return *new(bool), err
@@ -294,23 +292,23 @@ func (_WOOPP *WOOPPCaller) IsStrategist(opts *bind.CallOpts, arg0 common.Address
 // IsStrategist is a free data retrieval call binding the contract method 0x6734faee.
 //
 // Solidity: function isStrategist(address ) view returns(bool)
-func (_WOOPP *WOOPPSession) IsStrategist(arg0 common.Address) (bool, error) {
-	return _WOOPP.Contract.IsStrategist(&_WOOPP.CallOpts, arg0)
+func (_PolygonWOOPP *PolygonWOOPPSession) IsStrategist(arg0 common.Address) (bool, error) {
+	return _PolygonWOOPP.Contract.IsStrategist(&_PolygonWOOPP.CallOpts, arg0)
 }
 
 // IsStrategist is a free data retrieval call binding the contract method 0x6734faee.
 //
 // Solidity: function isStrategist(address ) view returns(bool)
-func (_WOOPP *WOOPPCallerSession) IsStrategist(arg0 common.Address) (bool, error) {
-	return _WOOPP.Contract.IsStrategist(&_WOOPP.CallOpts, arg0)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) IsStrategist(arg0 common.Address) (bool, error) {
+	return _PolygonWOOPP.Contract.IsStrategist(&_PolygonWOOPP.CallOpts, arg0)
 }
 
 // PairsInfo is a free data retrieval call binding the contract method 0x3ef31236.
 //
 // Solidity: function pairsInfo() view returns(string)
-func (_WOOPP *WOOPPCaller) PairsInfo(opts *bind.CallOpts) (string, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) PairsInfo(opts *bind.CallOpts) (string, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "pairsInfo")
+	err := _PolygonWOOPP.contract.Call(opts, &out, "pairsInfo")
 
 	if err != nil {
 		return *new(string), err
@@ -325,23 +323,23 @@ func (_WOOPP *WOOPPCaller) PairsInfo(opts *bind.CallOpts) (string, error) {
 // PairsInfo is a free data retrieval call binding the contract method 0x3ef31236.
 //
 // Solidity: function pairsInfo() view returns(string)
-func (_WOOPP *WOOPPSession) PairsInfo() (string, error) {
-	return _WOOPP.Contract.PairsInfo(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) PairsInfo() (string, error) {
+	return _PolygonWOOPP.Contract.PairsInfo(&_PolygonWOOPP.CallOpts)
 }
 
 // PairsInfo is a free data retrieval call binding the contract method 0x3ef31236.
 //
 // Solidity: function pairsInfo() view returns(string)
-func (_WOOPP *WOOPPCallerSession) PairsInfo() (string, error) {
-	return _WOOPP.Contract.PairsInfo(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) PairsInfo() (string, error) {
+	return _PolygonWOOPP.Contract.PairsInfo(&_PolygonWOOPP.CallOpts)
 }
 
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
 //
 // Solidity: function paused() view returns(bool)
-func (_WOOPP *WOOPPCaller) Paused(opts *bind.CallOpts) (bool, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) Paused(opts *bind.CallOpts) (bool, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "paused")
+	err := _PolygonWOOPP.contract.Call(opts, &out, "paused")
 
 	if err != nil {
 		return *new(bool), err
@@ -356,23 +354,23 @@ func (_WOOPP *WOOPPCaller) Paused(opts *bind.CallOpts) (bool, error) {
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
 //
 // Solidity: function paused() view returns(bool)
-func (_WOOPP *WOOPPSession) Paused() (bool, error) {
-	return _WOOPP.Contract.Paused(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) Paused() (bool, error) {
+	return _PolygonWOOPP.Contract.Paused(&_PolygonWOOPP.CallOpts)
 }
 
 // Paused is a free data retrieval call binding the contract method 0x5c975abb.
 //
 // Solidity: function paused() view returns(bool)
-func (_WOOPP *WOOPPCallerSession) Paused() (bool, error) {
-	return _WOOPP.Contract.Paused(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) Paused() (bool, error) {
+	return _PolygonWOOPP.Contract.Paused(&_PolygonWOOPP.CallOpts)
 }
 
 // PoolSize is a free data retrieval call binding the contract method 0xfa75d160.
 //
 // Solidity: function poolSize(address token) view returns(uint256)
-func (_WOOPP *WOOPPCaller) PoolSize(opts *bind.CallOpts, token common.Address) (*big.Int, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) PoolSize(opts *bind.CallOpts, token common.Address) (*big.Int, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "poolSize", token)
+	err := _PolygonWOOPP.contract.Call(opts, &out, "poolSize", token)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -387,23 +385,23 @@ func (_WOOPP *WOOPPCaller) PoolSize(opts *bind.CallOpts, token common.Address) (
 // PoolSize is a free data retrieval call binding the contract method 0xfa75d160.
 //
 // Solidity: function poolSize(address token) view returns(uint256)
-func (_WOOPP *WOOPPSession) PoolSize(token common.Address) (*big.Int, error) {
-	return _WOOPP.Contract.PoolSize(&_WOOPP.CallOpts, token)
+func (_PolygonWOOPP *PolygonWOOPPSession) PoolSize(token common.Address) (*big.Int, error) {
+	return _PolygonWOOPP.Contract.PoolSize(&_PolygonWOOPP.CallOpts, token)
 }
 
 // PoolSize is a free data retrieval call binding the contract method 0xfa75d160.
 //
 // Solidity: function poolSize(address token) view returns(uint256)
-func (_WOOPP *WOOPPCallerSession) PoolSize(token common.Address) (*big.Int, error) {
-	return _WOOPP.Contract.PoolSize(&_WOOPP.CallOpts, token)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) PoolSize(token common.Address) (*big.Int, error) {
+	return _PolygonWOOPP.Contract.PoolSize(&_PolygonWOOPP.CallOpts, token)
 }
 
 // QuerySellBase is a free data retrieval call binding the contract method 0x79a04876.
 //
 // Solidity: function querySellBase(address baseToken, uint256 baseAmount) view returns(uint256 quoteAmount)
-func (_WOOPP *WOOPPCaller) QuerySellBase(opts *bind.CallOpts, baseToken common.Address, baseAmount *big.Int) (*big.Int, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) QuerySellBase(opts *bind.CallOpts, baseToken common.Address, baseAmount *big.Int) (*big.Int, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "querySellBase", baseToken, baseAmount)
+	err := _PolygonWOOPP.contract.Call(opts, &out, "querySellBase", baseToken, baseAmount)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -418,23 +416,23 @@ func (_WOOPP *WOOPPCaller) QuerySellBase(opts *bind.CallOpts, baseToken common.A
 // QuerySellBase is a free data retrieval call binding the contract method 0x79a04876.
 //
 // Solidity: function querySellBase(address baseToken, uint256 baseAmount) view returns(uint256 quoteAmount)
-func (_WOOPP *WOOPPSession) QuerySellBase(baseToken common.Address, baseAmount *big.Int) (*big.Int, error) {
-	return _WOOPP.Contract.QuerySellBase(&_WOOPP.CallOpts, baseToken, baseAmount)
+func (_PolygonWOOPP *PolygonWOOPPSession) QuerySellBase(baseToken common.Address, baseAmount *big.Int) (*big.Int, error) {
+	return _PolygonWOOPP.Contract.QuerySellBase(&_PolygonWOOPP.CallOpts, baseToken, baseAmount)
 }
 
 // QuerySellBase is a free data retrieval call binding the contract method 0x79a04876.
 //
 // Solidity: function querySellBase(address baseToken, uint256 baseAmount) view returns(uint256 quoteAmount)
-func (_WOOPP *WOOPPCallerSession) QuerySellBase(baseToken common.Address, baseAmount *big.Int) (*big.Int, error) {
-	return _WOOPP.Contract.QuerySellBase(&_WOOPP.CallOpts, baseToken, baseAmount)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) QuerySellBase(baseToken common.Address, baseAmount *big.Int) (*big.Int, error) {
+	return _PolygonWOOPP.Contract.QuerySellBase(&_PolygonWOOPP.CallOpts, baseToken, baseAmount)
 }
 
 // QuerySellQuote is a free data retrieval call binding the contract method 0x66410a21.
 //
 // Solidity: function querySellQuote(address baseToken, uint256 quoteAmount) view returns(uint256 baseAmount)
-func (_WOOPP *WOOPPCaller) QuerySellQuote(opts *bind.CallOpts, baseToken common.Address, quoteAmount *big.Int) (*big.Int, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) QuerySellQuote(opts *bind.CallOpts, baseToken common.Address, quoteAmount *big.Int) (*big.Int, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "querySellQuote", baseToken, quoteAmount)
+	err := _PolygonWOOPP.contract.Call(opts, &out, "querySellQuote", baseToken, quoteAmount)
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -449,23 +447,23 @@ func (_WOOPP *WOOPPCaller) QuerySellQuote(opts *bind.CallOpts, baseToken common.
 // QuerySellQuote is a free data retrieval call binding the contract method 0x66410a21.
 //
 // Solidity: function querySellQuote(address baseToken, uint256 quoteAmount) view returns(uint256 baseAmount)
-func (_WOOPP *WOOPPSession) QuerySellQuote(baseToken common.Address, quoteAmount *big.Int) (*big.Int, error) {
-	return _WOOPP.Contract.QuerySellQuote(&_WOOPP.CallOpts, baseToken, quoteAmount)
+func (_PolygonWOOPP *PolygonWOOPPSession) QuerySellQuote(baseToken common.Address, quoteAmount *big.Int) (*big.Int, error) {
+	return _PolygonWOOPP.Contract.QuerySellQuote(&_PolygonWOOPP.CallOpts, baseToken, quoteAmount)
 }
 
 // QuerySellQuote is a free data retrieval call binding the contract method 0x66410a21.
 //
 // Solidity: function querySellQuote(address baseToken, uint256 quoteAmount) view returns(uint256 baseAmount)
-func (_WOOPP *WOOPPCallerSession) QuerySellQuote(baseToken common.Address, quoteAmount *big.Int) (*big.Int, error) {
-	return _WOOPP.Contract.QuerySellQuote(&_WOOPP.CallOpts, baseToken, quoteAmount)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) QuerySellQuote(baseToken common.Address, quoteAmount *big.Int) (*big.Int, error) {
+	return _PolygonWOOPP.Contract.QuerySellQuote(&_PolygonWOOPP.CallOpts, baseToken, quoteAmount)
 }
 
 // QuoteToken is a free data retrieval call binding the contract method 0x217a4b70.
 //
 // Solidity: function quoteToken() view returns(address)
-func (_WOOPP *WOOPPCaller) QuoteToken(opts *bind.CallOpts) (common.Address, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) QuoteToken(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "quoteToken")
+	err := _PolygonWOOPP.contract.Call(opts, &out, "quoteToken")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -480,21 +478,21 @@ func (_WOOPP *WOOPPCaller) QuoteToken(opts *bind.CallOpts) (common.Address, erro
 // QuoteToken is a free data retrieval call binding the contract method 0x217a4b70.
 //
 // Solidity: function quoteToken() view returns(address)
-func (_WOOPP *WOOPPSession) QuoteToken() (common.Address, error) {
-	return _WOOPP.Contract.QuoteToken(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) QuoteToken() (common.Address, error) {
+	return _PolygonWOOPP.Contract.QuoteToken(&_PolygonWOOPP.CallOpts)
 }
 
 // QuoteToken is a free data retrieval call binding the contract method 0x217a4b70.
 //
 // Solidity: function quoteToken() view returns(address)
-func (_WOOPP *WOOPPCallerSession) QuoteToken() (common.Address, error) {
-	return _WOOPP.Contract.QuoteToken(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) QuoteToken() (common.Address, error) {
+	return _PolygonWOOPP.Contract.QuoteToken(&_PolygonWOOPP.CallOpts)
 }
 
 // TokenInfo is a free data retrieval call binding the contract method 0xf5dab711.
 //
 // Solidity: function tokenInfo(address ) view returns(uint112 reserve, uint112 threshold, uint32 lastResetTimestamp, uint64 R, uint112 target, bool isValid)
-func (_WOOPP *WOOPPCaller) TokenInfo(opts *bind.CallOpts, arg0 common.Address) (struct {
+func (_PolygonWOOPP *PolygonWOOPPCaller) TokenInfo(opts *bind.CallOpts, arg0 common.Address) (struct {
 	Reserve            *big.Int
 	Threshold          *big.Int
 	LastResetTimestamp uint32
@@ -503,7 +501,7 @@ func (_WOOPP *WOOPPCaller) TokenInfo(opts *bind.CallOpts, arg0 common.Address) (
 	IsValid            bool
 }, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "tokenInfo", arg0)
+	err := _PolygonWOOPP.contract.Call(opts, &out, "tokenInfo", arg0)
 
 	outstruct := new(struct {
 		Reserve            *big.Int
@@ -531,7 +529,7 @@ func (_WOOPP *WOOPPCaller) TokenInfo(opts *bind.CallOpts, arg0 common.Address) (
 // TokenInfo is a free data retrieval call binding the contract method 0xf5dab711.
 //
 // Solidity: function tokenInfo(address ) view returns(uint112 reserve, uint112 threshold, uint32 lastResetTimestamp, uint64 R, uint112 target, bool isValid)
-func (_WOOPP *WOOPPSession) TokenInfo(arg0 common.Address) (struct {
+func (_PolygonWOOPP *PolygonWOOPPSession) TokenInfo(arg0 common.Address) (struct {
 	Reserve            *big.Int
 	Threshold          *big.Int
 	LastResetTimestamp uint32
@@ -539,13 +537,13 @@ func (_WOOPP *WOOPPSession) TokenInfo(arg0 common.Address) (struct {
 	Target             *big.Int
 	IsValid            bool
 }, error) {
-	return _WOOPP.Contract.TokenInfo(&_WOOPP.CallOpts, arg0)
+	return _PolygonWOOPP.Contract.TokenInfo(&_PolygonWOOPP.CallOpts, arg0)
 }
 
 // TokenInfo is a free data retrieval call binding the contract method 0xf5dab711.
 //
 // Solidity: function tokenInfo(address ) view returns(uint112 reserve, uint112 threshold, uint32 lastResetTimestamp, uint64 R, uint112 target, bool isValid)
-func (_WOOPP *WOOPPCallerSession) TokenInfo(arg0 common.Address) (struct {
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) TokenInfo(arg0 common.Address) (struct {
 	Reserve            *big.Int
 	Threshold          *big.Int
 	LastResetTimestamp uint32
@@ -553,15 +551,15 @@ func (_WOOPP *WOOPPCallerSession) TokenInfo(arg0 common.Address) (struct {
 	Target             *big.Int
 	IsValid            bool
 }, error) {
-	return _WOOPP.Contract.TokenInfo(&_WOOPP.CallOpts, arg0)
+	return _PolygonWOOPP.Contract.TokenInfo(&_PolygonWOOPP.CallOpts, arg0)
 }
 
 // WooGuardian is a free data retrieval call binding the contract method 0x3313429d.
 //
 // Solidity: function wooGuardian() view returns(address)
-func (_WOOPP *WOOPPCaller) WooGuardian(opts *bind.CallOpts) (common.Address, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) WooGuardian(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "wooGuardian")
+	err := _PolygonWOOPP.contract.Call(opts, &out, "wooGuardian")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -576,23 +574,23 @@ func (_WOOPP *WOOPPCaller) WooGuardian(opts *bind.CallOpts) (common.Address, err
 // WooGuardian is a free data retrieval call binding the contract method 0x3313429d.
 //
 // Solidity: function wooGuardian() view returns(address)
-func (_WOOPP *WOOPPSession) WooGuardian() (common.Address, error) {
-	return _WOOPP.Contract.WooGuardian(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) WooGuardian() (common.Address, error) {
+	return _PolygonWOOPP.Contract.WooGuardian(&_PolygonWOOPP.CallOpts)
 }
 
 // WooGuardian is a free data retrieval call binding the contract method 0x3313429d.
 //
 // Solidity: function wooGuardian() view returns(address)
-func (_WOOPP *WOOPPCallerSession) WooGuardian() (common.Address, error) {
-	return _WOOPP.Contract.WooGuardian(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) WooGuardian() (common.Address, error) {
+	return _PolygonWOOPP.Contract.WooGuardian(&_PolygonWOOPP.CallOpts)
 }
 
 // Wooracle is a free data retrieval call binding the contract method 0xbc8530f9.
 //
 // Solidity: function wooracle() view returns(address)
-func (_WOOPP *WOOPPCaller) Wooracle(opts *bind.CallOpts) (common.Address, error) {
+func (_PolygonWOOPP *PolygonWOOPPCaller) Wooracle(opts *bind.CallOpts) (common.Address, error) {
 	var out []interface{}
-	err := _WOOPP.contract.Call(opts, &out, "wooracle")
+	err := _PolygonWOOPP.contract.Call(opts, &out, "wooracle")
 
 	if err != nil {
 		return *new(common.Address), err
@@ -607,398 +605,398 @@ func (_WOOPP *WOOPPCaller) Wooracle(opts *bind.CallOpts) (common.Address, error)
 // Wooracle is a free data retrieval call binding the contract method 0xbc8530f9.
 //
 // Solidity: function wooracle() view returns(address)
-func (_WOOPP *WOOPPSession) Wooracle() (common.Address, error) {
-	return _WOOPP.Contract.Wooracle(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) Wooracle() (common.Address, error) {
+	return _PolygonWOOPP.Contract.Wooracle(&_PolygonWOOPP.CallOpts)
 }
 
 // Wooracle is a free data retrieval call binding the contract method 0xbc8530f9.
 //
 // Solidity: function wooracle() view returns(address)
-func (_WOOPP *WOOPPCallerSession) Wooracle() (common.Address, error) {
-	return _WOOPP.Contract.Wooracle(&_WOOPP.CallOpts)
+func (_PolygonWOOPP *PolygonWOOPPCallerSession) Wooracle() (common.Address, error) {
+	return _PolygonWOOPP.Contract.Wooracle(&_PolygonWOOPP.CallOpts)
 }
 
 // AddBaseToken is a paid mutator transaction binding the contract method 0xdb77c0a1.
 //
 // Solidity: function addBaseToken(address baseToken, uint256 threshold, uint256 R) returns()
-func (_WOOPP *WOOPPTransactor) AddBaseToken(opts *bind.TransactOpts, baseToken common.Address, threshold *big.Int, R *big.Int) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "addBaseToken", baseToken, threshold, R)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) AddBaseToken(opts *bind.TransactOpts, baseToken common.Address, threshold *big.Int, R *big.Int) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "addBaseToken", baseToken, threshold, R)
 }
 
 // AddBaseToken is a paid mutator transaction binding the contract method 0xdb77c0a1.
 //
 // Solidity: function addBaseToken(address baseToken, uint256 threshold, uint256 R) returns()
-func (_WOOPP *WOOPPSession) AddBaseToken(baseToken common.Address, threshold *big.Int, R *big.Int) (*types.Transaction, error) {
-	return _WOOPP.Contract.AddBaseToken(&_WOOPP.TransactOpts, baseToken, threshold, R)
+func (_PolygonWOOPP *PolygonWOOPPSession) AddBaseToken(baseToken common.Address, threshold *big.Int, R *big.Int) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.AddBaseToken(&_PolygonWOOPP.TransactOpts, baseToken, threshold, R)
 }
 
 // AddBaseToken is a paid mutator transaction binding the contract method 0xdb77c0a1.
 //
 // Solidity: function addBaseToken(address baseToken, uint256 threshold, uint256 R) returns()
-func (_WOOPP *WOOPPTransactorSession) AddBaseToken(baseToken common.Address, threshold *big.Int, R *big.Int) (*types.Transaction, error) {
-	return _WOOPP.Contract.AddBaseToken(&_WOOPP.TransactOpts, baseToken, threshold, R)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) AddBaseToken(baseToken common.Address, threshold *big.Int, R *big.Int) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.AddBaseToken(&_PolygonWOOPP.TransactOpts, baseToken, threshold, R)
 }
 
 // ClaimOwnership is a paid mutator transaction binding the contract method 0x4e71e0c8.
 //
 // Solidity: function claimOwnership() returns()
-func (_WOOPP *WOOPPTransactor) ClaimOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "claimOwnership")
+func (_PolygonWOOPP *PolygonWOOPPTransactor) ClaimOwnership(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "claimOwnership")
 }
 
 // ClaimOwnership is a paid mutator transaction binding the contract method 0x4e71e0c8.
 //
 // Solidity: function claimOwnership() returns()
-func (_WOOPP *WOOPPSession) ClaimOwnership() (*types.Transaction, error) {
-	return _WOOPP.Contract.ClaimOwnership(&_WOOPP.TransactOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) ClaimOwnership() (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.ClaimOwnership(&_PolygonWOOPP.TransactOpts)
 }
 
 // ClaimOwnership is a paid mutator transaction binding the contract method 0x4e71e0c8.
 //
 // Solidity: function claimOwnership() returns()
-func (_WOOPP *WOOPPTransactorSession) ClaimOwnership() (*types.Transaction, error) {
-	return _WOOPP.Contract.ClaimOwnership(&_WOOPP.TransactOpts)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) ClaimOwnership() (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.ClaimOwnership(&_PolygonWOOPP.TransactOpts)
 }
 
 // InitOwner is a paid mutator transaction binding the contract method 0x0d009297.
 //
 // Solidity: function initOwner(address newOwner) returns()
-func (_WOOPP *WOOPPTransactor) InitOwner(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "initOwner", newOwner)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) InitOwner(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "initOwner", newOwner)
 }
 
 // InitOwner is a paid mutator transaction binding the contract method 0x0d009297.
 //
 // Solidity: function initOwner(address newOwner) returns()
-func (_WOOPP *WOOPPSession) InitOwner(newOwner common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.InitOwner(&_WOOPP.TransactOpts, newOwner)
+func (_PolygonWOOPP *PolygonWOOPPSession) InitOwner(newOwner common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.InitOwner(&_PolygonWOOPP.TransactOpts, newOwner)
 }
 
 // InitOwner is a paid mutator transaction binding the contract method 0x0d009297.
 //
 // Solidity: function initOwner(address newOwner) returns()
-func (_WOOPP *WOOPPTransactorSession) InitOwner(newOwner common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.InitOwner(&_WOOPP.TransactOpts, newOwner)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) InitOwner(newOwner common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.InitOwner(&_PolygonWOOPP.TransactOpts, newOwner)
 }
 
 // Pause is a paid mutator transaction binding the contract method 0x8456cb59.
 //
 // Solidity: function pause() returns()
-func (_WOOPP *WOOPPTransactor) Pause(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "pause")
+func (_PolygonWOOPP *PolygonWOOPPTransactor) Pause(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "pause")
 }
 
 // Pause is a paid mutator transaction binding the contract method 0x8456cb59.
 //
 // Solidity: function pause() returns()
-func (_WOOPP *WOOPPSession) Pause() (*types.Transaction, error) {
-	return _WOOPP.Contract.Pause(&_WOOPP.TransactOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) Pause() (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.Pause(&_PolygonWOOPP.TransactOpts)
 }
 
 // Pause is a paid mutator transaction binding the contract method 0x8456cb59.
 //
 // Solidity: function pause() returns()
-func (_WOOPP *WOOPPTransactorSession) Pause() (*types.Transaction, error) {
-	return _WOOPP.Contract.Pause(&_WOOPP.TransactOpts)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) Pause() (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.Pause(&_PolygonWOOPP.TransactOpts)
 }
 
 // RemoveBaseToken is a paid mutator transaction binding the contract method 0xbbd1e122.
 //
 // Solidity: function removeBaseToken(address baseToken) returns()
-func (_WOOPP *WOOPPTransactor) RemoveBaseToken(opts *bind.TransactOpts, baseToken common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "removeBaseToken", baseToken)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) RemoveBaseToken(opts *bind.TransactOpts, baseToken common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "removeBaseToken", baseToken)
 }
 
 // RemoveBaseToken is a paid mutator transaction binding the contract method 0xbbd1e122.
 //
 // Solidity: function removeBaseToken(address baseToken) returns()
-func (_WOOPP *WOOPPSession) RemoveBaseToken(baseToken common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.RemoveBaseToken(&_WOOPP.TransactOpts, baseToken)
+func (_PolygonWOOPP *PolygonWOOPPSession) RemoveBaseToken(baseToken common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.RemoveBaseToken(&_PolygonWOOPP.TransactOpts, baseToken)
 }
 
 // RemoveBaseToken is a paid mutator transaction binding the contract method 0xbbd1e122.
 //
 // Solidity: function removeBaseToken(address baseToken) returns()
-func (_WOOPP *WOOPPTransactorSession) RemoveBaseToken(baseToken common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.RemoveBaseToken(&_WOOPP.TransactOpts, baseToken)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) RemoveBaseToken(baseToken common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.RemoveBaseToken(&_PolygonWOOPP.TransactOpts, baseToken)
 }
 
 // SellBase is a paid mutator transaction binding the contract method 0x6846fb50.
 //
 // Solidity: function sellBase(address baseToken, uint256 baseAmount, uint256 minQuoteAmount, address to, address rebateTo) returns(uint256 quoteAmount)
-func (_WOOPP *WOOPPTransactor) SellBase(opts *bind.TransactOpts, baseToken common.Address, baseAmount *big.Int, minQuoteAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "sellBase", baseToken, baseAmount, minQuoteAmount, to, rebateTo)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) SellBase(opts *bind.TransactOpts, baseToken common.Address, baseAmount *big.Int, minQuoteAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "sellBase", baseToken, baseAmount, minQuoteAmount, to, rebateTo)
 }
 
 // SellBase is a paid mutator transaction binding the contract method 0x6846fb50.
 //
 // Solidity: function sellBase(address baseToken, uint256 baseAmount, uint256 minQuoteAmount, address to, address rebateTo) returns(uint256 quoteAmount)
-func (_WOOPP *WOOPPSession) SellBase(baseToken common.Address, baseAmount *big.Int, minQuoteAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SellBase(&_WOOPP.TransactOpts, baseToken, baseAmount, minQuoteAmount, to, rebateTo)
+func (_PolygonWOOPP *PolygonWOOPPSession) SellBase(baseToken common.Address, baseAmount *big.Int, minQuoteAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SellBase(&_PolygonWOOPP.TransactOpts, baseToken, baseAmount, minQuoteAmount, to, rebateTo)
 }
 
 // SellBase is a paid mutator transaction binding the contract method 0x6846fb50.
 //
 // Solidity: function sellBase(address baseToken, uint256 baseAmount, uint256 minQuoteAmount, address to, address rebateTo) returns(uint256 quoteAmount)
-func (_WOOPP *WOOPPTransactorSession) SellBase(baseToken common.Address, baseAmount *big.Int, minQuoteAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SellBase(&_WOOPP.TransactOpts, baseToken, baseAmount, minQuoteAmount, to, rebateTo)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) SellBase(baseToken common.Address, baseAmount *big.Int, minQuoteAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SellBase(&_PolygonWOOPP.TransactOpts, baseToken, baseAmount, minQuoteAmount, to, rebateTo)
 }
 
 // SellQuote is a paid mutator transaction binding the contract method 0xf3287c2f.
 //
 // Solidity: function sellQuote(address baseToken, uint256 quoteAmount, uint256 minBaseAmount, address to, address rebateTo) returns(uint256 baseAmount)
-func (_WOOPP *WOOPPTransactor) SellQuote(opts *bind.TransactOpts, baseToken common.Address, quoteAmount *big.Int, minBaseAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "sellQuote", baseToken, quoteAmount, minBaseAmount, to, rebateTo)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) SellQuote(opts *bind.TransactOpts, baseToken common.Address, quoteAmount *big.Int, minBaseAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "sellQuote", baseToken, quoteAmount, minBaseAmount, to, rebateTo)
 }
 
 // SellQuote is a paid mutator transaction binding the contract method 0xf3287c2f.
 //
 // Solidity: function sellQuote(address baseToken, uint256 quoteAmount, uint256 minBaseAmount, address to, address rebateTo) returns(uint256 baseAmount)
-func (_WOOPP *WOOPPSession) SellQuote(baseToken common.Address, quoteAmount *big.Int, minBaseAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SellQuote(&_WOOPP.TransactOpts, baseToken, quoteAmount, minBaseAmount, to, rebateTo)
+func (_PolygonWOOPP *PolygonWOOPPSession) SellQuote(baseToken common.Address, quoteAmount *big.Int, minBaseAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SellQuote(&_PolygonWOOPP.TransactOpts, baseToken, quoteAmount, minBaseAmount, to, rebateTo)
 }
 
 // SellQuote is a paid mutator transaction binding the contract method 0xf3287c2f.
 //
 // Solidity: function sellQuote(address baseToken, uint256 quoteAmount, uint256 minBaseAmount, address to, address rebateTo) returns(uint256 baseAmount)
-func (_WOOPP *WOOPPTransactorSession) SellQuote(baseToken common.Address, quoteAmount *big.Int, minBaseAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SellQuote(&_WOOPP.TransactOpts, baseToken, quoteAmount, minBaseAmount, to, rebateTo)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) SellQuote(baseToken common.Address, quoteAmount *big.Int, minBaseAmount *big.Int, to common.Address, rebateTo common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SellQuote(&_PolygonWOOPP.TransactOpts, baseToken, quoteAmount, minBaseAmount, to, rebateTo)
 }
 
 // SetFeeManager is a paid mutator transaction binding the contract method 0x472d35b9.
 //
 // Solidity: function setFeeManager(address newFeeManager) returns()
-func (_WOOPP *WOOPPTransactor) SetFeeManager(opts *bind.TransactOpts, newFeeManager common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "setFeeManager", newFeeManager)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) SetFeeManager(opts *bind.TransactOpts, newFeeManager common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "setFeeManager", newFeeManager)
 }
 
 // SetFeeManager is a paid mutator transaction binding the contract method 0x472d35b9.
 //
 // Solidity: function setFeeManager(address newFeeManager) returns()
-func (_WOOPP *WOOPPSession) SetFeeManager(newFeeManager common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetFeeManager(&_WOOPP.TransactOpts, newFeeManager)
+func (_PolygonWOOPP *PolygonWOOPPSession) SetFeeManager(newFeeManager common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetFeeManager(&_PolygonWOOPP.TransactOpts, newFeeManager)
 }
 
 // SetFeeManager is a paid mutator transaction binding the contract method 0x472d35b9.
 //
 // Solidity: function setFeeManager(address newFeeManager) returns()
-func (_WOOPP *WOOPPTransactorSession) SetFeeManager(newFeeManager common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetFeeManager(&_WOOPP.TransactOpts, newFeeManager)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) SetFeeManager(newFeeManager common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetFeeManager(&_PolygonWOOPP.TransactOpts, newFeeManager)
 }
 
 // SetPairsInfo is a paid mutator transaction binding the contract method 0xbec6c1c1.
 //
 // Solidity: function setPairsInfo(string newPairsInfo) returns()
-func (_WOOPP *WOOPPTransactor) SetPairsInfo(opts *bind.TransactOpts, newPairsInfo string) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "setPairsInfo", newPairsInfo)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) SetPairsInfo(opts *bind.TransactOpts, newPairsInfo string) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "setPairsInfo", newPairsInfo)
 }
 
 // SetPairsInfo is a paid mutator transaction binding the contract method 0xbec6c1c1.
 //
 // Solidity: function setPairsInfo(string newPairsInfo) returns()
-func (_WOOPP *WOOPPSession) SetPairsInfo(newPairsInfo string) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetPairsInfo(&_WOOPP.TransactOpts, newPairsInfo)
+func (_PolygonWOOPP *PolygonWOOPPSession) SetPairsInfo(newPairsInfo string) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetPairsInfo(&_PolygonWOOPP.TransactOpts, newPairsInfo)
 }
 
 // SetPairsInfo is a paid mutator transaction binding the contract method 0xbec6c1c1.
 //
 // Solidity: function setPairsInfo(string newPairsInfo) returns()
-func (_WOOPP *WOOPPTransactorSession) SetPairsInfo(newPairsInfo string) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetPairsInfo(&_WOOPP.TransactOpts, newPairsInfo)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) SetPairsInfo(newPairsInfo string) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetPairsInfo(&_PolygonWOOPP.TransactOpts, newPairsInfo)
 }
 
 // SetStrategist is a paid mutator transaction binding the contract method 0x4c341e13.
 //
 // Solidity: function setStrategist(address strategist, bool flag) returns()
-func (_WOOPP *WOOPPTransactor) SetStrategist(opts *bind.TransactOpts, strategist common.Address, flag bool) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "setStrategist", strategist, flag)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) SetStrategist(opts *bind.TransactOpts, strategist common.Address, flag bool) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "setStrategist", strategist, flag)
 }
 
 // SetStrategist is a paid mutator transaction binding the contract method 0x4c341e13.
 //
 // Solidity: function setStrategist(address strategist, bool flag) returns()
-func (_WOOPP *WOOPPSession) SetStrategist(strategist common.Address, flag bool) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetStrategist(&_WOOPP.TransactOpts, strategist, flag)
+func (_PolygonWOOPP *PolygonWOOPPSession) SetStrategist(strategist common.Address, flag bool) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetStrategist(&_PolygonWOOPP.TransactOpts, strategist, flag)
 }
 
 // SetStrategist is a paid mutator transaction binding the contract method 0x4c341e13.
 //
 // Solidity: function setStrategist(address strategist, bool flag) returns()
-func (_WOOPP *WOOPPTransactorSession) SetStrategist(strategist common.Address, flag bool) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetStrategist(&_WOOPP.TransactOpts, strategist, flag)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) SetStrategist(strategist common.Address, flag bool) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetStrategist(&_PolygonWOOPP.TransactOpts, strategist, flag)
 }
 
 // SetWooGuardian is a paid mutator transaction binding the contract method 0x301ed02d.
 //
 // Solidity: function setWooGuardian(address newWooGuardian) returns()
-func (_WOOPP *WOOPPTransactor) SetWooGuardian(opts *bind.TransactOpts, newWooGuardian common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "setWooGuardian", newWooGuardian)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) SetWooGuardian(opts *bind.TransactOpts, newWooGuardian common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "setWooGuardian", newWooGuardian)
 }
 
 // SetWooGuardian is a paid mutator transaction binding the contract method 0x301ed02d.
 //
 // Solidity: function setWooGuardian(address newWooGuardian) returns()
-func (_WOOPP *WOOPPSession) SetWooGuardian(newWooGuardian common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetWooGuardian(&_WOOPP.TransactOpts, newWooGuardian)
+func (_PolygonWOOPP *PolygonWOOPPSession) SetWooGuardian(newWooGuardian common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetWooGuardian(&_PolygonWOOPP.TransactOpts, newWooGuardian)
 }
 
 // SetWooGuardian is a paid mutator transaction binding the contract method 0x301ed02d.
 //
 // Solidity: function setWooGuardian(address newWooGuardian) returns()
-func (_WOOPP *WOOPPTransactorSession) SetWooGuardian(newWooGuardian common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetWooGuardian(&_WOOPP.TransactOpts, newWooGuardian)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) SetWooGuardian(newWooGuardian common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetWooGuardian(&_PolygonWOOPP.TransactOpts, newWooGuardian)
 }
 
 // SetWooracle is a paid mutator transaction binding the contract method 0xa1ae8490.
 //
 // Solidity: function setWooracle(address newWooracle) returns()
-func (_WOOPP *WOOPPTransactor) SetWooracle(opts *bind.TransactOpts, newWooracle common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "setWooracle", newWooracle)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) SetWooracle(opts *bind.TransactOpts, newWooracle common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "setWooracle", newWooracle)
 }
 
 // SetWooracle is a paid mutator transaction binding the contract method 0xa1ae8490.
 //
 // Solidity: function setWooracle(address newWooracle) returns()
-func (_WOOPP *WOOPPSession) SetWooracle(newWooracle common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetWooracle(&_WOOPP.TransactOpts, newWooracle)
+func (_PolygonWOOPP *PolygonWOOPPSession) SetWooracle(newWooracle common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetWooracle(&_PolygonWOOPP.TransactOpts, newWooracle)
 }
 
 // SetWooracle is a paid mutator transaction binding the contract method 0xa1ae8490.
 //
 // Solidity: function setWooracle(address newWooracle) returns()
-func (_WOOPP *WOOPPTransactorSession) SetWooracle(newWooracle common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.SetWooracle(&_WOOPP.TransactOpts, newWooracle)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) SetWooracle(newWooracle common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.SetWooracle(&_PolygonWOOPP.TransactOpts, newWooracle)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
-func (_WOOPP *WOOPPTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "transferOwnership", newOwner)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) TransferOwnership(opts *bind.TransactOpts, newOwner common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "transferOwnership", newOwner)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
-func (_WOOPP *WOOPPSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.TransferOwnership(&_WOOPP.TransactOpts, newOwner)
+func (_PolygonWOOPP *PolygonWOOPPSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.TransferOwnership(&_PolygonWOOPP.TransactOpts, newOwner)
 }
 
 // TransferOwnership is a paid mutator transaction binding the contract method 0xf2fde38b.
 //
 // Solidity: function transferOwnership(address newOwner) returns()
-func (_WOOPP *WOOPPTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.TransferOwnership(&_WOOPP.TransactOpts, newOwner)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) TransferOwnership(newOwner common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.TransferOwnership(&_PolygonWOOPP.TransactOpts, newOwner)
 }
 
 // TuneParameters is a paid mutator transaction binding the contract method 0x567b5d6d.
 //
 // Solidity: function tuneParameters(address token, uint256 newThreshold, uint256 newR) returns()
-func (_WOOPP *WOOPPTransactor) TuneParameters(opts *bind.TransactOpts, token common.Address, newThreshold *big.Int, newR *big.Int) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "tuneParameters", token, newThreshold, newR)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) TuneParameters(opts *bind.TransactOpts, token common.Address, newThreshold *big.Int, newR *big.Int) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "tuneParameters", token, newThreshold, newR)
 }
 
 // TuneParameters is a paid mutator transaction binding the contract method 0x567b5d6d.
 //
 // Solidity: function tuneParameters(address token, uint256 newThreshold, uint256 newR) returns()
-func (_WOOPP *WOOPPSession) TuneParameters(token common.Address, newThreshold *big.Int, newR *big.Int) (*types.Transaction, error) {
-	return _WOOPP.Contract.TuneParameters(&_WOOPP.TransactOpts, token, newThreshold, newR)
+func (_PolygonWOOPP *PolygonWOOPPSession) TuneParameters(token common.Address, newThreshold *big.Int, newR *big.Int) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.TuneParameters(&_PolygonWOOPP.TransactOpts, token, newThreshold, newR)
 }
 
 // TuneParameters is a paid mutator transaction binding the contract method 0x567b5d6d.
 //
 // Solidity: function tuneParameters(address token, uint256 newThreshold, uint256 newR) returns()
-func (_WOOPP *WOOPPTransactorSession) TuneParameters(token common.Address, newThreshold *big.Int, newR *big.Int) (*types.Transaction, error) {
-	return _WOOPP.Contract.TuneParameters(&_WOOPP.TransactOpts, token, newThreshold, newR)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) TuneParameters(token common.Address, newThreshold *big.Int, newR *big.Int) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.TuneParameters(&_PolygonWOOPP.TransactOpts, token, newThreshold, newR)
 }
 
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
 // Solidity: function unpause() returns()
-func (_WOOPP *WOOPPTransactor) Unpause(opts *bind.TransactOpts) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "unpause")
+func (_PolygonWOOPP *PolygonWOOPPTransactor) Unpause(opts *bind.TransactOpts) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "unpause")
 }
 
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
 // Solidity: function unpause() returns()
-func (_WOOPP *WOOPPSession) Unpause() (*types.Transaction, error) {
-	return _WOOPP.Contract.Unpause(&_WOOPP.TransactOpts)
+func (_PolygonWOOPP *PolygonWOOPPSession) Unpause() (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.Unpause(&_PolygonWOOPP.TransactOpts)
 }
 
 // Unpause is a paid mutator transaction binding the contract method 0x3f4ba83a.
 //
 // Solidity: function unpause() returns()
-func (_WOOPP *WOOPPTransactorSession) Unpause() (*types.Transaction, error) {
-	return _WOOPP.Contract.Unpause(&_WOOPP.TransactOpts)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) Unpause() (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.Unpause(&_PolygonWOOPP.TransactOpts)
 }
 
 // Withdraw is a paid mutator transaction binding the contract method 0xd9caed12.
 //
 // Solidity: function withdraw(address token, address to, uint256 amount) returns()
-func (_WOOPP *WOOPPTransactor) Withdraw(opts *bind.TransactOpts, token common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "withdraw", token, to, amount)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) Withdraw(opts *bind.TransactOpts, token common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "withdraw", token, to, amount)
 }
 
 // Withdraw is a paid mutator transaction binding the contract method 0xd9caed12.
 //
 // Solidity: function withdraw(address token, address to, uint256 amount) returns()
-func (_WOOPP *WOOPPSession) Withdraw(token common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _WOOPP.Contract.Withdraw(&_WOOPP.TransactOpts, token, to, amount)
+func (_PolygonWOOPP *PolygonWOOPPSession) Withdraw(token common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.Withdraw(&_PolygonWOOPP.TransactOpts, token, to, amount)
 }
 
 // Withdraw is a paid mutator transaction binding the contract method 0xd9caed12.
 //
 // Solidity: function withdraw(address token, address to, uint256 amount) returns()
-func (_WOOPP *WOOPPTransactorSession) Withdraw(token common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
-	return _WOOPP.Contract.Withdraw(&_WOOPP.TransactOpts, token, to, amount)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) Withdraw(token common.Address, to common.Address, amount *big.Int) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.Withdraw(&_PolygonWOOPP.TransactOpts, token, to, amount)
 }
 
 // WithdrawAll is a paid mutator transaction binding the contract method 0x09cae2c8.
 //
 // Solidity: function withdrawAll(address token, address to) returns()
-func (_WOOPP *WOOPPTransactor) WithdrawAll(opts *bind.TransactOpts, token common.Address, to common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "withdrawAll", token, to)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) WithdrawAll(opts *bind.TransactOpts, token common.Address, to common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "withdrawAll", token, to)
 }
 
 // WithdrawAll is a paid mutator transaction binding the contract method 0x09cae2c8.
 //
 // Solidity: function withdrawAll(address token, address to) returns()
-func (_WOOPP *WOOPPSession) WithdrawAll(token common.Address, to common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.WithdrawAll(&_WOOPP.TransactOpts, token, to)
+func (_PolygonWOOPP *PolygonWOOPPSession) WithdrawAll(token common.Address, to common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.WithdrawAll(&_PolygonWOOPP.TransactOpts, token, to)
 }
 
 // WithdrawAll is a paid mutator transaction binding the contract method 0x09cae2c8.
 //
 // Solidity: function withdrawAll(address token, address to) returns()
-func (_WOOPP *WOOPPTransactorSession) WithdrawAll(token common.Address, to common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.WithdrawAll(&_WOOPP.TransactOpts, token, to)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) WithdrawAll(token common.Address, to common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.WithdrawAll(&_PolygonWOOPP.TransactOpts, token, to)
 }
 
 // WithdrawAllToOwner is a paid mutator transaction binding the contract method 0x48d9751e.
 //
 // Solidity: function withdrawAllToOwner(address token) returns()
-func (_WOOPP *WOOPPTransactor) WithdrawAllToOwner(opts *bind.TransactOpts, token common.Address) (*types.Transaction, error) {
-	return _WOOPP.contract.Transact(opts, "withdrawAllToOwner", token)
+func (_PolygonWOOPP *PolygonWOOPPTransactor) WithdrawAllToOwner(opts *bind.TransactOpts, token common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.contract.Transact(opts, "withdrawAllToOwner", token)
 }
 
 // WithdrawAllToOwner is a paid mutator transaction binding the contract method 0x48d9751e.
 //
 // Solidity: function withdrawAllToOwner(address token) returns()
-func (_WOOPP *WOOPPSession) WithdrawAllToOwner(token common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.WithdrawAllToOwner(&_WOOPP.TransactOpts, token)
+func (_PolygonWOOPP *PolygonWOOPPSession) WithdrawAllToOwner(token common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.WithdrawAllToOwner(&_PolygonWOOPP.TransactOpts, token)
 }
 
 // WithdrawAllToOwner is a paid mutator transaction binding the contract method 0x48d9751e.
 //
 // Solidity: function withdrawAllToOwner(address token) returns()
-func (_WOOPP *WOOPPTransactorSession) WithdrawAllToOwner(token common.Address) (*types.Transaction, error) {
-	return _WOOPP.Contract.WithdrawAllToOwner(&_WOOPP.TransactOpts, token)
+func (_PolygonWOOPP *PolygonWOOPPTransactorSession) WithdrawAllToOwner(token common.Address) (*types.Transaction, error) {
+	return _PolygonWOOPP.Contract.WithdrawAllToOwner(&_PolygonWOOPP.TransactOpts, token)
 }
 
-// WOOPPFeeManagerUpdatedIterator is returned from FilterFeeManagerUpdated and is used to iterate over the raw logs and unpacked data for FeeManagerUpdated events raised by the WOOPP contract.
-type WOOPPFeeManagerUpdatedIterator struct {
-	Event *WOOPPFeeManagerUpdated // Event containing the contract specifics and raw log
+// PolygonWOOPPFeeManagerUpdatedIterator is returned from FilterFeeManagerUpdated and is used to iterate over the raw logs and unpacked data for FeeManagerUpdated events raised by the PolygonWOOPP contract.
+type PolygonWOOPPFeeManagerUpdatedIterator struct {
+	Event *PolygonWOOPPFeeManagerUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1012,7 +1010,7 @@ type WOOPPFeeManagerUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPFeeManagerUpdatedIterator) Next() bool {
+func (it *PolygonWOOPPFeeManagerUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1021,7 +1019,7 @@ func (it *WOOPPFeeManagerUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPFeeManagerUpdated)
+			it.Event = new(PolygonWOOPPFeeManagerUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1036,7 +1034,7 @@ func (it *WOOPPFeeManagerUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPFeeManagerUpdated)
+		it.Event = new(PolygonWOOPPFeeManagerUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1052,19 +1050,19 @@ func (it *WOOPPFeeManagerUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPFeeManagerUpdatedIterator) Error() error {
+func (it *PolygonWOOPPFeeManagerUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPFeeManagerUpdatedIterator) Close() error {
+func (it *PolygonWOOPPFeeManagerUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPFeeManagerUpdated represents a FeeManagerUpdated event raised by the WOOPP contract.
-type WOOPPFeeManagerUpdated struct {
+// PolygonWOOPPFeeManagerUpdated represents a FeeManagerUpdated event raised by the PolygonWOOPP contract.
+type PolygonWOOPPFeeManagerUpdated struct {
 	NewFeeManager common.Address
 	Raw           types.Log // Blockchain specific contextual infos
 }
@@ -1072,31 +1070,31 @@ type WOOPPFeeManagerUpdated struct {
 // FilterFeeManagerUpdated is a free log retrieval operation binding the contract event 0xe45f5e140399b0a7e12971ab020724b828fbed8ac408c420884dc7d1bbe506b4.
 //
 // Solidity: event FeeManagerUpdated(address indexed newFeeManager)
-func (_WOOPP *WOOPPFilterer) FilterFeeManagerUpdated(opts *bind.FilterOpts, newFeeManager []common.Address) (*WOOPPFeeManagerUpdatedIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterFeeManagerUpdated(opts *bind.FilterOpts, newFeeManager []common.Address) (*PolygonWOOPPFeeManagerUpdatedIterator, error) {
 
 	var newFeeManagerRule []interface{}
 	for _, newFeeManagerItem := range newFeeManager {
 		newFeeManagerRule = append(newFeeManagerRule, newFeeManagerItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "FeeManagerUpdated", newFeeManagerRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "FeeManagerUpdated", newFeeManagerRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPFeeManagerUpdatedIterator{contract: _WOOPP.contract, event: "FeeManagerUpdated", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPFeeManagerUpdatedIterator{contract: _PolygonWOOPP.contract, event: "FeeManagerUpdated", logs: logs, sub: sub}, nil
 }
 
 // WatchFeeManagerUpdated is a free log subscription operation binding the contract event 0xe45f5e140399b0a7e12971ab020724b828fbed8ac408c420884dc7d1bbe506b4.
 //
 // Solidity: event FeeManagerUpdated(address indexed newFeeManager)
-func (_WOOPP *WOOPPFilterer) WatchFeeManagerUpdated(opts *bind.WatchOpts, sink chan<- *WOOPPFeeManagerUpdated, newFeeManager []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchFeeManagerUpdated(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPFeeManagerUpdated, newFeeManager []common.Address) (event.Subscription, error) {
 
 	var newFeeManagerRule []interface{}
 	for _, newFeeManagerItem := range newFeeManager {
 		newFeeManagerRule = append(newFeeManagerRule, newFeeManagerItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "FeeManagerUpdated", newFeeManagerRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "FeeManagerUpdated", newFeeManagerRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1106,8 +1104,8 @@ func (_WOOPP *WOOPPFilterer) WatchFeeManagerUpdated(opts *bind.WatchOpts, sink c
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPFeeManagerUpdated)
-				if err := _WOOPP.contract.UnpackLog(event, "FeeManagerUpdated", log); err != nil {
+				event := new(PolygonWOOPPFeeManagerUpdated)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "FeeManagerUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1131,18 +1129,18 @@ func (_WOOPP *WOOPPFilterer) WatchFeeManagerUpdated(opts *bind.WatchOpts, sink c
 // ParseFeeManagerUpdated is a log parse operation binding the contract event 0xe45f5e140399b0a7e12971ab020724b828fbed8ac408c420884dc7d1bbe506b4.
 //
 // Solidity: event FeeManagerUpdated(address indexed newFeeManager)
-func (_WOOPP *WOOPPFilterer) ParseFeeManagerUpdated(log types.Log) (*WOOPPFeeManagerUpdated, error) {
-	event := new(WOOPPFeeManagerUpdated)
-	if err := _WOOPP.contract.UnpackLog(event, "FeeManagerUpdated", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseFeeManagerUpdated(log types.Log) (*PolygonWOOPPFeeManagerUpdated, error) {
+	event := new(PolygonWOOPPFeeManagerUpdated)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "FeeManagerUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPOwnershipTransferPreparedIterator is returned from FilterOwnershipTransferPrepared and is used to iterate over the raw logs and unpacked data for OwnershipTransferPrepared events raised by the WOOPP contract.
-type WOOPPOwnershipTransferPreparedIterator struct {
-	Event *WOOPPOwnershipTransferPrepared // Event containing the contract specifics and raw log
+// PolygonWOOPPOwnershipTransferPreparedIterator is returned from FilterOwnershipTransferPrepared and is used to iterate over the raw logs and unpacked data for OwnershipTransferPrepared events raised by the PolygonWOOPP contract.
+type PolygonWOOPPOwnershipTransferPreparedIterator struct {
+	Event *PolygonWOOPPOwnershipTransferPrepared // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1156,7 +1154,7 @@ type WOOPPOwnershipTransferPreparedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPOwnershipTransferPreparedIterator) Next() bool {
+func (it *PolygonWOOPPOwnershipTransferPreparedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1165,7 +1163,7 @@ func (it *WOOPPOwnershipTransferPreparedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPOwnershipTransferPrepared)
+			it.Event = new(PolygonWOOPPOwnershipTransferPrepared)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1180,7 +1178,7 @@ func (it *WOOPPOwnershipTransferPreparedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPOwnershipTransferPrepared)
+		it.Event = new(PolygonWOOPPOwnershipTransferPrepared)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1196,19 +1194,19 @@ func (it *WOOPPOwnershipTransferPreparedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPOwnershipTransferPreparedIterator) Error() error {
+func (it *PolygonWOOPPOwnershipTransferPreparedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPOwnershipTransferPreparedIterator) Close() error {
+func (it *PolygonWOOPPOwnershipTransferPreparedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPOwnershipTransferPrepared represents a OwnershipTransferPrepared event raised by the WOOPP contract.
-type WOOPPOwnershipTransferPrepared struct {
+// PolygonWOOPPOwnershipTransferPrepared represents a OwnershipTransferPrepared event raised by the PolygonWOOPP contract.
+type PolygonWOOPPOwnershipTransferPrepared struct {
 	PreviousOwner common.Address
 	NewOwner      common.Address
 	Raw           types.Log // Blockchain specific contextual infos
@@ -1217,7 +1215,7 @@ type WOOPPOwnershipTransferPrepared struct {
 // FilterOwnershipTransferPrepared is a free log retrieval operation binding the contract event 0xdcf55418cee3220104fef63f979ff3c4097ad240c0c43dcb33ce837748983e62.
 //
 // Solidity: event OwnershipTransferPrepared(address indexed previousOwner, address indexed newOwner)
-func (_WOOPP *WOOPPFilterer) FilterOwnershipTransferPrepared(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*WOOPPOwnershipTransferPreparedIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterOwnershipTransferPrepared(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*PolygonWOOPPOwnershipTransferPreparedIterator, error) {
 
 	var previousOwnerRule []interface{}
 	for _, previousOwnerItem := range previousOwner {
@@ -1228,17 +1226,17 @@ func (_WOOPP *WOOPPFilterer) FilterOwnershipTransferPrepared(opts *bind.FilterOp
 		newOwnerRule = append(newOwnerRule, newOwnerItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "OwnershipTransferPrepared", previousOwnerRule, newOwnerRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "OwnershipTransferPrepared", previousOwnerRule, newOwnerRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPOwnershipTransferPreparedIterator{contract: _WOOPP.contract, event: "OwnershipTransferPrepared", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPOwnershipTransferPreparedIterator{contract: _PolygonWOOPP.contract, event: "OwnershipTransferPrepared", logs: logs, sub: sub}, nil
 }
 
 // WatchOwnershipTransferPrepared is a free log subscription operation binding the contract event 0xdcf55418cee3220104fef63f979ff3c4097ad240c0c43dcb33ce837748983e62.
 //
 // Solidity: event OwnershipTransferPrepared(address indexed previousOwner, address indexed newOwner)
-func (_WOOPP *WOOPPFilterer) WatchOwnershipTransferPrepared(opts *bind.WatchOpts, sink chan<- *WOOPPOwnershipTransferPrepared, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchOwnershipTransferPrepared(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPOwnershipTransferPrepared, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
 
 	var previousOwnerRule []interface{}
 	for _, previousOwnerItem := range previousOwner {
@@ -1249,7 +1247,7 @@ func (_WOOPP *WOOPPFilterer) WatchOwnershipTransferPrepared(opts *bind.WatchOpts
 		newOwnerRule = append(newOwnerRule, newOwnerItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "OwnershipTransferPrepared", previousOwnerRule, newOwnerRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "OwnershipTransferPrepared", previousOwnerRule, newOwnerRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1259,8 +1257,8 @@ func (_WOOPP *WOOPPFilterer) WatchOwnershipTransferPrepared(opts *bind.WatchOpts
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPOwnershipTransferPrepared)
-				if err := _WOOPP.contract.UnpackLog(event, "OwnershipTransferPrepared", log); err != nil {
+				event := new(PolygonWOOPPOwnershipTransferPrepared)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "OwnershipTransferPrepared", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1284,18 +1282,18 @@ func (_WOOPP *WOOPPFilterer) WatchOwnershipTransferPrepared(opts *bind.WatchOpts
 // ParseOwnershipTransferPrepared is a log parse operation binding the contract event 0xdcf55418cee3220104fef63f979ff3c4097ad240c0c43dcb33ce837748983e62.
 //
 // Solidity: event OwnershipTransferPrepared(address indexed previousOwner, address indexed newOwner)
-func (_WOOPP *WOOPPFilterer) ParseOwnershipTransferPrepared(log types.Log) (*WOOPPOwnershipTransferPrepared, error) {
-	event := new(WOOPPOwnershipTransferPrepared)
-	if err := _WOOPP.contract.UnpackLog(event, "OwnershipTransferPrepared", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseOwnershipTransferPrepared(log types.Log) (*PolygonWOOPPOwnershipTransferPrepared, error) {
+	event := new(PolygonWOOPPOwnershipTransferPrepared)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "OwnershipTransferPrepared", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the WOOPP contract.
-type WOOPPOwnershipTransferredIterator struct {
-	Event *WOOPPOwnershipTransferred // Event containing the contract specifics and raw log
+// PolygonWOOPPOwnershipTransferredIterator is returned from FilterOwnershipTransferred and is used to iterate over the raw logs and unpacked data for OwnershipTransferred events raised by the PolygonWOOPP contract.
+type PolygonWOOPPOwnershipTransferredIterator struct {
+	Event *PolygonWOOPPOwnershipTransferred // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1309,7 +1307,7 @@ type WOOPPOwnershipTransferredIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPOwnershipTransferredIterator) Next() bool {
+func (it *PolygonWOOPPOwnershipTransferredIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1318,7 +1316,7 @@ func (it *WOOPPOwnershipTransferredIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPOwnershipTransferred)
+			it.Event = new(PolygonWOOPPOwnershipTransferred)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1333,7 +1331,7 @@ func (it *WOOPPOwnershipTransferredIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPOwnershipTransferred)
+		it.Event = new(PolygonWOOPPOwnershipTransferred)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1349,19 +1347,19 @@ func (it *WOOPPOwnershipTransferredIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPOwnershipTransferredIterator) Error() error {
+func (it *PolygonWOOPPOwnershipTransferredIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPOwnershipTransferredIterator) Close() error {
+func (it *PolygonWOOPPOwnershipTransferredIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPOwnershipTransferred represents a OwnershipTransferred event raised by the WOOPP contract.
-type WOOPPOwnershipTransferred struct {
+// PolygonWOOPPOwnershipTransferred represents a OwnershipTransferred event raised by the PolygonWOOPP contract.
+type PolygonWOOPPOwnershipTransferred struct {
 	PreviousOwner common.Address
 	NewOwner      common.Address
 	Raw           types.Log // Blockchain specific contextual infos
@@ -1370,7 +1368,7 @@ type WOOPPOwnershipTransferred struct {
 // FilterOwnershipTransferred is a free log retrieval operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
 //
 // Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_WOOPP *WOOPPFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*WOOPPOwnershipTransferredIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, previousOwner []common.Address, newOwner []common.Address) (*PolygonWOOPPOwnershipTransferredIterator, error) {
 
 	var previousOwnerRule []interface{}
 	for _, previousOwnerItem := range previousOwner {
@@ -1381,17 +1379,17 @@ func (_WOOPP *WOOPPFilterer) FilterOwnershipTransferred(opts *bind.FilterOpts, p
 		newOwnerRule = append(newOwnerRule, newOwnerItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPOwnershipTransferredIterator{contract: _WOOPP.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPOwnershipTransferredIterator{contract: _PolygonWOOPP.contract, event: "OwnershipTransferred", logs: logs, sub: sub}, nil
 }
 
 // WatchOwnershipTransferred is a free log subscription operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
 //
 // Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_WOOPP *WOOPPFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *WOOPPOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPOwnershipTransferred, previousOwner []common.Address, newOwner []common.Address) (event.Subscription, error) {
 
 	var previousOwnerRule []interface{}
 	for _, previousOwnerItem := range previousOwner {
@@ -1402,7 +1400,7 @@ func (_WOOPP *WOOPPFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sin
 		newOwnerRule = append(newOwnerRule, newOwnerItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "OwnershipTransferred", previousOwnerRule, newOwnerRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1412,8 +1410,8 @@ func (_WOOPP *WOOPPFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sin
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPOwnershipTransferred)
-				if err := _WOOPP.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+				event := new(PolygonWOOPPOwnershipTransferred)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1437,18 +1435,18 @@ func (_WOOPP *WOOPPFilterer) WatchOwnershipTransferred(opts *bind.WatchOpts, sin
 // ParseOwnershipTransferred is a log parse operation binding the contract event 0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0.
 //
 // Solidity: event OwnershipTransferred(address indexed previousOwner, address indexed newOwner)
-func (_WOOPP *WOOPPFilterer) ParseOwnershipTransferred(log types.Log) (*WOOPPOwnershipTransferred, error) {
-	event := new(WOOPPOwnershipTransferred)
-	if err := _WOOPP.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseOwnershipTransferred(log types.Log) (*PolygonWOOPPOwnershipTransferred, error) {
+	event := new(PolygonWOOPPOwnershipTransferred)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "OwnershipTransferred", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPParametersUpdatedIterator is returned from FilterParametersUpdated and is used to iterate over the raw logs and unpacked data for ParametersUpdated events raised by the WOOPP contract.
-type WOOPPParametersUpdatedIterator struct {
-	Event *WOOPPParametersUpdated // Event containing the contract specifics and raw log
+// PolygonWOOPPParametersUpdatedIterator is returned from FilterParametersUpdated and is used to iterate over the raw logs and unpacked data for ParametersUpdated events raised by the PolygonWOOPP contract.
+type PolygonWOOPPParametersUpdatedIterator struct {
+	Event *PolygonWOOPPParametersUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1462,7 +1460,7 @@ type WOOPPParametersUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPParametersUpdatedIterator) Next() bool {
+func (it *PolygonWOOPPParametersUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1471,7 +1469,7 @@ func (it *WOOPPParametersUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPParametersUpdated)
+			it.Event = new(PolygonWOOPPParametersUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1486,7 +1484,7 @@ func (it *WOOPPParametersUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPParametersUpdated)
+		it.Event = new(PolygonWOOPPParametersUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1502,19 +1500,19 @@ func (it *WOOPPParametersUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPParametersUpdatedIterator) Error() error {
+func (it *PolygonWOOPPParametersUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPParametersUpdatedIterator) Close() error {
+func (it *PolygonWOOPPParametersUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPParametersUpdated represents a ParametersUpdated event raised by the WOOPP contract.
-type WOOPPParametersUpdated struct {
+// PolygonWOOPPParametersUpdated represents a ParametersUpdated event raised by the PolygonWOOPP contract.
+type PolygonWOOPPParametersUpdated struct {
 	BaseToken    common.Address
 	NewThreshold *big.Int
 	NewR         *big.Int
@@ -1524,31 +1522,31 @@ type WOOPPParametersUpdated struct {
 // FilterParametersUpdated is a free log retrieval operation binding the contract event 0x5a1f36141a0cb942bd02bfae3796688b4c89d39ca58a36b286c71492a9b18012.
 //
 // Solidity: event ParametersUpdated(address indexed baseToken, uint256 newThreshold, uint256 newR)
-func (_WOOPP *WOOPPFilterer) FilterParametersUpdated(opts *bind.FilterOpts, baseToken []common.Address) (*WOOPPParametersUpdatedIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterParametersUpdated(opts *bind.FilterOpts, baseToken []common.Address) (*PolygonWOOPPParametersUpdatedIterator, error) {
 
 	var baseTokenRule []interface{}
 	for _, baseTokenItem := range baseToken {
 		baseTokenRule = append(baseTokenRule, baseTokenItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "ParametersUpdated", baseTokenRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "ParametersUpdated", baseTokenRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPParametersUpdatedIterator{contract: _WOOPP.contract, event: "ParametersUpdated", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPParametersUpdatedIterator{contract: _PolygonWOOPP.contract, event: "ParametersUpdated", logs: logs, sub: sub}, nil
 }
 
 // WatchParametersUpdated is a free log subscription operation binding the contract event 0x5a1f36141a0cb942bd02bfae3796688b4c89d39ca58a36b286c71492a9b18012.
 //
 // Solidity: event ParametersUpdated(address indexed baseToken, uint256 newThreshold, uint256 newR)
-func (_WOOPP *WOOPPFilterer) WatchParametersUpdated(opts *bind.WatchOpts, sink chan<- *WOOPPParametersUpdated, baseToken []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchParametersUpdated(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPParametersUpdated, baseToken []common.Address) (event.Subscription, error) {
 
 	var baseTokenRule []interface{}
 	for _, baseTokenItem := range baseToken {
 		baseTokenRule = append(baseTokenRule, baseTokenItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "ParametersUpdated", baseTokenRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "ParametersUpdated", baseTokenRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1558,8 +1556,8 @@ func (_WOOPP *WOOPPFilterer) WatchParametersUpdated(opts *bind.WatchOpts, sink c
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPParametersUpdated)
-				if err := _WOOPP.contract.UnpackLog(event, "ParametersUpdated", log); err != nil {
+				event := new(PolygonWOOPPParametersUpdated)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "ParametersUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1583,18 +1581,18 @@ func (_WOOPP *WOOPPFilterer) WatchParametersUpdated(opts *bind.WatchOpts, sink c
 // ParseParametersUpdated is a log parse operation binding the contract event 0x5a1f36141a0cb942bd02bfae3796688b4c89d39ca58a36b286c71492a9b18012.
 //
 // Solidity: event ParametersUpdated(address indexed baseToken, uint256 newThreshold, uint256 newR)
-func (_WOOPP *WOOPPFilterer) ParseParametersUpdated(log types.Log) (*WOOPPParametersUpdated, error) {
-	event := new(WOOPPParametersUpdated)
-	if err := _WOOPP.contract.UnpackLog(event, "ParametersUpdated", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseParametersUpdated(log types.Log) (*PolygonWOOPPParametersUpdated, error) {
+	event := new(PolygonWOOPPParametersUpdated)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "ParametersUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPPausedIterator is returned from FilterPaused and is used to iterate over the raw logs and unpacked data for Paused events raised by the WOOPP contract.
-type WOOPPPausedIterator struct {
-	Event *WOOPPPaused // Event containing the contract specifics and raw log
+// PolygonWOOPPPausedIterator is returned from FilterPaused and is used to iterate over the raw logs and unpacked data for Paused events raised by the PolygonWOOPP contract.
+type PolygonWOOPPPausedIterator struct {
+	Event *PolygonWOOPPPaused // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1608,7 +1606,7 @@ type WOOPPPausedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPPausedIterator) Next() bool {
+func (it *PolygonWOOPPPausedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1617,7 +1615,7 @@ func (it *WOOPPPausedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPPaused)
+			it.Event = new(PolygonWOOPPPaused)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1632,7 +1630,7 @@ func (it *WOOPPPausedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPPaused)
+		it.Event = new(PolygonWOOPPPaused)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1648,19 +1646,19 @@ func (it *WOOPPPausedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPPausedIterator) Error() error {
+func (it *PolygonWOOPPPausedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPPausedIterator) Close() error {
+func (it *PolygonWOOPPPausedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPPaused represents a Paused event raised by the WOOPP contract.
-type WOOPPPaused struct {
+// PolygonWOOPPPaused represents a Paused event raised by the PolygonWOOPP contract.
+type PolygonWOOPPPaused struct {
 	Account common.Address
 	Raw     types.Log // Blockchain specific contextual infos
 }
@@ -1668,21 +1666,21 @@ type WOOPPPaused struct {
 // FilterPaused is a free log retrieval operation binding the contract event 0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258.
 //
 // Solidity: event Paused(address account)
-func (_WOOPP *WOOPPFilterer) FilterPaused(opts *bind.FilterOpts) (*WOOPPPausedIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterPaused(opts *bind.FilterOpts) (*PolygonWOOPPPausedIterator, error) {
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "Paused")
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "Paused")
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPPausedIterator{contract: _WOOPP.contract, event: "Paused", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPPausedIterator{contract: _PolygonWOOPP.contract, event: "Paused", logs: logs, sub: sub}, nil
 }
 
 // WatchPaused is a free log subscription operation binding the contract event 0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258.
 //
 // Solidity: event Paused(address account)
-func (_WOOPP *WOOPPFilterer) WatchPaused(opts *bind.WatchOpts, sink chan<- *WOOPPPaused) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchPaused(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPPaused) (event.Subscription, error) {
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "Paused")
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "Paused")
 	if err != nil {
 		return nil, err
 	}
@@ -1692,8 +1690,8 @@ func (_WOOPP *WOOPPFilterer) WatchPaused(opts *bind.WatchOpts, sink chan<- *WOOP
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPPaused)
-				if err := _WOOPP.contract.UnpackLog(event, "Paused", log); err != nil {
+				event := new(PolygonWOOPPPaused)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "Paused", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1717,18 +1715,18 @@ func (_WOOPP *WOOPPFilterer) WatchPaused(opts *bind.WatchOpts, sink chan<- *WOOP
 // ParsePaused is a log parse operation binding the contract event 0x62e78cea01bee320cd4e420270b5ea74000d11b0c9f74754ebdbfc544b05a258.
 //
 // Solidity: event Paused(address account)
-func (_WOOPP *WOOPPFilterer) ParsePaused(log types.Log) (*WOOPPPaused, error) {
-	event := new(WOOPPPaused)
-	if err := _WOOPP.contract.UnpackLog(event, "Paused", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParsePaused(log types.Log) (*PolygonWOOPPPaused, error) {
+	event := new(PolygonWOOPPPaused)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "Paused", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPRewardManagerUpdatedIterator is returned from FilterRewardManagerUpdated and is used to iterate over the raw logs and unpacked data for RewardManagerUpdated events raised by the WOOPP contract.
-type WOOPPRewardManagerUpdatedIterator struct {
-	Event *WOOPPRewardManagerUpdated // Event containing the contract specifics and raw log
+// PolygonWOOPPRewardManagerUpdatedIterator is returned from FilterRewardManagerUpdated and is used to iterate over the raw logs and unpacked data for RewardManagerUpdated events raised by the PolygonWOOPP contract.
+type PolygonWOOPPRewardManagerUpdatedIterator struct {
+	Event *PolygonWOOPPRewardManagerUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1742,7 +1740,7 @@ type WOOPPRewardManagerUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPRewardManagerUpdatedIterator) Next() bool {
+func (it *PolygonWOOPPRewardManagerUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1751,7 +1749,7 @@ func (it *WOOPPRewardManagerUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPRewardManagerUpdated)
+			it.Event = new(PolygonWOOPPRewardManagerUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1766,7 +1764,7 @@ func (it *WOOPPRewardManagerUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPRewardManagerUpdated)
+		it.Event = new(PolygonWOOPPRewardManagerUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1782,19 +1780,19 @@ func (it *WOOPPRewardManagerUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPRewardManagerUpdatedIterator) Error() error {
+func (it *PolygonWOOPPRewardManagerUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPRewardManagerUpdatedIterator) Close() error {
+func (it *PolygonWOOPPRewardManagerUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPRewardManagerUpdated represents a RewardManagerUpdated event raised by the WOOPP contract.
-type WOOPPRewardManagerUpdated struct {
+// PolygonWOOPPRewardManagerUpdated represents a RewardManagerUpdated event raised by the PolygonWOOPP contract.
+type PolygonWOOPPRewardManagerUpdated struct {
 	NewRewardManager common.Address
 	Raw              types.Log // Blockchain specific contextual infos
 }
@@ -1802,31 +1800,31 @@ type WOOPPRewardManagerUpdated struct {
 // FilterRewardManagerUpdated is a free log retrieval operation binding the contract event 0x3d94d9e8342a65edb95eef4f65059294d45e5192603632d8dddb2344e7078053.
 //
 // Solidity: event RewardManagerUpdated(address indexed newRewardManager)
-func (_WOOPP *WOOPPFilterer) FilterRewardManagerUpdated(opts *bind.FilterOpts, newRewardManager []common.Address) (*WOOPPRewardManagerUpdatedIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterRewardManagerUpdated(opts *bind.FilterOpts, newRewardManager []common.Address) (*PolygonWOOPPRewardManagerUpdatedIterator, error) {
 
 	var newRewardManagerRule []interface{}
 	for _, newRewardManagerItem := range newRewardManager {
 		newRewardManagerRule = append(newRewardManagerRule, newRewardManagerItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "RewardManagerUpdated", newRewardManagerRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "RewardManagerUpdated", newRewardManagerRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPRewardManagerUpdatedIterator{contract: _WOOPP.contract, event: "RewardManagerUpdated", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPRewardManagerUpdatedIterator{contract: _PolygonWOOPP.contract, event: "RewardManagerUpdated", logs: logs, sub: sub}, nil
 }
 
 // WatchRewardManagerUpdated is a free log subscription operation binding the contract event 0x3d94d9e8342a65edb95eef4f65059294d45e5192603632d8dddb2344e7078053.
 //
 // Solidity: event RewardManagerUpdated(address indexed newRewardManager)
-func (_WOOPP *WOOPPFilterer) WatchRewardManagerUpdated(opts *bind.WatchOpts, sink chan<- *WOOPPRewardManagerUpdated, newRewardManager []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchRewardManagerUpdated(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPRewardManagerUpdated, newRewardManager []common.Address) (event.Subscription, error) {
 
 	var newRewardManagerRule []interface{}
 	for _, newRewardManagerItem := range newRewardManager {
 		newRewardManagerRule = append(newRewardManagerRule, newRewardManagerItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "RewardManagerUpdated", newRewardManagerRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "RewardManagerUpdated", newRewardManagerRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1836,8 +1834,8 @@ func (_WOOPP *WOOPPFilterer) WatchRewardManagerUpdated(opts *bind.WatchOpts, sin
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPRewardManagerUpdated)
-				if err := _WOOPP.contract.UnpackLog(event, "RewardManagerUpdated", log); err != nil {
+				event := new(PolygonWOOPPRewardManagerUpdated)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "RewardManagerUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -1861,18 +1859,18 @@ func (_WOOPP *WOOPPFilterer) WatchRewardManagerUpdated(opts *bind.WatchOpts, sin
 // ParseRewardManagerUpdated is a log parse operation binding the contract event 0x3d94d9e8342a65edb95eef4f65059294d45e5192603632d8dddb2344e7078053.
 //
 // Solidity: event RewardManagerUpdated(address indexed newRewardManager)
-func (_WOOPP *WOOPPFilterer) ParseRewardManagerUpdated(log types.Log) (*WOOPPRewardManagerUpdated, error) {
-	event := new(WOOPPRewardManagerUpdated)
-	if err := _WOOPP.contract.UnpackLog(event, "RewardManagerUpdated", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseRewardManagerUpdated(log types.Log) (*PolygonWOOPPRewardManagerUpdated, error) {
+	event := new(PolygonWOOPPRewardManagerUpdated)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "RewardManagerUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPStrategistUpdatedIterator is returned from FilterStrategistUpdated and is used to iterate over the raw logs and unpacked data for StrategistUpdated events raised by the WOOPP contract.
-type WOOPPStrategistUpdatedIterator struct {
-	Event *WOOPPStrategistUpdated // Event containing the contract specifics and raw log
+// PolygonWOOPPStrategistUpdatedIterator is returned from FilterStrategistUpdated and is used to iterate over the raw logs and unpacked data for StrategistUpdated events raised by the PolygonWOOPP contract.
+type PolygonWOOPPStrategistUpdatedIterator struct {
+	Event *PolygonWOOPPStrategistUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -1886,7 +1884,7 @@ type WOOPPStrategistUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPStrategistUpdatedIterator) Next() bool {
+func (it *PolygonWOOPPStrategistUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -1895,7 +1893,7 @@ func (it *WOOPPStrategistUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPStrategistUpdated)
+			it.Event = new(PolygonWOOPPStrategistUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -1910,7 +1908,7 @@ func (it *WOOPPStrategistUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPStrategistUpdated)
+		it.Event = new(PolygonWOOPPStrategistUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -1926,19 +1924,19 @@ func (it *WOOPPStrategistUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPStrategistUpdatedIterator) Error() error {
+func (it *PolygonWOOPPStrategistUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPStrategistUpdatedIterator) Close() error {
+func (it *PolygonWOOPPStrategistUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPStrategistUpdated represents a StrategistUpdated event raised by the WOOPP contract.
-type WOOPPStrategistUpdated struct {
+// PolygonWOOPPStrategistUpdated represents a StrategistUpdated event raised by the PolygonWOOPP contract.
+type PolygonWOOPPStrategistUpdated struct {
 	Strategist common.Address
 	Flag       bool
 	Raw        types.Log // Blockchain specific contextual infos
@@ -1947,31 +1945,31 @@ type WOOPPStrategistUpdated struct {
 // FilterStrategistUpdated is a free log retrieval operation binding the contract event 0xaee0e1c61a3f9668cbb6c91cbe9352a6cbb5334687e9dcf76655d72a23b942ce.
 //
 // Solidity: event StrategistUpdated(address indexed strategist, bool flag)
-func (_WOOPP *WOOPPFilterer) FilterStrategistUpdated(opts *bind.FilterOpts, strategist []common.Address) (*WOOPPStrategistUpdatedIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterStrategistUpdated(opts *bind.FilterOpts, strategist []common.Address) (*PolygonWOOPPStrategistUpdatedIterator, error) {
 
 	var strategistRule []interface{}
 	for _, strategistItem := range strategist {
 		strategistRule = append(strategistRule, strategistItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "StrategistUpdated", strategistRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "StrategistUpdated", strategistRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPStrategistUpdatedIterator{contract: _WOOPP.contract, event: "StrategistUpdated", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPStrategistUpdatedIterator{contract: _PolygonWOOPP.contract, event: "StrategistUpdated", logs: logs, sub: sub}, nil
 }
 
 // WatchStrategistUpdated is a free log subscription operation binding the contract event 0xaee0e1c61a3f9668cbb6c91cbe9352a6cbb5334687e9dcf76655d72a23b942ce.
 //
 // Solidity: event StrategistUpdated(address indexed strategist, bool flag)
-func (_WOOPP *WOOPPFilterer) WatchStrategistUpdated(opts *bind.WatchOpts, sink chan<- *WOOPPStrategistUpdated, strategist []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchStrategistUpdated(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPStrategistUpdated, strategist []common.Address) (event.Subscription, error) {
 
 	var strategistRule []interface{}
 	for _, strategistItem := range strategist {
 		strategistRule = append(strategistRule, strategistItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "StrategistUpdated", strategistRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "StrategistUpdated", strategistRule)
 	if err != nil {
 		return nil, err
 	}
@@ -1981,8 +1979,8 @@ func (_WOOPP *WOOPPFilterer) WatchStrategistUpdated(opts *bind.WatchOpts, sink c
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPStrategistUpdated)
-				if err := _WOOPP.contract.UnpackLog(event, "StrategistUpdated", log); err != nil {
+				event := new(PolygonWOOPPStrategistUpdated)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "StrategistUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2006,18 +2004,18 @@ func (_WOOPP *WOOPPFilterer) WatchStrategistUpdated(opts *bind.WatchOpts, sink c
 // ParseStrategistUpdated is a log parse operation binding the contract event 0xaee0e1c61a3f9668cbb6c91cbe9352a6cbb5334687e9dcf76655d72a23b942ce.
 //
 // Solidity: event StrategistUpdated(address indexed strategist, bool flag)
-func (_WOOPP *WOOPPFilterer) ParseStrategistUpdated(log types.Log) (*WOOPPStrategistUpdated, error) {
-	event := new(WOOPPStrategistUpdated)
-	if err := _WOOPP.contract.UnpackLog(event, "StrategistUpdated", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseStrategistUpdated(log types.Log) (*PolygonWOOPPStrategistUpdated, error) {
+	event := new(PolygonWOOPPStrategistUpdated)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "StrategistUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPUnpausedIterator is returned from FilterUnpaused and is used to iterate over the raw logs and unpacked data for Unpaused events raised by the WOOPP contract.
-type WOOPPUnpausedIterator struct {
-	Event *WOOPPUnpaused // Event containing the contract specifics and raw log
+// PolygonWOOPPUnpausedIterator is returned from FilterUnpaused and is used to iterate over the raw logs and unpacked data for Unpaused events raised by the PolygonWOOPP contract.
+type PolygonWOOPPUnpausedIterator struct {
+	Event *PolygonWOOPPUnpaused // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2031,7 +2029,7 @@ type WOOPPUnpausedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPUnpausedIterator) Next() bool {
+func (it *PolygonWOOPPUnpausedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2040,7 +2038,7 @@ func (it *WOOPPUnpausedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPUnpaused)
+			it.Event = new(PolygonWOOPPUnpaused)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2055,7 +2053,7 @@ func (it *WOOPPUnpausedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPUnpaused)
+		it.Event = new(PolygonWOOPPUnpaused)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2071,19 +2069,19 @@ func (it *WOOPPUnpausedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPUnpausedIterator) Error() error {
+func (it *PolygonWOOPPUnpausedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPUnpausedIterator) Close() error {
+func (it *PolygonWOOPPUnpausedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPUnpaused represents a Unpaused event raised by the WOOPP contract.
-type WOOPPUnpaused struct {
+// PolygonWOOPPUnpaused represents a Unpaused event raised by the PolygonWOOPP contract.
+type PolygonWOOPPUnpaused struct {
 	Account common.Address
 	Raw     types.Log // Blockchain specific contextual infos
 }
@@ -2091,21 +2089,21 @@ type WOOPPUnpaused struct {
 // FilterUnpaused is a free log retrieval operation binding the contract event 0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa.
 //
 // Solidity: event Unpaused(address account)
-func (_WOOPP *WOOPPFilterer) FilterUnpaused(opts *bind.FilterOpts) (*WOOPPUnpausedIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterUnpaused(opts *bind.FilterOpts) (*PolygonWOOPPUnpausedIterator, error) {
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "Unpaused")
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "Unpaused")
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPUnpausedIterator{contract: _WOOPP.contract, event: "Unpaused", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPUnpausedIterator{contract: _PolygonWOOPP.contract, event: "Unpaused", logs: logs, sub: sub}, nil
 }
 
 // WatchUnpaused is a free log subscription operation binding the contract event 0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa.
 //
 // Solidity: event Unpaused(address account)
-func (_WOOPP *WOOPPFilterer) WatchUnpaused(opts *bind.WatchOpts, sink chan<- *WOOPPUnpaused) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchUnpaused(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPUnpaused) (event.Subscription, error) {
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "Unpaused")
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "Unpaused")
 	if err != nil {
 		return nil, err
 	}
@@ -2115,8 +2113,8 @@ func (_WOOPP *WOOPPFilterer) WatchUnpaused(opts *bind.WatchOpts, sink chan<- *WO
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPUnpaused)
-				if err := _WOOPP.contract.UnpackLog(event, "Unpaused", log); err != nil {
+				event := new(PolygonWOOPPUnpaused)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "Unpaused", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2140,18 +2138,18 @@ func (_WOOPP *WOOPPFilterer) WatchUnpaused(opts *bind.WatchOpts, sink chan<- *WO
 // ParseUnpaused is a log parse operation binding the contract event 0x5db9ee0a495bf2e6ff9c91a7834c1ba4fdd244a5e8aa4e537bd38aeae4b073aa.
 //
 // Solidity: event Unpaused(address account)
-func (_WOOPP *WOOPPFilterer) ParseUnpaused(log types.Log) (*WOOPPUnpaused, error) {
-	event := new(WOOPPUnpaused)
-	if err := _WOOPP.contract.UnpackLog(event, "Unpaused", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseUnpaused(log types.Log) (*PolygonWOOPPUnpaused, error) {
+	event := new(PolygonWOOPPUnpaused)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "Unpaused", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPWithdrawIterator is returned from FilterWithdraw and is used to iterate over the raw logs and unpacked data for Withdraw events raised by the WOOPP contract.
-type WOOPPWithdrawIterator struct {
-	Event *WOOPPWithdraw // Event containing the contract specifics and raw log
+// PolygonWOOPPWithdrawIterator is returned from FilterWithdraw and is used to iterate over the raw logs and unpacked data for Withdraw events raised by the PolygonWOOPP contract.
+type PolygonWOOPPWithdrawIterator struct {
+	Event *PolygonWOOPPWithdraw // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2165,7 +2163,7 @@ type WOOPPWithdrawIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPWithdrawIterator) Next() bool {
+func (it *PolygonWOOPPWithdrawIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2174,7 +2172,7 @@ func (it *WOOPPWithdrawIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPWithdraw)
+			it.Event = new(PolygonWOOPPWithdraw)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2189,7 +2187,7 @@ func (it *WOOPPWithdrawIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPWithdraw)
+		it.Event = new(PolygonWOOPPWithdraw)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2205,19 +2203,19 @@ func (it *WOOPPWithdrawIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPWithdrawIterator) Error() error {
+func (it *PolygonWOOPPWithdrawIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPWithdrawIterator) Close() error {
+func (it *PolygonWOOPPWithdrawIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPWithdraw represents a Withdraw event raised by the WOOPP contract.
-type WOOPPWithdraw struct {
+// PolygonWOOPPWithdraw represents a Withdraw event raised by the PolygonWOOPP contract.
+type PolygonWOOPPWithdraw struct {
 	Token  common.Address
 	To     common.Address
 	Amount *big.Int
@@ -2227,7 +2225,7 @@ type WOOPPWithdraw struct {
 // FilterWithdraw is a free log retrieval operation binding the contract event 0x9b1bfa7fa9ee420a16e124f794c35ac9f90472acc99140eb2f6447c714cad8eb.
 //
 // Solidity: event Withdraw(address indexed token, address indexed to, uint256 amount)
-func (_WOOPP *WOOPPFilterer) FilterWithdraw(opts *bind.FilterOpts, token []common.Address, to []common.Address) (*WOOPPWithdrawIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterWithdraw(opts *bind.FilterOpts, token []common.Address, to []common.Address) (*PolygonWOOPPWithdrawIterator, error) {
 
 	var tokenRule []interface{}
 	for _, tokenItem := range token {
@@ -2238,17 +2236,17 @@ func (_WOOPP *WOOPPFilterer) FilterWithdraw(opts *bind.FilterOpts, token []commo
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "Withdraw", tokenRule, toRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "Withdraw", tokenRule, toRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPWithdrawIterator{contract: _WOOPP.contract, event: "Withdraw", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPWithdrawIterator{contract: _PolygonWOOPP.contract, event: "Withdraw", logs: logs, sub: sub}, nil
 }
 
 // WatchWithdraw is a free log subscription operation binding the contract event 0x9b1bfa7fa9ee420a16e124f794c35ac9f90472acc99140eb2f6447c714cad8eb.
 //
 // Solidity: event Withdraw(address indexed token, address indexed to, uint256 amount)
-func (_WOOPP *WOOPPFilterer) WatchWithdraw(opts *bind.WatchOpts, sink chan<- *WOOPPWithdraw, token []common.Address, to []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchWithdraw(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPWithdraw, token []common.Address, to []common.Address) (event.Subscription, error) {
 
 	var tokenRule []interface{}
 	for _, tokenItem := range token {
@@ -2259,7 +2257,7 @@ func (_WOOPP *WOOPPFilterer) WatchWithdraw(opts *bind.WatchOpts, sink chan<- *WO
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "Withdraw", tokenRule, toRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "Withdraw", tokenRule, toRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2269,8 +2267,8 @@ func (_WOOPP *WOOPPFilterer) WatchWithdraw(opts *bind.WatchOpts, sink chan<- *WO
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPWithdraw)
-				if err := _WOOPP.contract.UnpackLog(event, "Withdraw", log); err != nil {
+				event := new(PolygonWOOPPWithdraw)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "Withdraw", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2294,18 +2292,18 @@ func (_WOOPP *WOOPPFilterer) WatchWithdraw(opts *bind.WatchOpts, sink chan<- *WO
 // ParseWithdraw is a log parse operation binding the contract event 0x9b1bfa7fa9ee420a16e124f794c35ac9f90472acc99140eb2f6447c714cad8eb.
 //
 // Solidity: event Withdraw(address indexed token, address indexed to, uint256 amount)
-func (_WOOPP *WOOPPFilterer) ParseWithdraw(log types.Log) (*WOOPPWithdraw, error) {
-	event := new(WOOPPWithdraw)
-	if err := _WOOPP.contract.UnpackLog(event, "Withdraw", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseWithdraw(log types.Log) (*PolygonWOOPPWithdraw, error) {
+	event := new(PolygonWOOPPWithdraw)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "Withdraw", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPWooGuardianUpdatedIterator is returned from FilterWooGuardianUpdated and is used to iterate over the raw logs and unpacked data for WooGuardianUpdated events raised by the WOOPP contract.
-type WOOPPWooGuardianUpdatedIterator struct {
-	Event *WOOPPWooGuardianUpdated // Event containing the contract specifics and raw log
+// PolygonWOOPPWooGuardianUpdatedIterator is returned from FilterWooGuardianUpdated and is used to iterate over the raw logs and unpacked data for WooGuardianUpdated events raised by the PolygonWOOPP contract.
+type PolygonWOOPPWooGuardianUpdatedIterator struct {
+	Event *PolygonWOOPPWooGuardianUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2319,7 +2317,7 @@ type WOOPPWooGuardianUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPWooGuardianUpdatedIterator) Next() bool {
+func (it *PolygonWOOPPWooGuardianUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2328,7 +2326,7 @@ func (it *WOOPPWooGuardianUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPWooGuardianUpdated)
+			it.Event = new(PolygonWOOPPWooGuardianUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2343,7 +2341,7 @@ func (it *WOOPPWooGuardianUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPWooGuardianUpdated)
+		it.Event = new(PolygonWOOPPWooGuardianUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2359,19 +2357,19 @@ func (it *WOOPPWooGuardianUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPWooGuardianUpdatedIterator) Error() error {
+func (it *PolygonWOOPPWooGuardianUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPWooGuardianUpdatedIterator) Close() error {
+func (it *PolygonWOOPPWooGuardianUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPWooGuardianUpdated represents a WooGuardianUpdated event raised by the WOOPP contract.
-type WOOPPWooGuardianUpdated struct {
+// PolygonWOOPPWooGuardianUpdated represents a WooGuardianUpdated event raised by the PolygonWOOPP contract.
+type PolygonWOOPPWooGuardianUpdated struct {
 	NewWooGuardian common.Address
 	Raw            types.Log // Blockchain specific contextual infos
 }
@@ -2379,31 +2377,31 @@ type WOOPPWooGuardianUpdated struct {
 // FilterWooGuardianUpdated is a free log retrieval operation binding the contract event 0x95543a0f1d7d53325b1264bff29b0cb8704c48f0da6e578463e10a951caf2ebb.
 //
 // Solidity: event WooGuardianUpdated(address indexed newWooGuardian)
-func (_WOOPP *WOOPPFilterer) FilterWooGuardianUpdated(opts *bind.FilterOpts, newWooGuardian []common.Address) (*WOOPPWooGuardianUpdatedIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterWooGuardianUpdated(opts *bind.FilterOpts, newWooGuardian []common.Address) (*PolygonWOOPPWooGuardianUpdatedIterator, error) {
 
 	var newWooGuardianRule []interface{}
 	for _, newWooGuardianItem := range newWooGuardian {
 		newWooGuardianRule = append(newWooGuardianRule, newWooGuardianItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "WooGuardianUpdated", newWooGuardianRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "WooGuardianUpdated", newWooGuardianRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPWooGuardianUpdatedIterator{contract: _WOOPP.contract, event: "WooGuardianUpdated", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPWooGuardianUpdatedIterator{contract: _PolygonWOOPP.contract, event: "WooGuardianUpdated", logs: logs, sub: sub}, nil
 }
 
 // WatchWooGuardianUpdated is a free log subscription operation binding the contract event 0x95543a0f1d7d53325b1264bff29b0cb8704c48f0da6e578463e10a951caf2ebb.
 //
 // Solidity: event WooGuardianUpdated(address indexed newWooGuardian)
-func (_WOOPP *WOOPPFilterer) WatchWooGuardianUpdated(opts *bind.WatchOpts, sink chan<- *WOOPPWooGuardianUpdated, newWooGuardian []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchWooGuardianUpdated(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPWooGuardianUpdated, newWooGuardian []common.Address) (event.Subscription, error) {
 
 	var newWooGuardianRule []interface{}
 	for _, newWooGuardianItem := range newWooGuardian {
 		newWooGuardianRule = append(newWooGuardianRule, newWooGuardianItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "WooGuardianUpdated", newWooGuardianRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "WooGuardianUpdated", newWooGuardianRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2413,8 +2411,8 @@ func (_WOOPP *WOOPPFilterer) WatchWooGuardianUpdated(opts *bind.WatchOpts, sink 
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPWooGuardianUpdated)
-				if err := _WOOPP.contract.UnpackLog(event, "WooGuardianUpdated", log); err != nil {
+				event := new(PolygonWOOPPWooGuardianUpdated)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "WooGuardianUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2438,18 +2436,18 @@ func (_WOOPP *WOOPPFilterer) WatchWooGuardianUpdated(opts *bind.WatchOpts, sink 
 // ParseWooGuardianUpdated is a log parse operation binding the contract event 0x95543a0f1d7d53325b1264bff29b0cb8704c48f0da6e578463e10a951caf2ebb.
 //
 // Solidity: event WooGuardianUpdated(address indexed newWooGuardian)
-func (_WOOPP *WOOPPFilterer) ParseWooGuardianUpdated(log types.Log) (*WOOPPWooGuardianUpdated, error) {
-	event := new(WOOPPWooGuardianUpdated)
-	if err := _WOOPP.contract.UnpackLog(event, "WooGuardianUpdated", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseWooGuardianUpdated(log types.Log) (*PolygonWOOPPWooGuardianUpdated, error) {
+	event := new(PolygonWOOPPWooGuardianUpdated)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "WooGuardianUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPWooSwapIterator is returned from FilterWooSwap and is used to iterate over the raw logs and unpacked data for WooSwap events raised by the WOOPP contract.
-type WOOPPWooSwapIterator struct {
-	Event *WOOPPWooSwap // Event containing the contract specifics and raw log
+// PolygonWOOPPWooSwapIterator is returned from FilterWooSwap and is used to iterate over the raw logs and unpacked data for WooSwap events raised by the PolygonWOOPP contract.
+type PolygonWOOPPWooSwapIterator struct {
+	Event *PolygonWOOPPWooSwap // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2463,7 +2461,7 @@ type WOOPPWooSwapIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPWooSwapIterator) Next() bool {
+func (it *PolygonWOOPPWooSwapIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2472,7 +2470,7 @@ func (it *WOOPPWooSwapIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPWooSwap)
+			it.Event = new(PolygonWOOPPWooSwap)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2487,7 +2485,7 @@ func (it *WOOPPWooSwapIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPWooSwap)
+		it.Event = new(PolygonWOOPPWooSwap)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2503,19 +2501,19 @@ func (it *WOOPPWooSwapIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPWooSwapIterator) Error() error {
+func (it *PolygonWOOPPWooSwapIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPWooSwapIterator) Close() error {
+func (it *PolygonWOOPPWooSwapIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPWooSwap represents a WooSwap event raised by the WOOPP contract.
-type WOOPPWooSwap struct {
+// PolygonWOOPPWooSwap represents a WooSwap event raised by the PolygonWOOPP contract.
+type PolygonWOOPPWooSwap struct {
 	FromToken  common.Address
 	ToToken    common.Address
 	FromAmount *big.Int
@@ -2529,7 +2527,7 @@ type WOOPPWooSwap struct {
 // FilterWooSwap is a free log retrieval operation binding the contract event 0x74ef34e2ea7c5d9f7b7ed44e97ad44b4303416c3a660c3fb5b3bdb95a1d6abd3.
 //
 // Solidity: event WooSwap(address indexed fromToken, address indexed toToken, uint256 fromAmount, uint256 toAmount, address from, address indexed to, address rebateTo)
-func (_WOOPP *WOOPPFilterer) FilterWooSwap(opts *bind.FilterOpts, fromToken []common.Address, toToken []common.Address, to []common.Address) (*WOOPPWooSwapIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterWooSwap(opts *bind.FilterOpts, fromToken []common.Address, toToken []common.Address, to []common.Address) (*PolygonWOOPPWooSwapIterator, error) {
 
 	var fromTokenRule []interface{}
 	for _, fromTokenItem := range fromToken {
@@ -2545,17 +2543,17 @@ func (_WOOPP *WOOPPFilterer) FilterWooSwap(opts *bind.FilterOpts, fromToken []co
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "WooSwap", fromTokenRule, toTokenRule, toRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "WooSwap", fromTokenRule, toTokenRule, toRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPWooSwapIterator{contract: _WOOPP.contract, event: "WooSwap", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPWooSwapIterator{contract: _PolygonWOOPP.contract, event: "WooSwap", logs: logs, sub: sub}, nil
 }
 
 // WatchWooSwap is a free log subscription operation binding the contract event 0x74ef34e2ea7c5d9f7b7ed44e97ad44b4303416c3a660c3fb5b3bdb95a1d6abd3.
 //
 // Solidity: event WooSwap(address indexed fromToken, address indexed toToken, uint256 fromAmount, uint256 toAmount, address from, address indexed to, address rebateTo)
-func (_WOOPP *WOOPPFilterer) WatchWooSwap(opts *bind.WatchOpts, sink chan<- *WOOPPWooSwap, fromToken []common.Address, toToken []common.Address, to []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchWooSwap(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPWooSwap, fromToken []common.Address, toToken []common.Address, to []common.Address) (event.Subscription, error) {
 
 	var fromTokenRule []interface{}
 	for _, fromTokenItem := range fromToken {
@@ -2571,7 +2569,7 @@ func (_WOOPP *WOOPPFilterer) WatchWooSwap(opts *bind.WatchOpts, sink chan<- *WOO
 		toRule = append(toRule, toItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "WooSwap", fromTokenRule, toTokenRule, toRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "WooSwap", fromTokenRule, toTokenRule, toRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2581,8 +2579,8 @@ func (_WOOPP *WOOPPFilterer) WatchWooSwap(opts *bind.WatchOpts, sink chan<- *WOO
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPWooSwap)
-				if err := _WOOPP.contract.UnpackLog(event, "WooSwap", log); err != nil {
+				event := new(PolygonWOOPPWooSwap)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "WooSwap", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2606,18 +2604,18 @@ func (_WOOPP *WOOPPFilterer) WatchWooSwap(opts *bind.WatchOpts, sink chan<- *WOO
 // ParseWooSwap is a log parse operation binding the contract event 0x74ef34e2ea7c5d9f7b7ed44e97ad44b4303416c3a660c3fb5b3bdb95a1d6abd3.
 //
 // Solidity: event WooSwap(address indexed fromToken, address indexed toToken, uint256 fromAmount, uint256 toAmount, address from, address indexed to, address rebateTo)
-func (_WOOPP *WOOPPFilterer) ParseWooSwap(log types.Log) (*WOOPPWooSwap, error) {
-	event := new(WOOPPWooSwap)
-	if err := _WOOPP.contract.UnpackLog(event, "WooSwap", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseWooSwap(log types.Log) (*PolygonWOOPPWooSwap, error) {
+	event := new(PolygonWOOPPWooSwap)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "WooSwap", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log
 	return event, nil
 }
 
-// WOOPPWooracleUpdatedIterator is returned from FilterWooracleUpdated and is used to iterate over the raw logs and unpacked data for WooracleUpdated events raised by the WOOPP contract.
-type WOOPPWooracleUpdatedIterator struct {
-	Event *WOOPPWooracleUpdated // Event containing the contract specifics and raw log
+// PolygonWOOPPWooracleUpdatedIterator is returned from FilterWooracleUpdated and is used to iterate over the raw logs and unpacked data for WooracleUpdated events raised by the PolygonWOOPP contract.
+type PolygonWOOPPWooracleUpdatedIterator struct {
+	Event *PolygonWOOPPWooracleUpdated // Event containing the contract specifics and raw log
 
 	contract *bind.BoundContract // Generic contract to use for unpacking event data
 	event    string              // Event name to use for unpacking event data
@@ -2631,7 +2629,7 @@ type WOOPPWooracleUpdatedIterator struct {
 // Next advances the iterator to the subsequent event, returning whether there
 // are any more events found. In case of a retrieval or parsing error, false is
 // returned and Error() can be queried for the exact failure.
-func (it *WOOPPWooracleUpdatedIterator) Next() bool {
+func (it *PolygonWOOPPWooracleUpdatedIterator) Next() bool {
 	// If the iterator failed, stop iterating
 	if it.fail != nil {
 		return false
@@ -2640,7 +2638,7 @@ func (it *WOOPPWooracleUpdatedIterator) Next() bool {
 	if it.done {
 		select {
 		case log := <-it.logs:
-			it.Event = new(WOOPPWooracleUpdated)
+			it.Event = new(PolygonWOOPPWooracleUpdated)
 			if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 				it.fail = err
 				return false
@@ -2655,7 +2653,7 @@ func (it *WOOPPWooracleUpdatedIterator) Next() bool {
 	// Iterator still in progress, wait for either a data or an error event
 	select {
 	case log := <-it.logs:
-		it.Event = new(WOOPPWooracleUpdated)
+		it.Event = new(PolygonWOOPPWooracleUpdated)
 		if err := it.contract.UnpackLog(it.Event, it.event, log); err != nil {
 			it.fail = err
 			return false
@@ -2671,19 +2669,19 @@ func (it *WOOPPWooracleUpdatedIterator) Next() bool {
 }
 
 // Error returns any retrieval or parsing error occurred during filtering.
-func (it *WOOPPWooracleUpdatedIterator) Error() error {
+func (it *PolygonWOOPPWooracleUpdatedIterator) Error() error {
 	return it.fail
 }
 
 // Close terminates the iteration process, releasing any pending underlying
 // resources.
-func (it *WOOPPWooracleUpdatedIterator) Close() error {
+func (it *PolygonWOOPPWooracleUpdatedIterator) Close() error {
 	it.sub.Unsubscribe()
 	return nil
 }
 
-// WOOPPWooracleUpdated represents a WooracleUpdated event raised by the WOOPP contract.
-type WOOPPWooracleUpdated struct {
+// PolygonWOOPPWooracleUpdated represents a WooracleUpdated event raised by the PolygonWOOPP contract.
+type PolygonWOOPPWooracleUpdated struct {
 	NewWooracle common.Address
 	Raw         types.Log // Blockchain specific contextual infos
 }
@@ -2691,31 +2689,31 @@ type WOOPPWooracleUpdated struct {
 // FilterWooracleUpdated is a free log retrieval operation binding the contract event 0x59ddfdd1bf7e3ea08a07e8aaa1fe2ce9c840fab69fe5ede6ea727a45eb42fc66.
 //
 // Solidity: event WooracleUpdated(address indexed newWooracle)
-func (_WOOPP *WOOPPFilterer) FilterWooracleUpdated(opts *bind.FilterOpts, newWooracle []common.Address) (*WOOPPWooracleUpdatedIterator, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) FilterWooracleUpdated(opts *bind.FilterOpts, newWooracle []common.Address) (*PolygonWOOPPWooracleUpdatedIterator, error) {
 
 	var newWooracleRule []interface{}
 	for _, newWooracleItem := range newWooracle {
 		newWooracleRule = append(newWooracleRule, newWooracleItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.FilterLogs(opts, "WooracleUpdated", newWooracleRule)
+	logs, sub, err := _PolygonWOOPP.contract.FilterLogs(opts, "WooracleUpdated", newWooracleRule)
 	if err != nil {
 		return nil, err
 	}
-	return &WOOPPWooracleUpdatedIterator{contract: _WOOPP.contract, event: "WooracleUpdated", logs: logs, sub: sub}, nil
+	return &PolygonWOOPPWooracleUpdatedIterator{contract: _PolygonWOOPP.contract, event: "WooracleUpdated", logs: logs, sub: sub}, nil
 }
 
 // WatchWooracleUpdated is a free log subscription operation binding the contract event 0x59ddfdd1bf7e3ea08a07e8aaa1fe2ce9c840fab69fe5ede6ea727a45eb42fc66.
 //
 // Solidity: event WooracleUpdated(address indexed newWooracle)
-func (_WOOPP *WOOPPFilterer) WatchWooracleUpdated(opts *bind.WatchOpts, sink chan<- *WOOPPWooracleUpdated, newWooracle []common.Address) (event.Subscription, error) {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) WatchWooracleUpdated(opts *bind.WatchOpts, sink chan<- *PolygonWOOPPWooracleUpdated, newWooracle []common.Address) (event.Subscription, error) {
 
 	var newWooracleRule []interface{}
 	for _, newWooracleItem := range newWooracle {
 		newWooracleRule = append(newWooracleRule, newWooracleItem)
 	}
 
-	logs, sub, err := _WOOPP.contract.WatchLogs(opts, "WooracleUpdated", newWooracleRule)
+	logs, sub, err := _PolygonWOOPP.contract.WatchLogs(opts, "WooracleUpdated", newWooracleRule)
 	if err != nil {
 		return nil, err
 	}
@@ -2725,8 +2723,8 @@ func (_WOOPP *WOOPPFilterer) WatchWooracleUpdated(opts *bind.WatchOpts, sink cha
 			select {
 			case log := <-logs:
 				// New log arrived, parse the event and forward to the user
-				event := new(WOOPPWooracleUpdated)
-				if err := _WOOPP.contract.UnpackLog(event, "WooracleUpdated", log); err != nil {
+				event := new(PolygonWOOPPWooracleUpdated)
+				if err := _PolygonWOOPP.contract.UnpackLog(event, "WooracleUpdated", log); err != nil {
 					return err
 				}
 				event.Raw = log
@@ -2750,9 +2748,9 @@ func (_WOOPP *WOOPPFilterer) WatchWooracleUpdated(opts *bind.WatchOpts, sink cha
 // ParseWooracleUpdated is a log parse operation binding the contract event 0x59ddfdd1bf7e3ea08a07e8aaa1fe2ce9c840fab69fe5ede6ea727a45eb42fc66.
 //
 // Solidity: event WooracleUpdated(address indexed newWooracle)
-func (_WOOPP *WOOPPFilterer) ParseWooracleUpdated(log types.Log) (*WOOPPWooracleUpdated, error) {
-	event := new(WOOPPWooracleUpdated)
-	if err := _WOOPP.contract.UnpackLog(event, "WooracleUpdated", log); err != nil {
+func (_PolygonWOOPP *PolygonWOOPPFilterer) ParseWooracleUpdated(log types.Log) (*PolygonWOOPPWooracleUpdated, error) {
+	event := new(PolygonWOOPPWooracleUpdated)
+	if err := _PolygonWOOPP.contract.UnpackLog(event, "WooracleUpdated", log); err != nil {
 		return nil, err
 	}
 	event.Raw = log

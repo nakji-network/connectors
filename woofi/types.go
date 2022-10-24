@@ -1,26 +1,44 @@
 package woofi
 
 import (
-	"github.com/nakji-network/connectors/woofi/WOOPP"
+	"github.com/nakji-network/connectors/woofi/bscWOOPP"
+	"github.com/nakji-network/connectors/woofi/polygonWOOPP"
+
 	"google.golang.org/protobuf/proto"
 )
 
-var TopicTypes = map[string]proto.Message{
-	"nakji.woofi.0_0_0.woopp_feemanagerupdated":         &WOOPP.FeeManagerUpdated{},
-	"nakji.woofi.0_0_0.woopp_ownershiptransferprepared": &WOOPP.OwnershipTransferPrepared{},
-	"nakji.woofi.0_0_0.woopp_ownershiptransferred":      &WOOPP.OwnershipTransferred{},
-	"nakji.woofi.0_0_0.woopp_parametersupdated":         &WOOPP.ParametersUpdated{},
-	"nakji.woofi.0_0_0.woopp_paused":                    &WOOPP.Paused{},
-	"nakji.woofi.0_0_0.woopp_rewardmanagerupdated":      &WOOPP.RewardManagerUpdated{},
-	"nakji.woofi.0_0_0.woopp_strategistupdated":         &WOOPP.StrategistUpdated{},
-	"nakji.woofi.0_0_0.woopp_unpaused":                  &WOOPP.Unpaused{},
-	"nakji.woofi.0_0_0.woopp_withdraw":                  &WOOPP.Withdraw{},
-	"nakji.woofi.0_0_0.woopp_wooguardianupdated":        &WOOPP.WooGuardianUpdated{},
-	"nakji.woofi.0_0_0.woopp_wooracleupdated":           &WOOPP.WooracleUpdated{},
-	"nakji.woofi.0_0_0.woopp_wooswap":                   &WOOPP.WooSwap{},
-	
-}
+const (
+	BscNetwork           = "bsc"
+	BscWOOPPContractAddr = "0xbf365Ce9cFcb2d5855521985E351bA3bcf77FD3F"
 
-var ABIs = map[string]string{
-	"WOOPP":                          WOOPP.WOOPPABI,
+	PolygonNetwork           = "polygon"
+	PolygonWOOPPContractAddr = "0x7400B665C8f4f3a951a99f1ee9872efb8778723d"
+)
+
+var TopicTypes = []proto.Message{
+	&bscWOOPP.FeeManagerUpdated{},
+	&bscWOOPP.OwnershipTransferPrepared{},
+	&bscWOOPP.OwnershipTransferred{},
+	&bscWOOPP.ParametersUpdated{},
+	&bscWOOPP.Paused{},
+	&bscWOOPP.RewardManagerUpdated{},
+	&bscWOOPP.StrategistUpdated{},
+	&bscWOOPP.Unpaused{},
+	&bscWOOPP.Withdraw{},
+	&bscWOOPP.WooGuardianUpdated{},
+	&bscWOOPP.WooracleUpdated{},
+	&bscWOOPP.WooSwap{},
+
+	&polygonWOOPP.FeeManagerUpdated{},
+	&polygonWOOPP.OwnershipTransferPrepared{},
+	&polygonWOOPP.OwnershipTransferred{},
+	&polygonWOOPP.ParametersUpdated{},
+	&polygonWOOPP.Paused{},
+	&polygonWOOPP.RewardManagerUpdated{},
+	&polygonWOOPP.StrategistUpdated{},
+	&polygonWOOPP.Unpaused{},
+	&polygonWOOPP.Withdraw{},
+	&polygonWOOPP.WooGuardianUpdated{},
+	&polygonWOOPP.WooracleUpdated{},
+	&polygonWOOPP.WooSwap{},
 }
