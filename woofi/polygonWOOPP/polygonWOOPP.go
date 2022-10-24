@@ -211,6 +211,8 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			To:          e.To.Bytes(),
 			Amount:      e.Amount.Bytes(),
 		}
+	default:
+		log.Error().Msgf("invalid event: %s", ev.Name)
+		return nil
 	}
-	return nil
 }
