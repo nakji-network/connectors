@@ -1,4 +1,4 @@
-package bscWooRouter
+package bscWooRouterV1
 
 import (
 	"fmt"
@@ -20,9 +20,9 @@ type SmartContract struct {
 }
 
 func NewContract(network string, address string) (*SmartContract, error) {
-	contractAbi, err := abi.JSON(strings.NewReader(BscWooRouterABI))
+	contractAbi, err := abi.JSON(strings.NewReader(BscWooRouterV1ABI))
 	if err != nil {
-		return nil, fmt.Errorf("error reading BscWooRouterABI: %s", err)
+		return nil, fmt.Errorf("error reading BscWooRouterV1ABI: %s", err)
 	}
 	return &SmartContract{network: network, address: address, abi: contractAbi}, nil
 }
@@ -43,7 +43,7 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 	}
 	switch ev.Name {
 	case "OwnershipTransferred":
-		e := new(BscWooRouterOwnershipTransferred)
+		e := new(BscWooRouterV1OwnershipTransferred)
 		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
@@ -57,7 +57,7 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			NewOwner:      e.NewOwner.Bytes(),
 		}
 	case "WooPoolChanged":
-		e := new(BscWooRouterWooPoolChanged)
+		e := new(BscWooRouterV1WooPoolChanged)
 		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
@@ -70,7 +70,7 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			NewPool:     e.NewPool.Bytes(),
 		}
 	case "WooRouterSwap":
-		e := new(BscWooRouterWooRouterSwap)
+		e := new(BscWooRouterV1WooRouterSwap)
 		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil

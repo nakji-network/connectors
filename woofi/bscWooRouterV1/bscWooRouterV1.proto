@@ -2,10 +2,10 @@
 // This file is a generated protobuf definition and any manual changes will be lost.
 
 syntax = "proto3";
-package bscWooRouter;
+package bscWooRouterV1;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/bscWooRouter";
+option go_package = "blep.ai/data/connectors/bscWooRouterV1";
 
 
 message OwnershipTransferred {
