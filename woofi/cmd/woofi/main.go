@@ -9,6 +9,7 @@ import (
 	"github.com/nakji-network/connectors/woofi"
 	"github.com/nakji-network/connectors/woofi/bscWooPP"
 	"github.com/nakji-network/connectors/woofi/bscWooPPV1"
+	"github.com/nakji-network/connectors/woofi/bscWooPPV2"
 	"github.com/nakji-network/connectors/woofi/bscWooRouterV1"
 	"github.com/nakji-network/connectors/woofi/bscWooRouterV2"
 	"github.com/nakji-network/connectors/woofi/polygonWooPP"
@@ -52,32 +53,38 @@ func main() {
 
 	bscWooPPContract, err := bscWooPP.NewContract(woofi.BscNetwork, woofi.BscWooPPContractAddr)
 	if err != nil {
-		log.Err(err).Msg("cannot create bsc WooPP contract")
+		log.Fatal().Err(err).Msg("cannot create bsc WooPP contract")
 	}
 
 	bscWooPPV1Contract, err := bscWooPPV1.NewContract(woofi.BscNetwork, woofi.BscWooPPV1ContractAddr)
 	if err != nil {
-		log.Err(err).Msg("cannot create bsc WooPPV1 contract")
+		log.Fatal().Err(err).Msg("cannot create bsc WooPPV1 contract")
+	}
+
+	bscWooPPV2Contract, err := bscWooPPV2.NewContract(woofi.BscNetwork, woofi.BscWooPPV2ContractAddr)
+	if err != nil {
+		log.Fatal().Err(err).Msg("cannot create bsc WooPPV2 contract")
 	}
 
 	bscWooRouterV1Contract, err := bscWooRouterV1.NewContract(woofi.BscNetwork, woofi.BscWooRouterV1ContractAddr)
 	if err != nil {
-		log.Err(err).Msg("cannot create bsc WooRouterV1 contract")
+		log.Fatal().Err(err).Msg("cannot create bsc WooRouterV1 contract")
 	}
 
 	bscWooRouterV2Contract, err := bscWooRouterV2.NewContract(woofi.BscNetwork, woofi.BscWooRouterV2ContractAddr)
 	if err != nil {
-		log.Err(err).Msg("cannot create bsc WooRouterV2 contract")
+		log.Fatal().Err(err).Msg("cannot create bsc WooRouterV2 contract")
 	}
 
 	polygonWooPPContract, err := polygonWooPP.NewContract(woofi.PolygonNetwork, woofi.PolygonWooPPContractAddr)
 	if err != nil {
-		log.Err(err).Msg("cannot create polygon WooPP contract")
+		log.Fatal().Err(err).Msg("cannot create polygon WooPP contract")
 	}
 
 	m := woofi.New(c, conf)
 	m.AddContract(bscWooPPContract)
 	m.AddContract(bscWooPPV1Contract)
+	m.AddContract(bscWooPPV2Contract)
 	m.AddContract(bscWooRouterV1Contract)
 	m.AddContract(bscWooRouterV2Contract)
 	m.AddContract(polygonWooPPContract)

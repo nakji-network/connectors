@@ -3,6 +3,7 @@ package woofi
 import (
 	"github.com/nakji-network/connectors/woofi/bscWooPP"
 	"github.com/nakji-network/connectors/woofi/bscWooPPV1"
+	"github.com/nakji-network/connectors/woofi/bscWooPPV2"
 	"github.com/nakji-network/connectors/woofi/bscWooRouterV1"
 	"github.com/nakji-network/connectors/woofi/bscWooRouterV2"
 	"github.com/nakji-network/connectors/woofi/polygonWooPP"
@@ -14,6 +15,7 @@ const (
 	BscNetwork                 = "bsc"
 	BscWooPPContractAddr       = "0xbf365Ce9cFcb2d5855521985E351bA3bcf77FD3F"
 	BscWooPPV1ContractAddr     = "0x10C24658815585851a8888f059Cb4338790023F1"
+	BscWooPPV2ContractAddr     = "0x8489d142Da126F4Ea01750e80ccAa12FD1642988"
 	BscWooRouterV1ContractAddr = "0x114f84658c99aa6EA62e3160a87A16dEaF7EFe83"
 	BscWooRouterV2ContractAddr = "0xcEf5BE73ae943B77f9Bc08859367D923C030a269"
 
@@ -46,6 +48,18 @@ var TopicTypes = []proto.Message{
 	&bscWooPPV1.WooGuardianUpdated{},
 	&bscWooPPV1.WooracleUpdated{},
 	&bscWooPPV1.WooSwap{},
+
+	&bscWooPPV2.OwnershipTransferPrepared{},
+	&bscWooPPV2.OwnershipTransferred{},
+	&bscWooPPV2.ParametersUpdated{},
+	&bscWooPPV2.Paused{},
+	&bscWooPPV2.RewardManagerUpdated{},
+	&bscWooPPV2.StrategistUpdated{},
+	&bscWooPPV2.Unpaused{},
+	&bscWooPPV2.Withdraw{},
+	&bscWooPPV2.WooGuardianUpdated{},
+	&bscWooPPV2.WooracleUpdated{},
+	&bscWooPPV2.WooSwap{},
 
 	&bscWooRouterV1.OwnershipTransferred{},
 	&bscWooRouterV1.WooPoolChanged{},
