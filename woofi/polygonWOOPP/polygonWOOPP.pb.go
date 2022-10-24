@@ -5,9 +5,9 @@
 // versions:
 // 	protoc-gen-go v1.28.1
 // 	protoc        v3.21.6
-// source: polygonWOOPP.proto
+// source: polygonWooPP.proto
 
-package polygonWOOPP
+package polygonWooPP
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
@@ -39,7 +39,7 @@ type RewardManagerUpdated struct {
 func (x *RewardManagerUpdated) Reset() {
 	*x = RewardManagerUpdated{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[0]
+		mi := &file_polygonWooPP_proto_msgTypes[0]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -52,7 +52,7 @@ func (x *RewardManagerUpdated) String() string {
 func (*RewardManagerUpdated) ProtoMessage() {}
 
 func (x *RewardManagerUpdated) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[0]
+	mi := &file_polygonWooPP_proto_msgTypes[0]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -65,7 +65,7 @@ func (x *RewardManagerUpdated) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RewardManagerUpdated.ProtoReflect.Descriptor instead.
 func (*RewardManagerUpdated) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{0}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{0}
 }
 
 func (x *RewardManagerUpdated) GetTs() *timestamppb.Timestamp {
@@ -118,7 +118,7 @@ type FeeManagerUpdated struct {
 func (x *FeeManagerUpdated) Reset() {
 	*x = FeeManagerUpdated{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[1]
+		mi := &file_polygonWooPP_proto_msgTypes[1]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -131,7 +131,7 @@ func (x *FeeManagerUpdated) String() string {
 func (*FeeManagerUpdated) ProtoMessage() {}
 
 func (x *FeeManagerUpdated) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[1]
+	mi := &file_polygonWooPP_proto_msgTypes[1]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -144,7 +144,7 @@ func (x *FeeManagerUpdated) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FeeManagerUpdated.ProtoReflect.Descriptor instead.
 func (*FeeManagerUpdated) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{1}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *FeeManagerUpdated) GetTs() *timestamppb.Timestamp {
@@ -197,7 +197,7 @@ type Unpaused struct {
 func (x *Unpaused) Reset() {
 	*x = Unpaused{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[2]
+		mi := &file_polygonWooPP_proto_msgTypes[2]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -210,7 +210,7 @@ func (x *Unpaused) String() string {
 func (*Unpaused) ProtoMessage() {}
 
 func (x *Unpaused) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[2]
+	mi := &file_polygonWooPP_proto_msgTypes[2]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -223,7 +223,7 @@ func (x *Unpaused) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Unpaused.ProtoReflect.Descriptor instead.
 func (*Unpaused) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{2}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *Unpaused) GetTs() *timestamppb.Timestamp {
@@ -278,7 +278,7 @@ type Withdraw struct {
 func (x *Withdraw) Reset() {
 	*x = Withdraw{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[3]
+		mi := &file_polygonWooPP_proto_msgTypes[3]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -291,7 +291,7 @@ func (x *Withdraw) String() string {
 func (*Withdraw) ProtoMessage() {}
 
 func (x *Withdraw) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[3]
+	mi := &file_polygonWooPP_proto_msgTypes[3]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -304,7 +304,7 @@ func (x *Withdraw) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Withdraw.ProtoReflect.Descriptor instead.
 func (*Withdraw) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{3}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{3}
 }
 
 func (x *Withdraw) GetTs() *timestamppb.Timestamp {
@@ -372,7 +372,7 @@ type OwnershipTransferPrepared struct {
 func (x *OwnershipTransferPrepared) Reset() {
 	*x = OwnershipTransferPrepared{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[4]
+		mi := &file_polygonWooPP_proto_msgTypes[4]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -385,7 +385,7 @@ func (x *OwnershipTransferPrepared) String() string {
 func (*OwnershipTransferPrepared) ProtoMessage() {}
 
 func (x *OwnershipTransferPrepared) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[4]
+	mi := &file_polygonWooPP_proto_msgTypes[4]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -398,7 +398,7 @@ func (x *OwnershipTransferPrepared) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OwnershipTransferPrepared.ProtoReflect.Descriptor instead.
 func (*OwnershipTransferPrepared) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{4}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *OwnershipTransferPrepared) GetTs() *timestamppb.Timestamp {
@@ -460,7 +460,7 @@ type ParametersUpdated struct {
 func (x *ParametersUpdated) Reset() {
 	*x = ParametersUpdated{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[5]
+		mi := &file_polygonWooPP_proto_msgTypes[5]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -473,7 +473,7 @@ func (x *ParametersUpdated) String() string {
 func (*ParametersUpdated) ProtoMessage() {}
 
 func (x *ParametersUpdated) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[5]
+	mi := &file_polygonWooPP_proto_msgTypes[5]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -486,7 +486,7 @@ func (x *ParametersUpdated) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ParametersUpdated.ProtoReflect.Descriptor instead.
 func (*ParametersUpdated) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{5}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *ParametersUpdated) GetTs() *timestamppb.Timestamp {
@@ -554,7 +554,7 @@ type OwnershipTransferred struct {
 func (x *OwnershipTransferred) Reset() {
 	*x = OwnershipTransferred{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[6]
+		mi := &file_polygonWooPP_proto_msgTypes[6]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -567,7 +567,7 @@ func (x *OwnershipTransferred) String() string {
 func (*OwnershipTransferred) ProtoMessage() {}
 
 func (x *OwnershipTransferred) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[6]
+	mi := &file_polygonWooPP_proto_msgTypes[6]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -580,7 +580,7 @@ func (x *OwnershipTransferred) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use OwnershipTransferred.ProtoReflect.Descriptor instead.
 func (*OwnershipTransferred) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{6}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *OwnershipTransferred) GetTs() *timestamppb.Timestamp {
@@ -646,7 +646,7 @@ type WooSwap struct {
 func (x *WooSwap) Reset() {
 	*x = WooSwap{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[7]
+		mi := &file_polygonWooPP_proto_msgTypes[7]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -659,7 +659,7 @@ func (x *WooSwap) String() string {
 func (*WooSwap) ProtoMessage() {}
 
 func (x *WooSwap) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[7]
+	mi := &file_polygonWooPP_proto_msgTypes[7]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -672,7 +672,7 @@ func (x *WooSwap) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WooSwap.ProtoReflect.Descriptor instead.
 func (*WooSwap) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{7}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *WooSwap) GetTs() *timestamppb.Timestamp {
@@ -768,7 +768,7 @@ type StrategistUpdated struct {
 func (x *StrategistUpdated) Reset() {
 	*x = StrategistUpdated{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[8]
+		mi := &file_polygonWooPP_proto_msgTypes[8]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -781,7 +781,7 @@ func (x *StrategistUpdated) String() string {
 func (*StrategistUpdated) ProtoMessage() {}
 
 func (x *StrategistUpdated) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[8]
+	mi := &file_polygonWooPP_proto_msgTypes[8]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -794,7 +794,7 @@ func (x *StrategistUpdated) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use StrategistUpdated.ProtoReflect.Descriptor instead.
 func (*StrategistUpdated) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{8}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *StrategistUpdated) GetTs() *timestamppb.Timestamp {
@@ -854,7 +854,7 @@ type WooGuardianUpdated struct {
 func (x *WooGuardianUpdated) Reset() {
 	*x = WooGuardianUpdated{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[9]
+		mi := &file_polygonWooPP_proto_msgTypes[9]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -867,7 +867,7 @@ func (x *WooGuardianUpdated) String() string {
 func (*WooGuardianUpdated) ProtoMessage() {}
 
 func (x *WooGuardianUpdated) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[9]
+	mi := &file_polygonWooPP_proto_msgTypes[9]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -880,7 +880,7 @@ func (x *WooGuardianUpdated) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WooGuardianUpdated.ProtoReflect.Descriptor instead.
 func (*WooGuardianUpdated) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{9}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *WooGuardianUpdated) GetTs() *timestamppb.Timestamp {
@@ -933,7 +933,7 @@ type WooracleUpdated struct {
 func (x *WooracleUpdated) Reset() {
 	*x = WooracleUpdated{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[10]
+		mi := &file_polygonWooPP_proto_msgTypes[10]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -946,7 +946,7 @@ func (x *WooracleUpdated) String() string {
 func (*WooracleUpdated) ProtoMessage() {}
 
 func (x *WooracleUpdated) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[10]
+	mi := &file_polygonWooPP_proto_msgTypes[10]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -959,7 +959,7 @@ func (x *WooracleUpdated) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WooracleUpdated.ProtoReflect.Descriptor instead.
 func (*WooracleUpdated) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{10}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *WooracleUpdated) GetTs() *timestamppb.Timestamp {
@@ -1012,7 +1012,7 @@ type Paused struct {
 func (x *Paused) Reset() {
 	*x = Paused{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_polygonWOOPP_proto_msgTypes[11]
+		mi := &file_polygonWooPP_proto_msgTypes[11]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -1025,7 +1025,7 @@ func (x *Paused) String() string {
 func (*Paused) ProtoMessage() {}
 
 func (x *Paused) ProtoReflect() protoreflect.Message {
-	mi := &file_polygonWOOPP_proto_msgTypes[11]
+	mi := &file_polygonWooPP_proto_msgTypes[11]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1038,7 +1038,7 @@ func (x *Paused) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Paused.ProtoReflect.Descriptor instead.
 func (*Paused) Descriptor() ([]byte, []int) {
-	return file_polygonWOOPP_proto_rawDescGZIP(), []int{11}
+	return file_polygonWooPP_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *Paused) GetTs() *timestamppb.Timestamp {
@@ -1076,11 +1076,11 @@ func (x *Paused) GetAccount() []byte {
 	return nil
 }
 
-var File_polygonWOOPP_proto protoreflect.FileDescriptor
+var File_polygonWooPP_proto protoreflect.FileDescriptor
 
-var file_polygonWOOPP_proto_rawDesc = []byte{
-	0x0a, 0x12, 0x70, 0x6f, 0x6c, 0x79, 0x67, 0x6f, 0x6e, 0x57, 0x4f, 0x4f, 0x50, 0x50, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0c, 0x70, 0x6f, 0x6c, 0x79, 0x67, 0x6f, 0x6e, 0x57, 0x4f, 0x4f,
+var file_polygonWooPP_proto_rawDesc = []byte{
+	0x0a, 0x12, 0x70, 0x6f, 0x6c, 0x79, 0x67, 0x6f, 0x6e, 0x57, 0x6f, 0x6f, 0x50, 0x50, 0x2e, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0c, 0x70, 0x6f, 0x6c, 0x79, 0x67, 0x6f, 0x6e, 0x57, 0x6f, 0x6f,
 	0x50, 0x50, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f,
 	0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72,
 	0x6f, 0x74, 0x6f, 0x22, 0xbe, 0x01, 0x0a, 0x14, 0x52, 0x65, 0x77, 0x61, 0x72, 0x64, 0x4d, 0x61,
@@ -1239,51 +1239,51 @@ var file_polygonWOOPP_proto_rawDesc = []byte{
 	0x74, 0x42, 0x38, 0x5a, 0x36, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f,
 	0x6e, 0x61, 0x6b, 0x6a, 0x69, 0x2d, 0x6e, 0x65, 0x74, 0x77, 0x6f, 0x72, 0x6b, 0x2f, 0x63, 0x6f,
 	0x6e, 0x6e, 0x65, 0x63, 0x74, 0x6f, 0x72, 0x73, 0x2f, 0x77, 0x6f, 0x6f, 0x66, 0x69, 0x2f, 0x70,
-	0x6f, 0x6c, 0x79, 0x67, 0x6f, 0x6e, 0x57, 0x4f, 0x4f, 0x50, 0x50, 0x62, 0x06, 0x70, 0x72, 0x6f,
+	0x6f, 0x6c, 0x79, 0x67, 0x6f, 0x6e, 0x57, 0x6f, 0x6f, 0x50, 0x50, 0x62, 0x06, 0x70, 0x72, 0x6f,
 	0x74, 0x6f, 0x33,
 }
 
 var (
-	file_polygonWOOPP_proto_rawDescOnce sync.Once
-	file_polygonWOOPP_proto_rawDescData = file_polygonWOOPP_proto_rawDesc
+	file_polygonWooPP_proto_rawDescOnce sync.Once
+	file_polygonWooPP_proto_rawDescData = file_polygonWooPP_proto_rawDesc
 )
 
-func file_polygonWOOPP_proto_rawDescGZIP() []byte {
-	file_polygonWOOPP_proto_rawDescOnce.Do(func() {
-		file_polygonWOOPP_proto_rawDescData = protoimpl.X.CompressGZIP(file_polygonWOOPP_proto_rawDescData)
+func file_polygonWooPP_proto_rawDescGZIP() []byte {
+	file_polygonWooPP_proto_rawDescOnce.Do(func() {
+		file_polygonWooPP_proto_rawDescData = protoimpl.X.CompressGZIP(file_polygonWooPP_proto_rawDescData)
 	})
-	return file_polygonWOOPP_proto_rawDescData
+	return file_polygonWooPP_proto_rawDescData
 }
 
-var file_polygonWOOPP_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
-var file_polygonWOOPP_proto_goTypes = []interface{}{
-	(*RewardManagerUpdated)(nil),      // 0: polygonWOOPP.RewardManagerUpdated
-	(*FeeManagerUpdated)(nil),         // 1: polygonWOOPP.FeeManagerUpdated
-	(*Unpaused)(nil),                  // 2: polygonWOOPP.Unpaused
-	(*Withdraw)(nil),                  // 3: polygonWOOPP.Withdraw
-	(*OwnershipTransferPrepared)(nil), // 4: polygonWOOPP.OwnershipTransferPrepared
-	(*ParametersUpdated)(nil),         // 5: polygonWOOPP.ParametersUpdated
-	(*OwnershipTransferred)(nil),      // 6: polygonWOOPP.OwnershipTransferred
-	(*WooSwap)(nil),                   // 7: polygonWOOPP.WooSwap
-	(*StrategistUpdated)(nil),         // 8: polygonWOOPP.StrategistUpdated
-	(*WooGuardianUpdated)(nil),        // 9: polygonWOOPP.WooGuardianUpdated
-	(*WooracleUpdated)(nil),           // 10: polygonWOOPP.WooracleUpdated
-	(*Paused)(nil),                    // 11: polygonWOOPP.Paused
+var file_polygonWooPP_proto_msgTypes = make([]protoimpl.MessageInfo, 12)
+var file_polygonWooPP_proto_goTypes = []interface{}{
+	(*RewardManagerUpdated)(nil),      // 0: polygonWooPP.RewardManagerUpdated
+	(*FeeManagerUpdated)(nil),         // 1: polygonWooPP.FeeManagerUpdated
+	(*Unpaused)(nil),                  // 2: polygonWooPP.Unpaused
+	(*Withdraw)(nil),                  // 3: polygonWooPP.Withdraw
+	(*OwnershipTransferPrepared)(nil), // 4: polygonWooPP.OwnershipTransferPrepared
+	(*ParametersUpdated)(nil),         // 5: polygonWooPP.ParametersUpdated
+	(*OwnershipTransferred)(nil),      // 6: polygonWooPP.OwnershipTransferred
+	(*WooSwap)(nil),                   // 7: polygonWooPP.WooSwap
+	(*StrategistUpdated)(nil),         // 8: polygonWooPP.StrategistUpdated
+	(*WooGuardianUpdated)(nil),        // 9: polygonWooPP.WooGuardianUpdated
+	(*WooracleUpdated)(nil),           // 10: polygonWooPP.WooracleUpdated
+	(*Paused)(nil),                    // 11: polygonWooPP.Paused
 	(*timestamppb.Timestamp)(nil),     // 12: google.protobuf.Timestamp
 }
-var file_polygonWOOPP_proto_depIdxs = []int32{
-	12, // 0: polygonWOOPP.RewardManagerUpdated.ts:type_name -> google.protobuf.Timestamp
-	12, // 1: polygonWOOPP.FeeManagerUpdated.ts:type_name -> google.protobuf.Timestamp
-	12, // 2: polygonWOOPP.Unpaused.ts:type_name -> google.protobuf.Timestamp
-	12, // 3: polygonWOOPP.Withdraw.ts:type_name -> google.protobuf.Timestamp
-	12, // 4: polygonWOOPP.OwnershipTransferPrepared.ts:type_name -> google.protobuf.Timestamp
-	12, // 5: polygonWOOPP.ParametersUpdated.ts:type_name -> google.protobuf.Timestamp
-	12, // 6: polygonWOOPP.OwnershipTransferred.ts:type_name -> google.protobuf.Timestamp
-	12, // 7: polygonWOOPP.WooSwap.ts:type_name -> google.protobuf.Timestamp
-	12, // 8: polygonWOOPP.StrategistUpdated.ts:type_name -> google.protobuf.Timestamp
-	12, // 9: polygonWOOPP.WooGuardianUpdated.ts:type_name -> google.protobuf.Timestamp
-	12, // 10: polygonWOOPP.WooracleUpdated.ts:type_name -> google.protobuf.Timestamp
-	12, // 11: polygonWOOPP.Paused.ts:type_name -> google.protobuf.Timestamp
+var file_polygonWooPP_proto_depIdxs = []int32{
+	12, // 0: polygonWooPP.RewardManagerUpdated.ts:type_name -> google.protobuf.Timestamp
+	12, // 1: polygonWooPP.FeeManagerUpdated.ts:type_name -> google.protobuf.Timestamp
+	12, // 2: polygonWooPP.Unpaused.ts:type_name -> google.protobuf.Timestamp
+	12, // 3: polygonWooPP.Withdraw.ts:type_name -> google.protobuf.Timestamp
+	12, // 4: polygonWooPP.OwnershipTransferPrepared.ts:type_name -> google.protobuf.Timestamp
+	12, // 5: polygonWooPP.ParametersUpdated.ts:type_name -> google.protobuf.Timestamp
+	12, // 6: polygonWooPP.OwnershipTransferred.ts:type_name -> google.protobuf.Timestamp
+	12, // 7: polygonWooPP.WooSwap.ts:type_name -> google.protobuf.Timestamp
+	12, // 8: polygonWooPP.StrategistUpdated.ts:type_name -> google.protobuf.Timestamp
+	12, // 9: polygonWooPP.WooGuardianUpdated.ts:type_name -> google.protobuf.Timestamp
+	12, // 10: polygonWooPP.WooracleUpdated.ts:type_name -> google.protobuf.Timestamp
+	12, // 11: polygonWooPP.Paused.ts:type_name -> google.protobuf.Timestamp
 	12, // [12:12] is the sub-list for method output_type
 	12, // [12:12] is the sub-list for method input_type
 	12, // [12:12] is the sub-list for extension type_name
@@ -1291,13 +1291,13 @@ var file_polygonWOOPP_proto_depIdxs = []int32{
 	0,  // [0:12] is the sub-list for field type_name
 }
 
-func init() { file_polygonWOOPP_proto_init() }
-func file_polygonWOOPP_proto_init() {
-	if File_polygonWOOPP_proto != nil {
+func init() { file_polygonWooPP_proto_init() }
+func file_polygonWooPP_proto_init() {
+	if File_polygonWooPP_proto != nil {
 		return
 	}
 	if !protoimpl.UnsafeEnabled {
-		file_polygonWOOPP_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[0].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*RewardManagerUpdated); i {
 			case 0:
 				return &v.state
@@ -1309,7 +1309,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[1].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*FeeManagerUpdated); i {
 			case 0:
 				return &v.state
@@ -1321,7 +1321,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[2].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Unpaused); i {
 			case 0:
 				return &v.state
@@ -1333,7 +1333,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[3].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Withdraw); i {
 			case 0:
 				return &v.state
@@ -1345,7 +1345,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[4].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*OwnershipTransferPrepared); i {
 			case 0:
 				return &v.state
@@ -1357,7 +1357,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[5].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*ParametersUpdated); i {
 			case 0:
 				return &v.state
@@ -1369,7 +1369,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[6].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*OwnershipTransferred); i {
 			case 0:
 				return &v.state
@@ -1381,7 +1381,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[7].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*WooSwap); i {
 			case 0:
 				return &v.state
@@ -1393,7 +1393,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[8].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*StrategistUpdated); i {
 			case 0:
 				return &v.state
@@ -1405,7 +1405,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[9].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*WooGuardianUpdated); i {
 			case 0:
 				return &v.state
@@ -1417,7 +1417,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[10].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*WooracleUpdated); i {
 			case 0:
 				return &v.state
@@ -1429,7 +1429,7 @@ func file_polygonWOOPP_proto_init() {
 				return nil
 			}
 		}
-		file_polygonWOOPP_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
+		file_polygonWooPP_proto_msgTypes[11].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*Paused); i {
 			case 0:
 				return &v.state
@@ -1446,18 +1446,18 @@ func file_polygonWOOPP_proto_init() {
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_polygonWOOPP_proto_rawDesc,
+			RawDescriptor: file_polygonWooPP_proto_rawDesc,
 			NumEnums:      0,
 			NumMessages:   12,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
-		GoTypes:           file_polygonWOOPP_proto_goTypes,
-		DependencyIndexes: file_polygonWOOPP_proto_depIdxs,
-		MessageInfos:      file_polygonWOOPP_proto_msgTypes,
+		GoTypes:           file_polygonWooPP_proto_goTypes,
+		DependencyIndexes: file_polygonWooPP_proto_depIdxs,
+		MessageInfos:      file_polygonWooPP_proto_msgTypes,
 	}.Build()
-	File_polygonWOOPP_proto = out.File
-	file_polygonWOOPP_proto_rawDesc = nil
-	file_polygonWOOPP_proto_goTypes = nil
-	file_polygonWOOPP_proto_depIdxs = nil
+	File_polygonWooPP_proto = out.File
+	file_polygonWooPP_proto_rawDesc = nil
+	file_polygonWooPP_proto_goTypes = nil
+	file_polygonWooPP_proto_depIdxs = nil
 }
