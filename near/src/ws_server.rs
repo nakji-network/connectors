@@ -5,22 +5,22 @@ use crossbeam_channel::Receiver;
 use prost::Message;
 use ws::listen;
 
-use crate::near_proto::{Block, Transaction, Receipt, ExecutionOutcome};
+use crate::near_proto::{Block, ExecutionOutcome, Receipt, Transaction};
 
 pub struct NearWsServer {
     pub listen_addr: String,
     pub block_rx: Receiver<Block>,
     pub tx_rx: Receiver<Transaction>,
-    //pub receipt_rx: Receiver<Receipt>,
-    //pub outcome_rx: Receiver<ExecutionOutcome>,
+    pub receipt_rx: Receiver<Receipt>,
+    pub outcome_rx: Receiver<ExecutionOutcome>,
 }
 
 pub struct WsRouter {
     pub listen_addr: String,
     pub block_rx: Receiver<Block>,
     pub tx_rx: Receiver<Transaction>,
-    //pub receipt_rx: Receiver<Receipt>,
-    //pub outcome_rx: Receiver<ExecutionOutcome>,
+    pub receipt_rx: Receiver<Receipt>,
+    pub outcome_rx: Receiver<ExecutionOutcome>,
     sender: ws::Sender,
     inner: Box<dyn ws::Handler>,
 }
@@ -47,7 +47,7 @@ impl ws::Handler for WsRouter {
                 })
             }
 
-            /* // Route to a data handler
+            // Route to a data handler
             "/receipt" => {
                 self.inner = Box::new(NearWsEndpoint::<Receipt> {
                     ws: out,
@@ -61,7 +61,7 @@ impl ws::Handler for WsRouter {
                     ws: out,
                     rx: self.outcome_rx.clone(),
                 })
-            } */
+            }
 
             // Use the default child handler, NotFound
             _ => (),
@@ -96,7 +96,7 @@ impl ws::Handler for WsRouter {
 
 struct NearWsEndpoint<T: Message> {
     ws: ws::Sender,
-    rx: Receiver<T>
+    rx: Receiver<T>,
 }
 
 impl<T: Message + 'static> ws::Handler for NearWsEndpoint<T> {
@@ -110,12 +110,15 @@ impl<T: Message + 'static> ws::Handler for NearWsEndpoint<T> {
                     let mut buf = Vec::new();
                     buf.reserve(msg.encoded_len());
 
-                    msg.encode(&mut buf).expect("Unable to serialize proto message");
-                    
-                    ws.send(buf).expect("Unable to broadcast message to websockets.");
+                    msg.encode(&mut buf)
+                        .expect("Unable to serialize proto message");
+
+                    ws.send(buf)
+                        .expect("Unable to broadcast message to websockets.");
                 }
                 Err(_) => {
                     println!("Source channel closed. Terminating.");
+                    ws.close(ws::CloseCode::Normal).expect("Unable to close client ws connection");
                     break;
                 }
             }
@@ -140,16 +143,15 @@ impl ws::Handler for NotFound {
 impl NearWsServer {
     pub fn start(&self) {
         // Begin NEAR Stream over ws on connection
-        listen(self.listen_addr.clone(), |out| {
-            WsRouter {
-                sender: out,
-                inner: Box::new(NotFound),
-                listen_addr: self.listen_addr.clone(),
-                block_rx: self.block_rx.clone(),
-                tx_rx: self.tx_rx.clone(),
-                //receipt_rx: self.receipt_rx.clone(),
-                //outcome_rx: self.outcome_rx.clone()
-            }
-        }).expect("Unable to start ws server.");
+        listen(self.listen_addr.clone(), |out| WsRouter {
+            sender: out,
+            inner: Box::new(NotFound),
+            listen_addr: self.listen_addr.clone(),
+            block_rx: self.block_rx.clone(),
+            tx_rx: self.tx_rx.clone(),
+            receipt_rx: self.receipt_rx.clone(),
+            outcome_rx: self.outcome_rx.clone(),
+        })
+        .expect("Unable to start ws server.");
     }
 }
