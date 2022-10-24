@@ -3,10 +3,7 @@ use futures::StreamExt;
 use near_lake_framework::{
     near_indexer_primitives::StreamerMessage, LakeConfig, LakeConfigBuilder,
 };
-use std::{
-    fs::{self, read_to_string, File},
-    io::Write,
-};
+use std::fs::read_to_string;
 
 #[tokio::main]
 pub async fn start_lake_stream(
@@ -57,50 +54,30 @@ fn lake_config(from_block: u64, block_pool_size: usize) -> LakeConfig {
     // Begin by checking config volume for credentials
     let yaml_string = read_to_string("/etc/nakji/config.yaml").ok();
 
-    // If credentials are in config directory, we move them to where aws expects them to be
-    if yaml_string.is_some() {
-        let yaml = yaml_rust::YamlLoader::load_from_str(&yaml_string.unwrap())
-            .expect("Found config file at /etc/nakji/config.yaml, but unable to parse it");
-        // Multi-document support. We are only reading 1
-        let doc = &yaml[0];
-        // Read AWS ID and Secret
-        let aws_id = doc["aws"]["id"].as_str().unwrap();
-        let aws_secret = doc["aws"]["secret"].as_str().unwrap();
+    
+    let yaml = yaml_rust::YamlLoader::load_from_str(&yaml_string.unwrap())
+        .expect("Found config file, but unable to parse it");
+    // Multi-document support. We are only reading 1
+    let doc = &yaml[0];
+    // Read AWS ID and Secret
+    let aws_id = doc["aws"]["id"].as_str().unwrap();
+    let aws_secret = doc["aws"]["secret"].as_str().unwrap();
 
-        // Create str representation of credentials file
-        let mut credential_str = "[default]\naws_access_key_id=".to_string();
-        credential_str.push_str(aws_id);
-        credential_str.push_str("\naws_secret_access_key=");
-        credential_str.push_str(aws_secret);
-
-        // Find home dir
-        let home_dir = home::home_dir()
-            .expect("Unable to find home dir")
-            .to_str()
-            .expect("Unable to get home dir string")
-            .to_string();
-
-        // Add aws directory to directory path
-        let mut aws_dir = home_dir.clone();
-        aws_dir.push_str("/.aws");
-
-        let result = fs::create_dir(aws_dir.clone());
-        
-        // If directory was successfully created
-        if result.is_ok() {
-            // Add credentials file to directory path
-            let mut credentials_dir = aws_dir.clone();
-            credentials_dir.push_str(&"/credentials".to_string());
-
-            // Write to file
-            let mut file = File::create(credentials_dir).expect("Unable to create credentials file");
-            file.write_all(credential_str.as_bytes())
-                .expect("Unable to write credentials to file");
-        }
-    } 
+    let credentials = aws_types::Credentials::new(
+        aws_id,
+        aws_secret,
+        None,
+        None,
+        "custom_credentials",
+    );
+    let s3_config = aws_sdk_s3::Config::builder()
+        .credentials_provider(credentials)
+        .region(aws_types::region::Region::new("eu-central-1"))
+        .build();
     
     // Build and return lake config
     LakeConfigBuilder::default()
+        .s3_config(s3_config)
         .mainnet()
         .start_block_height(from_block)
         .blocks_preload_pool_size(block_pool_size)
