@@ -1,7 +1,7 @@
 use std::thread;
 
 use crossbeam_channel::{Receiver, Sender, unbounded};
-use near_lake_framework::near_indexer_primitives::{StreamerMessage, views::BlockView, IndexerShard};
+use near_lake_framework::near_indexer_primitives::StreamerMessage;
 use prost::Message;
 
 /*

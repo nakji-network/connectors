@@ -2,7 +2,7 @@ use std::time::Duration;
 
 use crate::near_proto::{
     block::{block_header::SlashedValidator, BlockHeader, Chunk, ValidatorStake},
-    Block
+    Block,
 };
 use crossbeam_channel::Sender;
 use near_lake_framework::near_indexer_primitives::{
@@ -43,12 +43,12 @@ impl From<&BlockView> for Block {
             seconds: ts_duration.as_secs() as i64,
             nanos: ts_duration.subsec_nanos() as i32,
         };
-        
+
         Self {
             author: author.to_string(),
             header: Some(BlockHeader::from(header)),
             chunks: chunks_proto,
-            ts: Some(ts)
+            ts: Some(ts),
         }
     }
 }
@@ -90,8 +90,6 @@ impl From<&BlockHeaderView> for BlockHeader {
             latest_protocol_version,
         }: &BlockHeaderView,
     ) -> Self {
-        
-
         // Get vector of String representation of approval hashes
         let mut approvals_str = Vec::<String>::new();
         for approval in approvals {

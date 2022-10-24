@@ -1,15 +1,15 @@
 use std::{process, thread};
 
 use clap::{Parser, Subcommand};
-use crossbeam_channel::unbounded;
+use crossbeam_channel::{bounded, Sender};
 use nakji_near_client::{
     lake_stream,
-    near_proto::{Block, Transaction},
+    near_proto::{Block, ExecutionOutcome, Receipt, Transaction},
     types::handle::NearHandler,
     ws_server,
 };
 use near_jsonrpc_client::{methods, JsonRpcClient};
-use near_primitives::types::{BlockReference, Finality};
+use near_primitives_rpc::types::{BlockReference, Finality};
 use ws_server::NearWsServer;
 
 // Arg parsing
@@ -39,6 +39,7 @@ impl Opts {
 const RPC_URL: &str = "https://rpc.mainnet.near.org";
 const BUFFER_SIZE: usize = 2;
 const BLOCK_POOL_SIZE: usize = 500;
+const CHANNEL_SIZE: usize = 10000;
 
 fn main() {
     let opts = Opts::parse();
@@ -50,7 +51,7 @@ fn main() {
 
     // lake_stream_send: Sender that NEAR Lake stream will write to
     // lake_stream_rx: Receiver for StreamerMessages from NEAR Lake
-    let (lake_stream_send, lake_stream_rx) = unbounded();
+    let (lake_stream_send, lake_stream_rx) = bounded(CHANNEL_SIZE);
 
     // Create a vector of join handles
     // If the join handles are not held, the threads will detach, causing a resource leak
@@ -68,13 +69,33 @@ fn main() {
     }));
 
     // Create senders and receivers for NEAR Handlers
-    let (block_send, block_rx) = unbounded();
+    let (block_send, block_rx) = bounded(CHANNEL_SIZE);
     let block_handler = NearHandler::<Block>::new_handler(block_rx);
     join_handles.push(block_handler.start());
 
-    let (tx_send, tx_rx) = unbounded();
+    let (tx_send, tx_rx) = bounded(CHANNEL_SIZE);
     let tx_handler = NearHandler::<Transaction>::new_handler(tx_rx);
     join_handles.push(tx_handler.start());
+
+    let (receipt_send, receipt_rx) = bounded(CHANNEL_SIZE);
+    let receipt_handler = NearHandler::<Receipt>::new_handler(receipt_rx);
+    join_handles.push(receipt_handler.start());
+
+    let (outcome_send, outcome_rx) = bounded(CHANNEL_SIZE);
+    let outcome_handler = NearHandler::<ExecutionOutcome>::new_handler(outcome_rx);
+    join_handles.push(outcome_handler.start());
+
+    // Create a vector of handlers that Lake stream messages will be sent to
+    let mut handler_senders = Vec::<Sender<Vec<u8>>>::new();
+
+    // Add handlers for events we will be broadcasting
+    handler_senders.push(block_send);
+    handler_senders.push(tx_send);
+    // Do not send to receipt and outcome channels if we are backfilling
+    if !(num_blocks > 0) {
+        handler_senders.push(receipt_send);
+        handler_senders.push(outcome_send);
+    }
 
     // ws config
     let mut ws_host = "127.0.0.1:".to_string();
@@ -85,6 +106,8 @@ fn main() {
         listen_addr: ws_host.clone(),
         block_rx: block_handler.rx.clone(),
         tx_rx: tx_handler.rx.clone(),
+        receipt_rx: receipt_handler.rx.clone(),
+        outcome_rx: outcome_handler.rx.clone(),
     };
     join_handles.push(thread::spawn(move || server.start()));
 
@@ -98,12 +121,11 @@ fn main() {
                     .expect("Unable to serialize message from lake stream");
 
                 // Send cloned messages to handlers to be parsed
-                block_send
-                    .send(msg_json.clone())
-                    .expect("Unable to send message from Lake Stream to Block handler");
-                tx_send
-                    .send(msg_json.clone())
-                    .expect("Unable to send message from Lake Stream to Transaction handler");
+                for sender in &handler_senders {
+                    sender
+                        .send(msg_json.clone())
+                        .expect("Unable to send message from Lake Stream to handler");
+                }
             }
             Err(_) => {
                 println!("Near Lake Framework Stream closed. Terminating.");
