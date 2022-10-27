@@ -7,11 +7,13 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/woofi"
+	"github.com/nakji-network/connectors/woofi/WooCrossChainRouterV1"
 	"github.com/nakji-network/connectors/woofi/WooPP"
 	"github.com/nakji-network/connectors/woofi/WooPPV1"
 	"github.com/nakji-network/connectors/woofi/WooPPV2"
 	"github.com/nakji-network/connectors/woofi/WooRouterV1"
 	"github.com/nakji-network/connectors/woofi/WooRouterV2"
+	"github.com/nakji-network/connectors/woofi/WooRouterV3"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -88,6 +90,14 @@ func main() {
 		&WooRouterV2.OwnershipTransferred{},
 		&WooRouterV2.WooPoolChanged{},
 		&WooRouterV2.WooRouterSwap{},
+
+		&WooRouterV3.OwnershipTransferred{},
+		&WooRouterV3.WooPoolChanged{},
+		&WooRouterV3.WooRouterSwap{},
+
+		&WooCrossChainRouterV1.WooCrossSwapOnSrcChain{},
+		&WooCrossChainRouterV1.WooCrossSwapOnDstChain{},
+		&WooCrossChainRouterV1.OwnershipTransferred{},
 	)
 
 	conf := &woofi.Config{
