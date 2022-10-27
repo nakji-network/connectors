@@ -14,10 +14,10 @@ import (
 )
 
 type Config struct {
-	ConnectorName string
-	NetworkName   string
-	FromBlock     uint64
-	NumBlocks     uint64
+	NetworkName       string
+	ContractAddresses map[string]string
+	FromBlock         uint64
+	NumBlocks         uint64
 }
 
 type Connector struct {
@@ -35,12 +35,10 @@ func New(c *connector.Connector, config *Config) *Connector {
 }
 
 func (c *Connector) Start() {
-	addresses := GetAddresses(ContractAddresses)
-	c.contracts = GetContracts(ContractAddresses)
+	addresses := GetAddresses(c.ContractAddresses)
+	c.contracts = GetContracts(c.ContractAddresses)
 
-	ctx := context.Background()
-
-	if sub, err := connector.NewSubscription(ctx, c.Connector, c.NetworkName, addresses, c.FromBlock, c.NumBlocks); err == nil {
+	if sub, err := connector.NewSubscription(context.Background(), c.Connector, c.NetworkName, addresses, c.FromBlock, c.NumBlocks); err == nil {
 		c.sub = sub
 	} else {
 		log.Fatal().Err(err).Msg(fmt.Sprintf("%s connection error", c.NetworkName))
@@ -59,6 +57,7 @@ func (c *Connector) Start() {
 
 		//	Listen to event logs
 		case vLog := <-c.sub.Logs():
+			log.Info().Interface("vLog", vLog).Msg("")
 			if msg := c.parse(vLog); msg != nil {
 				c.EventSink <- msg
 			}

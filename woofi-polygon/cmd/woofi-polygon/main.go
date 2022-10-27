@@ -41,9 +41,9 @@ func main() {
 		&WOOPP.WooSwap{})
 
 	conf := &woofi.Config{
-		NetworkName: "bsc",
+		NetworkName: "polygon",
 		ContractAddresses: map[string]string{
-			"WOOPP": "0xbf365Ce9cFcb2d5855521985E351bA3bcf77FD3F",
+			"WOOPP": "0x7400B665C8f4f3a951a99f1ee9872efb8778723d",
 		},
 		FromBlock: c.Config.GetUint64("from-block"),
 		NumBlocks: c.Config.GetUint64("num-blocks"),
