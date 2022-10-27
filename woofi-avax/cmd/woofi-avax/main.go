@@ -91,10 +91,10 @@ func main() {
 	)
 
 	conf := &woofi.Config{
-		NetworkName: "polygon",
+		NetworkName: "avalanche",
 		ContractAddresses: map[string]string{
-			"WooPP":       "0x7400B665C8f4f3a951a99f1ee9872efb8778723d",
-			"WooRouterV2": "0x9d1a92e601db0901e69bd810029f2c14bcca3128",
+			"WooPP":       "0x1df3009c57a8B143c6246149F00B090Bce3b8f88",
+			"WooRouterV2": "0x5AA6a4E96A9129562e2fc06660D07FEdDAAf7854",
 		},
 		FromBlock: c.Config.GetUint64("from-block"),
 		NumBlocks: c.Config.GetUint64("num-blocks"),

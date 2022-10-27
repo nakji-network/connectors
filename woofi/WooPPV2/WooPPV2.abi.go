@@ -62,7 +62,7 @@ type WooPPV2Filterer struct {
 // WooPPV2Session is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
 type WooPPV2Session struct {
-	Contract     *WooPPV2       // Generic contract binding to set the session for
+	Contract     *WooPPV2          // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
@@ -71,14 +71,14 @@ type WooPPV2Session struct {
 // with pre-set call options.
 type WooPPV2CallerSession struct {
 	Contract *WooPPV2Caller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts     // Call options to use throughout this session
+	CallOpts bind.CallOpts  // Call options to use throughout this session
 }
 
 // WooPPV2TransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
 type WooPPV2TransactorSession struct {
 	Contract     *WooPPV2Transactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts     // Transaction auth options to use throughout this session
+	TransactOpts bind.TransactOpts  // Transaction auth options to use throughout this session
 }
 
 // WooPPV2Raw is an auto generated low-level Go binding around an Ethereum contract.

@@ -62,7 +62,7 @@ type WooRouterV1Filterer struct {
 // WooRouterV1Session is an auto generated Go binding around an Ethereum contract,
 // with pre-set call and transact options.
 type WooRouterV1Session struct {
-	Contract     *WooRouterV1   // Generic contract binding to set the session for
+	Contract     *WooRouterV1      // Generic contract binding to set the session for
 	CallOpts     bind.CallOpts     // Call options to use throughout this session
 	TransactOpts bind.TransactOpts // Transaction auth options to use throughout this session
 }
@@ -71,14 +71,14 @@ type WooRouterV1Session struct {
 // with pre-set call options.
 type WooRouterV1CallerSession struct {
 	Contract *WooRouterV1Caller // Generic contract caller binding to set the session for
-	CallOpts bind.CallOpts         // Call options to use throughout this session
+	CallOpts bind.CallOpts      // Call options to use throughout this session
 }
 
 // WooRouterV1TransactorSession is an auto generated write-only Go binding around an Ethereum contract,
 // with pre-set transact options.
 type WooRouterV1TransactorSession struct {
 	Contract     *WooRouterV1Transactor // Generic contract transactor binding to set the session for
-	TransactOpts bind.TransactOpts         // Transaction auth options to use throughout this session
+	TransactOpts bind.TransactOpts      // Transaction auth options to use throughout this session
 }
 
 // WooRouterV1Raw is an auto generated low-level Go binding around an Ethereum contract.
