@@ -153,7 +153,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 			ToToken:     e.ToToken.Bytes(),
 			FromAmount:  e.FromAmount.Bytes(),
 			ToAmount:    e.ToAmount.Bytes(),
-			From:        e.FromToken.Bytes(),
+			From:        e.From.Bytes(),
 			To:          e.To.Bytes(),
 		}
 	case "OwnershipTransferred":
