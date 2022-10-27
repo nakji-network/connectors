@@ -1,68 +1,42 @@
 package WooPP
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/nakji-network/connector/common"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/rs/zerolog/log"
-	"google.golang.org/protobuf/proto"
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-type SmartContract struct {
-	network string
-	address string
-	abi     abi.ABI
-}
+type SmartContract struct{}
 
-func NewContract(network string, address string) (*SmartContract, error) {
-	contractAbi, err := abi.JSON(strings.NewReader(BscWooPPABI))
-	if err != nil {
-		return nil, fmt.Errorf("error reading BscWooPPABI: %s", err)
-	}
-	return &SmartContract{network: network, address: address, abi: contractAbi}, nil
-}
-
-func (sc *SmartContract) Network() string {
-	return sc.network
-}
-
-func (sc *SmartContract) Address() string {
-	return sc.address
-}
-
-func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto.Message {
-	ev, err := sc.abi.EventByID(vLog.Topics[0])
-	if err != nil {
-		log.Warn().Err(err).Msg("EventByID error, skipping")
-		return nil
-	}
-	switch ev.Name {
+func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog types.Log, timestamp *timestamppb.Timestamp) protoreflect.ProtoMessage {
+	switch eventName {
 	case "Paused":
-		e := new(BscWooPPPaused)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPPaused)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &Paused{
-			Ts:          ts,
+			Ts:          timestamp,
 			BlockNumber: vLog.BlockNumber,
 			Index:       uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			Account:     e.Account.Bytes(),
 		}
 	case "OwnershipTransferred":
-		e := new(BscWooPPOwnershipTransferred)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPOwnershipTransferred)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &OwnershipTransferred{
-			Ts:            ts,
+			Ts:            timestamp,
 			BlockNumber:   vLog.BlockNumber,
 			Index:         uint64(vLog.Index),
 			TxHash:        vLog.TxHash.Bytes(),
@@ -70,13 +44,14 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			NewOwner:      e.NewOwner.Bytes(),
 		}
 	case "ParametersUpdated":
-		e := new(BscWooPPParametersUpdated)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPParametersUpdated)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &ParametersUpdated{
-			Ts:           ts,
+			Ts:           timestamp,
 			BlockNumber:  vLog.BlockNumber,
 			Index:        uint64(vLog.Index),
 			TxHash:       vLog.TxHash.Bytes(),
@@ -85,65 +60,70 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			NewR:         e.NewR.Bytes(),
 		}
 	case "FeeManagerUpdated":
-		e := new(BscWooPPFeeManagerUpdated)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPFeeManagerUpdated)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &FeeManagerUpdated{
-			Ts:            ts,
+			Ts:            timestamp,
 			BlockNumber:   vLog.BlockNumber,
 			Index:         uint64(vLog.Index),
 			TxHash:        vLog.TxHash.Bytes(),
 			NewFeeManager: e.NewFeeManager.Bytes(),
 		}
 	case "RewardManagerUpdated":
-		e := new(BscWooPPRewardManagerUpdated)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPRewardManagerUpdated)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &RewardManagerUpdated{
-			Ts:               ts,
+			Ts:               timestamp,
 			BlockNumber:      vLog.BlockNumber,
 			Index:            uint64(vLog.Index),
 			TxHash:           vLog.TxHash.Bytes(),
 			NewRewardManager: e.NewRewardManager.Bytes(),
 		}
 	case "Unpaused":
-		e := new(BscWooPPUnpaused)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPUnpaused)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &Unpaused{
-			Ts:          ts,
+			Ts:          timestamp,
 			BlockNumber: vLog.BlockNumber,
 			Index:       uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			Account:     e.Account.Bytes(),
 		}
 	case "WooGuardianUpdated":
-		e := new(BscWooPPWooGuardianUpdated)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPWooGuardianUpdated)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &WooGuardianUpdated{
-			Ts:             ts,
+			Ts:             timestamp,
 			BlockNumber:    vLog.BlockNumber,
 			Index:          uint64(vLog.Index),
 			TxHash:         vLog.TxHash.Bytes(),
 			NewWooGuardian: e.NewWooGuardian.Bytes(),
 		}
 	case "WooSwap":
-		e := new(BscWooPPWooSwap)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPWooSwap)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &WooSwap{
-			Ts:          ts,
+			Ts:          timestamp,
 			BlockNumber: vLog.BlockNumber,
 			Index:       uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
@@ -156,13 +136,14 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			RebateTo:    e.RebateTo.Bytes(),
 		}
 	case "OwnershipTransferPrepared":
-		e := new(BscWooPPOwnershipTransferPrepared)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPOwnershipTransferPrepared)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &OwnershipTransferPrepared{
-			Ts:            ts,
+			Ts:            timestamp,
 			BlockNumber:   vLog.BlockNumber,
 			Index:         uint64(vLog.Index),
 			TxHash:        vLog.TxHash.Bytes(),
@@ -170,26 +151,28 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			NewOwner:      e.NewOwner.Bytes(),
 		}
 	case "WooracleUpdated":
-		e := new(BscWooPPWooracleUpdated)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPWooracleUpdated)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &WooracleUpdated{
-			Ts:          ts,
+			Ts:          timestamp,
 			BlockNumber: vLog.BlockNumber,
 			Index:       uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
 			NewWooracle: e.NewWooracle.Bytes(),
 		}
 	case "StrategistUpdated":
-		e := new(BscWooPPStrategistUpdated)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPStrategistUpdated)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &StrategistUpdated{
-			Ts:          ts,
+			Ts:          timestamp,
 			BlockNumber: vLog.BlockNumber,
 			Index:       uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
@@ -197,13 +180,14 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			Flag:        e.Flag,
 		}
 	case "Withdraw":
-		e := new(BscWooPPWithdraw)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooPPWithdraw)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
+
 		return &Withdraw{
-			Ts:          ts,
+			Ts:          timestamp,
 			BlockNumber: vLog.BlockNumber,
 			Index:       uint64(vLog.Index),
 			TxHash:      vLog.TxHash.Bytes(),
@@ -211,8 +195,6 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			To:          e.To.Bytes(),
 			Amount:      e.Amount.Bytes(),
 		}
-	default:
-		log.Error().Msgf("invalid event: %s", ev.Name)
-		return nil
 	}
+	return nil
 }

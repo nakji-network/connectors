@@ -1,50 +1,22 @@
 package WooRouterV1
 
 import (
-	"fmt"
-	"strings"
-
 	"github.com/nakji-network/connector/common"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/rs/zerolog/log"
-	"google.golang.org/protobuf/proto"
+	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-type SmartContract struct {
-	network string
-	address string
-	abi     abi.ABI
-}
+type SmartContract struct{}
 
-func NewContract(network string, address string) (*SmartContract, error) {
-	contractAbi, err := abi.JSON(strings.NewReader(BscWooRouterV1ABI))
-	if err != nil {
-		return nil, fmt.Errorf("error reading BscWooRouterV1ABI: %s", err)
-	}
-	return &SmartContract{network: network, address: address, abi: contractAbi}, nil
-}
-
-func (sc *SmartContract) Network() string {
-	return sc.network
-}
-
-func (sc *SmartContract) Address() string {
-	return sc.address
-}
-
-func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto.Message {
-	ev, err := sc.abi.EventByID(vLog.Topics[0])
-	if err != nil {
-		log.Warn().Err(err).Msg("EventByID error, skipping")
-		return nil
-	}
-	switch ev.Name {
+func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog types.Log, ts *timestamppb.Timestamp) protoreflect.ProtoMessage {
+	switch eventName {
 	case "OwnershipTransferred":
-		e := new(BscWooRouterV1OwnershipTransferred)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooRouterV1OwnershipTransferred)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -57,8 +29,8 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			NewOwner:      e.NewOwner.Bytes(),
 		}
 	case "WooPoolChanged":
-		e := new(BscWooRouterV1WooPoolChanged)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooRouterV1WooPoolChanged)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -70,8 +42,8 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			NewPool:     e.NewPool.Bytes(),
 		}
 	case "WooRouterSwap":
-		e := new(BscWooRouterV1WooRouterSwap)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		e := new(WooRouterV1WooRouterSwap)
+		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -89,7 +61,7 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			To:          e.To.Bytes(),
 		}
 	default:
-		log.Error().Msgf("invalid event: %s", ev.Name)
+		log.Error().Msgf("invalid event: %s", eventName)
 		return nil
 	}
 }

@@ -6,7 +6,7 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/common"
-	"github.com/nakji-network/connectors/woofi/WOOPP"
+	"github.com/nakji-network/connectors/woofi/WooPP"
 
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/rs/zerolog/log"
@@ -94,8 +94,8 @@ func (c *Connector) parse(vLog types.Log) protoreflect.ProtoMessage {
 
 func getContract(contractType string) ISmartContract {
 	switch contractType {
-	case "WOOPP":
-		return &WOOPP.SmartContract{}
+	case "WooPP":
+		return &WooPP.SmartContract{}
 	}
 
 	return nil

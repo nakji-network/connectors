@@ -7,7 +7,7 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/woofi"
-	"github.com/nakji-network/connectors/woofi/WOOPP"
+	"github.com/nakji-network/connectors/woofi/WooPP"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -27,18 +27,18 @@ func main() {
 	}
 
 	c.RegisterProtos(
-		&WOOPP.FeeManagerUpdated{},
-		&WOOPP.OwnershipTransferPrepared{},
-		&WOOPP.OwnershipTransferred{},
-		&WOOPP.ParametersUpdated{},
-		&WOOPP.Paused{},
-		&WOOPP.RewardManagerUpdated{},
-		&WOOPP.StrategistUpdated{},
-		&WOOPP.Unpaused{},
-		&WOOPP.Withdraw{},
-		&WOOPP.WooGuardianUpdated{},
-		&WOOPP.WooracleUpdated{},
-		&WOOPP.WooSwap{})
+		&WooPP.FeeManagerUpdated{},
+		&WooPP.OwnershipTransferPrepared{},
+		&WooPP.OwnershipTransferred{},
+		&WooPP.ParametersUpdated{},
+		&WooPP.Paused{},
+		&WooPP.RewardManagerUpdated{},
+		&WooPP.StrategistUpdated{},
+		&WooPP.Unpaused{},
+		&WooPP.Withdraw{},
+		&WooPP.WooGuardianUpdated{},
+		&WooPP.WooracleUpdated{},
+		&WooPP.WooSwap{})
 
 	conf := &woofi.Config{
 		NetworkName: "polygon",
