@@ -57,7 +57,6 @@ func (c *Connector) Start() {
 
 		//	Listen to event logs
 		case vLog := <-c.sub.Logs():
-			log.Info().Interface("vLog", vLog).Msg("")
 			if msg := c.parse(vLog); msg != nil {
 				c.EventSink <- msg
 			}
