@@ -7,13 +7,6 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/woofi"
-	"github.com/nakji-network/connectors/woofi/WooCrossChainRouterV1"
-	"github.com/nakji-network/connectors/woofi/WooPP"
-	"github.com/nakji-network/connectors/woofi/WooPPV1"
-	"github.com/nakji-network/connectors/woofi/WooPPV2"
-	"github.com/nakji-network/connectors/woofi/WooRouterV1"
-	"github.com/nakji-network/connectors/woofi/WooRouterV2"
-	"github.com/nakji-network/connectors/woofi/WooRouterV3"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -31,74 +24,6 @@ func main() {
 	if err := processBackfillFlags(c.Config); err != nil {
 		log.Fatal().Err(err).Msg("input is not correct")
 	}
-
-	c.RegisterProtos(
-		&WooPP.FeeManagerUpdated{},
-		&WooPP.OwnershipTransferPrepared{},
-		&WooPP.OwnershipTransferred{},
-		&WooPP.ParametersUpdated{},
-		&WooPP.Paused{},
-		&WooPP.RewardManagerUpdated{},
-		&WooPP.StrategistUpdated{},
-		&WooPP.Unpaused{},
-		&WooPP.Withdraw{},
-		&WooPP.WooGuardianUpdated{},
-		&WooPP.WooracleUpdated{},
-		&WooPP.WooSwap{},
-
-		&WooPP.FeeManagerUpdated{},
-		&WooPP.OwnershipTransferPrepared{},
-		&WooPP.OwnershipTransferred{},
-		&WooPP.ParametersUpdated{},
-		&WooPP.Paused{},
-		&WooPP.RewardManagerUpdated{},
-		&WooPP.StrategistUpdated{},
-		&WooPP.Unpaused{},
-		&WooPP.Withdraw{},
-		&WooPP.WooGuardianUpdated{},
-		&WooPP.WooracleUpdated{},
-		&WooPP.WooSwap{},
-
-		&WooPPV1.OwnershipTransferPrepared{},
-		&WooPPV1.OwnershipTransferred{},
-		&WooPPV1.ParametersUpdated{},
-		&WooPPV1.Paused{},
-		&WooPPV1.RewardManagerUpdated{},
-		&WooPPV1.StrategistUpdated{},
-		&WooPPV1.Unpaused{},
-		&WooPPV1.Withdraw{},
-		&WooPPV1.WooGuardianUpdated{},
-		&WooPPV1.WooracleUpdated{},
-		&WooPPV1.WooSwap{},
-
-		&WooPPV2.OwnershipTransferPrepared{},
-		&WooPPV2.OwnershipTransferred{},
-		&WooPPV2.ParametersUpdated{},
-		&WooPPV2.Paused{},
-		&WooPPV2.RewardManagerUpdated{},
-		&WooPPV2.StrategistUpdated{},
-		&WooPPV2.Unpaused{},
-		&WooPPV2.Withdraw{},
-		&WooPPV2.WooGuardianUpdated{},
-		&WooPPV2.WooracleUpdated{},
-		&WooPPV2.WooSwap{},
-
-		&WooRouterV1.OwnershipTransferred{},
-		&WooRouterV1.WooPoolChanged{},
-		&WooRouterV1.WooRouterSwap{},
-
-		&WooRouterV2.OwnershipTransferred{},
-		&WooRouterV2.WooPoolChanged{},
-		&WooRouterV2.WooRouterSwap{},
-
-		&WooRouterV3.OwnershipTransferred{},
-		&WooRouterV3.WooPoolChanged{},
-		&WooRouterV3.WooRouterSwap{},
-
-		&WooCrossChainRouterV1.WooCrossSwapOnSrcChain{},
-		&WooCrossChainRouterV1.WooCrossSwapOnDstChain{},
-		&WooCrossChainRouterV1.OwnershipTransferred{},
-	)
 
 	conf := &woofi.Config{
 		NetworkName: "polygon",
