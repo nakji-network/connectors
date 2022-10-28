@@ -28,7 +28,7 @@ type Connector struct {
 	*connector.Connector
 	*Config
 	sub       *SubscriptionGroup
-	contracts map[ContractKey]ISmartContract
+	contracts map[ContractKey][]ISmartContract
 }
 
 func New(c *connector.Connector, config *Config) *Connector {
@@ -36,21 +36,22 @@ func New(c *connector.Connector, config *Config) *Connector {
 		Connector: c,
 		Config:    config,
 		sub:       NewSubscriptionGroup(),
-		contracts: map[ContractKey]ISmartContract{},
+		contracts: map[ContractKey][]ISmartContract{},
 	}
 }
 
 func (c *Connector) AddContract(sc ISmartContract) {
-	c.contracts[ContractKey{sc.Network(), sc.Address()}] = sc
+	c.contracts[ContractKey{sc.Network(), sc.Address()}] = append(c.contracts[ContractKey{sc.Network(), sc.Address()}], sc)
 }
 
-func (c *Connector) GetContract(network string, address string) ISmartContract {
+func (c *Connector) GetContract(network string, address string) []ISmartContract {
 	return c.contracts[ContractKey{network, address}]
 }
 
 func (c *Connector) Start() {
 	networks := make(map[string][]ethcommon.Address)
-	for _, contract := range c.contracts {
+	for _, contracts := range c.contracts {
+		contract := contracts[0]
 		address := ethcommon.HexToAddress(contract.Address())
 		networks[contract.Network()] = append(networks[contract.Network()], address)
 	}
@@ -78,16 +79,16 @@ func (c *Connector) Start() {
 
 		//	Listen to event logs
 		case vLog := <-c.sub.Logs():
-			if msg := c.parse(vLog); msg != nil {
+			for _, msg := range c.parse(vLog) {
 				c.EventSink <- msg
 			}
 		}
 	}
 }
 
-func (c *Connector) parse(vLog Log) protoreflect.ProtoMessage {
-	contract := c.GetContract(vLog.Network, vLog.Address.String())
-	if contract == nil {
+func (c *Connector) parse(vLog Log) []protoreflect.ProtoMessage {
+	contracts := c.GetContract(vLog.Network, vLog.Address.String())
+	if len(contracts) == 0 {
 		log.Error().Str("network", vLog.Network).Str("address", vLog.Address.String()).Msg("unknown event")
 		return nil
 	}
@@ -101,5 +102,9 @@ func (c *Connector) parse(vLog Log) protoreflect.ProtoMessage {
 	}
 	ts := common.UnixToTimestampPb(int64(t * 1000))
 
-	return contract.Message(vLog.Log, ts)
+	logs := make([]protoreflect.ProtoMessage, 0, len(contracts))
+	for _, contract := range contracts {
+		logs = append(logs, contract.Message(vLog.Log, ts))
+	}
+	return logs
 }

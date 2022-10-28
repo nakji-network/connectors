@@ -7,6 +7,7 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/woofi"
+	"github.com/nakji-network/connectors/woofi/WOOPP"
 	"github.com/nakji-network/connectors/woofi/bscWooPP"
 	"github.com/nakji-network/connectors/woofi/bscWooPPV1"
 	"github.com/nakji-network/connectors/woofi/bscWooPPV2"
@@ -51,6 +52,12 @@ func main() {
 		NumBlocks:     c.Config.GetUint64("num-blocks"),
 	}
 
+	// duplication of bsc WooPP contract
+	wooPPContract, err := WOOPP.NewContract(woofi.BscNetwork, woofi.BscWooPPContractAddr)
+	if err != nil {
+		log.Fatal().Err(err).Msg("cannot create bsc WooPP contract")
+	}
+
 	bscWooPPContract, err := bscWooPP.NewContract(woofi.BscNetwork, woofi.BscWooPPContractAddr)
 	if err != nil {
 		log.Fatal().Err(err).Msg("cannot create bsc WooPP contract")
@@ -82,6 +89,7 @@ func main() {
 	}
 
 	m := woofi.New(c, conf)
+	m.AddContract(wooPPContract)
 	m.AddContract(bscWooPPContract)
 	m.AddContract(bscWooPPV1Contract)
 	m.AddContract(bscWooPPV2Contract)

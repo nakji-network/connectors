@@ -1,6 +1,7 @@
 package woofi
 
 import (
+	"github.com/nakji-network/connectors/woofi/WOOPP"
 	"github.com/nakji-network/connectors/woofi/bscWooPP"
 	"github.com/nakji-network/connectors/woofi/bscWooPPV1"
 	"github.com/nakji-network/connectors/woofi/bscWooPPV2"
@@ -24,6 +25,19 @@ const (
 )
 
 var TopicTypes = []proto.Message{
+	&WOOPP.FeeManagerUpdated{},
+	&WOOPP.OwnershipTransferPrepared{},
+	&WOOPP.OwnershipTransferred{},
+	&WOOPP.ParametersUpdated{},
+	&WOOPP.Paused{},
+	&WOOPP.RewardManagerUpdated{},
+	&WOOPP.StrategistUpdated{},
+	&WOOPP.Unpaused{},
+	&WOOPP.Withdraw{},
+	&WOOPP.WooGuardianUpdated{},
+	&WOOPP.WooracleUpdated{},
+	&WOOPP.WooSwap{},
+
 	&bscWooPP.FeeManagerUpdated{},
 	&bscWooPP.OwnershipTransferPrepared{},
 	&bscWooPP.OwnershipTransferred{},
