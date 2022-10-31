@@ -28,7 +28,7 @@ func main() {
 	conf := &woofi.Config{
 		NetworkName: "avalanche",
 		ContractAddresses: map[string][]string{
-			"WooPPV1":               {"0xF8cE0D043891b62c55380fB1EFBfB4F186153D96", "0x1df3009c57a8B143c6246149F00B090Bce3b8f88"},
+			"WooPP":                 {"0xF8cE0D043891b62c55380fB1EFBfB4F186153D96", "0x1df3009c57a8B143c6246149F00B090Bce3b8f88"},
 			"WooRouterV2":           {"0x160020B09DeD3d862f7f851B5c50632BcF2062FF", "0x3e0Da0A9e4139B32b37710784b8DCa643c152001", "0x5AA6a4E96A9129562e2fc06660D07FEdDAAf7854"},
 			"WooCrossChainRouterV1": {"0xdF37F7A85D4563f39A78494568824b4dF8669B7a"},
 		},
