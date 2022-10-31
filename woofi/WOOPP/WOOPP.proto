@@ -2,10 +2,10 @@
 // This file is a generated protobuf definition and any manual changes will be lost.
 
 syntax = "proto3";
-package WooPP;
+package WOOPP;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "github.com/nakji-network/connectors/woofi/WooPP";
+option go_package = "github.com/nakji-network/connectors/woofi/WOOPP";
 
 
 message RewardManagerUpdated {
