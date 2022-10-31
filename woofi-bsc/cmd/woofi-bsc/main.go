@@ -31,7 +31,7 @@ func main() {
 	}
 
 	conf := &woofi.Config{
-		NetworkName: "avalanche",
+		NetworkName: "bsc",
 		FromBlock:   c.Config.GetUint64("from-block"),
 		NumBlocks:   c.Config.GetUint64("num-blocks"),
 	}
