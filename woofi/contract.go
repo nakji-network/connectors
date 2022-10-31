@@ -21,19 +21,21 @@ type Contract struct {
 	Type string
 }
 
-func GetContracts(addresses map[string]string) map[string]*Contract {
+func GetContracts(addressMap map[string][]string) map[string]*Contract {
 	contracts := map[string]*Contract{}
-	for k, v := range addresses {
-		if abiStr, ok := ABIs[k]; ok {
+	for contractName, addresses := range addressMap {
+		if abiStr, ok := ABIs[contractName]; ok {
 			abiObj, err := abi.JSON(strings.NewReader(abiStr))
 			if err != nil {
 				log.Fatal().Err(err).Msg("failed to read contract ABI")
 			}
 
-			contracts[v] = &Contract{
-				ABI:  &abiObj,
-				Name: k,
-				Type: k,
+			for _, address := range addresses {
+				contracts[address] = &Contract{
+					ABI:  &abiObj,
+					Name: contractName,
+					Type: contractName,
+				}
 			}
 		}
 	}
@@ -41,12 +43,13 @@ func GetContracts(addresses map[string]string) map[string]*Contract {
 	return contracts
 }
 
-func GetAddresses(addresses map[string]string) []common.Address {
-	addressSlice := make([]common.Address, len(addresses))
-	i := 0
-	for _, v := range addresses {
-		addressSlice[i] = common.HexToAddress(v)
-		i++
+func GetAddresses(addressMap map[string][]string) []common.Address {
+	addressSlice := make([]common.Address, 0)
+
+	for _, addresses := range addressMap {
+		for _, v := range addresses {
+			addressSlice = append(addressSlice, common.HexToAddress(v))
+		}
 	}
 
 	return addressSlice

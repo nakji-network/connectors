@@ -31,7 +31,7 @@ var contracts = map[string]ISmartContract{
 
 type Config struct {
 	NetworkName       string
-	ContractAddresses map[string]string
+	ContractAddresses map[string][]string
 	FromBlock         uint64
 	NumBlocks         uint64
 }
