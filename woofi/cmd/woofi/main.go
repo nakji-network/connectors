@@ -7,12 +7,11 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/woofi"
-	"github.com/nakji-network/connectors/woofi/bscWOOPP"
-	"github.com/nakji-network/connectors/woofi/polygonWOOPP"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
 	_ "go.uber.org/automaxprocs"
+	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 func main() {
@@ -38,7 +37,14 @@ func main() {
 	}
 
 	// Register topic and protobuf type mappings
-	c.RegisterProtos(woofi.TopicTypes...)
+	protos := make([]protoreflect.ProtoMessage, len(woofi.TopicTypes))
+	i := 0
+	for _, topicProto := range woofi.TopicTypes {
+		protos[i] = topicProto
+		i++
+	}
+
+	c.RegisterProtos(protos...)
 
 	conf := &woofi.Config{
 		ConnectorName: "woofi",
@@ -47,19 +53,7 @@ func main() {
 		NumBlocks:     c.Config.GetUint64("num-blocks"),
 	}
 
-	bscWooppContract, err := bscWOOPP.NewContract(woofi.BscNetwork, woofi.BscWOOPPContractAddr)
-	if err != nil {
-		log.Err(err).Msg("cannot create bsc WOOPP contract")
-	}
-
-	polygonWooppContract, err := polygonWOOPP.NewContract(woofi.PolygonNetwork, woofi.PolygonWOOPPContractAddr)
-	if err != nil {
-		log.Err(err).Msg("cannot create polygon WOOPP contract")
-	}
-
 	m := woofi.New(c, conf)
-	m.AddContract(bscWooppContract)
-	m.AddContract(polygonWooppContract)
 	m.Start()
 }
 
