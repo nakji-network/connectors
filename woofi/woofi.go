@@ -2,12 +2,13 @@ package woofi
 
 import (
 	"context"
-	"time"
+	"fmt"
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/common"
+	"github.com/nakji-network/connectors/woofi/WOOPP"
 
-	ethcommon "github.com/ethereum/go-ethereum/common"
+	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
@@ -19,51 +20,31 @@ type Config struct {
 	NumBlocks     uint64
 }
 
-type ContractKey struct {
-	Network string
-	Address string
-}
-
 type Connector struct {
 	*connector.Connector
 	*Config
-	sub       *SubscriptionGroup
-	contracts map[ContractKey]ISmartContract
+	sub       connector.ISubscription
+	contracts map[string]*Contract
 }
 
 func New(c *connector.Connector, config *Config) *Connector {
 	return &Connector{
 		Connector: c,
 		Config:    config,
-		sub:       NewSubscriptionGroup(),
-		contracts: map[ContractKey]ISmartContract{},
 	}
-}
-
-func (c *Connector) AddContract(sc ISmartContract) {
-	c.contracts[ContractKey{sc.Network(), sc.Address()}] = sc
-}
-
-func (c *Connector) GetContract(network string, address string) ISmartContract {
-	return c.contracts[ContractKey{network, address}]
 }
 
 func (c *Connector) Start() {
-	networks := make(map[string][]ethcommon.Address)
-	for _, contract := range c.contracts {
-		address := ethcommon.HexToAddress(contract.Address())
-		networks[contract.Network()] = append(networks[contract.Network()], address)
-	}
+	addresses := GetAddresses(ContractAddresses)
+	c.contracts = GetContracts(ContractAddresses)
 
 	ctx := context.Background()
 
-	for network, addresses := range networks {
-		if err := c.sub.AddSubscription(ctx, c.Connector, network, addresses, c.FromBlock, c.NumBlocks); err != nil {
-			log.Fatal().Err(err).Str("network", network).Msg("connection error")
-		}
+	if sub, err := connector.NewSubscription(ctx, c.Connector, c.NetworkName, addresses, c.FromBlock, c.NumBlocks); err == nil {
+		c.sub = sub
+	} else {
+		log.Fatal().Err(err).Msg(fmt.Sprintf("%s connection error", c.NetworkName))
 	}
-
-	c.sub.Init()
 
 	for {
 		select {
@@ -85,21 +66,39 @@ func (c *Connector) Start() {
 	}
 }
 
-func (c *Connector) parse(vLog Log) protoreflect.ProtoMessage {
-	contract := c.GetContract(vLog.Network, vLog.Address.String())
-	if contract == nil {
-		log.Error().Str("network", vLog.Network).Str("address", vLog.Address.String()).Msg("unknown event")
+func (c *Connector) parse(vLog types.Log) protoreflect.ProtoMessage {
+	address := vLog.Address.String()
+	if c.contracts[address] == nil {
+		log.Info().Str("address", address).Msg("Event from unsupported address")
+		return nil
+	}
+	contractAbi := *c.contracts[address].ABI
+	contractName := c.contracts[address].Name
+	contractType := c.contracts[address].Type
+
+	abiEvent, err := contractAbi.EventByID(vLog.Topics[0])
+	if err != nil {
+		log.Warn().Str("contract name", contractName).Err(err).Msg("Failed to get event from ABI")
 		return nil
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
-	defer cancel()
-
-	t, err := c.sub.GetBlockTime(ctx, vLog)
+	time, err := c.sub.GetBlockTime(context.Background(), vLog)
 	if err != nil {
-		log.Error().Err(err).Msg("failed to retrieve timestamp")
+		log.Error().Str("contract name", contractName).Err(err).Msg("Failed to retrieve timestamp")
 	}
-	ts := common.UnixToTimestampPb(int64(t * 1000))
+	timestamp := common.UnixToTimestampPb(int64(time * 1000))
 
-	return contract.Message(vLog.Log, ts)
+	if smartContract := getContract(contractType); smartContract != nil {
+		return smartContract.Message(abiEvent.Name, &contractAbi, vLog, timestamp)
+	}
+	return nil
+}
+
+func getContract(contractType string) ISmartContract {
+	switch contractType {
+	case "WOOPP":
+		return &WOOPP.SmartContract{}
+	}
+
+	return nil
 }
