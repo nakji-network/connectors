@@ -7,12 +7,8 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/woofi"
-	"github.com/nakji-network/connectors/woofi/bscWooPP"
-	"github.com/nakji-network/connectors/woofi/bscWooPPV1"
-	"github.com/nakji-network/connectors/woofi/bscWooPPV2"
-	"github.com/nakji-network/connectors/woofi/bscWooRouterV1"
-	"github.com/nakji-network/connectors/woofi/bscWooRouterV2"
-	"github.com/nakji-network/connectors/woofi/polygonWooPP"
+	"github.com/nakji-network/connectors/woofi/bscWOOPP"
+	"github.com/nakji-network/connectors/woofi/polygonWOOPP"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -51,43 +47,19 @@ func main() {
 		NumBlocks:     c.Config.GetUint64("num-blocks"),
 	}
 
-	bscWooPPContract, err := bscWooPP.NewContract(woofi.BscNetwork, woofi.BscWooPPContractAddr)
+	bscWooppContract, err := bscWOOPP.NewContract(woofi.BscNetwork, woofi.BscWOOPPContractAddr)
 	if err != nil {
-		log.Fatal().Err(err).Msg("cannot create bsc WooPP contract")
+		log.Err(err).Msg("cannot create bsc WOOPP contract")
 	}
 
-	bscWooPPV1Contract, err := bscWooPPV1.NewContract(woofi.BscNetwork, woofi.BscWooPPV1ContractAddr)
+	polygonWooppContract, err := polygonWOOPP.NewContract(woofi.PolygonNetwork, woofi.PolygonWOOPPContractAddr)
 	if err != nil {
-		log.Fatal().Err(err).Msg("cannot create bsc WooPPV1 contract")
-	}
-
-	bscWooPPV2Contract, err := bscWooPPV2.NewContract(woofi.BscNetwork, woofi.BscWooPPV2ContractAddr)
-	if err != nil {
-		log.Fatal().Err(err).Msg("cannot create bsc WooPPV2 contract")
-	}
-
-	bscWooRouterV1Contract, err := bscWooRouterV1.NewContract(woofi.BscNetwork, woofi.BscWooRouterV1ContractAddr)
-	if err != nil {
-		log.Fatal().Err(err).Msg("cannot create bsc WooRouterV1 contract")
-	}
-
-	bscWooRouterV2Contract, err := bscWooRouterV2.NewContract(woofi.BscNetwork, woofi.BscWooRouterV2ContractAddr)
-	if err != nil {
-		log.Fatal().Err(err).Msg("cannot create bsc WooRouterV2 contract")
-	}
-
-	polygonWooPPContract, err := polygonWooPP.NewContract(woofi.PolygonNetwork, woofi.PolygonWooPPContractAddr)
-	if err != nil {
-		log.Fatal().Err(err).Msg("cannot create polygon WooPP contract")
+		log.Err(err).Msg("cannot create polygon WOOPP contract")
 	}
 
 	m := woofi.New(c, conf)
-	m.AddContract(bscWooPPContract)
-	m.AddContract(bscWooPPV1Contract)
-	m.AddContract(bscWooPPV2Contract)
-	m.AddContract(bscWooRouterV1Contract)
-	m.AddContract(bscWooRouterV2Contract)
-	m.AddContract(polygonWooPPContract)
+	m.AddContract(bscWooppContract)
+	m.AddContract(polygonWooppContract)
 	m.Start()
 }
 
