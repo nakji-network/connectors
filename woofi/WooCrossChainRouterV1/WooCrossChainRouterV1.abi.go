@@ -30,7 +30,7 @@ var (
 
 // WooCrossChainRouterV1MetaData contains all meta data concerning the WooCrossChainRouterV1 contract.
 var WooCrossChainRouterV1MetaData = &bind.MetaData{
-	ABI: "[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_weth\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_wooPool\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_stargateRouter\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"refId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"bridgedToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"bridgedAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"toToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"realToToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"minToAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"realToAmount\",\"type\":\"uint256\"}],\"name\":\"WooCrossSwapOnDstChain\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"refId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"fromToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fromAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"minQuoteAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"realQuoteAmount\",\"type\":\"uint256\"}],\"name\":\"WooCrossSwapOnSrcChain\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"WETH\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"bridgeSlippage\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"refId_\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"fromToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"toToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"fromAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"srcMinQuoteAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"dstMinToAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint16\",\"name\":\"srcChainId\",\"type\":\"uint16\"},{\"internalType\":\"uint16\",\"name\":\"dstChainId\",\"type\":\"uint16\"},{\"internalType\":\"addresspayable\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"crossSwap\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"dstGasForNoSwapCall\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"dstGasForSwapCall\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"inCaseNativeTokensGetStuck\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"stuckToken\",\"type\":\"address\"}],\"name\":\"inCaseTokensGetStuck\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"dstChainId\",\"type\":\"uint16\"},{\"internalType\":\"address\",\"name\":\"toToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"refId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"dstMinToAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"quoteLayerZeroFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"name\":\"quotePoolIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"quoteToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_bridgeSlippage\",\"type\":\"uint256\"}],\"name\":\"setBridgeSlippage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_dstGasForNoSwapCall\",\"type\":\"uint256\"}],\"name\":\"setDstGasForNoSwapCall\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_dstGasForSwapCall\",\"type\":\"uint256\"}],\"name\":\"setDstGasForSwapCall\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_chainId\",\"type\":\"uint16\"},{\"internalType\":\"uint256\",\"name\":\"_quotePoolId\",\"type\":\"uint256\"}],\"name\":\"setQuotePoolId\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_stargateRouter\",\"type\":\"address\"}],\"name\":\"setStargateRouter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_chainId\",\"type\":\"uint16\"},{\"internalType\":\"address\",\"name\":\"_wooCrossRouter\",\"type\":\"address\"}],\"name\":\"setWooCrossChainRouter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_wooPool\",\"type\":\"address\"}],\"name\":\"setWooPool\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_chainId\",\"type\":\"uint16\"},{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"}],\"name\":\"setWooppQuoteTokens\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_chainId\",\"type\":\"uint16\"},{\"internalType\":\"bytes\",\"name\":\"_srcAddress\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"_nonce\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountLD\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"payload\",\"type\":\"bytes\"}],\"name\":\"sgReceive\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stargateRouter\",\"outputs\":[{\"internalType\":\"contractIStargateRouter\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"name\":\"wooCrossRouters\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"wooPool\",\"outputs\":[{\"internalType\":\"contractIWooPP\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"name\":\"wooppQuoteTokens\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]",
+	ABI: "[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"refId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"bridgedToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"bridgedAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"toToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"realToToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"minToAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"realToAmount\",\"type\":\"uint256\"}],\"name\":\"WooCrossSwapOnDstChain\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"uint256\",\"name\":\"refId\",\"type\":\"uint256\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"sender\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"fromToken\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"fromAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"minQuoteAmount\",\"type\":\"uint256\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"realQuoteAmount\",\"type\":\"uint256\"}],\"name\":\"WooCrossSwapOnSrcChain\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"WETH\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"bridgeSlippage\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"refId_\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"fromToken\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"toToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"fromAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"srcMinQuoteAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"dstMinToAmount\",\"type\":\"uint256\"},{\"internalType\":\"uint16\",\"name\":\"srcChainId\",\"type\":\"uint16\"},{\"internalType\":\"uint16\",\"name\":\"dstChainId\",\"type\":\"uint16\"},{\"internalType\":\"addresspayable\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"crossSwap\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"dstGasForCall\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"inCaseNativeTokensGetStuck\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"stuckToken\",\"type\":\"address\"}],\"name\":\"inCaseTokensGetStuck\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_weth\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_wooPool\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_stargateRouter\",\"type\":\"address\"}],\"name\":\"initialize\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"dstChainId\",\"type\":\"uint16\"},{\"internalType\":\"address\",\"name\":\"toToken\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"refId\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"dstMinToAmount\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"}],\"name\":\"quoteLayerZeroFee\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"name\":\"quotePoolIds\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"quoteToken\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_bridgeSlippage\",\"type\":\"uint256\"}],\"name\":\"setBridgeSlippage\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint256\",\"name\":\"_dstGasForCall\",\"type\":\"uint256\"}],\"name\":\"setDstGasForCall\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_chainId\",\"type\":\"uint16\"},{\"internalType\":\"uint256\",\"name\":\"_quotePoolId\",\"type\":\"uint256\"}],\"name\":\"setQuotePoolId\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_stargateRouter\",\"type\":\"address\"}],\"name\":\"setStargateRouter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_chainId\",\"type\":\"uint16\"},{\"internalType\":\"address\",\"name\":\"_wooCrossRouter\",\"type\":\"address\"}],\"name\":\"setWooCrossChainRouter\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_wooPool\",\"type\":\"address\"}],\"name\":\"setWooPool\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"_chainId\",\"type\":\"uint16\"},{\"internalType\":\"bytes\",\"name\":\"_srcAddress\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"_nonce\",\"type\":\"uint256\"},{\"internalType\":\"address\",\"name\":\"_token\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"amountLD\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"payload\",\"type\":\"bytes\"}],\"name\":\"sgReceive\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"stargateRouter\",\"outputs\":[{\"internalType\":\"contractIStargateRouter\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"uint16\",\"name\":\"\",\"type\":\"uint16\"}],\"name\":\"wooCrossRouters\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"wooPool\",\"outputs\":[{\"internalType\":\"contractIWooPP\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"stateMutability\":\"payable\",\"type\":\"receive\"}]",
 }
 
 // WooCrossChainRouterV1ABI is the input ABI used to generate the binding from.
@@ -241,12 +241,12 @@ func (_WooCrossChainRouterV1 *WooCrossChainRouterV1CallerSession) BridgeSlippage
 	return _WooCrossChainRouterV1.Contract.BridgeSlippage(&_WooCrossChainRouterV1.CallOpts)
 }
 
-// DstGasForNoSwapCall is a free data retrieval call binding the contract method 0x616d2964.
+// DstGasForCall is a free data retrieval call binding the contract method 0x2bb8e169.
 //
-// Solidity: function dstGasForNoSwapCall() view returns(uint256)
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Caller) DstGasForNoSwapCall(opts *bind.CallOpts) (*big.Int, error) {
+// Solidity: function dstGasForCall() view returns(uint256)
+func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Caller) DstGasForCall(opts *bind.CallOpts) (*big.Int, error) {
 	var out []interface{}
-	err := _WooCrossChainRouterV1.contract.Call(opts, &out, "dstGasForNoSwapCall")
+	err := _WooCrossChainRouterV1.contract.Call(opts, &out, "dstGasForCall")
 
 	if err != nil {
 		return *new(*big.Int), err
@@ -258,49 +258,18 @@ func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Caller) DstGasForNoSwapCall(o
 
 }
 
-// DstGasForNoSwapCall is a free data retrieval call binding the contract method 0x616d2964.
+// DstGasForCall is a free data retrieval call binding the contract method 0x2bb8e169.
 //
-// Solidity: function dstGasForNoSwapCall() view returns(uint256)
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) DstGasForNoSwapCall() (*big.Int, error) {
-	return _WooCrossChainRouterV1.Contract.DstGasForNoSwapCall(&_WooCrossChainRouterV1.CallOpts)
+// Solidity: function dstGasForCall() view returns(uint256)
+func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) DstGasForCall() (*big.Int, error) {
+	return _WooCrossChainRouterV1.Contract.DstGasForCall(&_WooCrossChainRouterV1.CallOpts)
 }
 
-// DstGasForNoSwapCall is a free data retrieval call binding the contract method 0x616d2964.
+// DstGasForCall is a free data retrieval call binding the contract method 0x2bb8e169.
 //
-// Solidity: function dstGasForNoSwapCall() view returns(uint256)
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1CallerSession) DstGasForNoSwapCall() (*big.Int, error) {
-	return _WooCrossChainRouterV1.Contract.DstGasForNoSwapCall(&_WooCrossChainRouterV1.CallOpts)
-}
-
-// DstGasForSwapCall is a free data retrieval call binding the contract method 0xc22b7419.
-//
-// Solidity: function dstGasForSwapCall() view returns(uint256)
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Caller) DstGasForSwapCall(opts *bind.CallOpts) (*big.Int, error) {
-	var out []interface{}
-	err := _WooCrossChainRouterV1.contract.Call(opts, &out, "dstGasForSwapCall")
-
-	if err != nil {
-		return *new(*big.Int), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(*big.Int)).(**big.Int)
-
-	return out0, err
-
-}
-
-// DstGasForSwapCall is a free data retrieval call binding the contract method 0xc22b7419.
-//
-// Solidity: function dstGasForSwapCall() view returns(uint256)
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) DstGasForSwapCall() (*big.Int, error) {
-	return _WooCrossChainRouterV1.Contract.DstGasForSwapCall(&_WooCrossChainRouterV1.CallOpts)
-}
-
-// DstGasForSwapCall is a free data retrieval call binding the contract method 0xc22b7419.
-//
-// Solidity: function dstGasForSwapCall() view returns(uint256)
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1CallerSession) DstGasForSwapCall() (*big.Int, error) {
-	return _WooCrossChainRouterV1.Contract.DstGasForSwapCall(&_WooCrossChainRouterV1.CallOpts)
+// Solidity: function dstGasForCall() view returns(uint256)
+func (_WooCrossChainRouterV1 *WooCrossChainRouterV1CallerSession) DstGasForCall() (*big.Int, error) {
+	return _WooCrossChainRouterV1.Contract.DstGasForCall(&_WooCrossChainRouterV1.CallOpts)
 }
 
 // Owner is a free data retrieval call binding the contract method 0x8da5cb5b.
@@ -521,37 +490,6 @@ func (_WooCrossChainRouterV1 *WooCrossChainRouterV1CallerSession) WooPool() (com
 	return _WooCrossChainRouterV1.Contract.WooPool(&_WooCrossChainRouterV1.CallOpts)
 }
 
-// WooppQuoteTokens is a free data retrieval call binding the contract method 0x9f123032.
-//
-// Solidity: function wooppQuoteTokens(uint16 ) view returns(address)
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Caller) WooppQuoteTokens(opts *bind.CallOpts, arg0 uint16) (common.Address, error) {
-	var out []interface{}
-	err := _WooCrossChainRouterV1.contract.Call(opts, &out, "wooppQuoteTokens", arg0)
-
-	if err != nil {
-		return *new(common.Address), err
-	}
-
-	out0 := *abi.ConvertType(out[0], new(common.Address)).(*common.Address)
-
-	return out0, err
-
-}
-
-// WooppQuoteTokens is a free data retrieval call binding the contract method 0x9f123032.
-//
-// Solidity: function wooppQuoteTokens(uint16 ) view returns(address)
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) WooppQuoteTokens(arg0 uint16) (common.Address, error) {
-	return _WooCrossChainRouterV1.Contract.WooppQuoteTokens(&_WooCrossChainRouterV1.CallOpts, arg0)
-}
-
-// WooppQuoteTokens is a free data retrieval call binding the contract method 0x9f123032.
-//
-// Solidity: function wooppQuoteTokens(uint16 ) view returns(address)
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1CallerSession) WooppQuoteTokens(arg0 uint16) (common.Address, error) {
-	return _WooCrossChainRouterV1.Contract.WooppQuoteTokens(&_WooCrossChainRouterV1.CallOpts, arg0)
-}
-
 // CrossSwap is a paid mutator transaction binding the contract method 0x4c904106.
 //
 // Solidity: function crossSwap(uint256 refId_, address fromToken, address toToken, uint256 fromAmount, uint256 srcMinQuoteAmount, uint256 dstMinToAmount, uint16 srcChainId, uint16 dstChainId, address to) payable returns()
@@ -615,6 +553,27 @@ func (_WooCrossChainRouterV1 *WooCrossChainRouterV1TransactorSession) InCaseToke
 	return _WooCrossChainRouterV1.Contract.InCaseTokensGetStuck(&_WooCrossChainRouterV1.TransactOpts, stuckToken)
 }
 
+// Initialize is a paid mutator transaction binding the contract method 0xc0c53b8b.
+//
+// Solidity: function initialize(address _weth, address _wooPool, address _stargateRouter) returns()
+func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Transactor) Initialize(opts *bind.TransactOpts, _weth common.Address, _wooPool common.Address, _stargateRouter common.Address) (*types.Transaction, error) {
+	return _WooCrossChainRouterV1.contract.Transact(opts, "initialize", _weth, _wooPool, _stargateRouter)
+}
+
+// Initialize is a paid mutator transaction binding the contract method 0xc0c53b8b.
+//
+// Solidity: function initialize(address _weth, address _wooPool, address _stargateRouter) returns()
+func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) Initialize(_weth common.Address, _wooPool common.Address, _stargateRouter common.Address) (*types.Transaction, error) {
+	return _WooCrossChainRouterV1.Contract.Initialize(&_WooCrossChainRouterV1.TransactOpts, _weth, _wooPool, _stargateRouter)
+}
+
+// Initialize is a paid mutator transaction binding the contract method 0xc0c53b8b.
+//
+// Solidity: function initialize(address _weth, address _wooPool, address _stargateRouter) returns()
+func (_WooCrossChainRouterV1 *WooCrossChainRouterV1TransactorSession) Initialize(_weth common.Address, _wooPool common.Address, _stargateRouter common.Address) (*types.Transaction, error) {
+	return _WooCrossChainRouterV1.Contract.Initialize(&_WooCrossChainRouterV1.TransactOpts, _weth, _wooPool, _stargateRouter)
+}
+
 // RenounceOwnership is a paid mutator transaction binding the contract method 0x715018a6.
 //
 // Solidity: function renounceOwnership() returns()
@@ -657,46 +616,25 @@ func (_WooCrossChainRouterV1 *WooCrossChainRouterV1TransactorSession) SetBridgeS
 	return _WooCrossChainRouterV1.Contract.SetBridgeSlippage(&_WooCrossChainRouterV1.TransactOpts, _bridgeSlippage)
 }
 
-// SetDstGasForNoSwapCall is a paid mutator transaction binding the contract method 0x091a76c6.
+// SetDstGasForCall is a paid mutator transaction binding the contract method 0x991f2188.
 //
-// Solidity: function setDstGasForNoSwapCall(uint256 _dstGasForNoSwapCall) returns()
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Transactor) SetDstGasForNoSwapCall(opts *bind.TransactOpts, _dstGasForNoSwapCall *big.Int) (*types.Transaction, error) {
-	return _WooCrossChainRouterV1.contract.Transact(opts, "setDstGasForNoSwapCall", _dstGasForNoSwapCall)
+// Solidity: function setDstGasForCall(uint256 _dstGasForCall) returns()
+func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Transactor) SetDstGasForCall(opts *bind.TransactOpts, _dstGasForCall *big.Int) (*types.Transaction, error) {
+	return _WooCrossChainRouterV1.contract.Transact(opts, "setDstGasForCall", _dstGasForCall)
 }
 
-// SetDstGasForNoSwapCall is a paid mutator transaction binding the contract method 0x091a76c6.
+// SetDstGasForCall is a paid mutator transaction binding the contract method 0x991f2188.
 //
-// Solidity: function setDstGasForNoSwapCall(uint256 _dstGasForNoSwapCall) returns()
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) SetDstGasForNoSwapCall(_dstGasForNoSwapCall *big.Int) (*types.Transaction, error) {
-	return _WooCrossChainRouterV1.Contract.SetDstGasForNoSwapCall(&_WooCrossChainRouterV1.TransactOpts, _dstGasForNoSwapCall)
+// Solidity: function setDstGasForCall(uint256 _dstGasForCall) returns()
+func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) SetDstGasForCall(_dstGasForCall *big.Int) (*types.Transaction, error) {
+	return _WooCrossChainRouterV1.Contract.SetDstGasForCall(&_WooCrossChainRouterV1.TransactOpts, _dstGasForCall)
 }
 
-// SetDstGasForNoSwapCall is a paid mutator transaction binding the contract method 0x091a76c6.
+// SetDstGasForCall is a paid mutator transaction binding the contract method 0x991f2188.
 //
-// Solidity: function setDstGasForNoSwapCall(uint256 _dstGasForNoSwapCall) returns()
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1TransactorSession) SetDstGasForNoSwapCall(_dstGasForNoSwapCall *big.Int) (*types.Transaction, error) {
-	return _WooCrossChainRouterV1.Contract.SetDstGasForNoSwapCall(&_WooCrossChainRouterV1.TransactOpts, _dstGasForNoSwapCall)
-}
-
-// SetDstGasForSwapCall is a paid mutator transaction binding the contract method 0x4d8650d7.
-//
-// Solidity: function setDstGasForSwapCall(uint256 _dstGasForSwapCall) returns()
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Transactor) SetDstGasForSwapCall(opts *bind.TransactOpts, _dstGasForSwapCall *big.Int) (*types.Transaction, error) {
-	return _WooCrossChainRouterV1.contract.Transact(opts, "setDstGasForSwapCall", _dstGasForSwapCall)
-}
-
-// SetDstGasForSwapCall is a paid mutator transaction binding the contract method 0x4d8650d7.
-//
-// Solidity: function setDstGasForSwapCall(uint256 _dstGasForSwapCall) returns()
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) SetDstGasForSwapCall(_dstGasForSwapCall *big.Int) (*types.Transaction, error) {
-	return _WooCrossChainRouterV1.Contract.SetDstGasForSwapCall(&_WooCrossChainRouterV1.TransactOpts, _dstGasForSwapCall)
-}
-
-// SetDstGasForSwapCall is a paid mutator transaction binding the contract method 0x4d8650d7.
-//
-// Solidity: function setDstGasForSwapCall(uint256 _dstGasForSwapCall) returns()
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1TransactorSession) SetDstGasForSwapCall(_dstGasForSwapCall *big.Int) (*types.Transaction, error) {
-	return _WooCrossChainRouterV1.Contract.SetDstGasForSwapCall(&_WooCrossChainRouterV1.TransactOpts, _dstGasForSwapCall)
+// Solidity: function setDstGasForCall(uint256 _dstGasForCall) returns()
+func (_WooCrossChainRouterV1 *WooCrossChainRouterV1TransactorSession) SetDstGasForCall(_dstGasForCall *big.Int) (*types.Transaction, error) {
+	return _WooCrossChainRouterV1.Contract.SetDstGasForCall(&_WooCrossChainRouterV1.TransactOpts, _dstGasForCall)
 }
 
 // SetQuotePoolId is a paid mutator transaction binding the contract method 0x97724a86.
@@ -781,27 +719,6 @@ func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) SetWooPool(_wooPool 
 // Solidity: function setWooPool(address _wooPool) returns()
 func (_WooCrossChainRouterV1 *WooCrossChainRouterV1TransactorSession) SetWooPool(_wooPool common.Address) (*types.Transaction, error) {
 	return _WooCrossChainRouterV1.Contract.SetWooPool(&_WooCrossChainRouterV1.TransactOpts, _wooPool)
-}
-
-// SetWooppQuoteTokens is a paid mutator transaction binding the contract method 0x73e49b70.
-//
-// Solidity: function setWooppQuoteTokens(uint16 _chainId, address _token) returns()
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Transactor) SetWooppQuoteTokens(opts *bind.TransactOpts, _chainId uint16, _token common.Address) (*types.Transaction, error) {
-	return _WooCrossChainRouterV1.contract.Transact(opts, "setWooppQuoteTokens", _chainId, _token)
-}
-
-// SetWooppQuoteTokens is a paid mutator transaction binding the contract method 0x73e49b70.
-//
-// Solidity: function setWooppQuoteTokens(uint16 _chainId, address _token) returns()
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1Session) SetWooppQuoteTokens(_chainId uint16, _token common.Address) (*types.Transaction, error) {
-	return _WooCrossChainRouterV1.Contract.SetWooppQuoteTokens(&_WooCrossChainRouterV1.TransactOpts, _chainId, _token)
-}
-
-// SetWooppQuoteTokens is a paid mutator transaction binding the contract method 0x73e49b70.
-//
-// Solidity: function setWooppQuoteTokens(uint16 _chainId, address _token) returns()
-func (_WooCrossChainRouterV1 *WooCrossChainRouterV1TransactorSession) SetWooppQuoteTokens(_chainId uint16, _token common.Address) (*types.Transaction, error) {
-	return _WooCrossChainRouterV1.Contract.SetWooppQuoteTokens(&_WooCrossChainRouterV1.TransactOpts, _chainId, _token)
 }
 
 // SgReceive is a paid mutator transaction binding the contract method 0xab8236f3.

@@ -33,7 +33,7 @@ func main() {
 	}
 
 	m := woofi.New(c, conf)
-	m.AddContract(WOOPP.NewContract("0xbf365Ce9cFcb2d5855521985E351bA3bcf77FD3F"))
+	m.AddContract(WOOPP.NewContract("0xbf365Ce9cFcb2d5855521985E351bA3bcf77FD3F")) // WooPPV3 (backward compatibility)
 	m.Start()
 }
 
