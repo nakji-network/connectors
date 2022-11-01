@@ -1,0 +1,256 @@
+syntax = "proto3";
+package near;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "github.com/nakji-network/connectors/near";
+
+message Block {
+  google.protobuf.Timestamp ts      = 1;
+  string                    author  = 2;
+  BlockHeader               header  = 3;
+  repeated Chunk            chunks  = 4;
+
+  message BlockHeader {
+    uint64                    height                  = 1;
+    optional uint64           prev_height             = 2;
+    string                    epoch_id                = 3;
+    string                    next_epoch_id           = 4;
+    string                    hash                    = 5;
+    string                    prev_hash               = 6;
+    string                    prev_state_root         = 7;
+    string                    chunk_receipts_root     = 8;
+    string                    chunk_headers_root      = 9;
+    string                    chunk_tx_root           = 10;
+    string                    outcome_root            = 11;
+    uint64                    chunks_included         = 12;
+    string                    challenges_root         = 13;
+    uint64                    timestamp               = 14;
+    uint64                    timestamp_nanosec       = 15;
+    string                    random_value            = 16;
+    repeated ValidatorStake   validator_proposals     = 17;
+    repeated bool             chunk_mask              = 18;
+    bytes                     gas_price               = 19; // uint128
+    optional uint64           block_ordinal           = 20;
+    bytes                     total_supply            = 21; // uint128
+    repeated SlashedValidator challenges_result       = 22;
+    string                    last_final_block        = 23;
+    string                    last_ds_final_block     = 24;
+    string                    next_bp_hash            = 25;
+    string                    block_merkle_root       = 26;
+    optional string           epoch_sync_data_hash    = 27;
+    repeated string           approvals               = 28;
+    string                    signature               = 29;
+    uint32                    latest_protocol_version = 30;
+    
+    message SlashedValidator {
+      string  account_id      = 1;
+      bool    is_double_sign  = 2;
+    }
+  }
+  message Chunk {
+    string                  chunk_hash              = 1;
+    string                  prev_block_hash         = 2;
+    string                  outcome_root            = 3;
+    string                  prev_state_root         = 4;
+    string                  encoded_merkle_root     = 5;
+    uint64                  encoded_length          = 6;
+    uint64                  height_created          = 7;
+    uint64                  height_included         = 8;
+    uint64                  shard_id                = 9;
+    uint64                  gas_used                = 10;
+    uint64                  gas_limit               = 11;
+    bytes                   balance_burnt           = 12; // uint128
+    string                  outgoing_receipts_root  = 13;
+    string                  tx_root                 = 14;
+    repeated ValidatorStake validator_proposals     = 16;
+    string                  signature               = 17;
+  }
+  message ValidatorStake {
+    string  account_id  = 1;
+    string  public_key  = 2;
+    bytes   stake       = 3; // uint128
+  }
+} // Block
+
+message Transaction {
+  google.protobuf.Timestamp ts          = 1;
+  string                    signer_id   = 2;
+  string                    public_key  = 3;
+  uint64                    nonce       = 4;
+  string                    receiver_id = 5;
+  string                    hash        = 6;
+  repeated Action           actions     = 7;
+} // Transaction
+
+message Receipt {
+  google.protobuf.Timestamp ts = 1;
+  string                    predecessor_id  = 2;
+  string                    receiver_id     = 3;
+  string                    receipt_id      = 4;
+  oneof receipt {
+    ActionReceipt           action_receipt  = 5;
+    DataReceipt             data_receipt    = 6;
+  }
+  
+  message ActionReceipt {
+    string                signer_id             = 1;
+    string                signer_public_key     = 2;
+    bytes                 gas_price             = 3; // uint128
+    repeated DataReceiver output_data_receivers = 4;
+    repeated string       input_data_ids        = 5;
+    repeated Action       actions               = 6;
+
+    message DataReceiver {
+      string data_id      = 1;
+      string receiver_id  = 2;
+    }
+  }
+  message DataReceipt {
+    string          data_id = 1;
+    optional bytes  data    = 2;
+  }
+} // Receipt
+
+message ExecutionOutcome {
+  google.protobuf.Timestamp ts          = 1;
+  string                    id          = 2;
+  string                    block_hash  = 3;
+  Outcome                   outcome     = 4;
+  repeated MerklePath       proof       = 5;
+
+  message Outcome {
+    string              executor_id         = 1;
+    oneof status {
+      Unknown           unknown             = 2;
+      Failure           failure             = 3;
+      SuccessValue      success_value       = 4;
+      SuccessReceiptId  success_receipt_id  = 5;
+    }
+    repeated string     logs                = 6;
+    repeated string     receipt_ids         = 7;
+    bytes               gas_burnt           = 8; // uint128
+    bytes               tokens_burnt        = 9; // uint128
+
+    message Unknown {}
+    message Failure {
+      oneof error {
+        ActionError      action_error      = 1;
+        InvalidTxError   invalid_tx_error  = 2;
+      }
+
+      message ActionError {
+        optional uint64 index    = 1;
+        ActionErrorKind kind  = 2;
+        enum ActionErrorKind {
+          UNKNOWN                                 = 0;
+          ACCOUNT_ALREADY_EXISTS                  = 1;
+          ACCOUNT_DOES_NOT_EXIST                  = 2;
+          CREATE_ACCOUNT_ONLY_BY_REGISTRAR        = 3;
+          CREATE_ACCOUNT_NOT_ALLOWED              = 4;
+          ACTOR_NO_PERMISSION                     = 5;
+          DELETE_KEY_DOES_NOT_EXIST               = 6;
+          ADD_KEY_ALREADY_EXISTS                  = 7;
+          DELETE_ACCOUNT_STAKING                  = 8;
+          LACK_BALANCE_FOR_STATE                  = 9;
+          TRIES_TO_UNSTAKE                        = 10;
+          TRIES_TO_STAKE                          = 11;
+          INSUFFICIENT_STAKE                      = 12;
+          FUNCTION_CALL_ERROR                     = 13;
+          NEW_RECEIPT_VALIDATION_ERROR            = 14;
+          ONLY_IMPLICIT_ACCOUNT_CREATION_ALLOWED  = 15;
+          DELETE_ACCOUNT_WITH_LARGE_STATE         = 16;
+        }
+      }
+      enum InvalidTxError {
+        UNKNOWN                   = 0;
+        INVALID_ACCESS_KEY_ERROR  = 1;
+        INVALID_SIGNER_ID         = 2;
+        SIGNER_DOES_NOT_EXIST     = 3;
+        INVALID_NONCE             = 4;
+        NONCE_TOO_LARGE           = 5;
+        INVALID_RECEIVER_ID       = 6;
+        INVALID_SIGNATURE         = 7;
+        NOT_ENOUGH_BALANCE        = 8;
+        LACK_BALANCE_FOR_STATE    = 9;
+        COST_OVERFLOW             = 10;
+        INVALID_CHAIN             = 11;
+        EXPIRED                   = 12;
+        ACTIONS_VALIDATION_ERROR  = 13;
+        TRANSACTION_SIZE_EXCEEDED = 14;
+      }
+      
+    }
+    message SuccessValue {
+      string value = 1;
+    }
+    message SuccessReceiptId {
+      string receipt_id = 1;
+    }
+  }
+  message MerklePath {
+    string    hash      = 1;
+    Direction direction = 2;
+    
+    enum Direction {
+      INVALID = 0;
+      LEFT  = 1;
+      RIGHT = 2;
+    }
+  }
+} // ExecutionOutcome
+
+message Action {
+  oneof action {
+    CreateAccount   create_account  = 1;
+    DeployContract  deploy_contract = 2;
+    FunctionCall    function_call   = 3;
+    Transfer        transfer        = 4;
+    Stake           stake           = 5;
+    AddKey          add_key         = 6;
+    DeleteKey       delete_key      = 7;
+    DeleteAccount   delete_account  = 8;
+  }
+
+  message CreateAccount {}
+  message DeployContract {
+    string code = 1;
+  }
+  message FunctionCall {
+    string  method_name = 1;
+    string  args        = 2;
+    uint64  gas         = 3;
+    bytes   deposit     = 4; // uint128
+  }
+  message Transfer { 
+    bytes deposit = 1; // uint128 
+  }
+  message Stake {
+    bytes   stake       = 1; // uint128
+    string  public_key  = 2;
+  }
+  message AddKey {
+    string    public_key = 1;
+    AccessKey access_key = 2;
+  }
+  message DeleteKey {
+    string public_key = 1;
+  }
+  message DeleteAccount {
+    string beneficiary_id = 1;
+  }
+}
+
+message AccessKey {
+  uint64                    nonce         = 1;
+  oneof permission {
+    FullAccessPermission    full_access   = 2;
+    FunctionCallPermission  function_call = 3;
+  }
+
+  message FullAccessPermission {}
+  message FunctionCallPermission {
+    optional bytes  allowance     = 1; // uint128
+    string          receiver_id   = 2;
+    repeated string method_names  = 3;
+  }
+}
