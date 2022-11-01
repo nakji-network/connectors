@@ -1,22 +1,60 @@
 package WooPPV2
 
 import (
+	"strings"
+
 	"github.com/nakji-network/connector/common"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/rs/zerolog/log"
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
+	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
-type SmartContract struct{}
+type SmartContract struct {
+	addr string
+	abi  abi.ABI
+}
 
-func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog types.Log, ts *timestamppb.Timestamp) protoreflect.ProtoMessage {
-	switch eventName {
+func NewContract(addr string) *SmartContract {
+	contractAbi, err := abi.JSON(strings.NewReader(WooPPV2ABI))
+	if err != nil {
+		log.Fatal().Err(err).Msg("error reading WooPPV2ABI")
+	}
+	return &SmartContract{addr: addr, abi: contractAbi}
+}
+
+func (sc *SmartContract) Address() string {
+	return sc.addr
+}
+
+func (sc *SmartContract) Events() []proto.Message {
+	return []proto.Message{
+		&OwnershipTransferPrepared{},
+		&OwnershipTransferred{},
+		&ParametersUpdated{},
+		&Paused{},
+		&RewardManagerUpdated{},
+		&StrategistUpdated{},
+		&Unpaused{},
+		&Withdraw{},
+		&WooGuardianUpdated{},
+		&WooracleUpdated{},
+		&WooSwap{},
+	}
+}
+
+func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto.Message {
+	ev, err := sc.abi.EventByID(vLog.Topics[0])
+	if err != nil {
+		log.Warn().Err(err).Msg("EventByID error, skipping")
+		return nil
+	}
+	switch ev.Name {
 	case "ParametersUpdated":
 		e := new(WooPPV2ParametersUpdated)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -32,7 +70,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "Paused":
 		e := new(WooPPV2Paused)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -45,7 +83,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "RewardManagerUpdated":
 		e := new(WooPPV2RewardManagerUpdated)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -58,7 +96,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "WooGuardianUpdated":
 		e := new(WooPPV2WooGuardianUpdated)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -71,7 +109,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "OwnershipTransferPrepared":
 		e := new(WooPPV2OwnershipTransferPrepared)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -85,7 +123,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "Withdraw":
 		e := new(WooPPV2Withdraw)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -100,7 +138,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "WooracleUpdated":
 		e := new(WooPPV2WooracleUpdated)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -113,7 +151,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "StrategistUpdated":
 		e := new(WooPPV2StrategistUpdated)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -127,7 +165,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "Unpaused":
 		e := new(WooPPV2Unpaused)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -140,7 +178,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "WooSwap":
 		e := new(WooPPV2WooSwap)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -158,7 +196,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 	case "OwnershipTransferred":
 		e := new(WooPPV2OwnershipTransferred)
-		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
@@ -171,7 +209,7 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 			NewOwner:      e.NewOwner.Bytes(),
 		}
 	default:
-		log.Error().Msgf("invalid event: %s", eventName)
+		log.Error().Msgf("invalid event: %s", ev.Name)
 		return nil
 	}
 }
