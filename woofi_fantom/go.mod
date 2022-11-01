@@ -1,4 +1,4 @@
-module github.com/nakji-network/connectors/woofi-polygon
+module github.com/nakji-network/connectors/woofi_fantom
 
 go 1.18
 
