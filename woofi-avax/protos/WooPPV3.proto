@@ -2,10 +2,10 @@
 // This file is a generated protobuf definition and any manual changes will be lost.
 
 syntax = "proto3";
-package WooPP;
+package WooPPV3;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "github.com/nakji-network/connectors/woofi/WooPP";
+option go_package = "github.com/nakji-network/connectors/woofi/WooPPV3";
 
 
 message RewardManagerUpdated {
@@ -14,6 +14,7 @@ message RewardManagerUpdated {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes newRewardManager = 5; 
+	string contractAddress = 6;
 }
 
 message FeeManagerUpdated {
@@ -22,6 +23,7 @@ message FeeManagerUpdated {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes newFeeManager = 5; 
+	string contractAddress = 6;
 }
 
 message Unpaused {
@@ -30,6 +32,7 @@ message Unpaused {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes account = 5; 
+	string contractAddress = 6;
 }
 
 message Withdraw {
@@ -40,6 +43,7 @@ message Withdraw {
 	bytes token = 5; 
 	bytes to = 6; 
 	bytes amount = 7; // uint256
+	string contractAddress = 8;
 }
 
 message OwnershipTransferPrepared {
@@ -49,6 +53,7 @@ message OwnershipTransferPrepared {
 	bytes txHash = 4;
 	bytes previousOwner = 5; 
 	bytes newOwner = 6; 
+	string contractAddress = 7;
 }
 
 message ParametersUpdated {
@@ -59,6 +64,7 @@ message ParametersUpdated {
 	bytes baseToken = 5; 
 	bytes newThreshold = 6; // uint256
 	bytes newR = 7; // uint256
+	string contractAddress = 8;
 }
 
 message OwnershipTransferred {
@@ -68,6 +74,7 @@ message OwnershipTransferred {
 	bytes txHash = 4;
 	bytes previousOwner = 5; 
 	bytes newOwner = 6; 
+	string contractAddress = 7;
 }
 
 message WooSwap {
@@ -82,6 +89,7 @@ message WooSwap {
 	bytes from = 9; 
 	bytes to = 10; 
 	bytes rebateTo = 11; 
+	string contractAddress = 12;
 }
 
 message StrategistUpdated {
@@ -91,6 +99,7 @@ message StrategistUpdated {
 	bytes txHash = 4;
 	bytes strategist = 5; 
 	bool flag = 6; 
+	string contractAddress = 7;
 }
 
 message WooGuardianUpdated {
@@ -99,6 +108,7 @@ message WooGuardianUpdated {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes newWooGuardian = 5; 
+	string contractAddress = 6;
 }
 
 message WooracleUpdated {
@@ -107,6 +117,7 @@ message WooracleUpdated {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes newWooracle = 5; 
+	string contractAddress = 6;
 }
 
 message Paused {
@@ -115,4 +126,5 @@ message Paused {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes account = 5; 
+	string contractAddress = 6;
 }
