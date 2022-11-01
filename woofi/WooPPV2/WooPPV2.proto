@@ -55,7 +55,7 @@ message OwnershipTransferPrepared {
 	bytes txHash = 4;
 	bytes previousOwner = 5; 
 	bytes newOwner = 6; 
-	string contractAddress = 9;
+	string contractAddress = 7;
 }
 
 message ParametersUpdated {
@@ -67,7 +67,7 @@ message ParametersUpdated {
 	bytes newThreshold = 6; // uint256
 	bytes newLpFeeRate = 7; // uint256
 	bytes newR = 8; // uint256
-	string contractAddress = 10;
+	string contractAddress = 9;
 }
 
 message Paused {

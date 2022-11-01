@@ -95,7 +95,7 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			Index:            uint64(vLog.Index),
 			TxHash:           vLog.TxHash.Bytes(),
 			NewRewardManager: e.NewRewardManager.Bytes(),
-			ContractAddress:  sc.addr,
+			ContractAddress:  sc.Address(),
 		}
 	case "WooGuardianUpdated":
 		e := new(WooPPV1WooGuardianUpdated)
