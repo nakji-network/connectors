@@ -62,6 +62,7 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			FromAmount:      e.FromAmount.Bytes(),
 			MinQuoteAmount:  e.MinQuoteAmount.Bytes(),
 			RealQuoteAmount: e.RealQuoteAmount.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "WooCrossSwapOnDstChain":
 		e := new(WooCrossChainRouterV1WooCrossSwapOnDstChain)
@@ -70,19 +71,20 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &WooCrossSwapOnDstChain{
-			Ts:            ts,
-			BlockNumber:   vLog.BlockNumber,
-			Index:         uint64(vLog.Index),
-			TxHash:        vLog.TxHash.Bytes(),
-			RefId:         e.RefId.Bytes(),
-			Sender:        e.Sender.Bytes(),
-			To:            e.To.Bytes(),
-			BridgedToken:  e.BridgedToken.Bytes(),
-			BridgedAmount: e.BridgedAmount.Bytes(),
-			ToToken:       e.ToToken.Bytes(),
-			RealToToken:   e.RealToToken.Bytes(),
-			MinToAmount:   e.MinToAmount.Bytes(),
-			RealToAmount:  e.RealToAmount.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			RefId:           e.RefId.Bytes(),
+			Sender:          e.Sender.Bytes(),
+			To:              e.To.Bytes(),
+			BridgedToken:    e.BridgedToken.Bytes(),
+			BridgedAmount:   e.BridgedAmount.Bytes(),
+			ToToken:         e.ToToken.Bytes(),
+			RealToToken:     e.RealToToken.Bytes(),
+			MinToAmount:     e.MinToAmount.Bytes(),
+			RealToAmount:    e.RealToAmount.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "OwnershipTransferred":
 		e := new(WooCrossChainRouterV1OwnershipTransferred)
@@ -91,12 +93,13 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &OwnershipTransferred{
-			Ts:            ts,
-			BlockNumber:   vLog.BlockNumber,
-			Index:         uint64(vLog.Index),
-			TxHash:        vLog.TxHash.Bytes(),
-			PreviousOwner: e.PreviousOwner.Bytes(),
-			NewOwner:      e.NewOwner.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			PreviousOwner:   e.PreviousOwner.Bytes(),
+			NewOwner:        e.NewOwner.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	default:
 		log.Error().Msgf("invalid event: %s", ev.Name)

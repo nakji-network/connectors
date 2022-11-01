@@ -51,12 +51,13 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &OwnershipTransferred{
-			Ts:            ts,
-			BlockNumber:   vLog.BlockNumber,
-			Index:         uint64(vLog.Index),
-			TxHash:        vLog.TxHash.Bytes(),
-			PreviousOwner: e.PreviousOwner.Bytes(),
-			NewOwner:      e.NewOwner.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			PreviousOwner:   e.PreviousOwner.Bytes(),
+			NewOwner:        e.NewOwner.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "WooPoolChanged":
 		e := new(WooRouterV3WooPoolChanged)
@@ -65,11 +66,12 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &WooPoolChanged{
-			Ts:          ts,
-			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
-			TxHash:      vLog.TxHash.Bytes(),
-			NewPool:     e.NewPool.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			NewPool:         e.NewPool.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "WooRouterSwap":
 		e := new(WooRouterV3WooRouterSwap)
@@ -78,18 +80,19 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &WooRouterSwap{
-			Ts:          ts,
-			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
-			TxHash:      vLog.TxHash.Bytes(),
-			SwapType:    uint32(e.SwapType),
-			FromToken:   e.FromToken.Bytes(),
-			ToToken:     e.ToToken.Bytes(),
-			FromAmount:  e.FromToken.Bytes(),
-			ToAmount:    e.ToAmount.Bytes(),
-			From:        e.FromToken.Bytes(),
-			To:          e.To.Bytes(),
-			RebateTo:    e.RebateTo.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			SwapType:        uint32(e.SwapType),
+			FromToken:       e.FromToken.Bytes(),
+			ToToken:         e.ToToken.Bytes(),
+			FromAmount:      e.FromToken.Bytes(),
+			ToAmount:        e.ToAmount.Bytes(),
+			From:            e.FromToken.Bytes(),
+			To:              e.To.Bytes(),
+			RebateTo:        e.RebateTo.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	default:
 		log.Error().Msgf("invalid event: %s", ev.Name)

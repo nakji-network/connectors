@@ -59,14 +59,15 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &ParametersUpdated{
-			Ts:           ts,
-			BlockNumber:  vLog.BlockNumber,
-			Index:        uint64(vLog.Index),
-			TxHash:       vLog.TxHash.Bytes(),
-			BaseToken:    e.BaseToken.Bytes(),
-			NewThreshold: e.NewThreshold.Bytes(),
-			NewLpFeeRate: e.NewLpFeeRate.Bytes(),
-			NewR:         e.NewR.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			BaseToken:       e.BaseToken.Bytes(),
+			NewThreshold:    e.NewThreshold.Bytes(),
+			NewLpFeeRate:    e.NewLpFeeRate.Bytes(),
+			NewR:            e.NewR.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "Paused":
 		e := new(WooPPV2Paused)
@@ -75,11 +76,12 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &Paused{
-			Ts:          ts,
-			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
-			TxHash:      vLog.TxHash.Bytes(),
-			Account:     e.Account.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			Account:         e.Account.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "RewardManagerUpdated":
 		e := new(WooPPV2RewardManagerUpdated)
@@ -93,6 +95,7 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			Index:            uint64(vLog.Index),
 			TxHash:           vLog.TxHash.Bytes(),
 			NewRewardManager: e.NewRewardManager.Bytes(),
+			ContractAddress:  sc.Address(),
 		}
 	case "WooGuardianUpdated":
 		e := new(WooPPV2WooGuardianUpdated)
@@ -101,11 +104,12 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &WooGuardianUpdated{
-			Ts:             ts,
-			BlockNumber:    vLog.BlockNumber,
-			Index:          uint64(vLog.Index),
-			TxHash:         vLog.TxHash.Bytes(),
-			NewWooGuardian: e.NewWooGuardian.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			NewWooGuardian:  e.NewWooGuardian.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "OwnershipTransferPrepared":
 		e := new(WooPPV2OwnershipTransferPrepared)
@@ -114,12 +118,13 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &OwnershipTransferPrepared{
-			Ts:            ts,
-			BlockNumber:   vLog.BlockNumber,
-			Index:         uint64(vLog.Index),
-			TxHash:        vLog.TxHash.Bytes(),
-			PreviousOwner: e.PreviousOwner.Bytes(),
-			NewOwner:      e.NewOwner.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			PreviousOwner:   e.PreviousOwner.Bytes(),
+			NewOwner:        e.NewOwner.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "Withdraw":
 		e := new(WooPPV2Withdraw)
@@ -128,13 +133,14 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &Withdraw{
-			Ts:          ts,
-			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
-			TxHash:      vLog.TxHash.Bytes(),
-			Token:       e.Token.Bytes(),
-			To:          e.To.Bytes(),
-			Amount:      e.Amount.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			Token:           e.Token.Bytes(),
+			To:              e.To.Bytes(),
+			Amount:          e.Amount.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "WooracleUpdated":
 		e := new(WooPPV2WooracleUpdated)
@@ -143,11 +149,12 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &WooracleUpdated{
-			Ts:          ts,
-			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
-			TxHash:      vLog.TxHash.Bytes(),
-			NewWooracle: e.NewWooracle.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			NewWooracle:     e.NewWooracle.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "StrategistUpdated":
 		e := new(WooPPV2StrategistUpdated)
@@ -156,12 +163,13 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &StrategistUpdated{
-			Ts:          ts,
-			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
-			TxHash:      vLog.TxHash.Bytes(),
-			Strategist:  e.Strategist.Bytes(),
-			Flag:        e.Flag,
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			Strategist:      e.Strategist.Bytes(),
+			Flag:            e.Flag,
+			ContractAddress: sc.Address(),
 		}
 	case "Unpaused":
 		e := new(WooPPV2Unpaused)
@@ -170,11 +178,12 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &Unpaused{
-			Ts:          ts,
-			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
-			TxHash:      vLog.TxHash.Bytes(),
-			Account:     e.Account.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			Account:         e.Account.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "WooSwap":
 		e := new(WooPPV2WooSwap)
@@ -183,16 +192,17 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &WooSwap{
-			Ts:          ts,
-			BlockNumber: vLog.BlockNumber,
-			Index:       uint64(vLog.Index),
-			TxHash:      vLog.TxHash.Bytes(),
-			FromToken:   e.FromToken.Bytes(),
-			ToToken:     e.ToToken.Bytes(),
-			FromAmount:  e.FromAmount.Bytes(),
-			ToAmount:    e.ToAmount.Bytes(),
-			From:        e.From.Bytes(),
-			To:          e.To.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			FromToken:       e.FromToken.Bytes(),
+			ToToken:         e.ToToken.Bytes(),
+			FromAmount:      e.FromAmount.Bytes(),
+			ToAmount:        e.ToAmount.Bytes(),
+			From:            e.From.Bytes(),
+			To:              e.To.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	case "OwnershipTransferred":
 		e := new(WooPPV2OwnershipTransferred)
@@ -201,12 +211,13 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			return nil
 		}
 		return &OwnershipTransferred{
-			Ts:            ts,
-			BlockNumber:   vLog.BlockNumber,
-			Index:         uint64(vLog.Index),
-			TxHash:        vLog.TxHash.Bytes(),
-			PreviousOwner: e.PreviousOwner.Bytes(),
-			NewOwner:      e.NewOwner.Bytes(),
+			Ts:              ts,
+			BlockNumber:     vLog.BlockNumber,
+			Index:           uint64(vLog.Index),
+			TxHash:          vLog.TxHash.Bytes(),
+			PreviousOwner:   e.PreviousOwner.Bytes(),
+			NewOwner:        e.NewOwner.Bytes(),
+			ContractAddress: sc.Address(),
 		}
 	default:
 		log.Error().Msgf("invalid event: %s", ev.Name)
