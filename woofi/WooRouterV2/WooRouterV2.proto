@@ -8,16 +8,6 @@ import "google/protobuf/timestamp.proto";
 option go_package = "blep.ai/data/connectors/WooRouterV2";
 
 
-message OwnershipTransferred {
-	google.protobuf.Timestamp ts = 1;
-	uint64 blockNumber = 2;
-	uint64 index = 3;
-	bytes txHash = 4;
-	bytes previousOwner = 5; 
-	bytes newOwner = 6; 
-	string contractAddress = 7;
-}
-
 message WooPoolChanged {
 	google.protobuf.Timestamp ts = 1;
 	uint64 blockNumber = 2;
@@ -42,3 +32,14 @@ message WooRouterSwap {
 	bytes rebateTo = 12; 
 	string contractAddress = 13;
 }
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes previousOwner = 5;
+	bytes newOwner = 6;
+	string contractAddress = 7;
+}
+
