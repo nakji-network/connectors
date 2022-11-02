@@ -7,7 +7,11 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/woofi"
-	"github.com/nakji-network/connectors/woofi/WOOPP"
+	"github.com/nakji-network/connectors/woofi/WooCrossChainRouterV1"
+	"github.com/nakji-network/connectors/woofi/WooPPV2"
+	"github.com/nakji-network/connectors/woofi/WooPPV3"
+	"github.com/nakji-network/connectors/woofi/WooRouterV1"
+	"github.com/nakji-network/connectors/woofi/WooRouterV2"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -33,7 +37,12 @@ func main() {
 	}
 
 	m := woofi.New(c, conf)
-	m.AddContract(WOOPP.NewContract("0xbf365Ce9cFcb2d5855521985E351bA3bcf77FD3F")) // WooPPV3 (backward compatibility)
+	m.AddContract(WooPPV2.NewContract("0x10C24658815585851a8888f059Cb4338790023F1"))               // WooPPV1
+	m.AddContract(WooPPV2.NewContract("0x8489d142Da126F4Ea01750e80ccAa12FD1642988"))               // WooPPV2
+	m.AddContract(WooPPV3.NewContract("0xbf365Ce9cFcb2d5855521985E351bA3bcf77FD3F"))               // WooPPV3
+	m.AddContract(WooRouterV1.NewContract("0x114f84658c99aa6EA62e3160a87A16dEaF7EFe83"))           // WooRouterV1
+	m.AddContract(WooRouterV2.NewContract("0xcEf5BE73ae943B77f9Bc08859367D923C030a269"))           // WooRouterV2
+	m.AddContract(WooCrossChainRouterV1.NewContract("0x53E255e8Bbf4EDF16797f9885291B3Ca0C70B59f")) // WooCrossChainRouterV1
 	m.Start()
 }
 

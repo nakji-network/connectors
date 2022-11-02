@@ -1,0 +1,1 @@
+This is required to register topics to proto-registry. Will be removed in the future.
