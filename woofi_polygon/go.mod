@@ -2,11 +2,9 @@ module github.com/nakji-network/connectors/woofi_polygon
 
 go 1.18
 
-replace github.com/nakji-network/connectors/woofi => ../woofi
-
 require (
 	github.com/nakji-network/connector v0.0.1-beta.1.0.20220928122513-c51982adda53
-	github.com/nakji-network/connectors/woofi v0.0.0-00010101000000-000000000000
+	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20221105121859-e0da36463362
 	github.com/rs/zerolog v1.27.0
 	github.com/spf13/pflag v1.0.5
 	github.com/spf13/viper v1.12.0
