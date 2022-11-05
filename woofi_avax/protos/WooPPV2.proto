@@ -5,8 +5,8 @@ syntax = "proto3";
 package WooPPV2;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/WooPPV2";
 
+option go_package = "github.com/nakji-network/connectors/woofi/WooPPV2";
 
 message OwnershipTransferred {
 	google.protobuf.Timestamp ts = 1;

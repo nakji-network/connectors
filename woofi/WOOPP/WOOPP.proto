@@ -5,8 +5,8 @@ syntax = "proto3";
 package WOOPP;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "github.com/nakji-network/connectors/woofi/WOOPP";
 
+option go_package = "github.com/nakji-network/connectors/woofi/WOOPP";
 
 message RewardManagerUpdated {
 	google.protobuf.Timestamp ts = 1;
