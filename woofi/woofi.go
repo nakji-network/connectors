@@ -3,61 +3,44 @@ package woofi
 import (
 	"context"
 	"fmt"
-	"time"
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/common"
+	"github.com/nakji-network/connectors/woofi/WOOPP"
 
-	ethcommon "github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/rs/zerolog/log"
-	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/reflect/protoreflect"
 )
 
 type Config struct {
-	NetworkName string
-	FromBlock   uint64
-	NumBlocks   uint64
+	ConnectorName string
+	NetworkName   string
+	FromBlock     uint64
+	NumBlocks     uint64
 }
 
 type Connector struct {
 	*connector.Connector
 	*Config
 	sub       connector.ISubscription
-	contracts map[string]ISmartContract
+	contracts map[string]*Contract
 }
 
 func New(c *connector.Connector, config *Config) *Connector {
 	return &Connector{
 		Connector: c,
 		Config:    config,
-		contracts: make(map[string]ISmartContract),
 	}
-}
-
-func (c *Connector) AddContract(sc ISmartContract) {
-	c.contracts[sc.Address()] = sc
-}
-
-func (c *Connector) GetContract(addr string) ISmartContract {
-	return c.contracts[addr]
 }
 
 func (c *Connector) Start() {
-	var (
-		events    []proto.Message
-		addresses []ethcommon.Address
-	)
+	addresses := GetAddresses(ContractAddresses)
+	c.contracts = GetContracts(ContractAddresses)
 
-	for _, contract := range c.contracts {
-		events = append(events, contract.Events()...)
-		addresses = append(addresses, ethcommon.HexToAddress(contract.Address()))
-	}
+	ctx := context.Background()
 
-	c.RegisterProtos(events...)
-
-	if sub, err := connector.NewSubscription(context.Background(), c.Connector, c.NetworkName, addresses, c.FromBlock, c.NumBlocks); err == nil {
+	if sub, err := connector.NewSubscription(ctx, c.Connector, c.NetworkName, addresses, c.FromBlock, c.NumBlocks); err == nil {
 		c.sub = sub
 	} else {
 		log.Fatal().Err(err).Msg(fmt.Sprintf("%s connection error", c.NetworkName))
@@ -84,20 +67,38 @@ func (c *Connector) Start() {
 }
 
 func (c *Connector) parse(vLog types.Log) protoreflect.ProtoMessage {
-	contract := c.GetContract(vLog.Address.String())
-	if contract == nil {
-		log.Info().Str("address", vLog.Address.String()).Msg("event from unsupported address")
+	address := vLog.Address.String()
+	if c.contracts[address] == nil {
+		log.Info().Str("address", address).Msg("Event from unsupported address")
+		return nil
+	}
+	contractAbi := *c.contracts[address].ABI
+	contractName := c.contracts[address].Name
+	contractType := c.contracts[address].Type
+
+	abiEvent, err := contractAbi.EventByID(vLog.Topics[0])
+	if err != nil {
+		log.Warn().Str("contract name", contractName).Err(err).Msg("Failed to get event from ABI")
 		return nil
 	}
 
-	ctx, cancel := context.WithTimeout(context.Background(), 1*time.Minute)
-	defer cancel()
-
-	t, err := c.sub.GetBlockTime(ctx, vLog)
+	time, err := c.sub.GetBlockTime(context.Background(), vLog)
 	if err != nil {
-		log.Error().Err(err).Msg("failed to retrieve timestamp")
+		log.Error().Str("contract name", contractName).Err(err).Msg("Failed to retrieve timestamp")
 	}
-	ts := common.UnixToTimestampPb(int64(t * 1000))
+	timestamp := common.UnixToTimestampPb(int64(time * 1000))
 
-	return contract.Message(vLog, ts)
+	if smartContract := getContract(contractType); smartContract != nil {
+		return smartContract.Message(abiEvent.Name, &contractAbi, vLog, timestamp)
+	}
+	return nil
+}
+
+func getContract(contractType string) ISmartContract {
+	switch contractType {
+	case "WOOPP":
+		return &WOOPP.SmartContract{}
+	}
+
+	return nil
 }
