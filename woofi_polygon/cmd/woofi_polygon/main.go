@@ -6,8 +6,10 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
-	"github.com/nakji-network/connectors/woofi"
-	"github.com/nakji-network/connectors/woofi/WOOPP"
+	"github.com/nakji-network/woofi-connectors/woofi"
+	"github.com/nakji-network/woofi-connectors/woofi/WooCrossChainRouterV1"
+	"github.com/nakji-network/woofi-connectors/woofi/WooPPV3"
+	"github.com/nakji-network/woofi-connectors/woofi/WooRouterV2"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -27,13 +29,15 @@ func main() {
 	}
 
 	conf := &woofi.Config{
-		NetworkName: "bsc",
+		NetworkName: "polygon",
 		FromBlock:   c.Config.GetUint64("from-block"),
 		NumBlocks:   c.Config.GetUint64("num-blocks"),
 	}
 
 	m := woofi.New(c, conf)
-	m.AddContract(WOOPP.NewContract("0xbf365Ce9cFcb2d5855521985E351bA3bcf77FD3F")) // WooPPV3 (backward compatibility)
+	m.AddContract(WooPPV3.NewContract("0x7400B665C8f4f3a951a99f1ee9872efb8778723d"))               // WooPPV3
+	m.AddContract(WooRouterV2.NewContract("0x9D1A92e601db0901e69bd810029F2C14bCCA3128"))           // WooRouterV2
+	m.AddContract(WooCrossChainRouterV1.NewContract("0x376d567C5794cfc64C74852A9DB2105E0b5B482C")) // WooCrossChainRouterV1
 	m.Start()
 }
 
