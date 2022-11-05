@@ -5,8 +5,8 @@ syntax = "proto3";
 package WooRouterV1;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/WooRouterV1";
 
+option go_package = "github.com/nakji-network/connectors/woofi/WooRouterV1";
 
 message OwnershipTransferred {
 	google.protobuf.Timestamp ts = 1;

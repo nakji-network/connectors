@@ -5,8 +5,8 @@ syntax = "proto3";
 package WooRouterV2;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/WooRouterV2";
 
+option go_package = "github.com/nakji-network/connectors/woofi/WooRouterV2";
 
 message WooPoolChanged {
 	google.protobuf.Timestamp ts = 1;

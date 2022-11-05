@@ -5,8 +5,8 @@ syntax = "proto3";
 package WooCrossChainRouterV1;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/WooCrossChainRouterV1";
 
+option go_package = "github.com/nakji-network/connectors/woofi/WooCrossChainRouterV1";
 
 message WooCrossSwapOnSrcChain {
 	google.protobuf.Timestamp ts = 1;
