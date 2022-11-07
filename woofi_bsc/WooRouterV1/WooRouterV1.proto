@@ -1,0 +1,43 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package WooRouterV1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/woofi_bsc/WooRouterV1";
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes previousOwner = 5; 
+	bytes newOwner = 6; 
+	string contractAddress = 7;
+}
+
+message WooPoolChanged {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes newPool = 5; 
+	string contractAddress = 6;
+}
+
+message WooRouterSwap {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	uint32 swapType = 5; 
+	bytes fromToken = 6; 
+	bytes toToken = 7; 
+	bytes fromAmount = 8; // uint256
+	bytes toAmount = 9; // uint256
+	bytes from = 10; 
+	bytes to = 11; 
+	string contractAddress = 12;
+}

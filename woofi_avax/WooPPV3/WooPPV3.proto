@@ -1,0 +1,130 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package WooPPV3;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/woofi_avax/WooPPV3";
+
+message RewardManagerUpdated {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes newRewardManager = 5; 
+	string contractAddress = 6;
+}
+
+message FeeManagerUpdated {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes newFeeManager = 5; 
+	string contractAddress = 6;
+}
+
+message Unpaused {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes account = 5; 
+	string contractAddress = 6;
+}
+
+message Withdraw {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes token = 5; 
+	bytes to = 6; 
+	bytes amount = 7; // uint256
+	string contractAddress = 8;
+}
+
+message OwnershipTransferPrepared {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes previousOwner = 5; 
+	bytes newOwner = 6; 
+	string contractAddress = 7;
+}
+
+message ParametersUpdated {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes baseToken = 5; 
+	bytes newThreshold = 6; // uint256
+	bytes newR = 7; // uint256
+	string contractAddress = 8;
+}
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes previousOwner = 5; 
+	bytes newOwner = 6; 
+	string contractAddress = 7;
+}
+
+message WooSwap {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes fromToken = 5; 
+	bytes toToken = 6; 
+	bytes fromAmount = 7; // uint256
+	bytes toAmount = 8; // uint256
+	bytes from = 9; 
+	bytes to = 10; 
+	bytes rebateTo = 11; 
+	string contractAddress = 12;
+}
+
+message StrategistUpdated {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes strategist = 5; 
+	bool flag = 6; 
+	string contractAddress = 7;
+}
+
+message WooGuardianUpdated {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes newWooGuardian = 5; 
+	string contractAddress = 6;
+}
+
+message WooracleUpdated {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes newWooracle = 5; 
+	string contractAddress = 6;
+}
+
+message Paused {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes account = 5; 
+	string contractAddress = 6;
+}
