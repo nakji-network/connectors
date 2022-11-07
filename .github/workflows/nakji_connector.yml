@@ -3,12 +3,12 @@ name: Nakji Connector
 on:
   workflow_dispatch:
   push:
-    branches: [ $default-branch, staging ]
+    branches: [ main, staging ]
     paths:
       - '**'
       - '.github/workflows/nakji_connector.yml'
   pull_request:
-    branches: [ $default-branch, staging ]
+    branches: [ main, staging ]
 
 defaults:
   run:
