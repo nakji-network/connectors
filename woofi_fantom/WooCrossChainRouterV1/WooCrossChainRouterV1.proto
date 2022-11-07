@@ -1,0 +1,51 @@
+// Code generated - DO NOT EDIT.
+// This file is a generated protobuf definition and any manual changes will be lost.
+
+syntax = "proto3";
+package WooCrossChainRouterV1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/woofi_fantom/WooCrossChainRouterV1";
+
+message WooCrossSwapOnSrcChain {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes refId = 5; // uint256
+	bytes sender = 6; 
+	bytes to = 7; 
+	bytes fromToken = 8; 
+	bytes fromAmount = 9; // uint256
+	bytes minQuoteAmount = 10; // uint256
+	bytes realQuoteAmount = 11; // uint256
+	string contractAddress = 12;
+}
+
+message WooCrossSwapOnDstChain {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes refId = 5; // uint256
+	bytes sender = 6; 
+	bytes to = 7; 
+	bytes bridgedToken = 8; 
+	bytes bridgedAmount = 9; // uint256
+	bytes toToken = 10; 
+	bytes realToToken = 11; 
+	bytes minToAmount = 12; // uint256
+	bytes realToAmount = 13; // uint256
+	string contractAddress = 14;
+}
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	uint64 blockNumber = 2;
+	uint64 index = 3;
+	bytes txHash = 4;
+	bytes previousOwner = 5; 
+	bytes newOwner = 6; 
+	string contractAddress = 7;
+}
