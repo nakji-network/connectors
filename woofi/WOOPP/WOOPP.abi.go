@@ -1,5 +1,7 @@
 // Code generated - DO NOT EDIT.
 // This file is a generated binding and any manual changes will be lost.
+// Taken by creating a .abi file from bscscan, then running
+// abigen --abi WOOPP.abi --pkg WOOPP --out WOOPP.abi.go
 
 package WOOPP
 
