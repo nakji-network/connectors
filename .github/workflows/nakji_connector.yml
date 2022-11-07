@@ -8,9 +8,7 @@ on:
       - '**'
       - '.github/workflows/nakji_connector.yml'
   pull_request:
-    branches: [ none ]
-    paths:
-      - '**'
+    branches: [ main, staging ]
 
 defaults:
   run:
@@ -24,15 +22,21 @@ jobs:
       dirs: ${{ steps.matrix.outputs.dirs }}
     steps:
       - uses: actions/checkout@v3
-        # Run jobs.build for every directory
+        # Run jobs.build for every directory that contains a manifest.yaml
       - id: matrix
         run: |
-          # can't only build by git diff because failed build means next commit won't have the right diffs
-          # has manifest.yaml
-          echo "::set-output name=dirs::$(find . -type f -name 'manifest.yaml' | xargs dirname | jq -R -s -c 'split("\n")[:-1]'))" # ls only directories that changed
+          if [ ${{ github.event_name }} == 'pull_request' ]
+          then 
+            # if this is a pull request, then only look at directories different from the target branch to save some time
+            git fetch origin $GITHUB_BASE_REF --depth=1
+            echo "dirs=$(git diff --name-only origin/${{ github.event.pull_request.base.ref }} | xargs dirname | uniq | xargs -I {} find {} -type f -name 'manifest.yaml' -maxdepth 1 | xargs dirname | uniq | jq -R -s -c 'split("\n")[:-1]'))" >> $GITHUB_OUTPUT
+          else 
+            # if this is a change on main or staging branch, then build everything
+            echo "dirs=$(find . -type f -name 'manifest.yaml' | xargs dirname | jq -R -s -c 'split("\n")[:-1]'))" >> $GITHUB_OUTPUT
+          fi
 
   test:
-    name: Test and Build
+    name: Build and Test
     needs: [ setup ]
 
     strategy:
@@ -72,7 +76,8 @@ jobs:
         docker run ${{ steps.build-tester.outputs.imageid }}
 
   build:
-    name: Build+Push Docker Image
+    if: github.event_name != 'pull_request' # this only runs for main and staging
+    name: Publish Docker image
     needs: [ setup , test ]
     runs-on: ubuntu-latest
     strategy:
@@ -127,17 +132,11 @@ jobs:
         workload_identity_provider: ${{ secrets.GCP_WORKLOAD_IDENTITY_PROVIDER }}
         service_account: ${{ secrets.GCP_SERVICE_ACCOUNT }}
 
-    - uses: 'docker/login-action@v1'
-      with:
-        registry:  ${{ secrets.DOCKER_REPO }}
-        username: 'oauth2accesstoken'
-        password: '${{ steps.auth.outputs.access_token }}'
-
     - name: Login to google Container Registry
       run: |-
         echo '${{ steps.auth.outputs.access_token }}' | docker login -u oauth2accesstoken --password-stdin ${{ secrets.DOCKER_REPO }}
 
-    - name: Build and push
+    - name: Build and Publish
       uses: docker/build-push-action@v2
       env:
         BRANCH: ${{ env.GITHUB_REF_SLUG }}
