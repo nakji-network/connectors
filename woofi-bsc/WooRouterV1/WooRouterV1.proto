@@ -6,7 +6,7 @@ package WooRouterV1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/nakji-network/connectors/woofi_bsc/WooRouterV1";
+option go_package = "github.com/nakji-network/connectors/woofi-bsc/WooRouterV1";
 
 message OwnershipTransferred {
 	google.protobuf.Timestamp ts = 1;

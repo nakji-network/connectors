@@ -6,7 +6,7 @@ package WooCrossChainRouterV1;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/nakji-network/connectors/woofi_fantom/WooCrossChainRouterV1";
+option go_package = "github.com/nakji-network/connectors/woofi-fantom/WooCrossChainRouterV1";
 
 message WooCrossSwapOnSrcChain {
 	google.protobuf.Timestamp ts = 1;

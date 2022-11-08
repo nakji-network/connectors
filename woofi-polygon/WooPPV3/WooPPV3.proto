@@ -6,7 +6,7 @@ package WooPPV3;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/nakji-network/connectors/woofi_polygon/WooPPV3";
+option go_package = "github.com/nakji-network/connectors/woofi-polygon/WooPPV3";
 
 message RewardManagerUpdated {
 	google.protobuf.Timestamp ts = 1;
