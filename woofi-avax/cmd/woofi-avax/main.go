@@ -6,10 +6,10 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
-	"github.com/nakji-network/connectors/woofi_polygon"
-	"github.com/nakji-network/connectors/woofi_polygon/WooCrossChainRouterV1"
-	"github.com/nakji-network/connectors/woofi_polygon/WooPPV3"
-	"github.com/nakji-network/connectors/woofi_polygon/WooRouterV2"
+	"github.com/nakji-network/connectors/woofi-avax"
+	"github.com/nakji-network/connectors/woofi-avax/WooCrossChainRouterV1"
+	"github.com/nakji-network/connectors/woofi-avax/WooPPV3"
+	"github.com/nakji-network/connectors/woofi-avax/WooRouterV2"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
@@ -28,16 +28,19 @@ func main() {
 		log.Fatal().Err(err).Msg("input is not correct")
 	}
 
-	conf := &woofi_polygon.Config{
-		NetworkName: "polygon",
+	conf := &woofi_avax.Config{
+		NetworkName: "avalanche",
 		FromBlock:   c.Config.GetUint64("from-block"),
 		NumBlocks:   c.Config.GetUint64("num-blocks"),
 	}
 
-	m := woofi_polygon.New(c, conf)
-	m.AddContract(WooPPV3.NewContract("0x7400B665C8f4f3a951a99f1ee9872efb8778723d"))               // WooPPV3
-	m.AddContract(WooRouterV2.NewContract("0x9D1A92e601db0901e69bd810029F2C14bCCA3128"))           // WooRouterV2
-	m.AddContract(WooCrossChainRouterV1.NewContract("0x376d567C5794cfc64C74852A9DB2105E0b5B482C")) // WooCrossChainRouterV1
+	m := woofi_avax.New(c, conf)
+	m.AddContract(WooPPV3.NewContract("0xF8cE0D043891b62c55380fB1EFBfB4F186153D96"))               // WooPPV2
+	m.AddContract(WooPPV3.NewContract("0x1df3009c57a8B143c6246149F00B090Bce3b8f88"))               // WooPPV3
+	m.AddContract(WooRouterV2.NewContract("0x160020B09DeD3d862f7f851B5c50632BcF2062FF"))           // WooRouterV1
+	m.AddContract(WooRouterV2.NewContract("0x3e0Da0A9e4139B32b37710784b8DCa643c152001"))           // WooRouterV2
+	m.AddContract(WooRouterV2.NewContract("0x5AA6a4E96A9129562e2fc06660D07FEdDAAf7854"))           // WooRouterV3
+	m.AddContract(WooCrossChainRouterV1.NewContract("0xdF37F7A85D4563f39A78494568824b4dF8669B7a")) // WooCrossChainRouterV1
 	m.Start()
 }
 

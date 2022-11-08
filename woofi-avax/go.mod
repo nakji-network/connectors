@@ -1,4 +1,4 @@
-module github.com/nakji-network/connectors/woofi_avax
+module github.com/nakji-network/connectors/woofi-avax
 
 go 1.18
 

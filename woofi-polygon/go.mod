@@ -1,13 +1,13 @@
-module github.com/nakji-network/connectors/woofi_bsc
+module github.com/nakji-network/connectors/woofi-polygon
 
 go 1.18
 
 require (
 	github.com/ethereum/go-ethereum v1.10.21
 	github.com/nakji-network/connector v0.0.1-beta.1.0.20220928122513-c51982adda53
-	github.com/rs/zerolog v1.28.0
+	github.com/rs/zerolog v1.27.0
 	github.com/spf13/pflag v1.0.5
-	github.com/spf13/viper v1.13.0
+	github.com/spf13/viper v1.12.0
 	go.uber.org/automaxprocs v1.5.1
 	google.golang.org/protobuf v1.28.1
 )
@@ -67,7 +67,7 @@ require (
 	github.com/mostynb/zstdpool-freelist v0.0.0-20201229113212-927304c0c3b1 // indirect
 	github.com/mr-tron/base58 v1.2.0 // indirect
 	github.com/pelletier/go-toml v1.9.5 // indirect
-	github.com/pelletier/go-toml/v2 v2.0.5 // indirect
+	github.com/pelletier/go-toml/v2 v2.0.2 // indirect
 	github.com/prometheus/client_golang v1.13.0 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.37.0 // indirect
@@ -78,7 +78,7 @@ require (
 	github.com/spf13/afero v1.9.2 // indirect
 	github.com/spf13/cast v1.5.0 // indirect
 	github.com/spf13/jwalterweatherman v1.1.0 // indirect
-	github.com/subosito/gotenv v1.4.1 // indirect
+	github.com/subosito/gotenv v1.4.0 // indirect
 	github.com/teris-io/shortid v0.0.0-20201117134242-e59966efd125 // indirect
 	github.com/tidwall/gjson v1.9.3 // indirect
 	github.com/tidwall/match v1.1.1 // indirect

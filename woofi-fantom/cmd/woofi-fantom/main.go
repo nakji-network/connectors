@@ -6,10 +6,10 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
-	"github.com/nakji-network/connectors/woofi_fantom"
-	"github.com/nakji-network/connectors/woofi_fantom/WooCrossChainRouterV1"
-	"github.com/nakji-network/connectors/woofi_fantom/WooPPV3"
-	"github.com/nakji-network/connectors/woofi_fantom/WooRouterV2"
+	"github.com/nakji-network/connectors/woofi-fantom"
+	"github.com/nakji-network/connectors/woofi-fantom/WooCrossChainRouterV1"
+	"github.com/nakji-network/connectors/woofi-fantom/WooPPV3"
+	"github.com/nakji-network/connectors/woofi-fantom/WooRouterV2"
 
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
