@@ -10,6 +10,7 @@ import (
 	"time"
 
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/bybit/market"
 
 	"github.com/rs/zerolog/log"
@@ -63,15 +64,21 @@ func (c *BybitConnector) Start() {
 
 				ov, err := strconv.ParseFloat(d.OpenValue, 64)
 				if err != nil {
-					log.Panic().Err(err).Msg("")
+					log.Error().Err(err).Msg("failed to convert to float")
+					continue
 				}
 
-				// write to Kafka
-				c.EventSink <- &market.OpenInterest{
+				msg := &market.OpenInterest{
 					Ts:                timestamppb.New(ts),
 					OpenInterest:      d.OpenInterest,
 					OpenInterestValue: ov,
 					Asset:             d.Symbol,
+				}
+
+				// write to Kafka
+				c.EventSink <- &kafkautils.Message{
+					MsgType:  kafkautils.MsgTypeFct,
+					ProtoMsg: msg,
 				}
 
 				log.Info().

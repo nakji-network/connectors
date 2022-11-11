@@ -2,6 +2,7 @@ package main
 
 import (
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 	"github.com/nakji-network/connectors/bybit"
 	"github.com/nakji-network/connectors/bybit/market"
 
@@ -16,9 +17,7 @@ func main() {
 	}
 
 	// Register topic and protobuf type mappings
-	conn.RegisterProtos(
-		&market.OpenInterest{},
-	)
+	conn.RegisterProtos(kafkautils.MsgTypeFct, &market.OpenInterest{})
 
 	c := bybit.BybitConnector{
 		Connector: conn,
