@@ -96,6 +96,10 @@ func main() {
 		return nil
 	}).Report(os.Stdout)
 
+	// Wait for a few seconds before terminating
+	time.Sleep(3 * time.Second)
+	c.Close()
+
 	// Prevent the benchmark from being shutdown/restarted on k8s
 	if os.Getenv("KUBERNETES_SERVICE_HOST") != "" && os.Getenv("KUBERNETES_SERVICE_PORT") != "" {
 		for {
