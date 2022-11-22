@@ -7,7 +7,6 @@ import (
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/config"
 	"github.com/nakji-network/connectors/flow"
-	"github.com/nakji-network/connectors/flow/flowtoken"
 
 	"github.com/onflow/flow-go-sdk/access/grpc"
 	"github.com/rs/zerolog/log"
@@ -50,7 +49,7 @@ func main() {
 	// topicTypes = append(topicTypes, flowserviceaccount.Types...)
 	// topicTypes = append(topicTypes, flowstakingcollection.Types...)
 	// topicTypes = append(topicTypes, flowstoragefees.Types...)
-	topicTypes = append(topicTypes, flowtoken.Types...)
+	// topicTypes = append(topicTypes, flowtoken.Types...)
 	// topicTypes = append(topicTypes, lockedtokens.Types...)
 
 	// Register topic and protobuf type mappings
@@ -77,7 +76,7 @@ func main() {
 	// m.AddContract(flowserviceaccount.SmartContract{})
 	// m.AddContract(flowstakingcollection.SmartContract{})
 	// m.AddContract(flowstoragefees.SmartContract{})
-	m.AddContract(flowtoken.SmartContract{})
+	// m.AddContract(flowtoken.SmartContract{})
 	// m.AddContract(lockedtokens.SmartContract{})
 	m.Start()
 }

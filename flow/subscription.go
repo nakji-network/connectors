@@ -175,15 +175,15 @@ func (s *Subscription) backfill(latestBlock uint64) {
 }
 
 func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
-	// Get events for maximun of 250 blocks at once
-	for start := startHeight; start <= endHeight; start += 250 {
+	// Get events for maximun of 250 blocks at once in reverse order
+	for end := endHeight; end >= startHeight; end -= 250 {
 		select {
 		case <-s.done:
 			return
 		default:
-			end := start + 249
-			if end > endHeight {
-				end = endHeight
+			start := end - 249
+			if start < startHeight {
+				start = startHeight
 			}
 			var wg sync.WaitGroup
 			wg.Add(2)
