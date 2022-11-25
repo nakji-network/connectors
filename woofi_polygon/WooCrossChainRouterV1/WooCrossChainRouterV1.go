@@ -4,17 +4,19 @@ import (
 	"strings"
 
 	"github.com/nakji-network/connector/common"
+	"github.com/nakji-network/connectors/woofi_polygon"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/ethereum/go-ethereum/core/types"
+	ethcommon "github.com/ethereum/go-ethereum/common"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
 type SmartContract struct {
-	addr string
-	abi  abi.ABI
+	abi       abi.ABI
+	addr      string
+	addrBytes []byte
 }
 
 func NewContract(addr string) *SmartContract {
@@ -22,7 +24,7 @@ func NewContract(addr string) *SmartContract {
 	if err != nil {
 		log.Fatal().Err(err).Msg("error reading WooCrossChainRouterV1ABI")
 	}
-	return &SmartContract{addr: addr, abi: contractAbi}
+	return &SmartContract{abi: contractAbi, addr: addr, addrBytes: ethcommon.HexToAddress(addr).Bytes()}
 }
 
 func (sc *SmartContract) Address() string {
@@ -37,7 +39,7 @@ func (sc *SmartContract) Events() []proto.Message {
 	}
 }
 
-func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) proto.Message {
+func (sc *SmartContract) Message(vLog woofi_polygon.Log) proto.Message {
 	ev, err := sc.abi.EventByID(vLog.Topics[0])
 	if err != nil {
 		log.Warn().Err(err).Msg("EventByID error, skipping")
@@ -46,12 +48,12 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 	switch ev.Name {
 	case "WooCrossSwapOnSrcChain":
 		e := new(WooCrossChainRouterV1WooCrossSwapOnSrcChain)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog.Log); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
-		return &WooCrossSwapOnSrcChain{
-			Ts:              ts,
+		msg := &WooCrossSwapOnSrcChain{
+			Ts:              timestamppb.New(vLog.BlockTime),
 			BlockNumber:     vLog.BlockNumber,
 			Index:           uint64(vLog.Index),
 			TxHash:          vLog.TxHash.Bytes(),
@@ -62,16 +64,23 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			FromAmount:      e.FromAmount.Bytes(),
 			MinQuoteAmount:  e.MinQuoteAmount.Bytes(),
 			RealQuoteAmount: e.RealQuoteAmount.Bytes(),
-			ContractAddress: sc.Address(),
+			ContractAddress: sc.addrBytes,
 		}
+		if vLog.SenderAddress != nil {
+			msg.SenderAddress = vLog.SenderAddress.Bytes()
+		}
+		if vLog.ReceiverAddress != nil {
+			msg.ReceiverAddress = vLog.ReceiverAddress.Bytes()
+		}
+		return msg
 	case "WooCrossSwapOnDstChain":
 		e := new(WooCrossChainRouterV1WooCrossSwapOnDstChain)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog.Log); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
-		return &WooCrossSwapOnDstChain{
-			Ts:              ts,
+		msg := &WooCrossSwapOnDstChain{
+			Ts:              timestamppb.New(vLog.BlockTime),
 			BlockNumber:     vLog.BlockNumber,
 			Index:           uint64(vLog.Index),
 			TxHash:          vLog.TxHash.Bytes(),
@@ -84,23 +93,37 @@ func (sc *SmartContract) Message(vLog types.Log, ts *timestamppb.Timestamp) prot
 			RealToToken:     e.RealToToken.Bytes(),
 			MinToAmount:     e.MinToAmount.Bytes(),
 			RealToAmount:    e.RealToAmount.Bytes(),
-			ContractAddress: sc.Address(),
+			ContractAddress: sc.addrBytes,
 		}
+		if vLog.SenderAddress != nil {
+			msg.SenderAddress = vLog.SenderAddress.Bytes()
+		}
+		if vLog.ReceiverAddress != nil {
+			msg.ReceiverAddress = vLog.ReceiverAddress.Bytes()
+		}
+		return msg
 	case "OwnershipTransferred":
 		e := new(WooCrossChainRouterV1OwnershipTransferred)
-		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog); err != nil {
+		if err := common.UnpackLog(sc.abi, e, ev.Name, vLog.Log); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
 			return nil
 		}
-		return &OwnershipTransferred{
-			Ts:              ts,
+		msg := &OwnershipTransferred{
+			Ts:              timestamppb.New(vLog.BlockTime),
 			BlockNumber:     vLog.BlockNumber,
 			Index:           uint64(vLog.Index),
 			TxHash:          vLog.TxHash.Bytes(),
 			PreviousOwner:   e.PreviousOwner.Bytes(),
 			NewOwner:        e.NewOwner.Bytes(),
-			ContractAddress: sc.Address(),
+			ContractAddress: sc.addrBytes,
 		}
+		if vLog.SenderAddress != nil {
+			msg.SenderAddress = vLog.SenderAddress.Bytes()
+		}
+		if vLog.ReceiverAddress != nil {
+			msg.ReceiverAddress = vLog.ReceiverAddress.Bytes()
+		}
+		return msg
 	default:
 		log.Error().Msgf("invalid event: %s", ev.Name)
 		return nil
