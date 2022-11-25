@@ -19,12 +19,12 @@ FROM base as build
 # build. CGO_ENABLED=1 required for conflient-kafka-go
 WORKDIR /src
 RUN mkdir /src/bin
-RUN CGO_ENABLED=1 GOFLAGS="-tags=musl" go build -o bin ./...
+RUN CGO_ENABLED=1 GOFLAGS="-tags=musl" go build -ldflags "-X google.golang.org/protobuf/reflect/protoregistry.conflictPolicy=ignore" -o bin ./...
 
 FROM build as test
 ENV CGO_ENABLED=1 
 ENV GOFLAGS="-tags=musl" 
-CMD ["go", "test", "./..."]
+CMD ["go", "test", "-ldflags \"-X google.golang.org/protobuf/reflect/protoregistry.conflictPolicy=ignore\"", "./..."]
 
 #FROM scratch AS final
 # can't use scratch for confluent-kafka-go
