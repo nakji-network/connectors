@@ -6,7 +6,7 @@ replace github.com/nakji-network/connectors/evm/CHAIN => ./CHAIN
 
 require (
 	github.com/ethereum/go-ethereum v1.10.15
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20221110211311-416552a01359
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20221128124704-de99c8576971
 	github.com/nakji-network/connector/chain/ethereum v0.0.0-20221125102345-ed87d62a3e74
 	github.com/rs/zerolog v1.28.0
 	github.com/spf13/pflag v1.0.5

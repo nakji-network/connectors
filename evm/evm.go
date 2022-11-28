@@ -9,7 +9,7 @@ import (
 	"github.com/nakji-network/connector/chain/ethereum"
 	"github.com/nakji-network/connector/common"
 	"github.com/nakji-network/connector/kafkautils"
-	"github.com/nakji-network/connectors/evm/CHAIN"
+	"github.com/nakji-network/connectors/evm/chain"
 
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/ethclient"
@@ -33,8 +33,8 @@ type Connector struct {
 }
 
 var TopicTypes = []proto.Message{
-	&CHAIN.Block{},
-	&CHAIN.Transaction{},
+	&chain.Block{},
+	&chain.Transaction{},
 }
 
 func New(c *connector.Connector, config *Config) *Connector {
@@ -173,13 +173,13 @@ func (c *Connector) process(block *types.Block) error {
 		ts := common.UnixToTimestampPb(int64(header.Time))
 		messages[i] = &kafkautils.Message{
 			MsgType:  kafkautils.MsgTypeFct,
-			ProtoMsg: CHAIN.ParseTransaction(t, ts),
+			ProtoMsg: chain.ParseTransaction(t, ts),
 		}
 	}
 
 	messages[len(messages)-1] = &kafkautils.Message{
 		MsgType:  kafkautils.MsgTypeFct,
-		ProtoMsg: CHAIN.ParseHeader(header),
+		ProtoMsg: chain.ParseHeader(header),
 	}
 
 	return c.ProduceWithTransaction(messages)
