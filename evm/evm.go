@@ -121,7 +121,7 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc) {
 			log.Error().Err(err).Msg("failed to retrieve block")
 		}
 
-		err = c.process(ctx, block)
+		err = c.process(block)
 		if err != nil {
 			log.Error().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
 		}
@@ -137,7 +137,7 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc) {
 func (c *Connector) listenBlocks(ctx context.Context, cancel context.CancelFunc) {
 	c.sub.Subscribe(ctx)
 
-	go c.listenCloseSignal(ctx, cancel)
+	go c.listenCloseSignal(cancel)
 
 	for h := range c.sub.Headers() {
 		block, err := c.client.BlockByNumber(ctx, h.Number)
@@ -145,14 +145,14 @@ func (c *Connector) listenBlocks(ctx context.Context, cancel context.CancelFunc)
 			log.Error().Err(err).Msg("failed to retrieve block")
 		}
 
-		err = c.process(ctx, block)
+		err = c.process(block)
 		if err != nil {
 			log.Error().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
 		}
 	}
 }
 
-func (c *Connector) listenCloseSignal(ctx context.Context, cancel context.CancelFunc) {
+func (c *Connector) listenCloseSignal(cancel context.CancelFunc) {
 	select {
 	//	Listen to error channel
 	case err := <-c.sub.Err():
@@ -164,7 +164,7 @@ func (c *Connector) listenCloseSignal(ctx context.Context, cancel context.Cancel
 	}
 }
 
-func (c *Connector) process(ctx context.Context, block *types.Block) error {
+func (c *Connector) process(block *types.Block) error {
 
 	header := block.Header()
 	messages := make([]*kafkautils.Message, len(block.Transactions())+1)
