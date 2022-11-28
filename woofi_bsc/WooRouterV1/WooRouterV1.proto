@@ -15,7 +15,9 @@ message OwnershipTransferred {
 	bytes txHash = 4;
 	bytes previousOwner = 5; 
 	bytes newOwner = 6; 
-	string contractAddress = 7;
+	bytes contractAddress = 7;
+	bytes senderAddress = 8;
+	bytes receiverAddress = 9;
 }
 
 message WooPoolChanged {
@@ -24,7 +26,9 @@ message WooPoolChanged {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes newPool = 5; 
-	string contractAddress = 6;
+	bytes contractAddress = 6;
+	bytes senderAddress = 7;
+	bytes receiverAddress = 8;
 }
 
 message WooRouterSwap {
@@ -39,5 +43,7 @@ message WooRouterSwap {
 	bytes toAmount = 9; // uint256
 	bytes from = 10; 
 	bytes to = 11; 
-	string contractAddress = 12;
+	bytes contractAddress = 12;
+	bytes senderAddress = 13;
+	bytes receiverAddress = 14;
 }

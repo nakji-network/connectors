@@ -15,7 +15,9 @@ message OwnershipTransferred {
 	bytes txHash = 4;
 	bytes previousOwner = 5; 
 	bytes newOwner = 6; 
-	string contractAddress = 7;
+	bytes contractAddress = 7;
+	bytes senderAddress = 8;
+	bytes receiverAddress = 9;
 }
 
 message RewardManagerUpdated {
@@ -24,7 +26,9 @@ message RewardManagerUpdated {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes newRewardManager = 5; 
-	string contractAddress = 6;
+	bytes contractAddress = 6;
+	bytes senderAddress = 7;
+	bytes receiverAddress = 8;
 }
 
 message StrategistUpdated {
@@ -34,7 +38,9 @@ message StrategistUpdated {
 	bytes txHash = 4;
 	bytes strategist = 5; 
 	bool flag = 6; 
-	string contractAddress = 7;
+	bytes contractAddress = 7;
+	bytes senderAddress = 8;
+	bytes receiverAddress = 9;
 }
 
 message Withdraw {
@@ -45,7 +51,9 @@ message Withdraw {
 	bytes token = 5; 
 	bytes to = 6; 
 	bytes amount = 7; // uint256
-	string contractAddress = 8;
+	bytes contractAddress = 8;
+	bytes senderAddress = 9;
+	bytes receiverAddress = 10;
 }
 
 message OwnershipTransferPrepared {
@@ -55,7 +63,9 @@ message OwnershipTransferPrepared {
 	bytes txHash = 4;
 	bytes previousOwner = 5; 
 	bytes newOwner = 6; 
-	string contractAddress = 7;
+	bytes contractAddress = 7;
+	bytes senderAddress = 8;
+	bytes receiverAddress = 9;
 }
 
 message ParametersUpdated {
@@ -67,7 +77,9 @@ message ParametersUpdated {
 	bytes newThreshold = 6; // uint256
 	bytes newLpFeeRate = 7; // uint256
 	bytes newR = 8; // uint256
-	string contractAddress = 9;
+	bytes contractAddress = 9;
+	bytes senderAddress = 10;
+	bytes receiverAddress = 11;
 }
 
 message Paused {
@@ -76,7 +88,9 @@ message Paused {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes account = 5; 
-	string contractAddress = 6;
+	bytes contractAddress = 6;
+	bytes senderAddress = 7;
+	bytes receiverAddress = 8;
 }
 
 message WooGuardianUpdated {
@@ -85,7 +99,9 @@ message WooGuardianUpdated {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes newWooGuardian = 5; 
-	string contractAddress = 6;
+	bytes contractAddress = 6;
+	bytes senderAddress = 7;
+	bytes receiverAddress = 8;
 }
 
 message WooracleUpdated {
@@ -94,7 +110,9 @@ message WooracleUpdated {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes newWooracle = 5; 
-	string contractAddress = 6;
+	bytes contractAddress = 6;
+	bytes senderAddress = 7;
+	bytes receiverAddress = 8;
 }
 
 message Unpaused {
@@ -103,7 +121,9 @@ message Unpaused {
 	uint64 index = 3;
 	bytes txHash = 4;
 	bytes account = 5; 
-	string contractAddress = 6;
+	bytes contractAddress = 6;
+	bytes senderAddress = 7;
+	bytes receiverAddress = 8;
 }
 
 message WooSwap {
@@ -117,5 +137,7 @@ message WooSwap {
 	bytes toAmount = 8; // uint256
 	bytes from = 9; 
 	bytes to = 10; 
-	string contractAddress = 11;
+	bytes contractAddress = 11;
+	bytes senderAddress = 12;
+	bytes receiverAddress = 13;
 }
