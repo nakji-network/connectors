@@ -1,13 +1,22 @@
 package woofi_avax
 
 import (
+	"time"
+
+	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	"google.golang.org/protobuf/proto"
-	"google.golang.org/protobuf/types/known/timestamppb"
 )
+
+type Log struct {
+	types.Log
+	BlockTime       time.Time
+	SenderAddress   *common.Address
+	ReceiverAddress *common.Address
+}
 
 type ISmartContract interface {
 	Address() string
 	Events() []proto.Message
-	Message(vLog types.Log, timestamp *timestamppb.Timestamp) proto.Message
+	Message(Log) proto.Message
 }

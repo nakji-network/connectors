@@ -20,7 +20,9 @@ message WooCrossSwapOnSrcChain {
 	bytes fromAmount = 9; // uint256
 	bytes minQuoteAmount = 10; // uint256
 	bytes realQuoteAmount = 11; // uint256
-	string contractAddress = 12;
+	bytes contractAddress = 12;
+	bytes senderAddress = 13;
+	bytes receiverAddress = 14;
 }
 
 message WooCrossSwapOnDstChain {
@@ -37,7 +39,9 @@ message WooCrossSwapOnDstChain {
 	bytes realToToken = 11; 
 	bytes minToAmount = 12; // uint256
 	bytes realToAmount = 13; // uint256
-	string contractAddress = 14;
+	bytes contractAddress = 14;
+	bytes senderAddress = 15;
+	bytes receiverAddress = 16;
 }
 
 message OwnershipTransferred {
@@ -47,5 +51,7 @@ message OwnershipTransferred {
 	bytes txHash = 4;
 	bytes previousOwner = 5; 
 	bytes newOwner = 6; 
-	string contractAddress = 7;
+	bytes contractAddress = 7;
+	bytes senderAddress = 8;
+	bytes receiverAddress = 9;
 }
