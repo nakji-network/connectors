@@ -23,8 +23,9 @@ RUN CGO_ENABLED=1 GOFLAGS="-tags=musl" go build -ldflags "-X google.golang.org/p
 
 FROM build as test
 ENV CGO_ENABLED=1 
-ENV GOFLAGS="-tags=musl" 
-CMD ["go", "test", "-ldflags \"-X google.golang.org/protobuf/reflect/protoregistry.conflictPolicy=ignore\"", "./..."]
+ENV GOFLAGS="-tags=musl"
+ENV GOLANG_PROTOBUF_REGISTRATION_CONFLICT=ignore
+CMD ["go", "test", "./..."]
 
 #FROM scratch AS final
 # can't use scratch for confluent-kafka-go
