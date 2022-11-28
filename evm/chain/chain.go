@@ -1,4 +1,4 @@
-package CHAIN
+package chain
 
 import (
 	"github.com/ethereum/go-ethereum/core/types"
