@@ -1,10 +1,10 @@
 package main
 
 import (
-	"github.com/nakji-network/connectors/woofi_avax"
-	"github.com/nakji-network/connectors/woofi_avax/WooCrossChainRouterV1"
-	"github.com/nakji-network/connectors/woofi_avax/WooPPV3"
-	"github.com/nakji-network/connectors/woofi_avax/WooRouterV2"
+	"github.com/nakji-network/woofi-connectors/woofi"
+	"github.com/nakji-network/woofi-connectors/woofi/WooCrossChainRouterV1"
+	"github.com/nakji-network/woofi-connectors/woofi/WooPPV3"
+	"github.com/nakji-network/woofi-connectors/woofi/WooRouterV2"
 
 	"github.com/spf13/pflag"
 	_ "go.uber.org/automaxprocs"
@@ -16,13 +16,13 @@ func main() {
 
 	pflag.Parse()
 
-	conf := &woofi_avax.Config{
+	conf := &woofi.Config{
 		NetworkName: "avalanche",
 		FromBlock:   *fromBlock,
 		NumBlocks:   *numBlocks,
 	}
 
-	c := woofi_avax.New(conf)
+	c := woofi.New(conf)
 	c.AddContract(WooPPV3.NewContract("0xF8cE0D043891b62c55380fB1EFBfB4F186153D96"))               // WooPPV2
 	c.AddContract(WooPPV3.NewContract("0x1df3009c57a8B143c6246149F00B090Bce3b8f88"))               // WooPPV3
 	c.AddContract(WooRouterV2.NewContract("0x160020B09DeD3d862f7f851B5c50632BcF2062FF"))           // WooRouterV1

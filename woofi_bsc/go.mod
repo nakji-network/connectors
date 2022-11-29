@@ -3,13 +3,9 @@ module github.com/nakji-network/connectors/woofi_bsc
 go 1.18
 
 require (
-	github.com/ethereum/go-ethereum v1.10.15
-	github.com/nakji-network/connector v0.0.1-beta.1.0.20221124130241-cf36387200dc
-	github.com/nakji-network/connector/chain/ethereum v0.0.0-20221124130241-cf36387200dc
-	github.com/rs/zerolog v1.28.0
+	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20221128104248-06e1e2cf5fdd
 	github.com/spf13/pflag v1.0.5
 	go.uber.org/automaxprocs v1.5.1
-	google.golang.org/protobuf v1.28.1
 )
 
 require (
@@ -21,6 +17,7 @@ require (
 	github.com/cespare/xxhash/v2 v2.1.2 // indirect
 	github.com/confluentinc/confluent-kafka-go v1.9.2 // indirect
 	github.com/deckarep/golang-set v1.8.0 // indirect
+	github.com/ethereum/go-ethereum v1.10.15 // indirect
 	github.com/fsnotify/fsnotify v1.5.1 // indirect
 	github.com/go-logr/logr v1.2.3 // indirect
 	github.com/go-logr/stdr v1.2.2 // indirect
@@ -39,12 +36,15 @@ require (
 	github.com/mattn/go-isatty v0.0.14 // indirect
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
+	github.com/nakji-network/connector v0.0.1-beta.1.0.20221125102345-ed87d62a3e74 // indirect
+	github.com/nakji-network/connector/chain/ethereum v0.0.0-20221125102345-ed87d62a3e74 // indirect
 	github.com/pelletier/go-toml v1.9.4 // indirect
 	github.com/prometheus/client_golang v1.11.0 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
 	github.com/prometheus/common v0.26.0 // indirect
 	github.com/prometheus/procfs v0.6.0 // indirect
 	github.com/rjeczalik/notify v0.9.1 // indirect
+	github.com/rs/zerolog v1.28.0 // indirect
 	github.com/shirou/gopsutil v3.21.4-0.20210419000835-c7a38de76ee5+incompatible // indirect
 	github.com/sirupsen/logrus v1.8.1 // indirect
 	github.com/spf13/afero v1.6.0 // indirect
@@ -71,6 +71,7 @@ require (
 	golang.org/x/text v0.3.7 // indirect
 	google.golang.org/genproto v0.0.0-20220503193339-ba3ae3f07e29 // indirect
 	google.golang.org/grpc v1.50.1 // indirect
+	google.golang.org/protobuf v1.28.1 // indirect
 	gopkg.in/ini.v1 v1.66.2 // indirect
 	gopkg.in/natefinch/npipe.v2 v2.0.0-20160621034901-c1b8fa8bdcce // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
