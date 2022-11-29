@@ -10,11 +10,6 @@ RUN go mod download
 
 COPY . .
 
-# build protobufs
-RUN protoc --proto_path=. \
-                --go_out=. --go_opt=paths=source_relative \
-                --go-grpc_out=. --go-grpc_opt=paths=source_relative --experimental_allow_proto3_optional $(find . -iname "*.proto")
-
 FROM base as build
 # build. CGO_ENABLED=1 required for conflient-kafka-go
 WORKDIR /src
@@ -30,7 +25,7 @@ CMD ["go", "test", "./..."]
 #FROM scratch AS final
 # can't use scratch for confluent-kafka-go
 FROM alpine:3.15 AS final
-RUN apk add --no-cache protoc protobuf-dev
+RUN apk add --no-cache
 
 ARG PACKAGE=./usr/local
 RUN echo ${PACKAGE}
