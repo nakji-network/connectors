@@ -4,11 +4,10 @@ import (
 	"github.com/ethereum/go-ethereum/core/types"
 	"github.com/nakji-network/connector/common"
 	"github.com/rs/zerolog/log"
-	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
 	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
-func ParseHeader(header *types.Header) protoreflect.ProtoMessage {
+func ParseHeader(header *types.Header) *Block {
 	return &Block{
 		Ts:         common.UnixToTimestampPb(int64(header.Time)),
 		Hash:       header.Hash().Hex(),
@@ -20,7 +19,7 @@ func ParseHeader(header *types.Header) protoreflect.ProtoMessage {
 	}
 }
 
-func ParseTransaction(tx *types.Transaction, timestamp *timestamppb.Timestamp) protoreflect.ProtoMessage {
+func ParseTransaction(tx *types.Transaction, timestamp *timestamppb.Timestamp) *Transaction {
 	V, R, S := tx.RawSignatureValues()
 
 	// handle nil recipients for contract creations
