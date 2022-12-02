@@ -3,7 +3,7 @@ module github.com/nakji-network/connectors/woofi_bsc
 go 1.18
 
 require (
-	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20221128104248-06e1e2cf5fdd
+	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20221202022735-68cd2c193062
 	github.com/spf13/pflag v1.0.5
 	go.uber.org/automaxprocs v1.5.1
 )
@@ -37,7 +37,7 @@ require (
 	github.com/matttproud/golang_protobuf_extensions v1.0.1 // indirect
 	github.com/mitchellh/mapstructure v1.4.3 // indirect
 	github.com/nakji-network/connector v0.0.1-beta.1.0.20221125102345-ed87d62a3e74 // indirect
-	github.com/nakji-network/connector/chain/ethereum v0.0.0-20221125102345-ed87d62a3e74 // indirect
+	github.com/nakji-network/connector/chain/ethereum v0.0.0-20221201060803-17273625c2bc // indirect
 	github.com/pelletier/go-toml v1.9.4 // indirect
 	github.com/prometheus/client_golang v1.11.0 // indirect
 	github.com/prometheus/client_model v0.2.0 // indirect
