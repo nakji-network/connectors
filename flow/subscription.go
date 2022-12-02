@@ -143,7 +143,7 @@ func (s *Subscription) Logs() <-chan *Log {
 }
 
 func (s *Subscription) HistoricalLogs() <-chan *Log {
-	return s.logChan
+	return s.historicalLogChan
 }
 
 func (s *Subscription) Err() <-chan error {
