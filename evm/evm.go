@@ -142,7 +142,11 @@ func (c *Connector) listenBlocks(ctx context.Context, cancel context.CancelFunc)
 	for h := range c.sub.Headers() {
 		block, err := c.client.BlockByNumber(ctx, h.Number)
 		if err != nil {
-			log.Error().Err(err).Msg("failed to retrieve block")
+			block, err = c.client.BlockByHash(ctx, h.Hash())
+			if err != nil {
+				log.Error().Err(err).Msg("failed to retrieve block")
+				continue
+			}
 		}
 
 		err = c.process(block)
