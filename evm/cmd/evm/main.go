@@ -63,7 +63,7 @@ func validateFlags(conf config.IConfig) error {
 		"oec":       true,
 		"optimism":  true,
 		"polygon":   true,
-		"xdai":      true,
+		"gnosis":    true,
 	}
 
 	if _, isExists := availableNetworks[networkName]; !isExists {
