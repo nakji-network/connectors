@@ -58,14 +58,6 @@ func main() {
 
 	var topicTypes []proto.Message
 	topicTypes = append(topicTypes, &flow.Block{}, &flow.Transaction{})
-	// topicTypes = append(topicTypes, flowcontractaudits.Types...)
-	// topicTypes = append(topicTypes, flowfees.Types...)
-	// topicTypes = append(topicTypes, flowidtablestaking.Types...)
-	// topicTypes = append(topicTypes, flowserviceaccount.Types...)
-	// topicTypes = append(topicTypes, flowstakingcollection.Types...)
-	// topicTypes = append(topicTypes, flowstoragefees.Types...)
-	// topicTypes = append(topicTypes, flowtoken.Types...)
-	// topicTypes = append(topicTypes, lockedtokens.Types...)
 
 	// Register topic and protobuf type mappings
 	c.RegisterProtos(kafkautils.MsgTypeFct, topicTypes...)
@@ -74,14 +66,6 @@ func main() {
 	}
 
 	m := flow.New(c, conf)
-	// m.AddContract(flowcontractaudits.SmartContract{})
-	// m.AddContract(flowidtablestaking.SmartContract{})
-	// m.AddContract(flowidtablestaking.SmartContract{})
-	// m.AddContract(flowserviceaccount.SmartContract{})
-	// m.AddContract(flowstakingcollection.SmartContract{})
-	// m.AddContract(flowstoragefees.SmartContract{})
-	// m.AddContract(flowtoken.SmartContract{})
-	// m.AddContract(lockedtokens.SmartContract{})
 	m.Start()
 }
 
