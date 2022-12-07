@@ -48,16 +48,19 @@ type Log struct {
 
 type Subscription struct {
 	*Config
-	grpc            Repository
-	events          []string
-	cache           *lru.Cache
-	curBlock        uint64
-	apiUsage        uint64 // GetEventsForHeightRange API usage rate.
-	done            chan struct{}
-	blockChan       chan *Block
-	transactionChan chan *Transaction
-	logChan         chan *Log
-	errChan         chan error
+	grpc                      Repository
+	events                    []string
+	cache                     *lru.Cache
+	curBlock                  uint64
+	apiUsage                  uint64 // GetEventsForHeightRange API usage rate.
+	done                      chan struct{}
+	blockChan                 chan *Block
+	transactionChan           chan *Transaction
+	logChan                   chan *Log
+	historicalBlockChan       chan *Block
+	historicalTransactionChan chan *Transaction
+	historicalLogChan         chan *Log
+	errChan                   chan error
 }
 
 func NewSubscription(ctx context.Context, config *Config, events []string) (*Subscription, error) {
@@ -70,15 +73,18 @@ func NewSubscription(ctx context.Context, config *Config, events []string) (*Sub
 		return nil, err
 	}
 	sub := &Subscription{
-		Config:          config,
-		grpc:            repo,
-		events:          events,
-		cache:           cache,
-		done:            make(chan struct{}),
-		blockChan:       make(chan *Block, config.ChannelSize),
-		transactionChan: make(chan *Transaction, config.ChannelSize),
-		logChan:         make(chan *Log, config.ChannelSize),
-		errChan:         make(chan error, config.ChannelSize),
+		Config:                    config,
+		grpc:                      repo,
+		events:                    events,
+		cache:                     cache,
+		done:                      make(chan struct{}),
+		blockChan:                 make(chan *Block, config.ChannelSize),
+		transactionChan:           make(chan *Transaction, config.ChannelSize),
+		logChan:                   make(chan *Log, config.ChannelSize),
+		historicalBlockChan:       make(chan *Block, config.ChannelSize),
+		historicalTransactionChan: make(chan *Transaction, config.ChannelSize),
+		historicalLogChan:         make(chan *Log, config.ChannelSize),
+		errChan:                   make(chan error, config.ChannelSize),
 	}
 	go func() {
 		interrupt := make(chan os.Signal, 1)
@@ -120,12 +126,24 @@ func (s *Subscription) Blocks() <-chan *Block {
 	return s.blockChan
 }
 
+func (s *Subscription) HistoricalBlocks() <-chan *Block {
+	return s.historicalBlockChan
+}
+
 func (s *Subscription) Transactions() <-chan *Transaction {
 	return s.transactionChan
 }
 
+func (s *Subscription) HistoricalTransactions() <-chan *Transaction {
+	return s.historicalTransactionChan
+}
+
 func (s *Subscription) Logs() <-chan *Log {
 	return s.logChan
+}
+
+func (s *Subscription) HistoricalLogs() <-chan *Log {
+	return s.historicalLogChan
 }
 
 func (s *Subscription) Err() <-chan error {
@@ -155,9 +173,9 @@ func (s *Subscription) subscribe() {
 				backfilled = true
 			}
 			if s.curBlock == 0 {
-				s.getEvents(latest, latest)
+				s.subscribeEvents(latest, latest)
 			} else {
-				s.getEvents(s.curBlock+1, latest)
+				s.subscribeEvents(s.curBlock+1, latest)
 			}
 			s.curBlock = latest
 		}
@@ -168,13 +186,39 @@ func (s *Subscription) backfill(latestBlock uint64) {
 	log.Info().Msg("start backfilling")
 	defer log.Info().Msg("stop backfilling")
 	if s.FromBlock > 0 {
-		s.getEvents(s.FromBlock, latestBlock)
+		s.subscribeHistoricalEvents(s.FromBlock, latestBlock)
 	} else if s.NumBlocks > 0 {
-		s.getEvents(latestBlock-s.NumBlocks+1, latestBlock)
+		s.subscribeHistoricalEvents(latestBlock-s.NumBlocks+1, latestBlock)
 	}
 }
 
-func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
+func (s *Subscription) subscribeEvents(startHeight uint64, endHeight uint64) {
+	// Get events for maximun of 250 blocks at once
+	for start := startHeight; start <= endHeight; start += 250 {
+		select {
+		case <-s.done:
+			return
+		default:
+			end := start + 249
+			if end > endHeight {
+				end = endHeight
+			}
+			var wg sync.WaitGroup
+			wg.Add(2)
+			go func() {
+				s.subscribeBlocks(false, start, end)
+				wg.Done()
+			}()
+			go func() {
+				s.subscribeLogs(false, start, end)
+				wg.Done()
+			}()
+			wg.Wait()
+		}
+	}
+}
+
+func (s *Subscription) subscribeHistoricalEvents(startHeight uint64, endHeight uint64) {
 	// Get events for maximun of 250 blocks at once in reverse order
 	for end := endHeight; end >= startHeight; end -= 250 {
 		select {
@@ -188,11 +232,11 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 			var wg sync.WaitGroup
 			wg.Add(2)
 			go func() {
-				s.getBlocks(start, end)
+				s.subscribeBlocks(true, start, end)
 				wg.Done()
 			}()
 			go func() {
-				s.getLogs(start, end)
+				s.subscribeLogs(true, start, end)
 				wg.Done()
 			}()
 			wg.Wait()
@@ -200,7 +244,7 @@ func (s *Subscription) getEvents(startHeight uint64, endHeight uint64) {
 	}
 }
 
-func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
+func (s *Subscription) subscribeBlocks(isHistorical bool, startHeight uint64, endHeight uint64) {
 	var (
 		txMtx        sync.Mutex
 		blockMtx     sync.Mutex
@@ -272,11 +316,20 @@ func (s *Subscription) getBlocks(startHeight uint64, endHeight uint64) {
 		tx2 := transactions[j]
 		return tx1.Ts.AsTime().Before(tx2.Ts.AsTime()) || (tx1.Ts.AsTime().Equal(tx2.Ts.AsTime()) && string(tx1.CollectionID) < string(tx2.CollectionID))
 	})
-	for _, block := range blocks {
-		s.blockChan <- block
-	}
-	for _, transaction := range transactions {
-		s.transactionChan <- transaction
+	if isHistorical {
+		for _, block := range blocks {
+			s.historicalBlockChan <- block
+		}
+		for _, transaction := range transactions {
+			s.historicalTransactionChan <- transaction
+		}
+	} else {
+		for _, block := range blocks {
+			s.blockChan <- block
+		}
+		for _, transaction := range transactions {
+			s.transactionChan <- transaction
+		}
 	}
 }
 
@@ -360,7 +413,7 @@ func (s *Subscription) getTransaction(block *flow.Block, collID flow.Identifier,
 	return &transaction, nil
 }
 
-func (s *Subscription) getLogs(startHeight uint64, endHeight uint64) {
+func (s *Subscription) subscribeLogs(isHistorical bool, startHeight uint64, endHeight uint64) {
 	var logs []*Log
 	for _, event := range s.events {
 		blockEvents, err := s.getEventsForHeightRange(event, startHeight, endHeight)
@@ -396,8 +449,14 @@ func (s *Subscription) getLogs(startHeight uint64, endHeight uint64) {
 		log2 := logs[j]
 		return (log1.Height < log2.Height) || (log1.Height == log2.Height && log1.TransactionIndex < log2.TransactionIndex) || (log1.Height == log2.Height && log1.TransactionIndex == log2.TransactionIndex && log1.EventIndex < log2.EventIndex)
 	})
-	for _, log := range logs {
-		s.logChan <- log
+	if isHistorical {
+		for _, log := range logs {
+			s.historicalLogChan <- log
+		}
+	} else {
+		for _, log := range logs {
+			s.logChan <- log
+		}
 	}
 }
 

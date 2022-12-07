@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/nakji-network/connector"
+	"github.com/nakji-network/connector/kafkautils"
 
 	"github.com/rs/zerolog/log"
 	"google.golang.org/protobuf/proto"
@@ -87,18 +88,53 @@ func (c *Connector) Start() {
 		// Listen for new blocks
 		case block := <-sub.Blocks():
 			c.blockCounter++
-			c.EventSink <- block
+			c.EventSink <- &kafkautils.Message{
+				MsgType:  kafkautils.MsgTypeFct,
+				ProtoMsg: block,
+			}
+
+		// Listen for historical blocks
+		case block := <-sub.HistoricalBlocks():
+			c.blockCounter++
+			c.EventSink <- &kafkautils.Message{
+				MsgType:  kafkautils.MsgTypeBf,
+				ProtoMsg: block,
+			}
 
 		// Listen for new transactions
 		case tx := <-sub.Transactions():
 			c.txCounter++
-			c.EventSink <- tx
+			c.EventSink <- &kafkautils.Message{
+				MsgType:  kafkautils.MsgTypeFct,
+				ProtoMsg: tx,
+			}
 
-		// Listen to event logs
+		// Listen for historical transactions
+		case tx := <-sub.HistoricalTransactions():
+			c.txCounter++
+			c.EventSink <- &kafkautils.Message{
+				MsgType:  kafkautils.MsgTypeBf,
+				ProtoMsg: tx,
+			}
+
+		// Listen for new event logs
 		case vLog := <-sub.Logs():
 			if msg := c.parse(vLog); msg != nil {
 				c.eventCounter[vLog.Type.String()]++
-				c.EventSink <- msg
+				c.EventSink <- &kafkautils.Message{
+					MsgType:  kafkautils.MsgTypeFct,
+					ProtoMsg: msg,
+				}
+			}
+
+		// Listen for historical event logs
+		case vLog := <-sub.HistoricalLogs():
+			if msg := c.parse(vLog); msg != nil {
+				c.eventCounter[vLog.Type.String()]++
+				c.EventSink <- &kafkautils.Message{
+					MsgType:  kafkautils.MsgTypeBf,
+					ProtoMsg: msg,
+				}
 			}
 
 		// Report counters
