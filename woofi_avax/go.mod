@@ -3,7 +3,7 @@ module github.com/nakji-network/connectors/woofi_avax
 go 1.18
 
 require (
-	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20221213035359-f9bb63f7e702
+	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20221214034803-15d89d13ec8e
 	github.com/spf13/pflag v1.0.5
 	go.uber.org/automaxprocs v1.5.1
 )
