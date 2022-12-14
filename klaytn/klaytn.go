@@ -76,7 +76,7 @@ func (c *Connector) Start() {
 	signal.Notify(interrupt, os.Interrupt)
 
 	// Subscribe to headers
-	headers := make(chan *types.Header)
+	headers := make(chan *types.Header, 100)
 	sub, err := c.client.SubscribeNewHead(context.Background(), headers)
 	if err != nil {
 		log.Fatal().Err(err)
@@ -111,7 +111,6 @@ func (c *Connector) Start() {
 					txData.Ts = blockData.Ts // Timestamp isn't in the raw transaction from geth
 
 					c.EventSink <- buildKafkaMsg(kafkautils.MsgTypeFct, &txData)
-					log.Info().Msg("Tx: " + tx.Hash().String())
 				}
 			}
 		}

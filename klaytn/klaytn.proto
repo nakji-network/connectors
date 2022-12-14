@@ -36,12 +36,3 @@ message Block {
   uint64                    number = 4; //bigint
   uint64                    gas_used = 5; // uint64
 }
-
-message Block0 {
-  google.protobuf.Timestamp ts = 1; //uint64
-  uint64                    num = 2; //bigint
-  bytes                     hash = 3;
-  uint64                    block_score = 4; //bigint
-  uint64                    gas_used = 5; // uint64
-}
-
