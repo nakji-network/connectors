@@ -37,7 +37,6 @@ func main() {
 		NetworkName: cfg.GetString("network"),
 		FromBlock:   cfg.GetUint64("from-block"),
 		NumBlocks:   cfg.GetUint64("num-blocks"),
-		KafkaURL:    cfg.GetString("kafka.url"),
 	}
 
 	connector := evm.New(c, conf)
@@ -57,6 +56,7 @@ func validateFlags(conf config.IConfig) error {
 		"fantom":    true,
 		"harmony":   true,
 		"heco":      true,
+		"klaytn":    true,
 		"metis":     true,
 		"moonbeam":  true,
 		"moonriver": true,

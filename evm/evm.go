@@ -19,7 +19,6 @@ import (
 
 type Config struct {
 	ConnectorName string
-	KafkaURL      string
 	NetworkName   string
 	FromBlock     uint64
 	NumBlocks     uint64
@@ -32,7 +31,7 @@ type Connector struct {
 	sub    ethereum.ISubscription
 }
 
-var TopicTypes = []proto.Message{
+var ProtobufDefinitions = []proto.Message{
 	&chain.Block{},
 	&chain.Transaction{},
 }
@@ -48,10 +47,20 @@ func (c *Connector) Start() {
 	ctx, cancel := context.WithCancel(context.Background())
 
 	c.setup(ctx)
-	go c.backfill(ctx, cancel)
+
+	go c.listenCloseSignal(cancel)
+
+	c.RegisterProtos(kafkautils.MsgTypeBf, ProtobufDefinitions...)
+
+	go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks)
 
 	//	Only subscribe to the blockchain events when it is not a backfill job
 	if c.FromBlock == 0 && c.NumBlocks == 0 {
+
+		// Backfill last 100 blocks at every start
+		go c.backfill(ctx, nil, 0, 100)
+
+		// Listen live data
 		go c.listenBlocks(ctx, cancel)
 	}
 
@@ -85,37 +94,33 @@ func (c *Connector) setup(ctx context.Context) {
 	}
 
 	c.sub = sub
-
-	// Register topic and protobuf type mappings
-	c.RegisterProtos(kafkautils.MsgTypeFct, TopicTypes...)
 }
 
-func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc) {
-
-	if c.FromBlock == 0 && c.NumBlocks == 0 {
+// backfill queries for historical data and pushes them to Kafka.
+func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fromBlock, numBlocks uint64) {
+	if fromBlock == 0 && numBlocks == 0 {
 		return
 	}
 
-	c.RegisterProtos(kafkautils.MsgTypeBf, TopicTypes...)
-
-	fromBlock := c.FromBlock
+	// Calculate block interval for historical data
+	startingBlock := fromBlock
 	toBlock, err := c.client.BlockNumber(ctx)
 	if err != nil {
 		log.Error().Err(err).Msg("failed to get current block number")
 	}
 
-	if c.FromBlock > 0 && c.NumBlocks > 0 {
-		lastBlock := c.FromBlock + c.NumBlocks
+	if fromBlock > 0 && numBlocks > 0 {
+		lastBlock := fromBlock + numBlocks
 
 		if lastBlock < toBlock {
 			toBlock = lastBlock
 		}
 
-	} else if c.NumBlocks > 0 {
-		fromBlock = toBlock - c.NumBlocks
+	} else if numBlocks > 0 {
+		startingBlock = toBlock - numBlocks
 	}
 
-	for fromBlock < toBlock {
+	for startingBlock < toBlock {
 		block, err := c.client.BlockByNumber(ctx, big.NewInt(int64(toBlock)))
 		if err != nil {
 			log.Error().Err(err).Msg("failed to retrieve block")
@@ -128,16 +133,18 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc) {
 		toBlock--
 	}
 
-	if c.FromBlock != 0 || c.NumBlocks != 0 {
+	if cancel != nil {
 		log.Info().Msg("backfill completed. shutting down connector.")
 		cancel()
 	}
 }
 
+// listenBlocks subscribes to live data and pushes incoming logs to Kafka.
 func (c *Connector) listenBlocks(ctx context.Context, cancel context.CancelFunc) {
-	c.sub.Subscribe(ctx)
+	// Register topic and protobuf type mappings
+	c.RegisterProtos(kafkautils.MsgTypeFct, ProtobufDefinitions...)
 
-	go c.listenCloseSignal(cancel)
+	c.sub.Subscribe(ctx)
 
 	for h := range c.sub.Headers() {
 		block, err := c.client.BlockByNumber(ctx, h.Number)
@@ -156,6 +163,7 @@ func (c *Connector) listenBlocks(ctx context.Context, cancel context.CancelFunc)
 	}
 }
 
+// listenCloseSignal signals the program to terminate.
 func (c *Connector) listenCloseSignal(cancel context.CancelFunc) {
 	select {
 	//	Listen to error channel
