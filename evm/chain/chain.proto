@@ -1,5 +1,5 @@
 syntax = "proto3";
-package chain;
+package nakji.evm.chain;
 
 import "google/protobuf/timestamp.proto";
 
