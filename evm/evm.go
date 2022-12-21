@@ -180,9 +180,9 @@ func (c *Connector) process(block *types.Block) error {
 
 	header := block.Header()
 	messages := make([]*kafkautils.Message, len(block.Transactions())+1)
+	ts := common.UnixToTimestampPb(int64(header.Time * 1000))
 
 	for i, t := range block.Transactions() {
-		ts := common.UnixToTimestampPb(int64(header.Time))
 		messages[i] = &kafkautils.Message{
 			MsgType:  kafkautils.MsgTypeFct,
 			ProtoMsg: chain.ParseTransaction(t, ts),
