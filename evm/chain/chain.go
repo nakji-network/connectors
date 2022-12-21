@@ -9,7 +9,7 @@ import (
 
 func ParseHeader(header *types.Header) *Block {
 	return &Block{
-		Ts:         common.UnixToTimestampPb(int64(header.Time)),
+		Ts:         common.UnixToTimestampPb(int64(header.Time * 1000)),
 		Hash:       header.Hash().Hex(),
 		Difficulty: header.Difficulty.Uint64(),
 		Number:     header.Number.Uint64(),
