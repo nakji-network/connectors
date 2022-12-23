@@ -4,6 +4,7 @@ import (
 	"context"
 	"math/big"
 	"strings"
+	"time"
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/chain/ethereum"
@@ -52,13 +53,13 @@ func (c *Connector) Start() {
 
 	c.RegisterProtos(kafkautils.MsgTypeBf, ProtobufDefinitions...)
 
-	go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks)
+	go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, 1)
 
 	//	Only subscribe to the blockchain events when it is not a backfill job
 	if c.FromBlock == 0 && c.NumBlocks == 0 {
 
 		// Backfill last 100 blocks at every start
-		go c.backfill(ctx, nil, 0, 100)
+		go c.backfill(ctx, nil, 0, 100, 1)
 
 		// Listen live data
 		go c.listenBlocks(ctx, cancel)
@@ -97,16 +98,23 @@ func (c *Connector) setup(ctx context.Context) {
 }
 
 // backfill queries for historical data and pushes them to Kafka.
-func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fromBlock, numBlocks uint64) {
+func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fromBlock, numBlocks, backoff uint64) {
 	if fromBlock == 0 && numBlocks == 0 {
 		return
+	}
+
+	if backoff == 0 {
+		backoff = 1
 	}
 
 	// Calculate block interval for historical data
 	startingBlock := fromBlock
 	toBlock, err := c.client.BlockNumber(ctx)
 	if err != nil {
-		log.Error().Err(err).Msg("failed to get current block number")
+		log.Error().Err(err).Uint64("backoff minutes", backoff).Msg("failed to get current block number, retrying...")
+		time.Sleep(time.Duration(backoff) * time.Minute)
+		go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, backoff<<1)
+		return
 	}
 
 	if fromBlock > 0 && numBlocks > 0 {
@@ -123,10 +131,13 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fro
 	for startingBlock < toBlock {
 		block, err := c.client.BlockByNumber(ctx, big.NewInt(int64(toBlock)))
 		if err != nil {
-			log.Error().Err(err).Msg("failed to retrieve block")
+			log.Error().Err(err).Uint64("backoff minutes", backoff).Msg("failed to retrieve block, retrying...")
+			time.Sleep(time.Duration(backoff) * time.Minute)
+			go c.backfill(ctx, cancel, startingBlock, 0, backoff<<1)
+			return
 		}
 
-		err = c.process(block)
+		err = c.process(block, kafkautils.MsgTypeBf)
 		if err != nil {
 			log.Error().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
 		}
@@ -156,7 +167,7 @@ func (c *Connector) listenBlocks(ctx context.Context, cancel context.CancelFunc)
 			}
 		}
 
-		err = c.process(block)
+		err = c.process(block, kafkautils.MsgTypeFct)
 		if err != nil {
 			log.Error().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
 		}
@@ -176,7 +187,7 @@ func (c *Connector) listenCloseSignal(cancel context.CancelFunc) {
 	}
 }
 
-func (c *Connector) process(block *types.Block) error {
+func (c *Connector) process(block *types.Block, msgType kafkautils.MsgType) error {
 
 	header := block.Header()
 	messages := make([]*kafkautils.Message, len(block.Transactions())+1)
@@ -184,13 +195,13 @@ func (c *Connector) process(block *types.Block) error {
 
 	for i, t := range block.Transactions() {
 		messages[i] = &kafkautils.Message{
-			MsgType:  kafkautils.MsgTypeFct,
+			MsgType:  msgType,
 			ProtoMsg: chain.ParseTransaction(t, ts),
 		}
 	}
 
 	messages[len(messages)-1] = &kafkautils.Message{
-		MsgType:  kafkautils.MsgTypeFct,
+		MsgType:  msgType,
 		ProtoMsg: chain.ParseHeader(header),
 	}
 

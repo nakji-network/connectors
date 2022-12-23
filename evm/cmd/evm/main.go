@@ -16,6 +16,7 @@ func main() {
 	pflag.StringP("network", "n", "ethereum", "network to connect to e.g. ethereum")
 	pflag.Int64P("from-block", "f", 0, "block number to start backfill from (optional")
 	pflag.Int64P("num-blocks", "b", 0, "number of blocks to backfill (optional)")
+	pflag.StringP("author", "a", "nakji", "author of the connector (optional)")
 	pflag.Parse()
 
 	cfg := config.GetConfig()
@@ -26,7 +27,8 @@ func main() {
 	}
 
 	networkName := cfg.GetString("network")
-	m := connector.NewManifest(networkName, "nakji", "0.0.0")
+	authorName := cfg.GetString("author")
+	m := connector.NewManifest(networkName, authorName, "0.0.0")
 
 	c, err := connector.NewConnector(connector.WithManifest(m))
 	if err != nil {
@@ -60,7 +62,7 @@ func validateFlags(conf config.IConfig) error {
 		"metis":     true,
 		"moonbeam":  true,
 		"moonriver": true,
-		"oec":       true,
+		"okc":       true,
 		"optimism":  true,
 		"polygon":   true,
 		"gnosis":    true,
