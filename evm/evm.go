@@ -111,10 +111,14 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fro
 	startingBlock := fromBlock
 	toBlock, err := c.client.BlockNumber(ctx)
 	if err != nil {
-		log.Error().Err(err).Uint64("backoff minutes", backoff).Msg("failed to get current block number, retrying...")
-		time.Sleep(time.Duration(backoff) * time.Minute)
-		go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, backoff<<1)
-		return
+		select {
+		case <-ctx.Done():
+			return
+		case <-time.After(time.Duration(backoff) * time.Minute):
+			log.Error().Err(err).Uint64("backoff minutes", backoff).Msg("failed to get current block number, retrying...")
+			go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, backoff<<1)
+			return
+		}
 	}
 
 	if fromBlock > 0 && numBlocks > 0 {
@@ -131,10 +135,14 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fro
 	for startingBlock < toBlock {
 		block, err := c.client.BlockByNumber(ctx, big.NewInt(int64(toBlock)))
 		if err != nil {
-			log.Error().Err(err).Uint64("backoff minutes", backoff).Msg("failed to retrieve block, retrying...")
-			time.Sleep(time.Duration(backoff) * time.Minute)
-			go c.backfill(ctx, cancel, startingBlock, 0, backoff<<1)
-			return
+			select {
+			case <-ctx.Done():
+				return
+			case <-time.After(time.Duration(backoff) * time.Minute):
+				log.Error().Err(err).Uint64("backoff minutes", backoff).Msg("failed to retrieve block, retrying...")
+				go c.backfill(ctx, cancel, startingBlock, 0, backoff<<1)
+				return
+			}
 		}
 
 		err = c.process(block, kafkautils.MsgTypeBf)
