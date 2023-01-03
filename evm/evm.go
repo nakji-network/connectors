@@ -128,7 +128,7 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fro
 			toBlock = lastBlock
 		}
 
-	} else if numBlocks > 0 {
+	} else if numBlocks > 0 && numBlocks < toBlock {
 		startingBlock = toBlock - numBlocks
 	}
 
