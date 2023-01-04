@@ -115,8 +115,8 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fro
 		case <-ctx.Done():
 			return
 		case <-time.After(time.Duration(backoff) * time.Minute):
-			log.Error().Err(err).Uint64("backoff minutes", backoff).Msg("failed to get current block number, retrying...")
-			go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, backoff<<1)
+			log.Error().Err(err).Uint64("block", toBlock).Uint64("backoff minutes", backoff).Msg("failed to get current block number, retrying...")
+			c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, backoff<<1)
 			return
 		}
 	}
@@ -139,17 +139,20 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fro
 			case <-ctx.Done():
 				return
 			case <-time.After(time.Duration(backoff) * time.Minute):
-				log.Error().Err(err).Uint64("backoff minutes", backoff).Msg("failed to retrieve block, retrying...")
-				go c.backfill(ctx, cancel, startingBlock, 0, backoff<<1)
+				log.Error().Err(err).Uint64("block", toBlock).Uint64("backoff minutes", backoff).Msg("failed to retrieve block, retrying...")
+				c.backfill(ctx, cancel, startingBlock, toBlock-startingBlock, backoff<<1)
 				return
 			}
+		} else {
+			err = c.process(block, kafkautils.MsgTypeBf)
+			if err != nil {
+				log.Error().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
+			}
+			toBlock--
+			if backoff > 1 {
+				backoff = 1
+			}
 		}
-
-		err = c.process(block, kafkautils.MsgTypeBf)
-		if err != nil {
-			log.Error().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
-		}
-		toBlock--
 	}
 
 	if cancel != nil {
