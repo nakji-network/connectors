@@ -4,6 +4,7 @@ import (
 	"context"
 	"math/big"
 	"strings"
+	"sync"
 	"time"
 
 	"github.com/nakji-network/connector"
@@ -28,8 +29,14 @@ type Config struct {
 type Connector struct {
 	*Config
 	*connector.Connector
-	client *ethclient.Client
-	sub    ethereum.ISubscription
+	client     *ethclient.Client
+	sub        ethereum.ISubscription
+	blockRetry blocksToRetry
+}
+
+type blocksToRetry struct {
+	blocks []uint64
+	mu     sync.Mutex
 }
 
 var ProtobufDefinitions = []proto.Message{
@@ -53,13 +60,15 @@ func (c *Connector) Start() {
 
 	c.RegisterProtos(kafkautils.MsgTypeBf, ProtobufDefinitions...)
 
-	go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, 1)
+	retryChan := c.retry(ctx)
+
+	go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, retryChan)
 
 	//	Only subscribe to the blockchain events when it is not a backfill job
 	if c.FromBlock == 0 && c.NumBlocks == 0 {
 
 		// Backfill last 100 blocks at every start
-		go c.backfill(ctx, nil, 0, 100, 1)
+		go c.backfill(ctx, nil, 0, 100, retryChan)
 
 		// Listen live data
 		go c.listenBlocks(ctx, cancel)
@@ -95,30 +104,21 @@ func (c *Connector) setup(ctx context.Context) {
 	}
 
 	c.sub = sub
+
+	c.blockRetry = blocksToRetry{blocks: make([]uint64, 0)}
 }
 
 // backfill queries for historical data and pushes them to Kafka.
-func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fromBlock, numBlocks, backoff uint64) {
+func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fromBlock, numBlocks uint64, retryChan chan struct{}) {
 	if fromBlock == 0 && numBlocks == 0 {
 		return
-	}
-
-	if backoff == 0 {
-		backoff = 1
 	}
 
 	// Calculate block interval for historical data
 	startingBlock := fromBlock
 	toBlock, err := c.client.BlockNumber(ctx)
 	if err != nil {
-		select {
-		case <-ctx.Done():
-			return
-		case <-time.After(time.Duration(backoff) * time.Minute):
-			log.Error().Err(err).Uint64("block", toBlock).Uint64("backoff minutes", backoff).Msg("failed to get current block number, retrying...")
-			c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, backoff<<1)
-			return
-		}
+		log.Fatal().Err(err).Msg("failed to get latest block number")
 	}
 
 	if fromBlock > 0 && numBlocks > 0 {
@@ -135,26 +135,19 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fro
 	for startingBlock < toBlock {
 		block, err := c.client.BlockByNumber(ctx, big.NewInt(int64(toBlock)))
 		if err != nil {
-			select {
-			case <-ctx.Done():
-				return
-			case <-time.After(time.Duration(backoff) * time.Minute):
-				log.Error().Err(err).Uint64("block", toBlock).Uint64("backoff minutes", backoff).Msg("failed to retrieve block, retrying...")
-				c.backfill(ctx, cancel, startingBlock, toBlock-startingBlock, backoff<<1)
-				return
-			}
+			log.Warn().Err(err).Uint64("block", toBlock).Msg("failed to retrieve block, skipping...")
+			c.blockRetry.push(toBlock)
 		} else {
 			err = c.process(block, kafkautils.MsgTypeBf)
 			if err != nil {
-				log.Error().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
-			}
-			toBlock--
-			if backoff > 1 {
-				backoff = 1
+				log.Warn().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
+				c.blockRetry.push(toBlock)
 			}
 		}
+		toBlock--
 	}
 
+	<-retryChan
 	if cancel != nil {
 		log.Info().Msg("backfill completed. shutting down connector.")
 		cancel()
@@ -173,14 +166,16 @@ func (c *Connector) listenBlocks(ctx context.Context, cancel context.CancelFunc)
 		if err != nil {
 			block, err = c.client.BlockByHash(ctx, h.Hash())
 			if err != nil {
-				log.Error().Err(err).Msg("failed to retrieve block")
+				log.Warn().Err(err).Msg("failed to retrieve block")
+				c.blockRetry.push(h.Number.Uint64())
 				continue
 			}
 		}
 
 		err = c.process(block, kafkautils.MsgTypeFct)
 		if err != nil {
-			log.Error().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
+			log.Warn().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
+			c.blockRetry.push(h.Number.Uint64())
 		}
 	}
 }
@@ -217,4 +212,72 @@ func (c *Connector) process(block *types.Block, msgType kafkautils.MsgType) erro
 	}
 
 	return c.ProduceWithTransaction(messages)
+}
+
+func (c *Connector) retry(ctx context.Context) chan struct{} {
+	var backoff uint = 1
+	const backoffLimit = 2 //	1 day in minutes
+	ch := make(chan struct{})
+
+	go func() {
+		for {
+			select {
+			case <-ctx.Done():
+				close(ch)
+				return
+			default:
+				if len(c.blockRetry.blocks) > 0 {
+					blockNo := c.blockRetry.pop()
+					block, err := c.client.BlockByNumber(ctx, big.NewInt(int64(blockNo)))
+					if err != nil {
+						select {
+						case <-ctx.Done():
+							close(ch)
+							return
+						case <-time.After(time.Duration(backoff) * time.Minute):
+							log.Warn().Err(err).Uint64("block", blockNo).Uint("backoff minutes", backoff).Msg("failed to retrieve block, skipping...")
+							c.blockRetry.push(blockNo)
+							backoff *= 2
+						}
+					} else {
+						err = c.process(block, kafkautils.MsgTypeBf)
+						if err != nil {
+							log.Warn().Err(err).Uint64("block", block.Number().Uint64()).Msg("failed to process block")
+							c.blockRetry.push(block.NumberU64())
+						}
+
+						backoff = 1
+					}
+				} else {
+					time.Sleep(time.Duration(backoff) * time.Minute)
+				}
+			}
+
+			if backoff > backoffLimit {
+				for i := 0; i < len(c.blockRetry.blocks); i++ {
+					blockNo := c.blockRetry.pop()
+					log.Error().Uint64("block", blockNo).Msg("failed to retrieve block permanently")
+				}
+				close(ch)
+				return
+			}
+		}
+	}()
+	return ch
+}
+
+func (b *blocksToRetry) push(blockNo uint64) {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+
+	b.blocks = append(b.blocks, blockNo)
+}
+
+func (b *blocksToRetry) pop() uint64 {
+	b.mu.Lock()
+	defer b.mu.Unlock()
+
+	blockNo := b.blocks[0]
+	b.blocks = b.blocks[1:]
+	return blockNo
 }
