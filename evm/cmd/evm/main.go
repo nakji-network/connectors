@@ -30,7 +30,15 @@ func main() {
 	authorName := cfg.GetString("author")
 	m := connector.NewManifest(networkName, authorName, "0.0.0")
 
-	c, err := connector.NewConnector(connector.WithManifest(m))
+	opts := []connector.Option{
+		connector.WithManifest(m),
+	}
+
+	if cfg.GetUint64("from-block") > 0 || cfg.GetUint64("num-blocks") > 0 {
+		opts = append(opts, connector.BackfillOption())
+	}
+
+	c, err := connector.NewConnector(opts...)
 	if err != nil {
 		log.Fatal().Err(err).Msg("failed to instantiate connector")
 	}

@@ -60,18 +60,21 @@ func (c *Connector) Start() {
 
 	c.RegisterProtos(kafkautils.MsgTypeBf, ProtobufDefinitions...)
 
-	retryChan := c.retry(ctx)
+	backfillSignal := make(chan struct{})
+	retrySignal := c.retry(ctx, backfillSignal)
 
-	go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, retryChan)
-
-	//	Only subscribe to the blockchain events when it is not a backfill job
 	if c.FromBlock == 0 && c.NumBlocks == 0 {
+		// LIVE DATA
 
 		// Backfill last 100 blocks at every start
-		go c.backfill(ctx, nil, 0, 100, retryChan)
+		go c.backfill(ctx, nil, 0, 100, retrySignal, make(chan struct{}))
 
 		// Listen live data
 		go c.listenBlocks(ctx, cancel)
+	} else {
+		//	HISTORICAL DATA
+
+		go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, retrySignal, backfillSignal)
 	}
 
 	<-ctx.Done()
@@ -109,7 +112,7 @@ func (c *Connector) setup(ctx context.Context) {
 }
 
 // backfill queries for historical data and pushes them to Kafka.
-func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fromBlock, numBlocks uint64, retryChan chan struct{}) {
+func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fromBlock, numBlocks uint64, retrySignal, backfillSignal chan struct{}) {
 	if fromBlock == 0 && numBlocks == 0 {
 		return
 	}
@@ -147,7 +150,11 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fro
 		toBlock--
 	}
 
-	<-retryChan
+	if backfillSignal != nil {
+		close(backfillSignal)
+	}
+
+	<-retrySignal
 	if cancel != nil {
 		log.Info().Msg("backfill completed. shutting down connector.")
 		cancel()
@@ -214,7 +221,7 @@ func (c *Connector) process(block *types.Block, msgType kafkautils.MsgType) erro
 	return c.ProduceWithTransaction(messages)
 }
 
-func (c *Connector) retry(ctx context.Context) chan struct{} {
+func (c *Connector) retry(ctx context.Context, backfillSignal chan struct{}) chan struct{} {
 	var backoff uint = 1
 	const backoffLimit = 2 //	1 day in minutes
 	ch := make(chan struct{})
@@ -225,6 +232,11 @@ func (c *Connector) retry(ctx context.Context) chan struct{} {
 			case <-ctx.Done():
 				close(ch)
 				return
+			case <-backfillSignal:
+				if len(c.blockRetry.blocks) == 0 {
+					close(ch)
+					return
+				}
 			default:
 				if len(c.blockRetry.blocks) > 0 {
 					blockNo := c.blockRetry.pop()
