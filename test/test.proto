@@ -1,0 +1,12 @@
+syntax = "proto3";
+package test;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/nakji-network/connectors/test";
+
+message Message {
+    google.protobuf.Timestamp ts   = 1;
+    uint64                    id   = 2;
+    bytes                     data = 3;
+}
