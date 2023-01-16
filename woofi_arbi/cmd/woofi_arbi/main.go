@@ -24,9 +24,9 @@ func main() {
 	}
 
 	c := woofi.New(conf)
-	c.AddContract(WooPPV4.NewContract("0xeFF23B4bE1091b53205E35f3AfCD9C7182bf3062"))               // WooPPV2
+	c.AddContract(WooPPV4.NewContract("0xeFF23B4bE1091b53205E35f3AfCD9C7182bf3062"))               // WooPPV2_2
 	c.AddContract(WooracleV2.NewContract("0x37a9dE70b6734dFCA54395D8061d9411D9910739"))            // WooracleV2
-	c.AddContract(WooRouterV3.NewContract("0x9aEd3A8896A85FE9a8CAc52C9B402D092B629a30"))           // WooRouterV2
-	c.AddContract(WooCrossChainRouterV1.NewContract("0x0972A0fa37984E7FF2aEFA53A0Bb10dCE535aa73")) // WooCrossChainRouterV1
+	c.AddContract(WooRouterV3.NewContract("0x9aEd3A8896A85FE9a8CAc52C9B402D092B629a30"))           // WooRouterV2_1
+	c.AddContract(WooCrossChainRouterV1.NewContract("0x0972A0fa37984E7FF2aEFA53A0Bb10dCE535aa73")) // WooCrossChainRouterV1_1
 	c.Start()
 }

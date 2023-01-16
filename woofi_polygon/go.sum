@@ -419,8 +419,8 @@ github.com/nakji-network/connector v0.0.1-beta.1.0.20221219031837-67482bfe4f0e h
 github.com/nakji-network/connector v0.0.1-beta.1.0.20221219031837-67482bfe4f0e/go.mod h1:ekJuAgX4zb6to7uugoyv8f5X4lEFfD01j3fxA1g7Fg4=
 github.com/nakji-network/connector/chain/ethereum v0.0.0-20221219031837-67482bfe4f0e h1:7cMGC6ly2AlwOTUXwh8buz87og4jXhT65cLnL5hLjD0=
 github.com/nakji-network/connector/chain/ethereum v0.0.0-20221219031837-67482bfe4f0e/go.mod h1:BIbnTPPMULgpANm1u/YQfrz/79CWwZEAGg2x9Y/j/Jg=
-github.com/nakji-network/woofi-connectors/woofi v0.0.0-20221219033807-2176efa4aef1 h1:Lk09grkhAFg6holvxr8oexkIFQbYYh7mZTAKt71o2Bs=
-github.com/nakji-network/woofi-connectors/woofi v0.0.0-20221219033807-2176efa4aef1/go.mod h1:Exkp2h2VYpFkMry4PcLuNe++8ThcGTxkFyAdN0t1haA=
+github.com/nakji-network/woofi-connectors/woofi v0.0.0-20230112055705-4220380b8f31 h1:3k8Xkhp8XYCdbHELzbSbmT9vCtJxavoKXgbHNl6QW/c=
+github.com/nakji-network/woofi-connectors/woofi v0.0.0-20230112055705-4220380b8f31/go.mod h1:Exkp2h2VYpFkMry4PcLuNe++8ThcGTxkFyAdN0t1haA=
 github.com/naoina/go-stringutil v0.1.0/go.mod h1:XJ2SJL9jCtBh+P9q5btrd/Ylo8XwT/h1USek5+NqSA0=
 github.com/naoina/toml v0.1.2-0.20170918210437-9fafd6967416/go.mod h1:NBIhNtsFMo3G2szEBne+bO4gS192HuIYRqfvOWb4i1E=
 github.com/nrwiersma/avro-benchmarks v0.0.0-20210913175520-21aec48c8f76/go.mod h1:iKyFMidsk/sVYONJRE372sJuX/QTRPacU7imPqqsu7g=

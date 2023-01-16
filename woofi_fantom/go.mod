@@ -3,7 +3,7 @@ module github.com/nakji-network/connectors/woofi_fantom
 go 1.18
 
 require (
-	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20221219033807-2176efa4aef1
+	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20230112055705-4220380b8f31
 	github.com/spf13/pflag v1.0.5
 	go.uber.org/automaxprocs v1.5.1
 )
