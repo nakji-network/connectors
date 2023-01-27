@@ -20,7 +20,6 @@ type Config struct {
 	Host              string
 	FromBlock         uint64
 	NumBlocks         uint64
-	MaxRetry          int
 	MaxGrpcMsgSize    int
 	MaxApiUsage       int // Limit GetEventsForHeightRange API usage rate.
 	MaxWorkerPoolSize int

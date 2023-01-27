@@ -17,7 +17,6 @@ func TestSubscription(t *testing.T) {
 		Host:              grpc.MainnetHost,
 		FromBlock:         0,
 		NumBlocks:         0,
-		MaxRetry:          7,
 		MaxGrpcMsgSize:    64 * 1024 * 1024,
 		MaxApiUsage:       20,
 		MaxWorkerPoolSize: 5,

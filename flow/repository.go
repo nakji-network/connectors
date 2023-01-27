@@ -46,7 +46,7 @@ func (r *repositoryImpl) GetLatestBlock(ctx context.Context, isSealed bool) (*fl
 	for retry := 0; ; retry++ {
 		block, err := r.grpc.GetLatestBlock(ctx, isSealed)
 		if err != nil {
-			if retry < r.MaxRetry && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+			if checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
 				// Do exponential backoff with 10% jitter
 				backoff := float64(int(1) << retry)
 				backoff += backoff * (0.1 * rand.Float64())
@@ -67,7 +67,7 @@ func (r *repositoryImpl) GetBlockByHeight(ctx context.Context, height uint64) (*
 	for retry := 0; ; retry++ {
 		block, err := r.grpc.GetBlockByHeight(ctx, height)
 		if err != nil {
-			if retry < r.MaxRetry && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+			if checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
 				// Do exponential backoff with 10% jitter
 				backoff := float64(int(1) << retry)
 				backoff += backoff * (0.1 * rand.Float64())
@@ -88,7 +88,7 @@ func (r *repositoryImpl) GetCollection(ctx context.Context, colID flow.Identifie
 	for retry := 0; ; retry++ {
 		col, err := r.grpc.GetCollection(ctx, colID)
 		if err != nil {
-			if retry < r.MaxRetry && checkCode(err, codes.ResourceExhausted, codes.Unavailable, codes.NotFound) {
+			if checkCode(err, codes.ResourceExhausted, codes.Unavailable, codes.NotFound) {
 				// Do exponential backoff with 10% jitter
 				backoff := float64(int(1) << retry)
 				backoff += backoff * (0.1 * rand.Float64())
@@ -109,7 +109,7 @@ func (r *repositoryImpl) GetTransaction(ctx context.Context, txID flow.Identifie
 	for retry := 0; ; retry++ {
 		tx, err := r.grpc.GetTransaction(ctx, txID)
 		if err != nil {
-			if retry < r.MaxRetry && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+			if checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
 				// Do exponential backoff with 10% jitter
 				backoff := float64(int(1) << retry)
 				backoff += backoff * (0.1 * rand.Float64())
@@ -130,7 +130,7 @@ func (r *repositoryImpl) GetEventsForBlockIDs(ctx context.Context, eventType str
 	for retry := 0; ; retry++ {
 		events, err := r.grpc.GetEventsForBlockIDs(ctx, eventType, blockIDs)
 		if err != nil {
-			if retry < r.MaxRetry && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+			if checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
 				// Do exponential backoff with 10% jitter
 				backoff := float64(int(1) << retry)
 				backoff += backoff * (0.1 * rand.Float64())
@@ -151,7 +151,7 @@ func (r *repositoryImpl) GetEventsForHeightRange(ctx context.Context, eventType 
 	for retry := 0; ; retry++ {
 		events, err := r.grpc.GetEventsForHeightRange(ctx, eventType, startHeight, endHeight)
 		if err != nil {
-			if retry < r.MaxRetry && checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
+			if checkCode(err, codes.ResourceExhausted, codes.Unavailable) {
 				// Do exponential backoff with 10% jitter
 				backoff := float64(int(1) << retry)
 				backoff += backoff * (0.1 * rand.Float64())

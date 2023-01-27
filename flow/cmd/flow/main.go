@@ -46,7 +46,6 @@ func main() {
 		Host:              c.Config.GetString("rpc.url"),
 		FromBlock:         c.Config.GetUint64("from-block"),
 		NumBlocks:         c.Config.GetUint64("num-blocks"),
-		MaxRetry:          c.Config.GetInt("maxRetry"),
 		MaxGrpcMsgSize:    c.Config.GetInt("maxGrpcMsgSize"),
 		MaxApiUsage:       c.Config.GetInt("maxApiUsage"),
 		MaxWorkerPoolSize: c.Config.GetInt("maxWorkerPoolSize"),
