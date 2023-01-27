@@ -13,6 +13,7 @@ import (
 )
 
 func main() {
+	backfillOnly := pflag.BoolP("backfill", "o", false, "whether to do backfill only (default false)")
 	fromBlock := pflag.Uint64P("from-block", "f", 0, "block number to start backfill from (optional)")
 	numBlocks := pflag.Uint64P("num-blocks", "b", 0, "number of blocks to backfill (optional)")
 
@@ -31,5 +32,10 @@ func main() {
 	c.AddContract(WooRouterV3.NewContract("0x382A9b0bC5D29e96c3a0b81cE9c64d6C8F150Efb"))           // WooRouterV2_1
 	c.AddContract(WooCrossChainRouterV1.NewContract("0xcF6Ce5Fd6bf28bB1AeAc88A55251f6c840059De5")) // WooCrossChainRouterV1_1
 	c.AddContract(WooCrossChainRouterV1.NewContract("0x28D2B949024FE50627f1EbC5f0Ca3Ca721148E40")) // WooCrossChainRouterV1_2
-	c.Start()
+
+	if *backfillOnly {
+		c.Backfill()
+	} else {
+		c.Start()
+	}
 }

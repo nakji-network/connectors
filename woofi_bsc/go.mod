@@ -3,7 +3,7 @@ module github.com/nakji-network/connectors/woofi_bsc
 go 1.18
 
 require (
-	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20230127042308-dbb0b0ea6846
+	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20230127071623-58fd15bbde60
 	github.com/spf13/pflag v1.0.5
 	go.uber.org/automaxprocs v1.5.1
 )
