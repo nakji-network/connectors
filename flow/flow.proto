@@ -37,6 +37,7 @@ message Transaction {
     repeated bytes                authorizers        = 11;
     repeated TransactionSignature payloadSignatures  = 12;
     repeated TransactionSignature envelopeSignatures = 13;
+    uint64                        blockNumber        = 14;
 }
 
 message ProposalKey {

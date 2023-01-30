@@ -375,6 +375,7 @@ func (s *Subscription) getTransaction(block *flow.Block, collID flow.Identifier,
 	transaction := Transaction{
 		Ts:               timestamppb.New(block.Timestamp),
 		Id:               txID[:],
+		BlockNumber:      block.Height,
 		BlockID:          block.ID[:],
 		CollectionID:     collID[:],
 		Script:           tx.Script,
