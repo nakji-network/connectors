@@ -223,7 +223,7 @@ func (c *Connector) process(block *types.Block, msgType kafkautils.MsgType) erro
 
 func (c *Connector) retry(ctx context.Context, backfillSignal chan struct{}) chan struct{} {
 	var backoff uint = 1
-	const backoffLimit = 2 //	1 day in minutes
+	const backoffLimit = 1440 //	1 day in minutes
 	ch := make(chan struct{})
 
 	go func() {
