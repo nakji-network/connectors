@@ -3,7 +3,7 @@ module github.com/nakji-network/connectors/woofi_arbi
 go 1.18
 
 require (
-	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20230206045547-ff505a86a898
+	github.com/nakji-network/woofi-connectors/woofi v0.0.0-20230206071951-6fa749de2c27
 	github.com/spf13/pflag v1.0.5
 	go.uber.org/automaxprocs v1.5.1
 )
