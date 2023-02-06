@@ -419,10 +419,14 @@ github.com/nakji-network/connector v0.0.1-beta.1.0.20221216054141-e51ef13e9d04 h
 github.com/nakji-network/connector v0.0.1-beta.1.0.20221216054141-e51ef13e9d04/go.mod h1:gAePupEySwKA8CtvtrI2TNDRlQIOREeTNTcyd9hOjJM=
 github.com/nakji-network/connector v0.0.1-beta.1.0.20230201120636-970c4b0b1394 h1:yNbSkgtPQUoRGhJx+Xa5p2mbNe6A0It8GPePNDSQLv0=
 github.com/nakji-network/connector v0.0.1-beta.1.0.20230201120636-970c4b0b1394/go.mod h1:ekJuAgX4zb6to7uugoyv8f5X4lEFfD01j3fxA1g7Fg4=
+github.com/nakji-network/connector v0.0.1-beta.1.0.20230206153725-f9ebed1e2ab9 h1:EJ5Gl9n0WnEylJ7zpSXllMu5AQ9i8bwvJflyfyJsgvs=
+github.com/nakji-network/connector v0.0.1-beta.1.0.20230206153725-f9ebed1e2ab9/go.mod h1:ekJuAgX4zb6to7uugoyv8f5X4lEFfD01j3fxA1g7Fg4=
 github.com/nakji-network/connector/chain/ethereum v0.0.0-20221215084034-7c827bbeb185 h1:MkpGAxdBsu4e9oAYWNKs3vMRaU6B6r7IMmu/d4zUoKw=
 github.com/nakji-network/connector/chain/ethereum v0.0.0-20221215084034-7c827bbeb185/go.mod h1:dtTt71B6IM/hUBjdwHvd4e6hRDPZ0cQVVaV6P4Oiyj8=
 github.com/nakji-network/connector/chain/ethereum v0.0.0-20230201120636-970c4b0b1394 h1:FKPCRO3+dTdtUyRe0bFI5bXmb43YPXcLolQqc8AglVs=
 github.com/nakji-network/connector/chain/ethereum v0.0.0-20230201120636-970c4b0b1394/go.mod h1:BIbnTPPMULgpANm1u/YQfrz/79CWwZEAGg2x9Y/j/Jg=
+github.com/nakji-network/connector/chain/ethereum v0.0.0-20230206153725-f9ebed1e2ab9 h1:ce70EoCOgKkm1cHIgpqiiHeNM9gSWj7Fviwr2/B23SQ=
+github.com/nakji-network/connector/chain/ethereum v0.0.0-20230206153725-f9ebed1e2ab9/go.mod h1:BIbnTPPMULgpANm1u/YQfrz/79CWwZEAGg2x9Y/j/Jg=
 github.com/naoina/go-stringutil v0.1.0/go.mod h1:XJ2SJL9jCtBh+P9q5btrd/Ylo8XwT/h1USek5+NqSA0=
 github.com/naoina/toml v0.1.2-0.20170918210437-9fafd6967416/go.mod h1:NBIhNtsFMo3G2szEBne+bO4gS192HuIYRqfvOWb4i1E=
 github.com/nrwiersma/avro-benchmarks v0.0.0-20210913175520-21aec48c8f76/go.mod h1:iKyFMidsk/sVYONJRE372sJuX/QTRPacU7imPqqsu7g=
