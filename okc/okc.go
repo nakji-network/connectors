@@ -86,13 +86,9 @@ func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fro
 	var blockNumber uint64
 
 	messages := make([]*kafkautils.Message, 0)
-	if logs, err := ethereum.HistoricalEventsWithQueryParams(ctx, c.Client, c.addresses, fromBlock, numBlocks); err == nil {
-		for bfLog := range logs {
 
-			// fmt.Println("Topic :", bfLog.Topics[0])
-			// fmt.Println("Transaction :", bfLog.TxHash)
-			// fmt.Printf("Topic hex : %#x\n", bfLog.Topics[0].Hex())
-			// fmt.Printf("Block Number : %v\n", bfLog.BlockNumber)
+	if logs, err := ethereum.BackfillEventsWithQueryParams(ctx, c.Client, c.addresses, fromBlock, numBlocks); err == nil {
+		for bfLog := range logs {
 			if msg := c.parse(kafkautils.MsgTypeBf, ethereum.Log{Log: bfLog}); msg != nil {
 				messages = append(messages, msg)
 
