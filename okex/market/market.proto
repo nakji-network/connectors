@@ -10,7 +10,5 @@ message OpenInterest {
     double openInterest                 = 2;
     double openInterestValue            = 3;
     string asset = 4;
-    string ns = 5;  //  namespace
-    string s = 6;   //  subject
 }
 
