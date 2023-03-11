@@ -5,7 +5,7 @@ syntax = "proto3";
 package erc721;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "github.com/nakji-network/ethnft-connector/erc721";
+option go_package = "github.com/nakji-network/connectors/ethnft/smart-contracts/erc721";
 
 
 message Approval {
@@ -13,6 +13,9 @@ message Approval {
 	bytes owner = 2; 
 	bytes approved = 3; 
 	bytes tokenId = 4; // uint256
+	uint64 blockNumber = 5;
+	uint64 logIndex = 6;
+	bytes txHash = 7;
 }
 
 message ApprovalForAll {
@@ -20,6 +23,9 @@ message ApprovalForAll {
 	bytes owner = 2; 
 	bytes operator = 3; 
 	bool approved = 4; 
+	uint64 blockNumber = 5;
+	uint64 logIndex = 6;
+	bytes txHash = 7;
 }
 
 message Transfer {
@@ -27,4 +33,7 @@ message Transfer {
 	bytes from = 2; 
 	bytes to = 3; 
 	bytes tokenId = 4; // uint256
+	uint64 blockNumber = 5;
+	uint64 logIndex = 6;
+	bytes txHash = 7;
 }
