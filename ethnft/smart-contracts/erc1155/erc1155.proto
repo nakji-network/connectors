@@ -5,14 +5,17 @@ syntax = "proto3";
 package erc1155;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "github.com/nakji-network/ethnft-connector/erc1155";
+option go_package = "github.com/nakji-network/connectors/ethnft/smart-contracts/erc1155";
 
 
 message ApprovalForAll {
 	google.protobuf.Timestamp ts = 1;
 	bytes account = 2; 
 	bytes operator = 3; 
-	bool approved = 4; 
+	bool approved = 4;
+	uint64 blockNumber = 5;
+	uint64 logIndex = 6;
+	bytes txHash = 7;
 }
 
 message TransferBatch {
@@ -22,6 +25,9 @@ message TransferBatch {
 	bytes to = 4; 
 	repeated bytes ids = 5; // uint256
 	repeated bytes values = 6; // uint256
+	uint64 blockNumber = 7;
+	uint64 logIndex = 8;
+	bytes txHash = 9;
 }
 
 message TransferSingle {
@@ -31,10 +37,16 @@ message TransferSingle {
 	bytes to = 4; 
 	bytes id = 5; // uint256
 	bytes value = 6; // uint256
+	uint64 blockNumber = 7;
+	uint64 logIndex = 8;
+	bytes txHash = 9;
 }
 
 message URI {
 	google.protobuf.Timestamp ts = 1;
 	string value = 2; 
 	bytes id = 3; // uint256
+	uint64 blockNumber = 4;
+	uint64 logIndex = 5;
+	bytes txHash = 6;
 }

@@ -1,15 +1,3 @@
 name: ethnft
 author: nakji
 version: 0.0.0
-
-outputPath: "nft"
-package: "nft"
-owner: nakji
-contracts:
-  - name: erc721
-    source: smart-contracts/contracts/token/ERC721/IERC721.sol
-    address: '0x1F98431c8aD98523631AE4a59f267346ea31F984'
-  - name: erc1155
-    source: smart-contracts/contracts/token/ERC1155/IERC1155.sol
-    address: '0x1F98431c8aD98523631AE4a59f267346ea31F984'
-    blockNumber: 12345678
