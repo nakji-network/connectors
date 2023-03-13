@@ -54,67 +54,77 @@ func New(conf *Config) *Connector {
 }
 
 func (c *Connector) Start() {
-	ctx, cancel := context.WithCancel(context.Background())
 
-	go c.listenCloseSignal(cancel)
+	ctx := context.TODO()
 
 	c.Connector.RegisterProtos(kafkautils.MsgTypeBf, protos...)
 
 	backfillSignal := make(chan struct{})
-	retrySignal := c.retry(ctx, backfillSignal)
 
 	if c.FromBlock == 0 && c.NumBlocks == 0 {
 		// LIVE DATA
 
-		// Backfill last 100 blocks at every start
-		go c.backfill(ctx, nil, 0, 100, retrySignal, make(chan struct{}))
+		// Backfill last few blocks at every start
+		const defaultBackfill = 100
+		go c.backfill(ctx, nil, 0, defaultBackfill)
 
 		// Listen live data
-		go c.listenLogs(ctx, cancel)
+		go c.listenLogs(ctx)
+
 	} else {
 		//	HISTORICAL DATA
+		go c.backfill(ctx, backfillSignal, c.FromBlock, c.NumBlocks)
 
-		go c.backfill(ctx, cancel, c.FromBlock, c.NumBlocks, retrySignal, backfillSignal)
 	}
 
-	<-ctx.Done()
+	// Retry failed blocks
+	c.retry(ctx, backfillSignal)
+
+	log.Info().Msg("shutting down connector...")
+	time.Sleep(5 * time.Second)
+
 	c.Sub.Close()
 }
 
 // backfill queries for historical data and pushes them to Kafka.
-func (c *Connector) backfill(ctx context.Context, cancel context.CancelFunc, fromBlock, numBlocks uint64, retrySignal, backfillSignal chan struct{}) {
+func (c *Connector) backfill(ctx context.Context, sig chan struct{}, fromBlock, numBlocks uint64) {
+	if sig != nil {
+		defer close(sig)
+	}
+
 	var blockNumber uint64
 
 	messages := make([]*kafkautils.Message, 0)
 
 	if logs, err := ethereum.BackfillEventsWithQueryParams(ctx, c.Client, c.addresses, fromBlock, numBlocks); err == nil {
 		for bfLog := range logs {
-			if msg := c.parse(kafkautils.MsgTypeBf, ethereum.Log{Log: bfLog}); msg != nil {
-				messages = append(messages, msg)
+			select {
+			case <-c.Sub.Done():
+				return
+			default:
 
-				// Commit messages at every new block
-				if blockNumber != bfLog.BlockNumber {
-					c.Connector.ProduceWithTransaction(messages)
-					blockNumber = bfLog.BlockNumber
-					messages = make([]*kafkautils.Message, 0)
+				if msg := c.parse(kafkautils.MsgTypeBf, ethereum.Log{Log: bfLog}); msg != nil {
+					messages = append(messages, msg)
+
+					// Commit messages at every new block
+					if blockNumber != bfLog.BlockNumber {
+						c.Connector.ProduceWithTransaction(messages)
+						blockNumber = bfLog.BlockNumber
+						messages = make([]*kafkautils.Message, 0)
+					}
 				}
 			}
 		}
+
+		//	Flush out last messages
+		c.Connector.ProduceWithTransaction(messages)
 	}
 
-	if backfillSignal != nil {
-		close(backfillSignal)
-	}
-
-	<-retrySignal
-	if cancel != nil {
-		log.Info().Msg("backfill completed. shutting down connector.")
-		cancel()
-	}
+	log.Info().Uint64("from", fromBlock).Uint64("num blocks", numBlocks).Msg("backfill completed")
 }
 
 // listenLogs subscribes to live data and pushes incoming logs to Kafka.
-func (c *Connector) listenLogs(ctx context.Context, cancel context.CancelFunc) {
+func (c *Connector) listenLogs(ctx context.Context) {
 
 	// Register topic and protobuf type mappings
 	c.RegisterProtos(kafkautils.MsgTypeFct, protos...)
@@ -137,19 +147,9 @@ func (c *Connector) listenLogs(ctx context.Context, cancel context.CancelFunc) {
 			}
 		}
 	}
-}
 
-// listenCloseSignal signals the program to terminate.
-func (c *Connector) listenCloseSignal(cancel context.CancelFunc) {
-	select {
-	//	Listen to error channel
-	case err := <-c.Sub.Err():
-		log.Error().Err(err).Str("blockchain", c.BlockchainName).Msg("subscription failed")
-		cancel()
-
-	case <-c.Sub.Done():
-		cancel()
-	}
+	//	Flush out last messages
+	c.Connector.ProduceWithTransaction(messages)
 }
 
 // parse extracts data from incoming event log and converts into a Kafka message.
@@ -190,65 +190,61 @@ func (c *Connector) parse(msgType kafkautils.MsgType, vLog ethereum.Log) *kafkau
 	}
 }
 
-func (c *Connector) retry(ctx context.Context, backfillSignal chan struct{}) chan struct{} {
-	var backoff uint = 1
-	const backoffLimit = 1440 //	1 day in minutes
-	ch := make(chan struct{})
+func (c *Connector) retry(ctx context.Context, backfillSignal chan struct{}) {
+	const (
+		initialBackoff = time.Second
+		maxBackoff     = 24 * time.Hour
+	)
 
-	go func() {
-		for {
-			select {
-			case <-ctx.Done():
-				close(ch)
+	backoff := initialBackoff
+
+	for {
+		select {
+		case <-c.Sub.Done():
+			return
+
+		case <-backfillSignal:
+			// Wait until all blocks in the queue are retried
+			if len(c.blockRetry.blocks) == 0 {
 				return
-			case <-backfillSignal:
-				if len(c.blockRetry.blocks) == 0 {
-					close(ch)
-					return
-				}
-			default:
-				if len(c.blockRetry.blocks) > 0 {
-					blockNo := c.blockRetry.pop()
-					logs, err := ethereum.HistoricalEventsWithQueryParams(ctx, c.Client, c.addresses, blockNo, 1)
-					if err != nil {
-						select {
-						case <-ctx.Done():
-							close(ch)
-							return
-						case <-time.After(time.Duration(backoff) * time.Minute):
-							log.Warn().Err(err).Uint64("block", blockNo).Uint("backoff minutes", backoff).Msg("failed to retrieve block, skipping...")
-							c.blockRetry.push(blockNo)
-							backoff *= 2
-						}
-					} else {
-
-						messages := make([]*kafkautils.Message, 0)
-						for bfLog := range logs {
-
-							if msg := c.parse(kafkautils.MsgTypeBf, ethereum.Log{Log: bfLog}); msg != nil {
-								messages = append(messages, msg)
-							}
-							c.Connector.ProduceWithTransaction(messages)
-						}
-
-						backoff = 1
-					}
-				} else {
-					time.Sleep(time.Duration(backoff) * time.Minute)
-				}
 			}
 
-			if backoff > backoffLimit {
-				for i := 0; i < len(c.blockRetry.blocks); i++ {
-					blockNo := c.blockRetry.pop()
-					log.Error().Uint64("block", blockNo).Msg("failed to retrieve block permanently")
+		default:
+			if len(c.blockRetry.blocks) > 0 {
+				blockNo := c.blockRetry.pop()
+				logs, err := ethereum.HistoricalEventsWithQueryParams(ctx, c.Client, nil, blockNo, 1)
+				if err != nil {
+					time.Sleep(backoff)
+					log.Warn().Err(err).Uint64("block", blockNo).Uint("backoff seconds", uint(backoff.Seconds())).Msg("failed to retrieve block, skipping...")
+					c.blockRetry.push(blockNo)
+					backoff *= 2
+
+				} else {
+
+					messages := make([]*kafkautils.Message, 0)
+					for bfLog := range logs {
+
+						if msg := c.parse(kafkautils.MsgTypeBf, ethereum.Log{Log: bfLog}); msg != nil {
+							messages = append(messages, msg)
+						}
+						c.Connector.ProduceWithTransaction(messages)
+					}
+
+					backoff = initialBackoff
 				}
-				close(ch)
-				return
+			} else {
+				time.Sleep(backoff)
 			}
 		}
-	}()
-	return ch
+
+		if backoff > maxBackoff {
+			for i := 0; i < len(c.blockRetry.blocks); i++ {
+				blockNo := c.blockRetry.pop()
+				log.Error().Uint64("block", blockNo).Msg("failed to retrieve block permanently")
+			}
+			return
+		}
+	}
 }
 
 func (b *blocksToRetry) push(blockNo uint64) {
