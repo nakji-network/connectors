@@ -1,0 +1,44 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package Changelog;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/Changelog";
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message RemoveAddress {
+	google.protobuf.Timestamp ts = 1;
+	bytes Key = 2;		//	bytes32
+}
+
+message UpdateAddress {
+	google.protobuf.Timestamp ts = 1;
+	bytes Key = 2;		//	bytes32
+	bytes Addr = 3;		//	address
+}
+
+message UpdateIPFS {
+	google.protobuf.Timestamp ts = 1;
+	string Ipfs = 2;		//	string
+}
+
+message UpdateSha256Sum {
+	google.protobuf.Timestamp ts = 1;
+	string Sha256sum = 2;		//	string
+}
+
+message UpdateVersion {
+	google.protobuf.Timestamp ts = 1;
+	string Version = 2;		//	string
+}
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}

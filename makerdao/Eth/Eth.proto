@@ -1,0 +1,34 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package Eth;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/Eth";
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes Src = 2;		//	address
+	bytes Guy = 3;		//	address
+	bytes Wad = 4;		//	uint256
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes Src = 2;		//	address
+	bytes Dst = 3;		//	address
+	bytes Wad = 4;		//	uint256
+}
+
+message Deposit {
+	google.protobuf.Timestamp ts = 1;
+	bytes Dst = 2;		//	address
+	bytes Wad = 3;		//	uint256
+}
+
+message Withdrawal {
+	google.protobuf.Timestamp ts = 1;
+	bytes Src = 2;		//	address
+	bytes Wad = 3;		//	uint256
+}
