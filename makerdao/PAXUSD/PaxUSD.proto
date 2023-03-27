@@ -1,0 +1,19 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package PaxUSD;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/PaxUSD";
+
+message AdminChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes PreviousAdmin = 2;		//	address
+	bytes NewAdmin = 3;		//	address
+}
+
+message Upgraded {
+	google.protobuf.Timestamp ts = 1;
+	bytes Implementation = 2;		//	address
+}

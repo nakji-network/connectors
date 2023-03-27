@@ -1,0 +1,42 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package Matic;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/Matic";
+
+message Paused {
+	google.protobuf.Timestamp ts = 1;
+	bytes Account = 2;		//	address
+}
+
+message Unpaused {
+	google.protobuf.Timestamp ts = 1;
+	bytes Account = 2;		//	address
+}
+
+message PauserAdded {
+	google.protobuf.Timestamp ts = 1;
+	bytes Account = 2;		//	address
+}
+
+message PauserRemoved {
+	google.protobuf.Timestamp ts = 1;
+	bytes Account = 2;		//	address
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes From = 2;		//	address
+	bytes To = 3;		//	address
+	bytes Value = 4;		//	uint256
+}
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes Owner = 2;		//	address
+	bytes Spender = 3;		//	address
+	bytes Value = 4;		//	uint256
+}

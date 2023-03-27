@@ -1,0 +1,42 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package Uni;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/Uni";
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes Owner = 2;		//	address
+	bytes Spender = 3;		//	address
+	bytes Amount = 4;		//	uint256
+}
+
+message DelegateChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes Delegator = 2;		//	address
+	bytes FromDelegate = 3;		//	address
+	bytes ToDelegate = 4;		//	address
+}
+
+message DelegateVotesChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes Delegate = 2;		//	address
+	bytes PreviousBalance = 3;		//	uint256
+	bytes NewBalance = 4;		//	uint256
+}
+
+message MinterChanged {
+	google.protobuf.Timestamp ts = 1;
+	bytes Minter = 2;		//	address
+	bytes NewMinter = 3;		//	address
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes From = 2;		//	address
+	bytes To = 3;		//	address
+	bytes Amount = 4;		//	uint256
+}
