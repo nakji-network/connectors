@@ -1,0 +1,32 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package ArbitrumL2Dai;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/ArbitrumL2Dai";
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes Owner = 2;		//	address
+	bytes Spender = 3;		//	address
+	bytes Value = 4;		//	uint256
+}
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes From = 2;		//	address
+	bytes To = 3;		//	address
+	bytes Value = 4;		//	uint256
+}

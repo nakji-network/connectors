@@ -2,10 +2,10 @@
 // Code generated - DO NOT EDIT.
 // This file is a generated protocol buffer definition and any manual changes will be lost.
 syntax = "proto3";
-package CHANGELOG;
+package Changelog;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/CHANGELOG";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/Changelog";
 
 message Rely {
 	google.protobuf.Timestamp ts = 1;

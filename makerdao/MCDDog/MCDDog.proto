@@ -1,0 +1,65 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package MCDDog;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/MCDDog";
+
+message Bark {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Urn = 3;		//	address
+	bytes Ink = 4;		//	uint256
+	bytes Art = 5;		//	uint256
+	bytes Due = 6;		//	uint256
+	bytes Clip = 7;		//	address
+	bytes Id = 8;		//	uint256
+}
+
+message File0 {
+	google.protobuf.Timestamp ts = 1;
+	bytes What = 2;		//	bytes32
+	bytes Data = 3;		//	address
+}
+
+message File1 {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes What = 3;		//	bytes32
+	bytes Data = 4;		//	uint256
+}
+
+message Cage {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message Digs {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes Rad = 3;		//	uint256
+}
+
+message File {
+	google.protobuf.Timestamp ts = 1;
+	bytes What = 2;		//	bytes32
+	bytes Data = 3;		//	uint256
+}
+
+message File2 {
+	google.protobuf.Timestamp ts = 1;
+	bytes Ilk = 2;		//	bytes32
+	bytes What = 3;		//	bytes32
+	bytes Clip = 4;		//	address
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}

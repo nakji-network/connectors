@@ -1,5 +1,4 @@
-
-package COMP
+package Comp
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -23,10 +22,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Approval{
-				Ts:   timestamp,
-				Owner:  e.Owner.Bytes(),
-				Spender:  e.Spender.Bytes(),
-				Amount:  e.Amount.Bytes(),
+			Ts:      timestamp,
+			Owner:   e.Owner.Bytes(),
+			Spender: e.Spender.Bytes(),
+			Amount:  e.Amount.Bytes(),
 		}
 	case "DelegateChanged":
 		e := new(COMPDelegateChanged)
@@ -36,10 +35,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &DelegateChanged{
-				Ts:   timestamp,
-				Delegator:  e.Delegator.Bytes(),
-				FromDelegate:  e.FromDelegate.Bytes(),
-				ToDelegate:  e.ToDelegate.Bytes(),
+			Ts:           timestamp,
+			Delegator:    e.Delegator.Bytes(),
+			FromDelegate: e.FromDelegate.Bytes(),
+			ToDelegate:   e.ToDelegate.Bytes(),
 		}
 	case "DelegateVotesChanged":
 		e := new(COMPDelegateVotesChanged)
@@ -49,10 +48,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &DelegateVotesChanged{
-				Ts:   timestamp,
-				Delegate:  e.Delegate.Bytes(),
-				PreviousBalance:  e.PreviousBalance.Bytes(),
-				NewBalance:  e.NewBalance.Bytes(),
+			Ts:              timestamp,
+			Delegate:        e.Delegate.Bytes(),
+			PreviousBalance: e.PreviousBalance.Bytes(),
+			NewBalance:      e.NewBalance.Bytes(),
 		}
 	case "Transfer":
 		e := new(COMPTransfer)
@@ -62,10 +61,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Transfer{
-				Ts:   timestamp,
-				From:  e.From.Bytes(),
-				To:  e.To.Bytes(),
-				Amount:  e.Amount.Bytes(),
+			Ts:     timestamp,
+			From:   e.From.Bytes(),
+			To:     e.To.Bytes(),
+			Amount: e.Amount.Bytes(),
 		}
 	}
 	return nil

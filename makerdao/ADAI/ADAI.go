@@ -1,5 +1,4 @@
-
-package ADAI
+package Adai
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -14,7 +13,7 @@ import (
 type SmartContract struct{}
 
 func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog types.Log, timestamp *timestamppb.Timestamp) protoreflect.ProtoMessage {
-	if eventName == "Upgraded"{
+	if eventName == "Upgraded" {
 		e := new(ADAIUpgraded)
 		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
@@ -22,8 +21,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Upgraded{
-				Ts:   timestamp,
-				Implementation:  e.Implementation.Bytes(),
+			Ts:             timestamp,
+			Implementation: e.Implementation.Bytes(),
 		}
 	}
 	return nil

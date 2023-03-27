@@ -1,5 +1,4 @@
-
-package UNIV2
+package UniV2
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -23,10 +22,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Approval{
-				Ts:   timestamp,
-				Owner:  e.Owner.Bytes(),
-				Spender:  e.Spender.Bytes(),
-				Value:  e.Value.Bytes(),
+			Ts:      timestamp,
+			Owner:   e.Owner.Bytes(),
+			Spender: e.Spender.Bytes(),
+			Value:   e.Value.Bytes(),
 		}
 	case "Burn":
 		e := new(UNIV2Burn)
@@ -36,11 +35,11 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Burn{
-				Ts:   timestamp,
-				Sender:  e.Sender.Bytes(),
-				Amount0:  e.Amount0.Bytes(),
-				Amount1:  e.Amount1.Bytes(),
-				To:  e.To.Bytes(),
+			Ts:      timestamp,
+			Sender:  e.Sender.Bytes(),
+			Amount0: e.Amount0.Bytes(),
+			Amount1: e.Amount1.Bytes(),
+			To:      e.To.Bytes(),
 		}
 	case "Mint":
 		e := new(UNIV2Mint)
@@ -50,10 +49,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Mint{
-				Ts:   timestamp,
-				Sender:  e.Sender.Bytes(),
-				Amount0:  e.Amount0.Bytes(),
-				Amount1:  e.Amount1.Bytes(),
+			Ts:      timestamp,
+			Sender:  e.Sender.Bytes(),
+			Amount0: e.Amount0.Bytes(),
+			Amount1: e.Amount1.Bytes(),
 		}
 	case "Swap":
 		e := new(UNIV2Swap)
@@ -63,13 +62,13 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Swap{
-				Ts:   timestamp,
-				Sender:  e.Sender.Bytes(),
-				Amount0In:  e.Amount0In.Bytes(),
-				Amount1In:  e.Amount1In.Bytes(),
-				Amount0Out:  e.Amount0Out.Bytes(),
-				Amount1Out:  e.Amount1Out.Bytes(),
-				To:  e.To.Bytes(),
+			Ts:         timestamp,
+			Sender:     e.Sender.Bytes(),
+			Amount0In:  e.Amount0In.Bytes(),
+			Amount1In:  e.Amount1In.Bytes(),
+			Amount0Out: e.Amount0Out.Bytes(),
+			Amount1Out: e.Amount1Out.Bytes(),
+			To:         e.To.Bytes(),
 		}
 	case "Sync":
 		e := new(UNIV2Sync)
@@ -79,9 +78,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Sync{
-				Ts:   timestamp,
-				Reserve0:  e.Reserve0.Bytes(),
-				Reserve1:  e.Reserve1.Bytes(),
+			Ts:       timestamp,
+			Reserve0: e.Reserve0.Bytes(),
+			Reserve1: e.Reserve1.Bytes(),
 		}
 	case "Transfer":
 		e := new(UNIV2Transfer)
@@ -91,10 +90,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Transfer{
-				Ts:   timestamp,
-				From:  e.From.Bytes(),
-				To:  e.To.Bytes(),
-				Value:  e.Value.Bytes(),
+			Ts:    timestamp,
+			From:  e.From.Bytes(),
+			To:    e.To.Bytes(),
+			Value: e.Value.Bytes(),
 		}
 	}
 	return nil

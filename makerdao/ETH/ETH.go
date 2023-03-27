@@ -1,5 +1,4 @@
-
-package ETH
+package Eth
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -23,10 +22,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Approval{
-				Ts:   timestamp,
-				Src:  e.Src.Bytes(),
-				Guy:  e.Guy.Bytes(),
-				Wad:  e.Wad.Bytes(),
+			Ts:  timestamp,
+			Src: e.Src.Bytes(),
+			Guy: e.Guy.Bytes(),
+			Wad: e.Wad.Bytes(),
 		}
 	case "Deposit":
 		e := new(ETHDeposit)
@@ -36,9 +35,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Deposit{
-				Ts:   timestamp,
-				Dst:  e.Dst.Bytes(),
-				Wad:  e.Wad.Bytes(),
+			Ts:  timestamp,
+			Dst: e.Dst.Bytes(),
+			Wad: e.Wad.Bytes(),
 		}
 	case "Transfer":
 		e := new(ETHTransfer)
@@ -48,10 +47,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Transfer{
-				Ts:   timestamp,
-				Src:  e.Src.Bytes(),
-				Dst:  e.Dst.Bytes(),
-				Wad:  e.Wad.Bytes(),
+			Ts:  timestamp,
+			Src: e.Src.Bytes(),
+			Dst: e.Dst.Bytes(),
+			Wad: e.Wad.Bytes(),
 		}
 	case "Withdrawal":
 		e := new(ETHWithdrawal)
@@ -61,9 +60,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Withdrawal{
-				Ts:   timestamp,
-				Src:  e.Src.Bytes(),
-				Wad:  e.Wad.Bytes(),
+			Ts:  timestamp,
+			Src: e.Src.Bytes(),
+			Wad: e.Wad.Bytes(),
 		}
 	}
 	return nil

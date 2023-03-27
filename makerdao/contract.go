@@ -7,7 +7,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/nakji-network/connectors/makerdao/ILK_REGISTRY"
+	"github.com/nakji-network/connectors/makerdao/IlkRegistry"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/accounts/abi/bind"
@@ -112,10 +112,10 @@ func CheckLatestAddresses(client *ethclient.Client, contractsUrl string, factory
 	}
 }
 
-//	This method retrieves vault names for all collateral types (i.e. tokens) from the factory contract.
-//	Then it gets different type of contracts for each collateral
+// This method retrieves vault names for all collateral types (i.e. tokens) from the factory contract.
+// Then it gets different type of contracts for each collateral
 func getDynamicAdresses(client *ethclient.Client, factoryAddress string) map[string]string {
-	caller, err := ILK_REGISTRY.NewILKREGISTRYCaller(common.HexToAddress(factoryAddress), client)
+	caller, err := IlkRegistry.NewILKREGISTRYCaller(common.HexToAddress(factoryAddress), client)
 	if err != nil {
 		log.Fatal().Err(err).Msg("Failed to create caller")
 	}

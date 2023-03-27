@@ -1,5 +1,4 @@
-
-package LINK
+package Link
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -23,10 +22,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Approval{
-				Ts:   timestamp,
-				Owner:  e.Owner.Bytes(),
-				Spender:  e.Spender.Bytes(),
-				Value:  e.Value.Bytes(),
+			Ts:      timestamp,
+			Owner:   e.Owner.Bytes(),
+			Spender: e.Spender.Bytes(),
+			Value:   e.Value.Bytes(),
 		}
 	case "Transfer":
 		e := new(LINKTransfer)
@@ -36,11 +35,11 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Transfer{
-				Ts:   timestamp,
-				From:  e.From.Bytes(),
-				To:  e.To.Bytes(),
-				Value:  e.Value.Bytes(),
-				Data:  e.Data[:],
+			Ts:    timestamp,
+			From:  e.From.Bytes(),
+			To:    e.To.Bytes(),
+			Value: e.Value.Bytes(),
+			Data:  e.Data[:],
 		}
 	}
 	return nil

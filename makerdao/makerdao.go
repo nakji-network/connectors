@@ -6,51 +6,51 @@ import (
 
 	"github.com/nakji-network/connector"
 	"github.com/nakji-network/connector/common"
-	"github.com/nakji-network/connectors/makerdao/ARBITRUM_DAI_BRIDGE"
-	"github.com/nakji-network/connectors/makerdao/ARBITRUM_GOV_RELAY"
-	"github.com/nakji-network/connectors/makerdao/ARBITRUM_L2_DAI"
-	"github.com/nakji-network/connectors/makerdao/ARBITRUM_L2_DAI_GATEWAY"
-	"github.com/nakji-network/connectors/makerdao/BAL"
+	"github.com/nakji-network/connectors/makerdao/ArbitrumDaiBridge"
+	"github.com/nakji-network/connectors/makerdao/ArbitrumGovRelay"
+	"github.com/nakji-network/connectors/makerdao/ArbitrumL2Dai"
+	"github.com/nakji-network/connectors/makerdao/ArbitrumL2DaiGateway"
 	"github.com/nakji-network/connectors/makerdao/BAT"
-	"github.com/nakji-network/connectors/makerdao/COMP"
-	"github.com/nakji-network/connectors/makerdao/CRVV1ETHSTETH"
-	"github.com/nakji-network/connectors/makerdao/ETH"
-	"github.com/nakji-network/connectors/makerdao/GUNIV3DAIUSDC2"
+	"github.com/nakji-network/connectors/makerdao/Bal"
+	Comp "github.com/nakji-network/connectors/makerdao/Comp"
+	"github.com/nakji-network/connectors/makerdao/CrvV1EthSTEth"
+	"github.com/nakji-network/connectors/makerdao/Eth"
 	"github.com/nakji-network/connectors/makerdao/GUSD"
-	"github.com/nakji-network/connectors/makerdao/ILK_REGISTRY"
-	"github.com/nakji-network/connectors/makerdao/JOIN_FAB"
+	"github.com/nakji-network/connectors/makerdao/GUniV3DaiUSDC2"
+	"github.com/nakji-network/connectors/makerdao/IlkRegistry"
+	"github.com/nakji-network/connectors/makerdao/JoinFab"
 	"github.com/nakji-network/connectors/makerdao/KNC"
-	"github.com/nakji-network/connectors/makerdao/LINK"
 	"github.com/nakji-network/connectors/makerdao/LRC"
-	"github.com/nakji-network/connectors/makerdao/MANA"
-	"github.com/nakji-network/connectors/makerdao/MATIC"
-	"github.com/nakji-network/connectors/makerdao/MCD_CAT"
-	"github.com/nakji-network/connectors/makerdao/MCD_DAI"
-	"github.com/nakji-network/connectors/makerdao/MCD_DOG"
-	"github.com/nakji-network/connectors/makerdao/MCD_END"
-	"github.com/nakji-network/connectors/makerdao/MCD_ESM"
-	"github.com/nakji-network/connectors/makerdao/MCD_FLAP"
-	"github.com/nakji-network/connectors/makerdao/MCD_FLASH"
-	"github.com/nakji-network/connectors/makerdao/MCD_FLOP"
-	"github.com/nakji-network/connectors/makerdao/MCD_GOV"
-	"github.com/nakji-network/connectors/makerdao/MCD_PSM_GUSD_A"
-	"github.com/nakji-network/connectors/makerdao/MCD_PSM_PAX_A"
-	"github.com/nakji-network/connectors/makerdao/MCD_PSM_USDC_A"
-	"github.com/nakji-network/connectors/makerdao/MCD_VEST_DAI"
-	"github.com/nakji-network/connectors/makerdao/MCD_VEST_MKR"
-	"github.com/nakji-network/connectors/makerdao/MCD_VEST_MKR_TREASURY"
-	"github.com/nakji-network/connectors/makerdao/MIP21_LIQUIDATION_ORACLE"
-	"github.com/nakji-network/connectors/makerdao/OPTIMISM_L2_DAI"
-	"github.com/nakji-network/connectors/makerdao/OPTIMISM_L2_DAI_TOKEN_BRIDGE"
+	"github.com/nakji-network/connectors/makerdao/Link"
+	"github.com/nakji-network/connectors/makerdao/MCDCat"
+	"github.com/nakji-network/connectors/makerdao/MCDDai"
+	"github.com/nakji-network/connectors/makerdao/MCDDog"
+	"github.com/nakji-network/connectors/makerdao/MCDESM"
+	"github.com/nakji-network/connectors/makerdao/MCDEnd"
+	"github.com/nakji-network/connectors/makerdao/MCDFlap"
+	"github.com/nakji-network/connectors/makerdao/MCDFlash"
+	"github.com/nakji-network/connectors/makerdao/MCDFlop"
+	"github.com/nakji-network/connectors/makerdao/MCDGov"
+	"github.com/nakji-network/connectors/makerdao/MCDPSMGUSDA"
+	"github.com/nakji-network/connectors/makerdao/MCDPSMPaxA"
+	"github.com/nakji-network/connectors/makerdao/MCDPSMUSDCA"
+	"github.com/nakji-network/connectors/makerdao/MCDVestDai"
+	"github.com/nakji-network/connectors/makerdao/MCDVestMkr"
+	"github.com/nakji-network/connectors/makerdao/MCDVestMkrTreasury"
+	"github.com/nakji-network/connectors/makerdao/MIP21LiquidationOracle"
+	"github.com/nakji-network/connectors/makerdao/Mana"
+	"github.com/nakji-network/connectors/makerdao/Matic"
+	"github.com/nakji-network/connectors/makerdao/OptimismL2Dai"
+	"github.com/nakji-network/connectors/makerdao/OptimismL2DaiTokenBridge"
 	"github.com/nakji-network/connectors/makerdao/RWA"
-	"github.com/nakji-network/connectors/makerdao/RWA_CONDUIT"
-	"github.com/nakji-network/connectors/makerdao/RWA_URN"
-	"github.com/nakji-network/connectors/makerdao/UNI"
-	"github.com/nakji-network/connectors/makerdao/UNIV2"
+	"github.com/nakji-network/connectors/makerdao/RWAConduit"
+	"github.com/nakji-network/connectors/makerdao/RWAUrn"
 	"github.com/nakji-network/connectors/makerdao/USDT"
+	"github.com/nakji-network/connectors/makerdao/Uni"
+	"github.com/nakji-network/connectors/makerdao/UniV2"
 	"github.com/nakji-network/connectors/makerdao/WBTC"
-	"github.com/nakji-network/connectors/makerdao/WSTETH"
-	"github.com/nakji-network/connectors/makerdao/YFI"
+	"github.com/nakji-network/connectors/makerdao/WSTEth"
+	"github.com/nakji-network/connectors/makerdao/YFi"
 	"github.com/nakji-network/connectors/makerdao/ZRX"
 
 	"github.com/ethereum/go-ethereum/core/types"
@@ -148,178 +148,178 @@ func (c *Connector) parse(vLog types.Log) protoreflect.ProtoMessage {
 
 func getContract(contractType string) ISmartContract {
 	switch contractType {
-	// case "AAVE":
-	// 	return &AAVE.SmartContract{}
-	// case "ADAI":
-	// 	return &ADAI.SmartContract{}
-	case "ARBITRUM_DAI_BRIDGE":
-		return &ARBITRUM_DAI_BRIDGE.SmartContract{}
-	// case "ARBITRUM_ESCROW":
-	// 	return &ARBITRUM_ESCROW.SmartContract{}
-	case "ARBITRUM_GOV_RELAY":
-		return &ARBITRUM_GOV_RELAY.SmartContract{}
-	case "ARBITRUM_L2_DAI":
-		return &ARBITRUM_L2_DAI.SmartContract{}
-	case "ARBITRUM_L2_DAI_GATEWAY":
-		return &ARBITRUM_L2_DAI_GATEWAY.SmartContract{}
-	// case "ARBITRUM_L2_GOV_RELAY":
-	// 	return &ARBITRUM_L2_GOV_RELAY.SmartContract{}
-	case "BAL":
-		return &BAL.SmartContract{}
+	// case "Aave":
+	// 	return &Aave.SmartContract{}
+	// case "Adai":
+	// 	return &Adai.SmartContract{}
+	case "ArbitrumDaiBridge":
+		return &ArbitrumDaiBridge.SmartContract{}
+	// case "ArbitrumEscrow":
+	// 	return &ArbitrumEscrow.SmartContract{}
+	case "ArbitrumGovRelay":
+		return &ArbitrumGovRelay.SmartContract{}
+	case "ArbitrumL2Dai":
+		return &ArbitrumL2Dai.SmartContract{}
+	case "ArbitrumL2DaiGateway":
+		return &ArbitrumL2DaiGateway.SmartContract{}
+	// case "ArbitrumL2GovRelay":
+	// 	return &ArbitrumL2GovRelay.SmartContract{}
+	case "Bal":
+		return &Bal.SmartContract{}
 	case "BAT":
 		return &BAT.SmartContract{}
-	// case "CDP_MANAGER":
-	// 	return &CDP_MANAGER.SmartContract{}
-	// case "CDP_REGISTRY":
-	// 	return &CDP_REGISTRY.SmartContract{}
-	// case "CHANGELOG":
-	// 	return &CHANGELOG.SmartContract{}
-	// case "CLIPPER_MOM":
-	// 	return &CLIPPER_MOM.SmartContract{}
-	case "COMP":
-		return &COMP.SmartContract{}
-	case "CRVV1ETHSTETH":
-		return &CRVV1ETHSTETH.SmartContract{}
-	// case "DIRECT_MOM":
-	// 	return &DIRECT_MOM.SmartContract{}
-	// case "DSR_MANAGER":
-	// 	return &DSR_MANAGER.SmartContract{}
-	case "ETH":
-		return &ETH.SmartContract{}
-	// case "FLIPPER_MOM":
-	// 	return &FLIPPER_MOM.SmartContract{}
-	// case "GOV_GUARD":
-	// 	return &GOV_GUARD.SmartContract{}
-	// case "GUNIV3DAIUSDC1":
-	// 	return &GUNIV3DAIUSDC1.SmartContract{}
-	case "GUNIV3DAIUSDC2":
-		return &GUNIV3DAIUSDC2.SmartContract{}
+	// case "CdpManager":
+	// 	return &CdpManager.SmartContract{}
+	// case "CdpRegistry":
+	// 	return &CdpRegistry.SmartContract{}
+	// case "Changelog":
+	// 	return &Changelog.SmartContract{}
+	// case "ClipperMom":
+	// 	return &ClipperMom.SmartContract{}
+	case "Comp":
+		return &Comp.SmartContract{}
+	case "CrvV1EthSTEth":
+		return &CrvV1EthSTEth.SmartContract{}
+	// case "DirectMom":
+	// 	return &DirectMom.SmartContract{}
+	// case "DsrManager":
+	// 	return &DsrManager.SmartContract{}
+	case "Eth":
+		return &Eth.SmartContract{}
+	// case "FlipperMom":
+	// 	return &FlipperMom.SmartContract{}
+	// case "GovGuard":
+	// 	return &GovGuard.SmartContract{}
+	// case "GUniV3DaiUSDC1":
+	// 	return &GUniV3DaiUSDC1.SmartContract{}
+	case "GUniV3DaiUSDC2":
+		return &GUniV3DaiUSDC2.SmartContract{}
 	case "GUSD":
 		return &GUSD.SmartContract{}
-	case "ILK_REGISTRY":
-		return &ILK_REGISTRY.SmartContract{}
-	case "JOIN_FAB":
-		return &JOIN_FAB.SmartContract{}
+	case "IlkRegistry":
+		return &IlkRegistry.SmartContract{}
+	case "JoinFab":
+		return &JoinFab.SmartContract{}
 	case "KNC":
 		return &KNC.SmartContract{}
-	// case "LERP_FAB":
-	// 	return &LERP_FAB.SmartContract{}
-	case "LINK":
-		return &LINK.SmartContract{}
+	// case "LerpFab":
+	// 	return &LerpFab.SmartContract{}
+	case "Link":
+		return &Link.SmartContract{}
 	case "LRC":
 		return &LRC.SmartContract{}
-	case "MANA":
-		return &MANA.SmartContract{}
-	case "MATIC":
-		return &MATIC.SmartContract{}
-	// case "MCD_ADM":
-	// 	return &MCD_ADM.SmartContract{}
-	case "MCD_CAT":
-		return &MCD_CAT.SmartContract{}
-	// case "MCD_CROPPER":
-	// 	return &MCD_CROPPER.SmartContract{}
-	// case "MCD_CROPPER_IMP":
-	// 	return &MCD_CROPPER_IMP.SmartContract{}
-	case "MCD_DAI":
-		return &MCD_DAI.SmartContract{}
-	// case "MCD_DEPLOY":
-	// 	return &MCD_DEPLOY.SmartContract{}
-	case "MCD_DOG":
-		return &MCD_DOG.SmartContract{}
-	case "MCD_END":
-		return &MCD_END.SmartContract{}
-	case "MCD_ESM":
-		return &MCD_ESM.SmartContract{}
-	case "MCD_FLAP":
-		return &MCD_FLAP.SmartContract{}
-	case "MCD_FLASH":
-		return &MCD_FLASH.SmartContract{}
-	case "MCD_FLOP":
-		return &MCD_FLOP.SmartContract{}
-	case "MCD_GOV":
-		return &MCD_GOV.SmartContract{}
-	// case "MCD_IAM_AUTO_LINE":
-	// 	return &MCD_IAM_AUTO_LINE.SmartContract{}
-	// case "MCD_JUG":
-	// 	return &MCD_JUG.SmartContract{}
-	// case "MCD_PAUSE":
-	// 	return &MCD_PAUSE.SmartContract{}
-	// case "MCD_POT":
-	// 	return &MCD_POT.SmartContract{}
-	case "MCD_PSM_GUSD_A":
-		return &MCD_PSM_GUSD_A.SmartContract{}
-	case "MCD_PSM_PAX_A":
-		return &MCD_PSM_PAX_A.SmartContract{}
-	case "MCD_PSM_USDC_A":
-		return &MCD_PSM_USDC_A.SmartContract{}
-	// case "MCD_SPOT":
-	// 	return &MCD_SPOT.SmartContract{}
-	// case "MCD_VAT":
-	// 	return &MCD_VAT.SmartContract{}
-	case "MCD_VEST_DAI":
-		return &MCD_VEST_DAI.SmartContract{}
-	// case "MCD_VEST_DAI_LEGACY":
-	// 	return &MCD_VEST_DAI_LEGACY.SmartContract{}
-	case "MCD_VEST_MKR":
-		return &MCD_VEST_MKR.SmartContract{}
-	case "MCD_VEST_MKR_TREASURY":
-		return &MCD_VEST_MKR_TREASURY.SmartContract{}
-	// case "MCD_VOW":
-	// 	return &MCD_VOW.SmartContract{}
-	case "MIP21_LIQUIDATION_ORACLE":
-		return &MIP21_LIQUIDATION_ORACLE.SmartContract{}
-	// case "OPTIMISM_DAI_BRIDGE":
-	// 	return &OPTIMISM_DAI_BRIDGE.SmartContract{}
-	// case "OPTIMISM_ESCROW":
-	// 	return &OPTIMISM_ESCROW.SmartContract{}
-	// case "OPTIMISM_GOV_RELAY":
-	// 	return &OPTIMISM_GOV_RELAY.SmartContract{}
-	case "OPTIMISM_L2_DAI":
-		return &OPTIMISM_L2_DAI.SmartContract{}
-	case "OPTIMISM_L2_DAI_TOKEN_BRIDGE":
-		return &OPTIMISM_L2_DAI_TOKEN_BRIDGE.SmartContract{}
-	// case "OPTIMISM_L2_GOVERNANCE_RELAY":
-	// 	return &OPTIMISM_L2_GOVERNANCE_RELAY.SmartContract{}
-	// case "OSM_MOM":
-	// 	return &OSM_MOM.SmartContract{}
-	// case "PAX":
-	// 	return &PAX.SmartContract{}
-	// case "PAXUSD":
-	// 	return &PAXUSD.SmartContract{}
-	// case "PROXY_DEPLOYER":
-	// 	return &PROXY_DEPLOYER.SmartContract{}
-	// case "PROXY_FACTORY":
-	// 	return &PROXY_FACTORY.SmartContract{}
-	// case "RENBTC":
-	// 	return &RENBTC.SmartContract{}
+	case "Mana":
+		return &Mana.SmartContract{}
+	case "Matic":
+		return &Matic.SmartContract{}
+	// case "MCDADM":
+	// 	return &MCDADM.SmartContract{}
+	case "MCDCat":
+		return &MCDCat.SmartContract{}
+	// case "MCDCropper":
+	// 	return &MCDCropper.SmartContract{}
+	// case "MCDCropper_IMP":
+	// 	return &MCDCropper_IMP.SmartContract{}
+	case "MCDDai":
+		return &MCDDai.SmartContract{}
+	// case "MCDDeploy":
+	// 	return &MCDDeploy.SmartContract{}
+	case "MCDDog":
+		return &MCDDog.SmartContract{}
+	case "MCDEnd":
+		return &MCDEnd.SmartContract{}
+	case "MCDESM":
+		return &MCDESM.SmartContract{}
+	case "MCDFlap":
+		return &MCDFlap.SmartContract{}
+	case "MCDFlash":
+		return &MCDFlash.SmartContract{}
+	case "MCDFlop":
+		return &MCDFlop.SmartContract{}
+	case "MCDGov":
+		return &MCDGov.SmartContract{}
+	// case "MCDIamAutoLine":
+	// 	return &MCDIamAutoLine.SmartContract{}
+	// case "MCDJug":
+	// 	return &MCDJug.SmartContract{}
+	// case "MCDPause":
+	// 	return &MCDPause.SmartContract{}
+	// case "MCDPot":
+	// 	return &MCDPot.SmartContract{}
+	case "MCDPSMGUSDA":
+		return &MCDPSMGUSDA.SmartContract{}
+	case "MCDPSMPaxA":
+		return &MCDPSMPaxA.SmartContract{}
+	case "MCDPSMUSDCA":
+		return &MCDPSMUSDCA.SmartContract{}
+	// case "MCDSpot":
+	// 	return &MCDSpot.SmartContract{}
+	// case "MCDVat":
+	// 	return &MCDVat.SmartContract{}
+	case "MCDVestDai":
+		return &MCDVestDai.SmartContract{}
+	// case "MCDVestDai_LEGACY":
+	// 	return &MCDVestDai_LEGACY.SmartContract{}
+	case "MCDVestMkr":
+		return &MCDVestMkr.SmartContract{}
+	case "MCDVestMkrTreasury":
+		return &MCDVestMkrTreasury.SmartContract{}
+	// case "MCDVow":
+	// 	return &MCDVow.SmartContract{}
+	case "MIP21LiquidationOracle":
+		return &MIP21LiquidationOracle.SmartContract{}
+	// case "OptimismDaiBridge":
+	// 	return &OptimismDaiBridge.SmartContract{}
+	// case "OptimismEscrow":
+	// 	return &OptimismEscrow.SmartContract{}
+	// case "OptimismGovRelay":
+	// 	return &OptimismGovRelay.SmartContract{}
+	case "OptimismL2Dai":
+		return &OptimismL2Dai.SmartContract{}
+	case "OptimismL2DaiTokenBridge":
+		return &OptimismL2DaiTokenBridge.SmartContract{}
+	// case "OptimismL2GovernanceRelay":
+	// 	return &OptimismL2GovernanceRelay.SmartContract{}
+	// case "OSMMom":
+	// 	return &OSMMom.SmartContract{}
+	// case "Pax":
+	// 	return &Pax.SmartContract{}
+	// case "PaxUSD":
+	// 	return &PaxUSD.SmartContract{}
+	// case "ProxyDeployer":
+	// 	return &ProxyDeployer.SmartContract{}
+	// case "ProxyFactory":
+	// 	return &ProxyFactory.SmartContract{}
+	// case "RenBTC":
+	// 	return &RenBTC.SmartContract{}
 	case "RWA":
 		return &RWA.SmartContract{}
-	case "RWA_CONDUIT":
-		return &RWA_CONDUIT.SmartContract{}
-	case "RWA_URN":
-		return &RWA_URN.SmartContract{}
-	// case "STETH":
-	// 	return &STETH.SmartContract{}
+	case "RWAConduit":
+		return &RWAConduit.SmartContract{}
+	case "RWAUrn":
+		return &RWAUrn.SmartContract{}
+	// case "STEth":
+	// 	return &STEth.SmartContract{}
 	// case "TUSD":
 	// 	return &TUSD.SmartContract{}
-	case "UNI":
-		return &UNI.SmartContract{}
-	case "UNIV2":
-		return &UNIV2.SmartContract{}
+	case "Uni":
+		return &Uni.SmartContract{}
+	case "UniV2":
+		return &UniV2.SmartContract{}
 	// case "USDC":
 	// 	return &USDC.SmartContract{}
 	case "USDT":
 		return &USDT.SmartContract{}
-	// case "VOTE_DELEGATE_PROXY_FACTORY":
-	// 	return &VOTE_DELEGATE_PROXY_FACTORY.SmartContract{}
-	// case "VOTE_PROXY_FACTORY":
-	// 	return &VOTE_PROXY_FACTORY.SmartContract{}
+	// case "VOTE_DELEGATE_ProxyFactory":
+	// 	return &VOTE_DELEGATE_ProxyFactory.SmartContract{}
+	// case "VOTE_ProxyFactory":
+	// 	return &VOTE_ProxyFactory.SmartContract{}
 	case "WBTC":
 		return &WBTC.SmartContract{}
-	case "WSTETH":
-		return &WSTETH.SmartContract{}
-	case "YFI":
-		return &YFI.SmartContract{}
+	case "WSTEth":
+		return &WSTEth.SmartContract{}
+	case "YFi":
+		return &YFi.SmartContract{}
 	case "ZRX":
 		return &ZRX.SmartContract{}
 	}

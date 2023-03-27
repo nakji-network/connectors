@@ -1,0 +1,25 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package DirectMom;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/DirectMom";
+
+message Disable {
+	google.protobuf.Timestamp ts = 1;
+	bytes Who = 2;		//	address
+}
+
+message SetAuthority {
+	google.protobuf.Timestamp ts = 1;
+	bytes OldAuthority = 2;		//	address
+	bytes NewAuthority = 3;		//	address
+}
+
+message SetOwner {
+	google.protobuf.Timestamp ts = 1;
+	bytes OldOwner = 2;		//	address
+	bytes NewOwner = 3;		//	address
+}

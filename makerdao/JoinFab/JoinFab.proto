@@ -1,0 +1,14 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package JoinFab;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/JoinFab";
+
+message NewJoin {
+	google.protobuf.Timestamp ts = 1;
+	bytes Join = 2;		//	address
+	bytes Data = 3;		//	bytes
+}

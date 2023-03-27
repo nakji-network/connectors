@@ -1,5 +1,4 @@
-
-package MATIC
+package Matic
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -23,10 +22,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Approval{
-				Ts:   timestamp,
-				Owner:  e.Owner.Bytes(),
-				Spender:  e.Spender.Bytes(),
-				Value:  e.Value.Bytes(),
+			Ts:      timestamp,
+			Owner:   e.Owner.Bytes(),
+			Spender: e.Spender.Bytes(),
+			Value:   e.Value.Bytes(),
 		}
 	case "Paused":
 		e := new(MATICPaused)
@@ -36,8 +35,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Paused{
-				Ts:   timestamp,
-				Account:  e.Account.Bytes(),
+			Ts:      timestamp,
+			Account: e.Account.Bytes(),
 		}
 	case "PauserAdded":
 		e := new(MATICPauserAdded)
@@ -47,8 +46,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &PauserAdded{
-				Ts:   timestamp,
-				Account:  e.Account.Bytes(),
+			Ts:      timestamp,
+			Account: e.Account.Bytes(),
 		}
 	case "PauserRemoved":
 		e := new(MATICPauserRemoved)
@@ -58,8 +57,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &PauserRemoved{
-				Ts:   timestamp,
-				Account:  e.Account.Bytes(),
+			Ts:      timestamp,
+			Account: e.Account.Bytes(),
 		}
 	case "Transfer":
 		e := new(MATICTransfer)
@@ -69,10 +68,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Transfer{
-				Ts:   timestamp,
-				From:  e.From.Bytes(),
-				To:  e.To.Bytes(),
-				Value:  e.Value.Bytes(),
+			Ts:    timestamp,
+			From:  e.From.Bytes(),
+			To:    e.To.Bytes(),
+			Value: e.Value.Bytes(),
 		}
 	case "Unpaused":
 		e := new(MATICUnpaused)
@@ -82,8 +81,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Unpaused{
-				Ts:   timestamp,
-				Account:  e.Account.Bytes(),
+			Ts:      timestamp,
+			Account: e.Account.Bytes(),
 		}
 	}
 	return nil

@@ -1,0 +1,28 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package MCDPause;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/MCDPause";
+
+message LogSetOwner {
+	google.protobuf.Timestamp ts = 1;
+	bytes Owner = 2;		//	address
+}
+
+message LogNote {
+	google.protobuf.Timestamp ts = 1;
+	bytes Sig = 2;		//	bytes4
+	bytes Guy = 3;		//	address
+	bytes Foo = 4;		//	bytes32
+	bytes Bar = 5;		//	bytes32
+	bytes Wad = 6;		//	uint256
+	bytes Fax = 7;		//	bytes
+}
+
+message LogSetAuthority {
+	google.protobuf.Timestamp ts = 1;
+	bytes Authority = 2;		//	address
+}

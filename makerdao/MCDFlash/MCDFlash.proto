@@ -1,0 +1,39 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package MCDFlash;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/MCDFlash";
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message File {
+	google.protobuf.Timestamp ts = 1;
+	bytes What = 2;		//	bytes32
+	bytes Data = 3;		//	uint256
+}
+
+message FlashLoan {
+	google.protobuf.Timestamp ts = 1;
+	bytes Receiver = 2;		//	address
+	bytes Token = 3;		//	address
+	bytes Amount = 4;		//	uint256
+	bytes Fee = 5;		//	uint256
+}
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message VatDaiFlashLoan {
+	google.protobuf.Timestamp ts = 1;
+	bytes Receiver = 2;		//	address
+	bytes Amount = 3;		//	uint256
+	bytes Fee = 4;		//	uint256
+}

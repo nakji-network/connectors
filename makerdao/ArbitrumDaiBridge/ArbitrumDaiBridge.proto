@@ -1,0 +1,48 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package ArbitrumDaiBridge;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/ArbitrumDaiBridge";
+
+message Rely {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message TxToL2 {
+	google.protobuf.Timestamp ts = 1;
+	bytes From = 2;		//	address
+	bytes To = 3;		//	address
+	bytes SeqNum = 4;		//	uint256
+	bytes Data = 5;		//	bytes
+}
+
+message WithdrawalFinalized {
+	google.protobuf.Timestamp ts = 1;
+	bytes L1Token = 2;		//	address
+	bytes From = 3;		//	address
+	bytes To = 4;		//	address
+	bytes ExitNum = 5;		//	uint256
+	bytes Amount = 6;		//	uint256
+}
+
+message Closed {
+	google.protobuf.Timestamp ts = 1;
+}
+
+message Deny {
+	google.protobuf.Timestamp ts = 1;
+	bytes Usr = 2;		//	address
+}
+
+message DepositInitiated {
+	google.protobuf.Timestamp ts = 1;
+	bytes L1Token = 2;		//	address
+	bytes From = 3;		//	address
+	bytes To = 4;		//	address
+	bytes SequenceNumber = 5;		//	uint256
+	bytes Amount = 6;		//	uint256
+}

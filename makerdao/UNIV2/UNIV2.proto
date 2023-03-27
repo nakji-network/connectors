@@ -2,10 +2,10 @@
 // Code generated - DO NOT EDIT.
 // This file is a generated protocol buffer definition and any manual changes will be lost.
 syntax = "proto3";
-package UNIV2;
+package UniV2;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/UNIV2";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/UniV2";
 
 message Swap {
 	google.protobuf.Timestamp ts = 1;

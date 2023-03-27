@@ -1,4 +1,4 @@
-package MANA
+package Mana
 
 import (
 	"github.com/nakji-network/connector/common"

@@ -1,5 +1,4 @@
-
-package STETH
+package STEth
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -14,7 +13,7 @@ import (
 type SmartContract struct{}
 
 func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog types.Log, timestamp *timestamppb.Timestamp) protoreflect.ProtoMessage {
-	if eventName == "ProxyDeposit"{
+	if eventName == "ProxyDeposit" {
 		e := new(STETHProxyDeposit)
 		if err := common.UnpackLog(*contractAbi, e, eventName, vLog); err != nil {
 			log.Error().Err(err).Msg("Failed to unpack log")
@@ -22,9 +21,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &ProxyDeposit{
-				Ts:   timestamp,
-				Sender:  e.Sender.Bytes(),
-				Value:  e.Value.Bytes(),
+			Ts:     timestamp,
+			Sender: e.Sender.Bytes(),
+			Value:  e.Value.Bytes(),
 		}
 	}
 	return nil

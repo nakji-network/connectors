@@ -1,5 +1,4 @@
-
-package GUNIV3DAIUSDC1
+package GUniV3DaiUSDC1
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -23,9 +22,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &ProxyAdminTransferred{
-				Ts:   timestamp,
-				PreviousAdmin:  e.PreviousAdmin.Bytes(),
-				NewAdmin:  e.NewAdmin.Bytes(),
+			Ts:            timestamp,
+			PreviousAdmin: e.PreviousAdmin.Bytes(),
+			NewAdmin:      e.NewAdmin.Bytes(),
 		}
 	case "ProxyImplementationUpdated":
 		e := new(GUNIV3DAIUSDC1ProxyImplementationUpdated)
@@ -35,9 +34,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &ProxyImplementationUpdated{
-				Ts:   timestamp,
-				PreviousImplementation:  e.PreviousImplementation.Bytes(),
-				NewImplementation:  e.NewImplementation.Bytes(),
+			Ts:                     timestamp,
+			PreviousImplementation: e.PreviousImplementation.Bytes(),
+			NewImplementation:      e.NewImplementation.Bytes(),
 		}
 	}
 	return nil

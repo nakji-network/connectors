@@ -1,4 +1,4 @@
-package CHANGELOG
+package Changelog
 
 import (
 	"github.com/nakji-network/connector/common"

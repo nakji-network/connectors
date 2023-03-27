@@ -2,10 +2,10 @@
 // Code generated - DO NOT EDIT.
 // This file is a generated protocol buffer definition and any manual changes will be lost.
 syntax = "proto3";
-package CRVV1ETHSTETH;
+package CrvV1EthSTEth;
 
 import "google/protobuf/timestamp.proto";
-option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/CRVV1ETHSTETH";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/CrvV1EthSTEth";
 
 message Transfer {
 	google.protobuf.Timestamp ts = 1;

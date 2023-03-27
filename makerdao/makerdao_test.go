@@ -6,10 +6,10 @@ import (
 	"testing"
 
 	"github.com/nakji-network/connector/kafkautils"
-	"github.com/nakji-network/connectors/makerdao/ETH"
-	"github.com/nakji-network/connectors/makerdao/MCD_DAI"
-	"github.com/nakji-network/connectors/makerdao/UNI"
+	"github.com/nakji-network/connectors/makerdao/Eth"
+	"github.com/nakji-network/connectors/makerdao/MCDDai"
 	"github.com/nakji-network/connectors/makerdao/USDT"
+	"github.com/nakji-network/connectors/makerdao/Uni"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
@@ -75,7 +75,7 @@ func TestParse(t *testing.T) {
 					common.HexToHash("0x0000000000000000000000007a250d5630b4cf539739df2c5dacb4c659f2488d"),
 				},
 			},
-			want: &ETH.Withdrawal{
+			want: &Eth.Withdrawal{
 				Ts: &timestamppb.Timestamp{
 					Seconds: 1630580307,
 				},
@@ -97,7 +97,7 @@ func TestParse(t *testing.T) {
 					common.HexToHash("0x0000000000000000000000001a2a1c938ce3ec39b6d47113c7955baa9dd454f2"),
 				},
 			},
-			want: &ETH.Deposit{
+			want: &Eth.Deposit{
 				Ts: &timestamppb.Timestamp{
 					Seconds: 1630580307,
 				},
@@ -120,7 +120,7 @@ func TestParse(t *testing.T) {
 					common.HexToHash("0x0000000000000000000000003c9ff3cc55c82c82f4921083c1f32211d58225f5"),
 				},
 			},
-			want: &MCD_DAI.Transfer{
+			want: &MCDDai.Transfer{
 				Ts: &timestamppb.Timestamp{
 					Seconds: 1630580307,
 				},
@@ -138,20 +138,20 @@ func TestParse(t *testing.T) {
 }
 
 func getMockContracts() map[string]*Contract {
-	uniABI, _ := abi.JSON(strings.NewReader(ABIs["UNI"]))
-	ethABI, _ := abi.JSON(strings.NewReader(ABIs["ETH"]))
+	uniABI, _ := abi.JSON(strings.NewReader(ABIs["Uni"]))
+	ethABI, _ := abi.JSON(strings.NewReader(ABIs["Eth"]))
 	usdtABI, _ := abi.JSON(strings.NewReader(ABIs["USDT"]))
 
 	return map[string]*Contract{
 		"0xdAC17F958D2ee523a2206206994597C13D831ec7": {
 			ABI:  &uniABI,
-			Name: "UNI",
-			Type: "UNI",
+			Name: "Uni",
+			Type: "Uni",
 		},
 		"0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2": {
 			ABI:  &ethABI,
-			Name: "ETH",
-			Type: "ETH",
+			Name: "Eth",
+			Type: "Eth",
 		},
 		"0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48": {
 			ABI:  &usdtABI,
@@ -163,9 +163,9 @@ func getMockContracts() map[string]*Contract {
 
 func registerTopics() {
 	topicTypes := map[string]proto.Message{
-		"nakji.makerdao.0_0_0.uni_transfer":  &UNI.Transfer{},
-		"nakji.makerdao.0_0_0.eth_deposit":   &ETH.Deposit{},
-		"nakji.makerdao.0_0_0.usdt_transfer": &USDT.Transfer{},
+		"nakji.makerdao.0_0_0.Uni_Transfer":  &Uni.Transfer{},
+		"nakji.makerdao.0_0_0.Eth_Deposit":   &Eth.Deposit{},
+		"nakji.makerdao.0_0_0.USDT_Transfer": &USDT.Transfer{},
 	}
 	kafkautils.TopicTypeRegistry.Load(topicTypes)
 }

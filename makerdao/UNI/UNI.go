@@ -1,5 +1,4 @@
-
-package UNI
+package Uni
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -23,10 +22,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Approval{
-				Ts:   timestamp,
-				Owner:  e.Owner.Bytes(),
-				Spender:  e.Spender.Bytes(),
-				Amount:  e.Amount.Bytes(),
+			Ts:      timestamp,
+			Owner:   e.Owner.Bytes(),
+			Spender: e.Spender.Bytes(),
+			Amount:  e.Amount.Bytes(),
 		}
 	case "DelegateChanged":
 		e := new(UNIDelegateChanged)
@@ -36,10 +35,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &DelegateChanged{
-				Ts:   timestamp,
-				Delegator:  e.Delegator.Bytes(),
-				FromDelegate:  e.FromDelegate.Bytes(),
-				ToDelegate:  e.ToDelegate.Bytes(),
+			Ts:           timestamp,
+			Delegator:    e.Delegator.Bytes(),
+			FromDelegate: e.FromDelegate.Bytes(),
+			ToDelegate:   e.ToDelegate.Bytes(),
 		}
 	case "DelegateVotesChanged":
 		e := new(UNIDelegateVotesChanged)
@@ -49,10 +48,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &DelegateVotesChanged{
-				Ts:   timestamp,
-				Delegate:  e.Delegate.Bytes(),
-				PreviousBalance:  e.PreviousBalance.Bytes(),
-				NewBalance:  e.NewBalance.Bytes(),
+			Ts:              timestamp,
+			Delegate:        e.Delegate.Bytes(),
+			PreviousBalance: e.PreviousBalance.Bytes(),
+			NewBalance:      e.NewBalance.Bytes(),
 		}
 	case "MinterChanged":
 		e := new(UNIMinterChanged)
@@ -62,9 +61,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &MinterChanged{
-				Ts:   timestamp,
-				Minter:  e.Minter.Bytes(),
-				NewMinter:  e.NewMinter.Bytes(),
+			Ts:        timestamp,
+			Minter:    e.Minter.Bytes(),
+			NewMinter: e.NewMinter.Bytes(),
 		}
 	case "Transfer":
 		e := new(UNITransfer)
@@ -74,10 +73,10 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Transfer{
-				Ts:   timestamp,
-				From:  e.From.Bytes(),
-				To:  e.To.Bytes(),
-				Amount:  e.Amount.Bytes(),
+			Ts:     timestamp,
+			From:   e.From.Bytes(),
+			To:     e.To.Bytes(),
+			Amount: e.Amount.Bytes(),
 		}
 	}
 	return nil

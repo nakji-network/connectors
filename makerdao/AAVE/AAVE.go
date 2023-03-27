@@ -1,5 +1,4 @@
-
-package AAVE
+package Aave
 
 import (
 	"github.com/nakji-network/connector/common"
@@ -23,9 +22,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &AdminChanged{
-				Ts:   timestamp,
-				PreviousAdmin:  e.PreviousAdmin.Bytes(),
-				NewAdmin:  e.NewAdmin.Bytes(),
+			Ts:            timestamp,
+			PreviousAdmin: e.PreviousAdmin.Bytes(),
+			NewAdmin:      e.NewAdmin.Bytes(),
 		}
 	case "Upgraded":
 		e := new(AAVEUpgraded)
@@ -35,8 +34,8 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 		}
 
 		return &Upgraded{
-				Ts:   timestamp,
-				Implementation:  e.Implementation.Bytes(),
+			Ts:             timestamp,
+			Implementation: e.Implementation.Bytes(),
 		}
 	}
 	return nil

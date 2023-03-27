@@ -1,0 +1,17 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package MCDPot;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "blep.ai/data/connectors/makerdao/smart-contracts/MCDPot";
+
+message LogNote {
+	google.protobuf.Timestamp ts = 1;
+	bytes Sig = 2;		//	bytes4
+	bytes Usr = 3;		//	address
+	bytes Arg1 = 4;		//	bytes32
+	bytes Arg2 = 5;		//	bytes32
+	bytes Data = 6;		//	bytes
+}
