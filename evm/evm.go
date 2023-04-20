@@ -2,6 +2,7 @@ package evm
 
 import (
 	"context"
+	"fmt"
 	"math/big"
 	"strings"
 	"sync"
@@ -205,6 +206,9 @@ func (c *Connector) process(block *types.Block, msgType kafkautils.MsgType) erro
 	header := block.Header()
 	messages := make([]*kafkautils.Message, len(block.Transactions())+1)
 	ts := common.UnixToTimestampPb(int64(header.Time * 1000))
+	if ts == common.UnixToTimestampPb(0) {
+		return fmt.Errorf("failed to get timestamp from header. ts: %d", header.Time)
+	}
 
 	for i, t := range block.Transactions() {
 		messages[i] = &kafkautils.Message{
