@@ -16,7 +16,7 @@ use sui_sdk::types::base_types::ObjectID;
 use sui_sdk::{SuiClient, SuiClientBuilder};
 
 #[derive(Parser, Debug)]
-struct Args {
+pub struct Args {
     /// Full node address
     #[arg(short, long, default_value_t = String::from("127.0.0.1:9000"))]
     addr: String,
@@ -26,30 +26,32 @@ struct Args {
     secured: bool,
 }
 
+impl Args {
+    pub fn ws_url(&self) -> String {
+        return if self.secured {
+            format!("wss://{}", self.addr)
+        } else {
+            format!("ws://{}", self.addr)
+        };
+    }
+
+    pub fn http_url(&self) -> String {
+        return if self.secured {
+            format!("https://{}", self.addr)
+        } else {
+            format!("http://{}", self.addr)
+        };
+    }
+}
+
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let args = Args::parse();
 
-    let ws_url = if args.secured {
-        format!("wss://{}", args.addr)
-    } else {
-        format!("ws://{}", args.addr)
-    };
-
-    let http_url = if args.secured {
-        format!("https://{}", args.addr)
-    } else {
-        format!("http://{}", args.addr)
-    };
-
-    println!("connecting to {}", args.addr);
-
     let sui = SuiClientBuilder::default()
-        .ws_url(ws_url)
-        .build(http_url)
+        .ws_url(args.ws_url())
+        .build(args.http_url())
         .await?;
-
-    println!("connected to {}", args.addr);
 
     let sui2 = sui.clone();
 
