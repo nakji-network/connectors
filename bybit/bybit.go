@@ -62,10 +62,15 @@ func (c *BybitConnector) Start() {
 			if d.OpenInterest != cache[d.Symbol].OpenInterest {
 				cache[d.Symbol] = UpdateData{ts, d.OpenInterest}
 
-				ov, err := strconv.ParseFloat(d.OpenValue, 64)
-				if err != nil {
-					log.Error().Err(err).Msg("failed to convert to float")
-					continue
+				var ov float64
+				if d.OpenValue == "" {
+					ov = 0
+				} else {
+					ov, err = strconv.ParseFloat(d.OpenValue, 64)
+					if err != nil {
+						log.Error().Err(err).Msg("failed to convert to float")
+						continue
+					}
 				}
 
 				msg := &market.OpenInterest{
