@@ -10,6 +10,6 @@ go run cmd/<connector_name>/main.go
 ```
 
 ### 🚀 To deploy
-Ensure that the connector's docker image has been built successfully and pushed to the docker repo in either Nakji [Slack](https://blepai.slack.com/archives/C03DL2A73SB) or [Google Artifact Registry](https://console.cloud.google.com/artifacts/docker/blep-core/asia/docker?project=blep-core).
+For Nakji devs, ensure that the image was built successfully (check Github Actions) and pushed to our internal artifact registry, then update Helmfile values.yaml. 
 
-Update Helmfile values.yaml to use the new docker image.
+If you would like to build your own connector, start by taking a look at our [documentation](https://docs.nakji.network/docs/intro), and [reach out to our team](hello@nakji.network) with any questions you may have.
