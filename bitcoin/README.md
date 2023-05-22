@@ -1,25 +1,8 @@
-# Running BTC Connector
+# Nakji Bitcoin Connector
 
-We will need `btcd` installed with the following steps in the command line:
+Bitcoin is an innovative payment network and a new kind of money. Bitcoin uses peer-to-peer technology to operate with no central authority or banks; managing transactions and the issuing of bitcoins is carried out collectively by the network. Bitcoin is open-source; its design is public, nobody owns or controls Bitcoin and everyone can take part. Through many of its unique properties, Bitcoin allows exciting uses that could not be covered by any previous payment system.
 
-    go get github.com/btcsuite/btcd
-    cd $GOPATH/src/github.com/btcsuite/btcd
-    GO111MODULE=on go install -v . ./cmd/...
+Nakji currently indexes the following from Bitcoin:
 
-Make sure that go binaries in your PATH with `export PATH="$HOME/go/bin:$PATH"` and maybe add that to
-bashrc/zshrc.
-
-Once `btcd` is installed, you may run the following commands for the BTC connector to work:
-
-    make start-btcd
-    make start-bitcoin
-
-
-Note that if you see a line like `Catching up indexes from height 181186 to 373507` when starting `btcd`,
-that means the RPC serve for `btcd` has not started yet and will only be started after all blocks have
-been indexed. Once all are indexed, the RPC server will be started and `make start-bitcoin` will be
-able to connect its RPC client to `btcd`.
-
-## Running BTC Connector in Prod
-
-We will need to set `bitcoin.rpc.url` key in analytics-config secret for prod to `"btcd:8334"`.
+* Blocks
+* Transactions
