@@ -1,0 +1,79 @@
+
+// Code generated - DO NOT EDIT.
+// This file is a generated protocol buffer definition and any manual changes will be lost.
+syntax = "proto3";
+package mai;
+
+import "google/protobuf/timestamp.proto";
+option go_package = "github.com/nakji-network/connectors/mai/smart-contracts/mai";
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	bytes Owner = 2;		//	address
+	bytes Spender = 3;		//	address
+	bytes Value = 4;		//	uint256
+}
+
+message OwnershipTransferred {
+	google.protobuf.Timestamp ts = 1;
+	bytes PreviousOwner = 2;		//	address
+	bytes NewOwner = 3;		//	address
+}
+
+message TransferVault {
+	google.protobuf.Timestamp ts = 1;
+	bytes VaultID = 2;		//	uint256
+	bytes From = 3;		//	address
+	bytes To = 4;		//	address
+}
+
+message DepositCollateral {
+	google.protobuf.Timestamp ts = 1;
+	bytes VaultID = 2;		//	uint256
+	bytes Amount = 3;		//	uint256
+}
+
+message WithdrawCollateral {
+	google.protobuf.Timestamp ts = 1;
+	bytes VaultID = 2;		//	uint256
+	bytes Amount = 3;		//	uint256
+}
+
+message BuyRiskyVault {
+	google.protobuf.Timestamp ts = 1;
+	bytes VaultID = 2;		//	uint256
+	bytes Owner = 3;		//	address
+	bytes Buyer = 4;		//	address
+	bytes AmountPaid = 5;		//	uint256
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	bytes From = 2;		//	address
+	bytes To = 3;		//	address
+	bytes Value = 4;		//	uint256
+}
+
+message CreateVault {
+	google.protobuf.Timestamp ts = 1;
+	bytes VaultID = 2;		//	uint256
+	bytes Creator = 3;		//	address
+}
+
+message DestroyVault {
+	google.protobuf.Timestamp ts = 1;
+	bytes VaultID = 2;		//	uint256
+}
+
+message BorrowToken {
+	google.protobuf.Timestamp ts = 1;
+	bytes VaultID = 2;		//	uint256
+	bytes Amount = 3;		//	uint256
+}
+
+message PayBackToken {
+	google.protobuf.Timestamp ts = 1;
+	bytes VaultID = 2;		//	uint256
+	bytes Amount = 3;		//	uint256
+	bytes ClosingFee = 4;		//	uint256
+}
