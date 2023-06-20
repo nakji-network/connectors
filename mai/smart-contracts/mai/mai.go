@@ -23,6 +23,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &Approval{
 			Ts:      timestamp,
+			Block:   vLog.BlockNumber,
+			Idx:     uint64(vLog.Index),
+			Tx:      vLog.TxHash.Bytes(),
 			Owner:   e.Owner.Bytes(),
 			Spender: e.Spender.Bytes(),
 			Value:   e.Value.Bytes(),
@@ -36,6 +39,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &BorrowToken{
 			Ts:      timestamp,
+			Block:   vLog.BlockNumber,
+			Idx:     uint64(vLog.Index),
+			Tx:      vLog.TxHash.Bytes(),
 			VaultID: e.VaultID.Bytes(),
 			Amount:  e.Amount.Bytes(),
 		}
@@ -48,6 +54,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &BuyRiskyVault{
 			Ts:         timestamp,
+			Block:      vLog.BlockNumber,
+			Idx:        uint64(vLog.Index),
+			Tx:         vLog.TxHash.Bytes(),
 			VaultID:    e.VaultID.Bytes(),
 			Owner:      e.Owner.Bytes(),
 			Buyer:      e.Buyer.Bytes(),
@@ -62,6 +71,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &CreateVault{
 			Ts:      timestamp,
+			Block:   vLog.BlockNumber,
+			Idx:     uint64(vLog.Index),
+			Tx:      vLog.TxHash.Bytes(),
 			VaultID: e.VaultID.Bytes(),
 			Creator: e.Creator.Bytes(),
 		}
@@ -74,6 +86,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &DepositCollateral{
 			Ts:      timestamp,
+			Block:   vLog.BlockNumber,
+			Idx:     uint64(vLog.Index),
+			Tx:      vLog.TxHash.Bytes(),
 			VaultID: e.VaultID.Bytes(),
 			Amount:  e.Amount.Bytes(),
 		}
@@ -86,6 +101,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &DestroyVault{
 			Ts:      timestamp,
+			Block:   vLog.BlockNumber,
+			Idx:     uint64(vLog.Index),
+			Tx:      vLog.TxHash.Bytes(),
 			VaultID: e.VaultID.Bytes(),
 		}
 	case "OwnershipTransferred":
@@ -97,6 +115,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &OwnershipTransferred{
 			Ts:            timestamp,
+			Block:         vLog.BlockNumber,
+			Idx:           uint64(vLog.Index),
+			Tx:            vLog.TxHash.Bytes(),
 			PreviousOwner: e.PreviousOwner.Bytes(),
 			NewOwner:      e.NewOwner.Bytes(),
 		}
@@ -109,6 +130,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &PayBackToken{
 			Ts:         timestamp,
+			Block:      vLog.BlockNumber,
+			Idx:        uint64(vLog.Index),
+			Tx:         vLog.TxHash.Bytes(),
 			VaultID:    e.VaultID.Bytes(),
 			Amount:     e.Amount.Bytes(),
 			ClosingFee: e.ClosingFee.Bytes(),
@@ -122,6 +146,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &Transfer{
 			Ts:    timestamp,
+			Block: vLog.BlockNumber,
+			Idx:   uint64(vLog.Index),
+			Tx:    vLog.TxHash.Bytes(),
 			From:  e.From.Bytes(),
 			To:    e.To.Bytes(),
 			Value: e.Value.Bytes(),
@@ -135,6 +162,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &TransferVault{
 			Ts:      timestamp,
+			Block:   vLog.BlockNumber,
+			Idx:     uint64(vLog.Index),
+			Tx:      vLog.TxHash.Bytes(),
 			VaultID: e.VaultID.Bytes(),
 			From:    e.From.Bytes(),
 			To:      e.To.Bytes(),
@@ -148,6 +178,9 @@ func (sc *SmartContract) Message(eventName string, contractAbi *abi.ABI, vLog ty
 
 		return &WithdrawCollateral{
 			Ts:      timestamp,
+			Block:   vLog.BlockNumber,
+			Idx:     uint64(vLog.Index),
+			Tx:      vLog.TxHash.Bytes(),
 			VaultID: e.VaultID.Bytes(),
 			Amount:  e.Amount.Bytes(),
 		}

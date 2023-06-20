@@ -7,73 +7,106 @@ package mai;
 import "google/protobuf/timestamp.proto";
 option go_package = "github.com/nakji-network/connectors/mai/smart-contracts/mai";
 
-message Approval {
-	google.protobuf.Timestamp ts = 1;
-	bytes Owner = 2;		//	address
-	bytes Spender = 3;		//	address
-	bytes Value = 4;		//	uint256
-}
-
 message OwnershipTransferred {
 	google.protobuf.Timestamp ts = 1;
-	bytes PreviousOwner = 2;		//	address
-	bytes NewOwner = 3;		//	address
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes PreviousOwner = 5;		//	address
+	bytes NewOwner = 6;		//	address
 }
 
 message TransferVault {
 	google.protobuf.Timestamp ts = 1;
-	bytes VaultID = 2;		//	uint256
-	bytes From = 3;		//	address
-	bytes To = 4;		//	address
-}
-
-message DepositCollateral {
-	google.protobuf.Timestamp ts = 1;
-	bytes VaultID = 2;		//	uint256
-	bytes Amount = 3;		//	uint256
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes VaultID = 5;		//	uint256
+	bytes From = 6;		//	address
+	bytes To = 7;		//	address
 }
 
 message WithdrawCollateral {
 	google.protobuf.Timestamp ts = 1;
-	bytes VaultID = 2;		//	uint256
-	bytes Amount = 3;		//	uint256
-}
-
-message BuyRiskyVault {
-	google.protobuf.Timestamp ts = 1;
-	bytes VaultID = 2;		//	uint256
-	bytes Owner = 3;		//	address
-	bytes Buyer = 4;		//	address
-	bytes AmountPaid = 5;		//	uint256
-}
-
-message Transfer {
-	google.protobuf.Timestamp ts = 1;
-	bytes From = 2;		//	address
-	bytes To = 3;		//	address
-	bytes Value = 4;		//	uint256
-}
-
-message CreateVault {
-	google.protobuf.Timestamp ts = 1;
-	bytes VaultID = 2;		//	uint256
-	bytes Creator = 3;		//	address
-}
-
-message DestroyVault {
-	google.protobuf.Timestamp ts = 1;
-	bytes VaultID = 2;		//	uint256
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes VaultID = 5;		//	uint256
+	bytes Amount = 6;		//	uint256
 }
 
 message BorrowToken {
 	google.protobuf.Timestamp ts = 1;
-	bytes VaultID = 2;		//	uint256
-	bytes Amount = 3;		//	uint256
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes VaultID = 5;		//	uint256
+	bytes Amount = 6;		//	uint256
 }
 
 message PayBackToken {
 	google.protobuf.Timestamp ts = 1;
-	bytes VaultID = 2;		//	uint256
-	bytes Amount = 3;		//	uint256
-	bytes ClosingFee = 4;		//	uint256
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes VaultID = 5;		//	uint256
+	bytes Amount = 6;		//	uint256
+	bytes ClosingFee = 7;		//	uint256
+}
+
+message Approval {
+	google.protobuf.Timestamp ts = 1;
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes Owner = 5;		//	address
+	bytes Spender = 6;		//	address
+	bytes Value = 7;		//	uint256
+}
+
+message CreateVault {
+	google.protobuf.Timestamp ts = 1;
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes VaultID = 5;		//	uint256
+	bytes Creator = 6;		//	address
+}
+
+message DestroyVault {
+	google.protobuf.Timestamp ts = 1;
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes VaultID = 5;		//	uint256
+}
+
+message DepositCollateral {
+	google.protobuf.Timestamp ts = 1;
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes VaultID = 5;		//	uint256
+	bytes Amount = 6;		//	uint256
+}
+
+message BuyRiskyVault {
+	google.protobuf.Timestamp ts = 1;
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes VaultID = 5;		//	uint256
+	bytes Owner = 6;		//	address
+	bytes Buyer = 7;		//	address
+	bytes AmountPaid = 8;		//	uint256
+}
+
+message Transfer {
+	google.protobuf.Timestamp ts = 1;
+	uint64 block = 2; 	// block number
+	uint64 idx = 3; 	// log index
+	bytes tx = 4; 		// tx hash
+	bytes From = 5;		//	address
+	bytes To = 6;		//	address
+	bytes Value = 7;		//	uint256
 }
